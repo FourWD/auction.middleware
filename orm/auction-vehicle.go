@@ -7,6 +7,5 @@ type AuctionVehicle struct {
 	orm.GormModel
 
 	AuctionID string `json:"finance_id" query:"finance_id" db:"finance_id" gorm:"type:varchar(36)"`
-
-	UserID string `json:"user_id" query:"user_id" db:"user_id" gorm:"type:varchar(36)"`
+	VehicleID string `json:"vehicle_id" query:"vehicle_id" db:"vehicle_id" gorm:"type:varchar(36)"`
 }

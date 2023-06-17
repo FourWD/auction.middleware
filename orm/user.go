@@ -10,8 +10,12 @@ type User struct {
 
 	Username          string `json:"username" query:"username" db:"username" gorm:"type:varchar(20);"`
 	Password          string `json:"password" query:"password" db:"password" gorm:"type:varchar(20);"`
+	Firstname         string `json:"firstname" query:"firstname" db:"firstname" gorm:"type:varchar(100);"`
+	Lastname          string `json:"lastname" query:"lastname" db:"lastname" gorm:"type:varchar(100);"`
+	FileAvatarID      string `json:"file_avartar_id" query:"file_avartar_id" db:"file_avartar_id" gorm:"type:varchar(36)"`
 	Mobile            string `json:"mobile" query:"mobile" db:"mobile" gorm:"type:varchar(20);"`
 	Email             string `json:"email" query:"email" db:"email" gorm:"type:varchar(20);"`
 	Pin               string `json:"pin" query:"pin" db:"pin" gorm:"type:int(6);"`
+	IsUseTouchID      string `json:"is_use_touch_id" query:"is_use_touch_id" db:"is_use_touch_id" gorm:"type:int(6);"`
 	NotificationToken string `json:"notification_token" query:"notification_token" db:"notification_token" gorm:"type:varchar(20);"`
 }
