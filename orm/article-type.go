@@ -7,4 +7,5 @@ type ArticleType struct {
 	orm.GormModel
 
 	Name string `json:"name" query:"name" db:"name" gorm:"not null;type:varchar(50)"`
+	orm.RowOrder
 }

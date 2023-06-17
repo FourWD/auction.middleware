@@ -7,4 +7,5 @@ type UserType struct { // 01 Seller 02 Customer
 	orm.GormModel
 
 	Name string `json:"name" query:"name" db:"name" gorm:"type:varchar(20);"`
+	orm.RowOrder
 }

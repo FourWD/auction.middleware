@@ -7,4 +7,5 @@ type Province struct {
 	orm.GormModel
 
 	Name string `json:"name" query:"name" db:"name" gorm:"not null;type:varchar(100)"`
+	orm.RowOrder
 }

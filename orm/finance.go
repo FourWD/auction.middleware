@@ -8,4 +8,5 @@ type Finance struct {
 
 	Logo string `json:"logo" query:"logo" db:"logo" gorm:"not null;type:varchar(50)"`
 	Name string `json:"name" query:"name" db:"name" gorm:"not null;type:varchar(50)"`
+	orm.RowOrder
 }
