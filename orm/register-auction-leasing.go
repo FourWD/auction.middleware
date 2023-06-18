@@ -2,7 +2,7 @@ package orm
 
 import "github.com/FourWD/middleware/orm"
 
-type RegisterAuctionLoan struct {
+type RegisterAuctionLeasing struct {
 	ID string `json:"id" query:"id" db:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
@@ -11,7 +11,7 @@ type RegisterAuctionLoan struct {
 	FilePayslipID          string `json:"file_payslip_id" query:"file_payslip_id" db:"file_payslip_id" gorm:"type:varchar(36)"`
 	AcceptTCVersion        string `json:"accept_tc_version" query:"accept_tc_version" db:"accept_tc_version" gorm:"type:varchar(36)"`
 
-	LeasingStatusID        string `json:"leasing_status_id" query:"leasing_status_id" db:"leasing_status_id" gorm:"type:varchar(36)"`
+	LeasingStatusID     string `json:"leasing_status_id" query:"leasing_status_id" db:"leasing_status_id" gorm:"type:varchar(36)"`
 	FinancialAmount     string `json:"financial_amount" query:"financial_amount" db:"financial_amount" gorm:"type:varchar(36)"`
 	UpdatedLoanStatusBy string `json:"updated_loan_status_by" query:"updated_loan_status_by" db:"updated_loan_status_by" gorm:"type:varchar(36)"`
 	UpdatedLoanStatusAt string `json:"updated_loan_status_at" query:"updated_loan_status_at" db:"updated_loan_status_at" gorm:"type:varchar(36)"`
