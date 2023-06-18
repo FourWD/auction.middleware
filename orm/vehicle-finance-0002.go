@@ -4,5 +4,8 @@ import "middleware-auction/model"
 
 type VehicleFinance0002 struct {
 	model.VehicleModel
-	Name string `gorm:"table:vehicle-finances-0002"`
+}
+
+func (VehicleFinance0002) TableName() string {
+	return "table:vehicle-finances-0002"
 }
