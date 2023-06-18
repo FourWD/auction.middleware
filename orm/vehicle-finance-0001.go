@@ -7,5 +7,5 @@ type VehicleFinance0001 struct {
 }
 
 func (VehicleFinance0001) TableName() string {
-	return "table:vehicle-finances-0001"
+	return "vehicle-finances-0001"
 }
