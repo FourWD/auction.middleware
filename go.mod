@@ -1,6 +1,6 @@
 module middleware-auction
 
-go 1.20
+go 1.19
 
 require github.com/FourWD/middleware v1.0.27
 
