@@ -8,5 +8,6 @@ type VehicleChecklist struct {
 
 	VehicleID string `json:"vehicle_id" query:"vehicle_id" db:"vehicle_id" gorm:"type:varchar(36)"`
 
-	FileChecklistID string `json:"file_checklist_id" query:"file_checklist_id" db:"file_checklist_id" gorm:"type:varchar(36)"`
+	FormChecklistID string `json:"form_checklist_id" query:"form_checklist_id" db:"form_checklist_id" gorm:"type:varchar(36)"`
+	IsCheck         bool   `json:"is_check" query:"is_check" db:"is_check" gorm:"type:boolean"`
 }
