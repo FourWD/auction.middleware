@@ -1,4 +1,4 @@
-module github.com/FourWD/middleware-auction
+module middleware-auction
 
 go 1.20
 
