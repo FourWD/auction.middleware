@@ -11,5 +11,6 @@ type Menu struct {
 	Name     string `json:"name" query:"name" db:"name" gorm:"type:varchar(500)"`
 	IconPath string `json:"icon_path" query:"icon_path" db:"icon_path" gorm:"type:varchar(100)"`
 	Url      string `json:"url" query:"url" db:"url" gorm:"type:varchar(200)"`
+	OpenType string `json:"open_type" query:"open_type" db:"open_type" gorm:"type:varchar(10)"`
 	orm.RowOrder
 }
