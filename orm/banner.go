@@ -13,6 +13,6 @@ type Banner struct {
 	Url         string `json:"url" query:"url" db:"url" gorm:"type:varchar(200)"`
 	Youtube     string `json:"youtube" query:"youtube" db:"youtube" gorm:"type:varchar(100)"`
 	Description string `json:"description" query:"description" db:"description" gorm:"type:varchar(500)"`
-	OpenType    string `json:"open_type" query:"open_type" db:"open_type" gorm:"type:varchar(10)"`
+	OpenType    string `json:"open_type" query:"open_type" db:"open_type" gorm:"type:varchar(11)"`
 	orm.RowOrder
 }
