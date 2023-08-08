@@ -11,7 +11,7 @@ type Banner struct {
 	Subject     string `json:"subject" query:"subject" db:"subject" gorm:"type:varchar(500)"`
 	ImagePath   string `json:"image_path" query:"image_path" db:"image_path" gorm:"type:varchar(100)"`
 	Url         string `json:"url" query:"url" db:"url" gorm:"type:varchar(200)"`
-	Youtube     string `json:"youtube" query:"youtube" db:"youtube" gorm:"type:varchar(100)"`
+	YoutubeUrl  string `json:"youtube_url" query:"youtube_url" db:"youtube_url" gorm:"type:varchar(100)"`
 	Description string `json:"description" query:"description" db:"description" gorm:"type:varchar(500)"`
 	OpenType    string `json:"open_type" query:"open_type" db:"open_type" gorm:"type:varchar(11)"`
 	orm.RowOrder

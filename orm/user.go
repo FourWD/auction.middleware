@@ -16,9 +16,12 @@ type User struct {
 	Mobile              string `json:"mobile" query:"mobile" db:"mobile" gorm:"type:varchar(20);"`
 	Email               string `json:"email" query:"email" db:"email" gorm:"type:varchar(20);"`
 	Pin                 string `json:"pin" query:"pin" db:"pin" gorm:"type:int(6);"`
+	Token               string `json:"token" query:"token" db:"token" gorm:"type:varchar(500);"`
 	IsNotiBeforeAuction bool   `json:"is_noti_before_auction" query:"is_noti_before_auction" db:"is_noti_before_auction" gorm:"type:boolean"`
 	IsNotiDuringAuction bool   `json:"is_noti_during_auction" query:"is_noti_during_auction" db:"is_noti_during_auction" gorm:"type:boolean"`
 	IsNotiAfterAuction  bool   `json:"is_noti_after_auction" query:"is_noti_after_auction" db:"is_noti_after_auction" gorm:"type:boolean"`
 	IsUseTouchID        string `json:"is_use_touch_id" query:"is_use_touch_id" db:"is_use_touch_id" gorm:"type:int(6);"`
 	NotificationToken   string `json:"notification_token" query:"notification_token" db:"notification_token" gorm:"type:varchar(20);"`
+	CountWrongLogin     int    `json:"count_wrong_login" query:"count_wrong_login" db:"count_wrong_login" gorm:"type:int(1);"`
+	LastLoginDate       string `json:"last_login_date" query:"last_login_date" db:"last_login_date" gorm:"type:varchar(15)"`
 }
