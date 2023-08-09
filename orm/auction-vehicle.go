@@ -12,6 +12,9 @@ type AuctionVehicle struct {
 
 	VehicleNo string `json:"vehicle_no" query:"vehicle_no" db:"vehicle_no" gorm:"type:varchar(10);"`
 
+	OpenPrice string `json:"open_price" query:"open_price" db:"open_price" gorm:"type:varchar(20);"`
+	MinPrice  string `json:"min_price" query:"min_price" db:"min_price" gorm:"type:varchar(20);"`
+
 	BiddingStep1 int `json:"bidding_step_1" query:"bidding_step_1" db:"bidding_step_1" gorm:"type:int(6);"`
 	BiddingStep2 int `json:"bidding_step_2" query:"bidding_step_2" db:"bidding_step_2" gorm:"type:int(6);"`
 	BiddingStep3 int `json:"bidding_step_3" query:"bidding_step_3" db:"bidding_step_3" gorm:"type:int(6);"`
