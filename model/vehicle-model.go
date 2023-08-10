@@ -21,8 +21,6 @@ type VehicleModel struct {
 	License          string `json:"license" query:"license" db:"license" gorm:"type:varchar(10);"`
 	LicenseProviceID string `json:"license_province_id" query:"license_province_id" db:"license_province_id" gorm:"type:varchar(36);"`
 	VehicleGradeID   string `json:"vehicle_grade_id" query:"vehicle_grade_id" db:"vehicle_grade_id" gorm:"type:varchar(36);"`
-	OpenPrice        string `json:"open_price" query:"open_price" db:"open_price" gorm:"type:varchar(20);"`
-	MinPrice         string `json:"min_price" query:"min_price" db:"min_price" gorm:"type:varchar(20);"`
 	BranchID         string `json:"branch_id" query:"branch_id" db:"branch_id" gorm:"type:varchar(36)"`
 	Remark           string `json:"remark" query:"remark" db:"name" gorm:"type:text;"`
 
@@ -32,7 +30,7 @@ type VehicleModel struct {
 	ImgStrLeft         string `json:"img_str_left" query:"img_str_left" db:"img_str_left" gorm:"type:varchar(400)"`
 	ImgFrontLeft45     string `json:"img_front_left_45" query:"img_front_left_45" db:"img_front_left_45" gorm:"type:varchar(400)"`
 	ImgFrontRight45    string `json:"img_front_right_45" query:"img_front_right_45" db:"img_front_right_45" gorm:"type:varchar(400)"`
-	ImgBackLeft45      string `json:"img_back_left_45" query:"img_back_left_45" db:"img_back_left_45" gorm:"type:varchar(400)"`
+	ImgBackLeft45      string `json:"img_back_left_45" query:"img_back_left_45" db:"img_back_left_45" gorm:"column:"img_back_left_45";type:varchar(400)"`
 	ImgBackRight45     string `json:"img_back_right_45" query:"img_back_right_45" db:"img_back_right_45" gorm:"type:varchar(400)"`
 	ImgInFront         string `json:"img_in_front" query:"img_in_front" db:"img_in_front" gorm:"type:varchar(400)"`
 	ImgInBack          string `json:"img_in_back" query:"img_in_back" db:"img_in_back" gorm:"type:varchar(400)"`
