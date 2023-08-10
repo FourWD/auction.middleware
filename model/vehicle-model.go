@@ -30,7 +30,7 @@ type VehicleModel struct {
 	ImgStrLeft         string `json:"img_str_left" query:"img_str_left" db:"img_str_left" gorm:"type:varchar(400)"`
 	ImgFrontLeft45     string `json:"img_front_left_45" query:"img_front_left_45" db:"img_front_left_45" gorm:"type:varchar(400)"`
 	ImgFrontRight45    string `json:"img_front_right_45" query:"img_front_right_45" db:"img_front_right_45" gorm:"type:varchar(400)"`
-	ImgBackLeft45      string `json:"img_back_left_45" query:"img_back_left_45" db:"img_back_left_45" gorm:"column:"img_back_left_45";type:varchar(400)"`
+	ImgBackLeft45      string `json:"img_back_left_45" query:"img_back_left_45" db:"img_back_left_45" gorm:"column:img_back_left_45;type:varchar(400)"`
 	ImgBackRight45     string `json:"img_back_right_45" query:"img_back_right_45" db:"img_back_right_45" gorm:"type:varchar(400)"`
 	ImgInFront         string `json:"img_in_front" query:"img_in_front" db:"img_in_front" gorm:"type:varchar(400)"`
 	ImgInBack          string `json:"img_in_back" query:"img_in_back" db:"img_in_back" gorm:"type:varchar(400)"`
