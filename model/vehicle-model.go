@@ -28,10 +28,10 @@ type VehicleModel struct {
 	ImgStrBack         string `json:"img_str_back" query:"img_str_back" db:"img_str_back" gorm:"type:varchar(400)"`
 	ImgStrRight        string `json:"img_str_right" query:"img_str_right" db:"img_str_right" gorm:"type:varchar(400)"`
 	ImgStrLeft         string `json:"img_str_left" query:"img_str_left" db:"img_str_left" gorm:"type:varchar(400)"`
-	ImgFrontLeft45     string `json:"img_front_left_45" query:"img_front_left_45" db:"img_front_left_45" gorm:"type:varchar(400)"`
-	ImgFrontRight45    string `json:"img_front_right_45" query:"img_front_right_45" db:"img_front_right_45" gorm:"type:varchar(400)"`
+	ImgFrontLeft45     string `json:"img_front_left_45" query:"img_front_left_45" db:"img_front_left_45" gorm:"column:img_front_left_45;type:varchar(400)"`
+	ImgFrontRight45    string `json:"img_front_right_45" query:"img_front_right_45" db:"img_front_right_45" gorm:"column:img_front_right_45;type:varchar(400)"`
 	ImgBackLeft45      string `json:"img_back_left_45" query:"img_back_left_45" db:"img_back_left_45" gorm:"column:img_back_left_45;type:varchar(400)"`
-	ImgBackRight45     string `json:"img_back_right_45" query:"img_back_right_45" db:"img_back_right_45" gorm:"type:varchar(400)"`
+	ImgBackRight45     string `json:"img_back_right_45" query:"img_back_right_45" db:"img_back_right_45" gorm:"column:img_back_right_45;type:varchar(400)"`
 	ImgInFront         string `json:"img_in_front" query:"img_in_front" db:"img_in_front" gorm:"type:varchar(400)"`
 	ImgInBack          string `json:"img_in_back" query:"img_in_back" db:"img_in_back" gorm:"type:varchar(400)"`
 	ImgConsole         string `json:"img_console" query:"img_console" db:"img_console" gorm:"type:varchar(400)"`
@@ -39,8 +39,8 @@ type VehicleModel struct {
 	ImgVehTools        string `json:"img_veh_tools" query:"img_veh_tools" db:"img_veh_tools" gorm:"type:varchar(400)"`
 	ImgEngineRoom      string `json:"img_engine_room" query:"img_engine_room" db:"img_engine_room" gorm:"type:varchar(400)"`
 	ImgGas             string `json:"img_gas" query:"img_gas" db:"img_gas" gorm:"type:varchar(400)"`
-	ImgOut360          string `json:"img_out_360" query:"img_out_360" db:"img_out_360" gorm:"type:varchar(400)"`
-	ImgIn360           string `json:"img_in_360" query:"img_in_360" db:"img_in_360" gorm:"type:varchar(400)"`
+	ImgOut360          string `json:"img_out_360" query:"img_out_360" db:"img_out_360" gorm:"column:img_out_360;type:varchar(400)"`
+	ImgIn360           string `json:"img_in_360" query:"img_in_360" db:"img_in_360" gorm:"column:img_in_360;type:varchar(400)"`
 	ImgAct             string `json:"img_act" query:"img_act" db:"img_act" gorm:"type:varchar(400)"`
 	ImgInsurance       string `json:"img_insurance" query:"img_insurance" db:"img_insurance" gorm:"type:varchar(400)"`
 	ImgInspectionFront string `json:"img_inspection_front" query:"img_inspection_front" db:"img_inspection_front" gorm:"type:varchar(400)"`
