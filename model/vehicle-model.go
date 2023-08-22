@@ -5,7 +5,7 @@ import (
 )
 
 type VehicleModel struct {
-	ID string `json:"id" query:"id" db:"id" gorm:"type:varchar(36);primary_key;"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
 	VehicleModelID string `json:"vehicle_model_id" query:"vehicle_model_id" db:"vehicle_model_id" gorm:"type:varchar(36);"`

@@ -2,8 +2,8 @@ package orm
 
 import "github.com/FourWD/middleware/orm"
 
-type VehicleMaintenance struct { 
-	ID string `json:"id" query:"id" db:"id" gorm:"type:varchar(36);primary_key;"`
+type VehicleMaintenance struct {
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
 	VehicleID string `json:"vehicle_id" query:"vehicle_id" db:"vehicle_id" gorm:"type:varchar(36)"`
@@ -12,5 +12,5 @@ type VehicleMaintenance struct {
 	Mile                  int    `json:"mile" query:"mile" db:"mile" gorm:"type:int(11);"`
 	MaintenanceLocationID string `json:"maintenanced_location_id" query:"maintenanced_location_id" db:"maintenanced_location_id" gorm:"type:varchar(36);"`
 	MaintenanceTypeID     string `json:"maintenanced_type_id" query:"maintenanced_type_id" db:"maintenanced_type_id" gorm:"type:varchar(36);"`
-	Remark                string `json:"remark" query:"remark" db:"name" gorm:"type:varchar(500);"`
+	Remark                string `json:"remark" query:"remark" db:"name" gorm:"type:text;"`
 }
