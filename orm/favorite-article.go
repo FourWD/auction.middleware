@@ -8,4 +8,5 @@ type FavoriteArticle struct {
 
 	UserID    string `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	ArticleID string `json:"article_id" query:"article_id" gorm:"type:varchar(36)"`
+	IsDelete  string `json:"is_delete" query:"is_delete" gorm:"type:bool"`
 }

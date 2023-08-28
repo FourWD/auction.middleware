@@ -10,4 +10,5 @@ type FavoriteVehicle struct {
 	AuctionID        string `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
 	VehicleID        string `json:"vehicle_id" query:"vehicle_id" gorm:"type:varchar(36)"`
 	VehicleTableName string `json:"vehicle_table_name" query:"vehicle_table_name" gorm:"type:varchar(50)"`
+	IsDelete         string `json:"is_delete" query:"is_delete" gorm:"type:bool"`
 }
