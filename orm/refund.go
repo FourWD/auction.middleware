@@ -8,7 +8,7 @@ type Refund struct {
 
 	BankID          string  `json:"refund_bank_id" query:"refund_bank_id" gorm:"type:varchar(36)"`
 	BankBranchName  string  `json:"refund_bank_branch_name" query:"refund_bank_branch_name" gorm:"type:varchar(200)"`
-	BankAccountName string  `json:"refund_bank_account_no" query:"refund_bank_account_no" gorm:"type:varchar(15)"`
+	BankAccountName string  `json:"refund_bank_account_name" query:"refund_bank_account_name" gorm:"type:varchar(15)"`
 	BankAccountNo   string  `json:"refund_bank_account_no" query:"refund_bank_account_no" gorm:"type:varchar(15)"`
 	RightToBid      int     `json:"right_to_bid" query:"right_to_bid" gorm:"type:int(5)"`
 	Amount          float64 `json:"amount" query:"amount" gorm:"type:float"`
