@@ -9,7 +9,7 @@ type Banner struct {
 	BannerGroupID string `json:"banner_grounp_id" query:"banner_grounp_id" gorm:"type:varchar(36)"`
 
 	Subject     string `json:"subject" query:"subject" gorm:"type:varchar(500)"`
-	ImagePath   string `json:"image_path" query:"image_path" gorm:"type:varchar(100)"`
+	ImagePath   string `json:"image_path" query:"image_path" gorm:"type:varchar(255)"`
 	Url         string `json:"url" query:"url" gorm:"type:varchar(200)"`
 	YoutubeUrl  string `json:"youtube_url" query:"youtube_url" gorm:"type:varchar(100)"`
 	Description string `json:"description" query:"description" gorm:"type:varchar(500)"`

@@ -8,10 +8,10 @@ type VehicleSubModel struct {
 
 	VehicleModelID string `json:"vehicle_model_id" query:"vehicle_model_id" gorm:"type:varchar(36);"`
 
-	VehicleDrivetypeID string `json:"vehicle_drivetype_id" query:"vehicle_drivetype_id" gorm:"type:varchar(36);"`
-	VehicleGearID      string `json:"vehicle_gear_id" query:"vehicle_gear_id" db:"vehicle_gear_id" gorm:"type:varchar(36);"`
-	VehicleFuelID      string `json:"vehicle_fuel_id" query:"vehicle_fuel_id" gorm:"type:varchar(36);"`
-	Name               string `json:"name" query:"name" db:"name" gorm:"type:varchar(20);"`
+	VehicleDrivetypeID string `json:"vehicle_drivetype_id" query:"vehicle_drivetype_id" gorm:"type:varchar(2);"`
+	VehicleGearID      string `json:"vehicle_gear_id" query:"vehicle_gear_id" db:"vehicle_gear_id" gorm:"type:varchar(2);"`
+	VehicleFuelID      string `json:"vehicle_fuel_id" query:"vehicle_fuel_id" gorm:"type:varchar(2);"`
+	Name               string `json:"name" query:"name" db:"name" gorm:"type:varchar(30);"`
 	Seat               string `json:"seat" query:"seat" db:"seat" gorm:"type:int(1);"`
 	EngineCC           int    `json:"engine_cc" query:"engine_cc" db:"engine_cc" gorm:"type:varchar(4);"`
 	orm.RowOrder
