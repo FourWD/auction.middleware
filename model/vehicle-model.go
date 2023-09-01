@@ -9,7 +9,6 @@ type VehicleModel struct {
 	orm.GormModel
 
 	SourceID          string `json:"source_id" query:"source_id" gorm:"type:varchar(36);"`
-	VehicleModelID    string `json:"vehicle_model_id" query:"vehicle_model_id" db:"vehicle_model_id" gorm:"type:varchar(36);"`
 	VehicleSubmodelID string `json:"vehicle_submodel_id" query:"vehicle_submodel_id" gorm:"type:varchar(36);"`
 
 	VehicleColorID    string `json:"vehicle_color_id" query:"vehicle_color_id" db:"vehicle_color_id" gorm:"type:varchar(36);"`
