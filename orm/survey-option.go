@@ -11,3 +11,5 @@ type SurveyOption struct {
 	ImagePath string `json:"image_path" query:"image_path" gorm:"type:varchar(255)"`
 	orm.RowOrder
 }
+
+// ชื่อของ survey เช่น survey "ตัวเลือก suv sedan"

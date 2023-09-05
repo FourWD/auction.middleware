@@ -11,3 +11,5 @@ type Survey struct {
 	AnswerCount   int    `json:"answer_count" query:"answer_count" gorm:"type:int"`
 	orm.RowOrder
 }
+
+// ชื่อของ survey เช่น survey "ประเภทรถ , ราคา"

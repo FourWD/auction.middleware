@@ -10,6 +10,7 @@ type LogOTP struct {
 
 	EmployeeID string `json:"employee_id" query:"employee_id" gorm:"type:varchar(36);"`
 	UserID     string `json:"user_id" query:"user_id" gorm:"type:varchar(36);"`
+	DeviceID   string `json:"device_id" query:"device_id"  gorm:"type:varchar(255)"`
 	OTP        string `json:"otp" query:"otp" gorm:"type:varchar(6);"`
 	RefCodeOTP string `json:"ref_code_otp" query:"ref_code_otp" gorm:"type:varchar(6);"`
 
