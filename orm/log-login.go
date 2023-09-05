@@ -15,7 +15,7 @@ type LogLogin struct {
 	Token             string  `json:"token" query:"token" gorm:"type:varchar(500)"`
 	NotificationToken string  `json:"notification_token" query:"notification_token" gorm:"type:varchar(255)"`
 	IsActive          bool    `json:"is_active" query:"is_active" gorm:"type:bool"`
-	IsSuccess         bool    `json:"is_success" query:"is_success" gorm:"type:bool"`
+	IsLoginSuccess    bool    `json:"is_login_success" query:"is_login_success" gorm:"type:bool"`
 
 	orm.RowOrder
 }
