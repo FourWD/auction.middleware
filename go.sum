@@ -1,5 +1,7 @@
 github.com/FourWD/middleware v1.0.27 h1:FQhvsb7tASsZ0zb6SvCQvgiCREeK617WZrkAayisKA0=
 github.com/FourWD/middleware v1.0.27/go.mod h1:rNBYnAyqoeNzxN2uahAN6Hg2yVINJOiw5RNz48+g/IU=
+github.com/FourWD/middleware v1.0.28 h1:KxT1XduNLq2mlVJaFsZXrCOl8Pmfll7vSR7mF0//4FY=
+github.com/FourWD/middleware v1.0.28/go.mod h1:ufaRRoAC0Ov1s5er1Vqz9tZQnVJmKmOpL/u4pnE1pg0=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.4/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=

@@ -2,7 +2,7 @@ module github.com/FourWD/middleware-auction
 
 go 1.19
 
-require github.com/FourWD/middleware v1.0.27
+require github.com/FourWD/middleware v1.0.28
 
 require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
