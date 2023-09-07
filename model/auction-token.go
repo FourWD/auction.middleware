@@ -1,5 +1,7 @@
 package model
 
 type AuctionToken struct {
-	UserID string
+	UserID   string
+	MobileNo string
+	DeviceID string
 }

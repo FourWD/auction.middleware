@@ -2,7 +2,10 @@ module github.com/FourWD/middleware-auction
 
 go 1.19
 
-require github.com/FourWD/middleware v1.0.28
+require (
+	github.com/FourWD/middleware v1.0.28
+	github.com/gofiber/fiber/v2 v2.49.1
+)
 
 require (
 	cloud.google.com/go v0.110.0 // indirect
@@ -18,7 +21,6 @@ require (
 	github.com/bwmarrin/discordgo v0.27.1 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
-	github.com/gofiber/fiber/v2 v2.49.1 // indirect
 	github.com/gofiber/jwt/v2 v2.2.7 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect

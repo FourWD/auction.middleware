@@ -17,7 +17,9 @@ func GetJwtToken(c *fiber.Ctx) (*model.AuctionToken, error) {
 		fmt.Println("GetJwtToken")
 	}
 	auctionToken := new(model.AuctionToken)
-	auctionToken.UserID, err = common.EncodedJwtToken(bearerToken, "user_id")
+	auctionToken.UserID, _ = common.EncodedJwtToken(bearerToken, "user_id")
+	auctionToken.MobileNo, _ = common.EncodedJwtToken(bearerToken, "mobile_no")
+	auctionToken.DeviceID, err = common.EncodedJwtToken(bearerToken, "noti_token")
 
 	if err == nil {
 		return auctionToken, nil
