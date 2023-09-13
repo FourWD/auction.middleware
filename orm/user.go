@@ -17,7 +17,7 @@ type User struct {
 	FileAvatarID        string `json:"file_avartar_id" query:"file_avartar_id" gorm:"type:varchar(36)"`
 	Mobile              string `json:"mobile" query:"mobile" gorm:"type:varchar(20); unique"`
 	Email               string `json:"email" query:"email" gorm:"type:varchar(20);"`
-	Pin                 string `json:"pin" query:"pin" gorm:"type:int(6);"`
+	Pin                 string `json:"pin" query:"pin" gorm:"type:varchar(255);"`
 	IsNotiBeforeAuction bool   `json:"is_noti_before_auction" query:"is_noti_before_auction" gorm:"type:bool"`
 	IsNotiDuringAuction bool   `json:"is_noti_during_auction" query:"is_noti_during_auction" gorm:"type:bool"`
 	IsNotiAfterAuction  bool   `json:"is_noti_after_auction" query:"is_noti_after_auction" gorm:"type:bool"`
