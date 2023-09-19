@@ -26,4 +26,5 @@ type User struct {
 	LastLoginDate       string `json:"last_login_date" query:"last_login_date" gorm:"type:varchar(15)"`
 	UserStatus          string `json:"user_status" query:"user_status" gorm:"type:varchar(15)"`                   // ban approv
 	UserRegisterStatus  string `json:"user_register_status" query:"user_register_status" gorm:"type:varchar(15)"` //สถานะหน้าสมัคร ถึงขันไหนละ 1 otp เสร็จ 2 กรอกข้อมูลเสร็จ 3 แอดมินแอพพรูฟ
+	RightDeposit        int    `json:"right_deposit" query:"right_deposit" gorm:"type:int(5)"`
 }
