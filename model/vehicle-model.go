@@ -17,8 +17,6 @@ type VehicleModel struct {
 	YearManufacturing string `json:"year_manufacturing" query:"year_manufacturing" db:"year_manufacturing" gorm:"type:int(4);"`
 	YearRegister      string `json:"year_register" query:"year_register" db:"year_register" gorm:"type:int(4);"`
 
-	VehicleNo string `json:"vehicle_no" query:"vehicle_no" db:"vehicle_no" gorm:"type:varchar(10);"`
-
 	License          string `json:"license" query:"license" db:"license" gorm:"type:varchar(10);"`
 	LicenseProviceID string `json:"license_province_id" query:"license_province_id" db:"license_province_id" gorm:"type:varchar(36);"`
 	VehicleGradeID   string `json:"vehicle_grade_id" query:"vehicle_grade_id" db:"vehicle_grade_id" gorm:"type:varchar(36);"`
