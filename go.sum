@@ -56,6 +56,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/FourWD/middleware v1.0.28 h1:KxT1XduNLq2mlVJaFsZXrCOl8Pmfll7vSR7mF0//4FY=
 github.com/FourWD/middleware v1.0.28/go.mod h1:ufaRRoAC0Ov1s5er1Vqz9tZQnVJmKmOpL/u4pnE1pg0=
+github.com/FourWD/middleware v1.0.40 h1:cgRC4Oq8sUUXwbmFX34bKO83HV39w5QC0mLefy71CX8=
+github.com/FourWD/middleware v1.0.40/go.mod h1:ufaRRoAC0Ov1s5er1Vqz9tZQnVJmKmOpL/u4pnE1pg0=
 github.com/FourWD/middleware-auction v1.1.32 h1:djx/JChD9L8atXK+B3pEaeHuF9Sb9ZNPXS8BZNyq/4s=
 github.com/FourWD/middleware-auction v1.1.32/go.mod h1:GrexWJ++irJR6Nc0yEQTTalIcW0ZpXWeyZwOOt9F+ZA=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
