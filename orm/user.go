@@ -10,7 +10,7 @@ type User struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	UserTypeID   string `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(36);"`
+	UserTypeID   string `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(2);"`
 	RmEmployeeID string `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
 
 	Username            string    `json:"username" query:"username" gorm:"type:varchar(20);"`
@@ -31,6 +31,7 @@ type User struct {
 	UserStatus          string    `json:"user_status" query:"user_status" gorm:"type:varchar(15)"`                   // ban approv
 	UserRegisterStatus  string    `json:"user_register_status" query:"user_register_status" gorm:"type:varchar(15)"` //สถานะหน้าสมัคร ถึงขันไหนละ 1 otp เสร็จ 2 กรอกข้อมูลเสร็จ 3 แอดมินแอพพรูฟ
 	RightDeposit        int       `json:"right_deposit" query:"right_deposit" gorm:"type:int(5)"`
+	ReferralCode        string    `json:"referral_code" query:"referral_code" gorm:"type:varchar(20)"` // รหัสผู้แนะนำ
 	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
 	ApproveBy           string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36);"`
 	ApproveAt           time.Time `json:"approve_at"`
