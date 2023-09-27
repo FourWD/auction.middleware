@@ -20,5 +20,6 @@ type Auction struct {
 	BiddingStep2     int       `json:"bidding_step_2" query:"bidding_step_2" gorm:"type:int(6);"`
 	BiddingStep3     int       `json:"bidding_step_3" query:"bidding_step_3" gorm:"type:int(6);"`
 	IsShow           bool      `json:"is_show" query:"is_show" gorm:"bool"`
+	IsExtra          bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsEnd            bool      `json:"is_end" query:"is_end" gorm:"bool"`
 }

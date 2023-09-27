@@ -1,6 +1,8 @@
 package orm
 
 import (
+	"time"
+
 	"github.com/FourWD/middleware/orm"
 )
 
@@ -14,8 +16,8 @@ type LogOTP struct {
 	OTP        string `json:"otp" query:"otp" gorm:"type:varchar(6);"`
 	RefCodeOTP string `json:"ref_code_otp" query:"ref_code_otp" gorm:"type:varchar(6);"`
 
-	RequestDate string `json:"request_date" query:"request_date" gorm:"type:time"`
-	SentDate    string `json:"sent_date" query:"sent_date" gorm:"type:time"`
-	VerifyDate  string `json:"verify_date" query:"verify_date" gorm:"type:time"`
-	ExpireDate  string `json:"expire_date" query:"expire_date" gorm:"type:time"`
+	RequestDate time.Time `json:"request_date" query:"request_date" gorm:"type:time"`
+	SentDate    time.Time `json:"sent_date" query:"sent_date" gorm:"type:time"`
+	VerifyDate  time.Time `json:"verify_date" query:"verify_date" gorm:"type:time"`
+	ExpireDate  time.Time `json:"expire_date" query:"expire_date" gorm:"type:time"`
 }

@@ -1,15 +1,19 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"time"
+
+	"github.com/FourWD/middleware/orm"
+)
 
 type Notification struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	ToUserID           string `json:"to_user_id" query:"to_user_id" gorm:"type:varchar(36)"`
-	NotificationTypeID string `json:"notification_type_id" query:"notification_type_id" gorm:"type:varchar(36)"`
-	Message            string `json:"message" query:"message" gorm:"type:varchar(500)"`
-	Url                string `json:"url" query:"url" gorm:"type:varchar(500)"`
-	IsRead             bool   `json:"is_read" query:"is_read" gorm:"bool"`
-	ReadDate           string `json:"read_date" query:"read_date" gorm:"type:varchar(15)"`
+	ToUserID           string    `json:"to_user_id" query:"to_user_id" gorm:"type:varchar(36)"`
+	NotificationTypeID string    `json:"notification_type_id" query:"notification_type_id" gorm:"type:varchar(36)"`
+	Message            string    `json:"message" query:"message" gorm:"type:varchar(500)"`
+	Url                string    `json:"url" query:"url" gorm:"type:varchar(500)"`
+	IsRead             bool      `json:"is_read" query:"is_read" gorm:"bool"`
+	ReadDate           time.Time `json:"read_date" query:"read_date"`
 }

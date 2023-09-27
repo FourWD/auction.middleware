@@ -27,7 +27,7 @@ type User struct {
 	IsNotiAfterAuction  bool      `json:"is_noti_after_auction" query:"is_noti_after_auction" gorm:"type:bool"`
 	IsUseTouchID        string    `json:"is_use_touch_id" query:"is_use_touch_id" gorm:"type:int(6);"`
 	CountWrongLogin     int       `json:"count_wrong_login" query:"count_wrong_login" gorm:"type:int(1);"`
-	LastLoginDate       string    `json:"last_login_date" query:"last_login_date" gorm:"type:varchar(15)"`
+	LastLoginDate       time.Time `json:"last_login_date" query:"last_login_date"`
 	UserStatus          string    `json:"user_status" query:"user_status" gorm:"type:varchar(15)"`                   // ban approv
 	UserRegisterStatus  string    `json:"user_register_status" query:"user_register_status" gorm:"type:varchar(15)"` //สถานะหน้าสมัคร ถึงขันไหนละ 1 otp เสร็จ 2 กรอกข้อมูลเสร็จ 3 แอดมินแอพพรูฟ
 	RightDeposit        int       `json:"right_deposit" query:"right_deposit" gorm:"type:int(5)"`
