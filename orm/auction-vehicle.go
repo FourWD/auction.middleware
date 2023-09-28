@@ -25,4 +25,10 @@ type AuctionVehicle struct {
 	BiddingStep1 int `json:"bidding_step_1" query:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6);"`
 	BiddingStep2 int `json:"bidding_step_2" query:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6);"`
 	BiddingStep3 int `json:"bidding_step_3" query:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6);"`
+
+	CountUserView    int `json:"count_user_view" query:"count_user_view" gorm:"type:int(10);"`
+	CountUserJoin    int `json:"count_user_join" query:"count_user_join" gorm:"type:int(10);"`
+	CountUserBidding int `json:"count_user_bidding" query:"count_user_bidding" gorm:"type:int(10);"`
+	CountUserProxy   int `json:"count_user_proxy" query:"count_user_proxy" gorm:"type:int(10);"`
+	CountBidding     int `json:"count_bidding" query:"count_bidding" gorm:"type:int(10);"`
 }
