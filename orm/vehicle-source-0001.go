@@ -1,6 +1,6 @@
 package orm
 
-import "github.com/FourWD/middleware-auction/model"
+import "github.com/FourWD/auction.middleware/model"
 
 type VehicleSource0001 struct {
 	model.VehicleModel

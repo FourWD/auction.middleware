@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/FourWD/middleware-auction/model"
+	"github.com/FourWD/auction.middleware/model"
 	"github.com/FourWD/middleware/common"
 	"github.com/gofiber/fiber/v2"
 )
