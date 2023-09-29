@@ -7,11 +7,10 @@ import (
 )
 
 type AuctionVehicleUserFavorite struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
+	ID uint `json:"id" query:"id" gorm:"primaryKey;autoIncrement"`
 	orm.GormModel
 
-	AuctionID string `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
-
+	AuctionID       string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
 	UserID          string    `json:"user_id" query:"user_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
 	VehicleID       string    `json:"vehicle_id" query:"vehicle_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
 	UserAuctionCode string    `json:"user_auction_code" query:"user_auction_code" gorm:"type:varchar(15)"`

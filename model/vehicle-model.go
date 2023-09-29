@@ -10,19 +10,17 @@ type VehicleModel struct {
 
 	SourceID          string `json:"source_id" query:"source_id" gorm:"type:varchar(36);"`
 	VehicleSubmodelID string `json:"vehicle_submodel_id" query:"vehicle_submodel_id" gorm:"type:varchar(36);"`
-
 	VehicleColorID    string `json:"vehicle_color_id" query:"vehicle_color_id" gorm:"type:varchar(36);"`
 	ChassisNo         string `json:"chassis_no" query:"chassis_no" gorm:"type:varchar(20);"`
 	Mile              string `json:"mile" query:"mile" gorm:"type:int(11);"`
 	YearManufacturing string `json:"year_manufacturing" query:"year_manufacturing" gorm:"type:int(4);"`
 	YearRegister      string `json:"year_register" query:"year_register" gorm:"type:int(4);"`
-
-	License          string `json:"license" query:"license" gorm:"type:varchar(10);"`
-	LicenseProviceID string `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36);"`
-	VehicleGradeID   string `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36);"`
-	BranchID         string `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
-	ImagePreviewPath string `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
-	Remark           string `json:"remark" query:"remark" gorm:"type:text;"`
+	License           string `json:"license" query:"license" gorm:"type:varchar(10);"`
+	LicenseProviceID  string `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36);"`
+	VehicleGradeID    string `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36);"`
+	BranchID          string `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
+	ImagePreviewPath  string `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
+	Remark            string `json:"remark" query:"remark" gorm:"type:text;"`
 
 	// ImgStrFront        string `json:"img_str_front" query:"img_str_front" gorm:"type:varchar(400)"`
 	// ImgStrBack         string `json:"img_str_back" query:"img_str_back" gorm:"type:varchar(400)"`

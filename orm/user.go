@@ -10,12 +10,11 @@ type User struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	UserTypeID   string `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(2);"`
-	RmEmployeeID string `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
-
+	UserTypeID          string    `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(2);"`
+	RMEmployeeID        string    `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
 	Username            string    `json:"username" query:"username" gorm:"type:varchar(20);"`
 	Password            string    `json:"password" query:"password" gorm:"type:varchar(20);"`
-	PrefixID            int       `json:"prefix_id" query:"prefix_id" gorm:"type:int(1);"`
+	PrefixID            int       `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
 	Firstname           string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
 	Lastname            string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
 	FileAvatarID        string    `json:"file_avartar_id" query:"file_avartar_id" gorm:"type:varchar(36)"`

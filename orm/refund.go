@@ -18,8 +18,8 @@ type Refund struct {
 	Amount          float64   `json:"amount" query:"amount" gorm:"type:float"`
 	RequestDate     time.Time `json:"request_date" query:"request_date"`
 	RefundStatusID  string    `json:"refund_status_id" query:"refund_status_id" gorm:"type:varchar(36)"`
-	IsApproved      bool      `json:"is_approved" query:"is_approved" gorm:"type:bool"`
-	ApprovedBy      string    `json:"approved_by" query:"approved_by" gorm:"type:varchar(36)"`
-	ApprovedAt      time.Time `json:"approved_at" query:"approved_at"`
+	IsApprove       bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
+	ApproveBy       string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
+	ApproveDate     time.Time `json:"approve_date" query:"approve_date"`
 	Remark          string    `json:"remark" query:"remark" gorm:"type:text;"`
 }

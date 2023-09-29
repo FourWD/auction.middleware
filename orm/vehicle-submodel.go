@@ -8,7 +8,7 @@ type VehicleSubModel struct {
 
 	VehicleModelID string `json:"vehicle_model_id" query:"vehicle_model_id" gorm:"type:varchar(36);"`
 
-	VehicleDrivetypeID string `json:"vehicle_drivetype_id" query:"vehicle_drivetype_id" gorm:"type:varchar(2);"`
+	VehicleDriveTypeID string `json:"vehicle_drive_type_id" query:"vehicle_drive_type_id" gorm:"type:varchar(2);"`
 	VehicleGearID      string `json:"vehicle_gear_id" query:"vehicle_gear_id" gorm:"type:varchar(2);"`
 	VehicleFuelID      string `json:"vehicle_fuel_id" query:"vehicle_fuel_id" gorm:"type:varchar(2);"`
 	Name               string `json:"name" query:"name" gorm:"type:varchar(50);"`
