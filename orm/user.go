@@ -12,11 +12,11 @@ type User struct {
 
 	Code         string `json:"code" query:"code" gorm:"type:varchar(10)"`
 	UserTypeID   string `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(2);"`
-	RmEmployeeID string `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
+	RMEmployeeID string `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
 
 	Username            string    `json:"username" query:"username" gorm:"type:varchar(20);"`
 	Password            string    `json:"password" query:"password" gorm:"type:varchar(20);"`
-	PrefixID            int       `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
+	PrefixID            string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
 	Firstname           string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
 	Lastname            string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
 	FileAvatarID        string    `json:"file_avartar_id" query:"file_avartar_id" gorm:"type:varchar(36)"`
@@ -35,5 +35,5 @@ type User struct {
 	ReferralCode        string    `json:"referral_code" query:"referral_code" gorm:"type:varchar(20)"` // รหัสผู้แนะนำ
 	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
 	ApproveBy           string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36);"`
-	ApproveAt           time.Time `json:"approve_at"`
+	ApproveDate         time.Time `json:"approve_date" query:"approve_dates"`
 }

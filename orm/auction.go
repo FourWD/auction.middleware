@@ -10,10 +10,9 @@ type Auction struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	FinanceID string `json:"finance_id" query:"finance_id" gorm:"type:varchar(36)"`
-
+	FinanceID        string    `json:"finance_id" query:"finance_id" gorm:"type:varchar(36)"`
 	Code             string    `json:"code" query:"code" gorm:"type:varchar(20)"`
-	Name             string    `json:"name" query:"name" gorm:"type:varchar(50)"`
+	Name             string    `json:"name" query:"name" gorm:"type:varchar(200)"`
 	ShowDate         time.Time `json:"show_date" query:"show_date"`
 	StartDate        time.Time `json:"start_date" query:"start_date"`
 	EndDate          time.Time `json:"end_date" query:"end_date"`
