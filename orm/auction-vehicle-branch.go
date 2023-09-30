@@ -7,6 +7,5 @@ type AuctionVehicleBranch struct {
 	orm.GormModel
 
 	BranchID string `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
-
 	TotalVehicle string `json:"total_vehicle" query:"total_vehicle" gorm:"type:int(11)"`
 }

@@ -4,7 +4,6 @@ go 1.19
 
 require (
 	github.com/FourWD/middleware v1.0.40
-	github.com/FourWD/middleware-auction v1.1.32
 	github.com/gofiber/fiber/v2 v2.49.1
 )
 

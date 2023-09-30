@@ -7,9 +7,8 @@ type SubDistrict struct {
 	orm.GormModel
 
 	DistrictID string `json:"district_id" query:"district_id" gorm:"type:varchar(4)"`
-
-	Name    string `json:"name" query:"name" gorm:"not null;type:varchar(50)"`
-	NameEn  string `json:"name_en" query:"name_en" gorm:"type:varchar(50)"`
-	ZipCode string `json:"zip_code" query:"zip_code" gorm:"type:varchar(5)"`
+	Name       string `json:"name" query:"name" gorm:"not null;type:varchar(50)"`
+	NameEn     string `json:"name_en" query:"name_en" gorm:"type:varchar(50)"`
+	ZipCode    string `json:"zip_code" query:"zip_code" gorm:"type:varchar(5)"`
 	orm.RowOrder
 }

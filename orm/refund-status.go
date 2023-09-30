@@ -7,6 +7,7 @@ type RefundStatus struct {
 	orm.GormModel
 
 	Name string `json:"name" query:"name" gorm:"not null;type:varchar(50)"`
+	orm.RowOrder
 }
 
 /*
