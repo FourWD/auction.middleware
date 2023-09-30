@@ -56,6 +56,10 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/FourWD/middleware v1.0.40 h1:cgRC4Oq8sUUXwbmFX34bKO83HV39w5QC0mLefy71CX8=
 github.com/FourWD/middleware v1.0.40/go.mod h1:ufaRRoAC0Ov1s5er1Vqz9tZQnVJmKmOpL/u4pnE1pg0=
+github.com/FourWD/middleware v1.1.42 h1:Y5PhKuCFkqANX1AeGqE1cvrVnZbB48kNYXe4SFrrTvc=
+github.com/FourWD/middleware v1.1.42/go.mod h1:ufaRRoAC0Ov1s5er1Vqz9tZQnVJmKmOpL/u4pnE1pg0=
+github.com/FourWD/middleware v1.1.43 h1:9PeV0uSpzWpRea+KGna/050di/ihxC/WQY+d8I9nVaM=
+github.com/FourWD/middleware v1.1.43/go.mod h1:ufaRRoAC0Ov1s5er1Vqz9tZQnVJmKmOpL/u4pnE1pg0=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
 github.com/MicahParks/keyfunc v1.9.0/go.mod h1:IdnCilugA0O/99dW+/MkvlyrsX8+L8+x95xuVNtM5jw=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
