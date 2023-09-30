@@ -10,7 +10,6 @@ type User struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	Code         string `json:"code" query:"code" gorm:"type:varchar(10)"`
 	UserTypeID   string `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(2);"`
 	RmEmployeeID string `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
 
