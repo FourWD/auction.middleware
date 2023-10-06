@@ -20,6 +20,7 @@ type VehicleModel struct {
 	VehicleGradeID    string `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36);"`
 	BranchID          string `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
 	ImagePreviewPath  string `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
+	CRPPrice          int    `json:"crp_price" query:"crp_price" gorm:"type:int"`
 	Remark            string `json:"remark" query:"remark" gorm:"type:text;"`
 
 	// ImgStrFront        string `json:"img_str_front" query:"img_str_front" gorm:"type:varchar(400)"`
