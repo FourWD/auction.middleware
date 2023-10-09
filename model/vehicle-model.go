@@ -16,8 +16,8 @@ type VehicleModel struct {
 	ChassisNo              string    `json:"chassis_no" query:"chassis_no" gorm:"type:varchar(20);"`
 	EngineNo               string    `json:"engine_no" query:"engine_no" gorm:"type:varchar(20);"`
 	Mile                   int       `json:"mile" query:"mile" gorm:"type:int(11);"`
-	YearManufacturing      string    `json:"year_manufacturing" query:"year_manufacturing" gorm:"type:int(4);"`
-	YearRegister           string    `json:"year_register" query:"year_register" gorm:"type:int(4);"`
+	YearManufacturing      int       `json:"year_manufacturing" query:"year_manufacturing" gorm:"type:int(4);"`
+	YearRegister           int       `json:"year_register" query:"year_register" gorm:"type:int(4);"`
 	License                string    `json:"license" query:"license" gorm:"type:varchar(10);"`
 	LicenseProviceID       string    `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36);"`
 	VehicleGradeID         string    `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36);"`
