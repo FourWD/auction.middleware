@@ -11,6 +11,7 @@ type BankTransfer struct {
 	orm.GormModel
 
 	AuctionID        string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
+	UserID           string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	TitleID          string    `json:"title_id" query:"title_id" gorm:"type:varchar(20);"`
 	PrefixID         int       `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
 	Firstname        string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
