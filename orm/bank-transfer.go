@@ -13,7 +13,7 @@ type BankTransfer struct {
 	AuctionID        string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
 	UserID           string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	TitleID          string    `json:"title_id" query:"title_id" gorm:"type:varchar(20);"`
-	PrefixID         int       `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
+	PrefixID         string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"` //จาก int เป็น string
 	Firstname        string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
 	Lastname         string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
 	IdcardNO         string    `json:"idcard_no" query:"idcard_no" gorm:"type:varchar(13)"`
