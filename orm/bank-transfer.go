@@ -20,7 +20,7 @@ type BankTransfer struct {
 	TransferDateTime string    `json:"article_type_id" query:"article_type_id" gorm:"type:varchar(36)"`
 	FileSlipID       string    `json:"file_slip_id" query:"file_slip_id" gorm:"type:varchar(36)"`
 	AcceptTCVersion  string    `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
-	IsApproved       bool      `json:"is_approved" query:"is_approved" gorm:"type:bool"`
+	BankTransferID   bool      `json:"bank_transfer_id" query:"bank_transfer_id" gorm:"type:varchar(36)"`
 	ApproveBy        string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate      time.Time `json:"approve_date" query:"approve_date"`
 	IsMobileBanking  bool      `json:"is_mobile_banking" query:"is_mobile_banking" gorm:"type:bool"`
