@@ -27,4 +27,6 @@ type AuctionVehicle struct {
 	CountUserBidding int       `json:"count_user_bidding" query:"count_user_bidding" gorm:"type:int(10);"`
 	CountUserProxy   int       `json:"count_user_proxy" query:"count_user_proxy" gorm:"type:int(10);"`
 	CountBidding     int       `json:"count_bidding" query:"count_bidding" gorm:"type:int(10);"`
+	WinnerUserID     string    `json:"winner_user_id" query:"winner_user_id" gorm:"type:varchar(36); "`
+	IsWinByProxy     bool      `json:"is_win_by_proxy" query:"vehicle_no" gorm:"type:varchar(10); "`
 }

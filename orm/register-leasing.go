@@ -10,8 +10,8 @@ type RegisterLeasing struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	AuctionID              string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
-	UserID                 string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
+	AuctionID              string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_register_leasings"`
+	UserID                 string    `json:"user_id" query:"user_id" gorm:"type:varchar(36);uniqueIndex:idx_register_leasings"`
 	PrefixID               int       `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
 	Firstname              string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
 	Lastname               string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
