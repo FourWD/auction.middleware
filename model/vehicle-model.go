@@ -25,7 +25,7 @@ type VehicleModel struct {
 	ImagePreviewPath       string    `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
 	CRPPrice               int       `json:"crp_price" query:"crp_price" gorm:"type:int"`
 	Remark                 string    `json:"remark" query:"remark" gorm:"type:text;"`
-	SoldStatusID           int       `json:"sold_status_id" query:"sold_status_id" gorm:"type:int"`
+	SoldStatusID           string    `json:"sold_status_id" query:"sold_status_id" gorm:"type:varchar(2)"`
 	DisplayRecommend       bool      `json:"display_recommend" query:"display_recommend" gorm:"type:bool"`
 	DisplaySpecialInterest bool      `json:"display_special_interest" query:"display_special_interest" gorm:"type:bool"`
 	EngineCapacity         int       `json:"engine_capacity" query:"engine_capacity" gorm:"type:int"`
