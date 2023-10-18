@@ -19,10 +19,10 @@ type BankTransfer struct {
 	IdcardNO         string    `json:"idcard_no" query:"idcard_no" gorm:"type:varchar(13)"`
 	Telephone        string    `json:"telephone" query:"telephone" gorm:"type:varchar(30)"`
 	FileIdcardID     string    `json:"file_idcard_id" query:"file_idcard_id" gorm:"type:varchar(36)"`
-	TransferDateTime string    `json:"article_type_id" query:"article_type_id" gorm:"type:varchar(36)"`
+	TransferDateTime time.Time `json:"transfer_date_time" query:"transfer_date_time"`
 	FileSlipID       string    `json:"file_slip_id" query:"file_slip_id" gorm:"type:varchar(36)"`
 	AcceptTCVersion  string    `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
-	BankTransferID   string    `json:"bank_transfer_id" query:"bank_transfer_id" gorm:"type:varchar(36)"`
+	BankTransferID   string    `json:"bank_transfer_id" query:"bank_transfer_id" gorm:"type:varchar(2)"`
 	ApproveBy        string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate      time.Time `json:"approve_date" query:"approve_date"`
 	IsMobileBanking  bool      `json:"is_mobile_banking" query:"is_mobile_banking" gorm:"type:bool"`
