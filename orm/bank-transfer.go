@@ -17,6 +17,7 @@ type BankTransfer struct {
 	Firstname        string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
 	Lastname         string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
 	IdcardNO         string    `json:"idcard_no" query:"idcard_no" gorm:"type:varchar(13)"`
+	Telephone        string    `json:"telephone" query:"telephone" gorm:"type:varchar(30)"`
 	FileIdcardID     string    `json:"file_idcard_id" query:"file_idcard_id" gorm:"type:varchar(36)"`
 	TransferDateTime string    `json:"article_type_id" query:"article_type_id" gorm:"type:varchar(36)"`
 	FileSlipID       string    `json:"file_slip_id" query:"file_slip_id" gorm:"type:varchar(36)"`
@@ -25,5 +26,17 @@ type BankTransfer struct {
 	ApproveBy        string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate      time.Time `json:"approve_date" query:"approve_date"`
 	IsMobileBanking  bool      `json:"is_mobile_banking" query:"is_mobile_banking" gorm:"type:bool"`
-	Remark           string    `json:"remark" query:"remark" gorm:"type:text;"`
+	OcupationID      string    `json:"ocupation_id" query:"ocupation_id" gorm:"type:varchar(36)"`
+
+	Address       string `json:"address" query:"address" gorm:"type:text"`
+	Street        string `json:"street" query:"street" gorm:"type:varchar(200)"`
+	DistrictID    string `json:"district_id" query:"district_id" gorm:"type:varchar(36)"`         //อำเภอ
+	SubDistrictID string `json:"sub_district_id" query:"sub_district_id" gorm:"type:varchar(36)"` //ตำบล
+	ProvinceID    string `json:"province_id" query:"province_id" gorm:"type:varchar(36)"`
+	Postcode      string `json:"postcode" query:"postcode" gorm:"type:varchar(5)"`
+
+	FileIdCompanyRegister string `json:"file_id_company_register" query:"file_id_company_register" gorm:"type:varchar(36)"`
+	FileIdPP20            string `json:"file_id_pp20" query:"file_id_pp20" gorm:"type:varchar(36)"`
+
+	Remark string `json:"remark" query:"remark" gorm:"type:text;"`
 }
