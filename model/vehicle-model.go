@@ -40,9 +40,9 @@ type VehicleModel struct {
 	VehicleBrandID         string    `json:"vehicle_brand_id" query:"vehicle_brand_id" gorm:"type:varchar(36);"`
 	RegisterTypeCode       string    `json:"register_type_code" query:"register_type_code" gorm:"type:varchar(36);"`
 	RegisterType           string    `json:"register_type" query:"register_type" gorm:"type:varchar(36);"`
-	LicenseReceiveDate     string    `json:"license_receive_data" query:"license_receive_data" gorm:"type:varchar(20);"`
-	LicenseExpireDate      string    `json:"license_expire_data" query:"license_data_expire" gorm:"type:varchar(20);"`
-	TaxExpireDate          string    `json:"tax_expire_data" query:"license_data_expire" gorm:"type:varchar(20);"`
+	LicenseReceiveDate     time.Time `json:"license_receive_data" query:"license_receive_data" `
+	LicenseExpireDate      time.Time `json:"license_expire_data" query:"license_data_expire" `
+	TaxExpireDate          time.Time `json:"tax_expire_data" query:"license_data_expire" `
 	ContractNumber         string    `json:"contract_number" query:"contract_number" gorm:"type:varchar(20);"`
 	VehiclePickupDate      time.Time `json:"vehicle_pickup_date" query:"vehicle_pickup_date"`
 	VehicleAuctionReceipt  string    `json:"vehicle_auction_receipt" query:"vehicle_auction_receipt" gorm:"type:varchar(20);"` // เลขที่ใบรับรถขายทอดตลาด
