@@ -38,5 +38,6 @@ type BankTransfer struct {
 	FileIdCompanyRegister string `json:"file_id_company_register" query:"file_id_company_register" gorm:"type:varchar(36)"`
 	FileIdPP20            string `json:"file_id_pp20" query:"file_id_pp20" gorm:"type:varchar(36)"`
 
-	Remark string `json:"remark" query:"remark" gorm:"type:text;"`
+	Remark   string `json:"remark" query:"remark" gorm:"type:text;"`
+	Postcode string `json:"postcode" query:"postcode" gorm:"type:varchar(5)"`
 }
