@@ -23,9 +23,11 @@ type Auction struct {
 	BiddingStep3      int       `json:"bidding_step_3" query:"bidding_step_3" gorm:"type:int(6);"`
 	IsShow            bool      `json:"is_show" query:"is_show" gorm:"bool"`
 	IsExtra           bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
+	IsProgress        bool      `json:"is_progress" query:"is_progress" gorm:"bool"`
 	ExtraTimeMinute   int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3);"` // 15 min in int
 	IsEnd             bool      `json:"is_end" query:"is_end" gorm:"bool"`
 	IsImportRedbook   bool      `json:"is_import_redbook" query:"is_import_redbook" gorm:"bool"`
 	ImportRedbookDate time.Time `json:"import_redbook_date" query:"import_redbook_date"`
 	ImportRedbookBy   string    `json:"import_redbook_by" query:"import_redbook_by"`
+	Description       string    `json:"description" query:"description" gorm:"type:varchar(350)"`
 }
