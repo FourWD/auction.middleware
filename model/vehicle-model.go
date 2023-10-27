@@ -44,6 +44,7 @@ type VehicleModel struct {
 	LicenseExpireDate     time.Time `json:"license_expire_data" query:"license_data_expire" `
 	TaxExpireDate         time.Time `json:"tax_expire_data" query:"license_data_expire" `
 	ContractNumber        string    `json:"contract_number" query:"contract_number" gorm:"type:varchar(20);"`
+	ContractDate          time.Time `json:"contract_date" query:"contract_date"`
 	VehiclePickupDate     time.Time `json:"vehicle_pickup_date" query:"vehicle_pickup_date"`
 	VehicleAuctionReceipt string    `json:"vehicle_auction_receipt" query:"vehicle_auction_receipt" gorm:"type:varchar(20);"` // เลขที่ใบรับรถขายทอดตลาด
 	Accessories           string    `json:"accessories" query:"accessories" gorm:"type:varchar(500);"`
