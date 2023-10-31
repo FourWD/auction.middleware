@@ -7,5 +7,5 @@ type Vehicle struct {
 }
 
 func (Vehicle) TableName() string {
-	return "vehicle"
+	return "vehicles"
 }
