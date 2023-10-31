@@ -81,21 +81,21 @@ type VehicleModel struct {
 }
 
 /*
-CREATE VIEW `vehicles` AS
+CREATE VIEW `vehicles1` AS
 SELECT vehicles.* ,
 s.name AS source_name,
 b.name AS branch_name,
-vt.id AS vehicle_type_id,
+vt.id AS vehicle_type_id1,
 vt.name AS vehicle_type_name,
-vm.id AS vehicle_model_id,
+vm.id AS vehicle_model_id1,
 vm.name AS vehicle_model_name,
-vb.id AS vehicle_brand_id,
+vb.id AS vehicle_brand_id1,
 vb.name AS vehicle_brand_name,
 vsm.name AS vehicle_submodel_name,
-vdt.id AS vehicle_drive_type_id,
+vdt.id AS vehicle_drive_type_id1,
 vdt.name AS vehicle_drive_type_name,
 vg.name AS vehicle_gear_name,
-vft.id AS vehicle_fuel_type_id,
+vft.id AS vehicle_fuel_type_id1,
 vft.name AS vehicle_fuel_type_name,
 vc.name AS vehicle_color_name,
 vgr.name AS vehicle_grade_name,
@@ -103,16 +103,11 @@ vgr.row_order AS vehicle_grade_value,
 p.name AS license_province_name,
 ac.auction_id
 FROM (
-select *
-from `vehicle-sources-0001`
-union
-select
-   *
-from `vehicle-sources-0002`
-union
-select
-   *
-from `vehicle-sources-0003`
+select * from `auction-vehicle-0001`.vehicles
+UNION
+select * from `auction-vehicle-0002`.vehicles
+UNION
+select * from `auction-vehicle-0003`.vehicles
 ) AS vehicles
 LEFT JOIN auction_vehicles ac ON ac.vehicle_id = vehicles.id
 LEFT JOIN vehicle_sub_models vsm ON vsm.id = vehicles.vehicle_submodel_id
@@ -126,5 +121,5 @@ LEFT JOIN vehicle_colors vc ON vc.id = vehicles.vehicle_color_id
 LEFT JOIN vehicle_grades vgr ON vgr.id = vehicles.vehicle_grade_id
 LEFT JOIN sources s ON s.id = vehicles.source_id
 LEFT JOIN branches b ON b.id = vehicles.branch_id
-LEFT JOIN provinces p ON p.id = vehicles.license_provice_id ;
+LEFT JOIN provinces p ON p.id = vehicles.license_provice_id;
 */
