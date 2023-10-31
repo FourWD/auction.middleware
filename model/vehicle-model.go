@@ -10,22 +10,22 @@ type VehicleModel struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	SourceID              string    `json:"source_id" query:"source_id" gorm:"type:varchar(36);"`
-	VehicleSubmodelID     string    `json:"vehicle_submodel_id" query:"vehicle_submodel_id" gorm:"type:varchar(36);"`
-	VehicleColorID        string    `json:"vehicle_color_id" query:"vehicle_color_id" gorm:"type:varchar(36);"`
-	ChassisNo             string    `json:"chassis_no" query:"chassis_no" gorm:"type:varchar(20);"`
-	EngineNo              string    `json:"engine_no" query:"engine_no" gorm:"type:varchar(20);"`
-	Mile                  int       `json:"mile" query:"mile" gorm:"type:int(11);"`
-	YearManufacturing     string    `json:"year_manufacturing" query:"year_manufacturing" gorm:"type:varchar(4);"`
-	YearRegister          string    `json:"year_register" query:"year_register" gorm:"type:varchar(4);"`
-	License               string    `json:"license" query:"license" gorm:"type:varchar(10);"`
-	LicenseProviceID      string    `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36);"`
-	VehicleGradeID        string    `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36);"`
-	BranchID              string    `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
-	ImagePreviewPath      string    `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
-	CRPPrice              int       `json:"crp_price" query:"crp_price" gorm:"type:int"`
-	Remark                string    `json:"remark" query:"remark" gorm:"type:text;"`
-	SoldStatusID          string    `json:"sold_status_id" query:"sold_status_id" gorm:"type:varchar(2)"`
+	SourceID          string `json:"source_id" query:"source_id" gorm:"type:varchar(36);"`
+	VehicleSubmodelID string `json:"vehicle_submodel_id" query:"vehicle_submodel_id" gorm:"type:varchar(36);"`
+	VehicleColorID    string `json:"vehicle_color_id" query:"vehicle_color_id" gorm:"type:varchar(36);"`
+	ChassisNo         string `json:"chassis_no" query:"chassis_no" gorm:"type:varchar(20);"`
+	EngineNo          string `json:"engine_no" query:"engine_no" gorm:"type:varchar(20);"`
+	Mile              int    `json:"mile" query:"mile" gorm:"type:int(11);"`
+	YearManufacturing string `json:"year_manufacturing" query:"year_manufacturing" gorm:"type:varchar(4);"`
+	YearRegister      string `json:"year_register" query:"year_register" gorm:"type:varchar(4);"`
+	License           string `json:"license" query:"license" gorm:"type:varchar(10);"`
+	LicenseProviceID  string `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36);"`
+	VehicleGradeID    string `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36);"`
+	BranchID          string `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
+	ImagePreviewPath  string `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
+	CRPPrice          int    `json:"crp_price" query:"crp_price" gorm:"type:int"`
+	Remark            string `json:"remark" query:"remark" gorm:"type:text;"`
+	// SoldStatusID          string    `json:"sold_status_id" query:"sold_status_id" gorm:"type:varchar(2)"`
 	IsRecommend           bool      `json:"is_recommend" query:"is_recommend" gorm:"type:bool"`
 	IsSpecialInterest     bool      `json:"is_special_interest" query:"is_special_interest" gorm:"type:bool"`
 	EngineCapacity        int       `json:"engine_capacity" query:"engine_capacity" gorm:"type:int"`
