@@ -11,6 +11,7 @@ type VehicleModel struct {
 	orm.GormModel
 
 	SourceID          string `json:"source_id" query:"source_id" gorm:"type:varchar(36);"`
+	SKU               string `json:"sku" query:"sku" gorm:"type:varchar(20);"`
 	VehicleSubmodelID string `json:"vehicle_submodel_id" query:"vehicle_submodel_id" gorm:"type:varchar(36);"`
 	VehicleColorID    string `json:"vehicle_color_id" query:"vehicle_color_id" gorm:"type:varchar(36);"`
 	ChassisNo         string `json:"chassis_no" query:"chassis_no" gorm:"type:varchar(20);"`
@@ -56,6 +57,8 @@ type VehicleModel struct {
 	A3CarOwnerNumber      int       `json:"a3_car_owner_number" query:"a3_car_owner_number" gorm:"type:int(2);"`
 	A3AccidentHistory     string    `json:"a3_accident_history" query:"a3_accident_history" gorm:"type:varchar(50);"`
 	A3VehicleLienExists   string    `json:"a3_vehicle_lien_exists" query:"a3_vehicle_lien_exists" gorm:"type:varchar(50);"`
+	IsVehicleManual       bool      `json:"is_vehicle_manual" query:"is_vehicle_manual" gorm:"type:bool"`
+	IsObligate            bool      `json:"is_obligate" query:"is_obligate" gorm:"type:bool"`
 
 	// ImgStrFront        string `json:"img_str_front" query:"img_str_front" gorm:"type:varchar(400)"`
 	// ImgStrBack         string `json:"img_str_back" query:"img_str_back" gorm:"type:varchar(400)"`
@@ -81,7 +84,7 @@ type VehicleModel struct {
 }
 
 /*
-CREATE VIEW `vehicles1` AS
+CREATE VIEW `vehicles` AS
 SELECT vehicles.* ,
 s.name AS source_name,
 b.name AS branch_name,
@@ -108,6 +111,32 @@ UNION
 select * from `auction-vehicle-0002`.vehicles
 UNION
 select * from `auction-vehicle-0003`.vehicles
+UNION
+select * from `auction-vehicle-0004`.vehicles
+UNION
+select * from `auction-vehicle-0005`.vehicles
+UNION
+select * from `auction-vehicle-0006`.vehicles
+UNION
+select * from `auction-vehicle-0007`.vehicles
+UNION
+select * from `auction-vehicle-0008`.vehicles
+UNION
+select * from `auction-vehicle-0009`.vehicles
+UNION
+select * from `auction-vehicle-0010`.vehicles
+UNION
+select * from `auction-vehicle-0011`.vehicles
+UNION
+select * from `auction-vehicle-0012`.vehicles
+UNION
+select * from `auction-vehicle-0013`.vehicles
+UNION
+select * from `auction-vehicle-0014`.vehicles
+UNION
+select * from `auction-vehicle-0015`.vehicles
+UNION
+select * from `auction-vehicle-0016`.vehicles
 ) AS vehicles
 LEFT JOIN auction_vehicles ac ON ac.vehicle_id = vehicles.id
 LEFT JOIN vehicle_sub_models vsm ON vsm.id = vehicles.vehicle_submodel_id

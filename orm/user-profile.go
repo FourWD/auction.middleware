@@ -14,4 +14,10 @@ type UserProfile struct {
 	CompanyPhone          string `json:"company_phone" query:"company_phone" gorm:"type:varchar(50);"`
 	Tax                   string `json:"tax" query:"tax" gorm:"type:varchar(50);"`
 	HQShowroomName        string `json:"hq_show_room_name" query:"hq_show_room_name" gorm:"type:varchar(500);"`
+
+	Address       string `json:"address" query:"address" gorm:"type:text"`
+	Street        string `json:"street" query:"street" gorm:"type:varchar(200)"`
+	DistrictID    string `json:"district_id" query:"district_id" gorm:"type:varchar(4)"`         //อำเภอ
+	SubDistrictID string `json:"sub_district_id" query:"sub_district_id" gorm:"type:varchar(6)"` //ตำบล
+	ProvinceID    string `json:"province_id" query:"province_id" gorm:"type:varchar(2)"`
 }

@@ -17,6 +17,7 @@ type AuctionVehicle struct {
 	MinPrice         int       `json:"min_price" query:"min_price" gorm:"type:int(10);"`
 	ClosePrice       int       `json:"close_price" query:"close_price" gorm:"type:int(10);"`
 	EndDate          time.Time `json:"end_date" query:"end_date"`
+	IsProcess        bool      `json:"is_process" query:"is_process" gorm:"bool"`
 	IsExtra          bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsEnd            bool      `json:"is_end" query:"is_end" gorm:"bool"`
 	BiddingStep1     int       `json:"bidding_step_1" query:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6);"`
