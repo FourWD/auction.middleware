@@ -6,7 +6,7 @@ import (
 	"github.com/FourWD/middleware/orm"
 )
 
-type UserAccpetVat struct {
+type UserAcceptVat struct {
 	UserID string `json:"user_id" query:"user_id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
