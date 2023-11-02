@@ -11,6 +11,6 @@ type Finance struct {
 	Code     string `json:"code" query:"code" gorm:"type:varchar(4)"`
 	Name     string `json:"name" query:"name" gorm:"type:varchar(50)"`
 	Color    string `json:"color" query:"color" gorm:"type:varchar(7)"`
-	LoanUrl  string `json:"loan_url" query:"loan_url" gorm:"type:varchar(200)"`
+	// LoanUrl  string `json:"loan_url" query:"loan_url" gorm:"type:varchar(200)"`
 	orm.RowOrder
 }

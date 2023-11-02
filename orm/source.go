@@ -12,7 +12,7 @@ type Source struct {
 
 	Code string `json:"code" query:"code" gorm:"type:varchar(4)"`
 
-	Name                 string    `json:"name" query:"name" gorm:"type:varchar(50);uniqueIndex:idx_source"`
+	Name                 string    `json:"name" query:"name" gorm:"type:varchar(255);uniqueIndex:idx_source"`
 	ShortName            string    `json:"short_name" query:"short_name" gorm:"type:varchar(2);uniqueIndex:idx_source"`
 	Phone                string    `json:"phone" query:"phone" gorm:"type:varchar(10);"`
 	Email                string    `json:"email" query:"email" gorm:"type:varchar(50);"`

@@ -7,7 +7,7 @@ type TemplateVehicleImage struct {
 	orm.GormModel
 
 	VehicleImageGroupID string `json:"vehicle_type_id" query:"vehicle_type_id" gorm:"type:varchar(36);"`
-	Name                string `json:"name" query:"name" gorm:"type:varchar(20);"`
+	Name                string `json:"name" query:"name" gorm:"type:varchar(255);"`
 	orm.RowOrder
 }
 
