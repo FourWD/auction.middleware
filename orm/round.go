@@ -3,7 +3,7 @@ package orm
 import "github.com/FourWD/middleware/orm"
 
 type Round struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(10);primary_key;"`
 	orm.GormModel
 
 	FinanceID string `json:"finance_id" query:"finance_id" gorm:"type:varchar(36)"`
