@@ -19,9 +19,9 @@ type Auction struct {
 	EndDate           time.Time `json:"end_date" query:"end_date"`
 	CountVehicle      int       `json:"count_vehicle" query:"count_vehicle" gorm:"type:int(6);"`
 	CountUserBidding  int       `json:"count_user_bidding" query:"count_user_bidding" gorm:"type:int(6);"`
-	BiddingStep1      int       `json:"bidding_step_1" query:"bidding_step_1" gorm:"type:int(6);"`
-	BiddingStep2      int       `json:"bidding_step_2" query:"bidding_step_2" gorm:"type:int(6);"`
-	BiddingStep3      int       `json:"bidding_step_3" query:"bidding_step_3" gorm:"type:int(6);"`
+	BiddingStep1      int       `json:"bidding_step_1" query:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6);"`
+	BiddingStep2      int       `json:"bidding_step_2" query:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6);"`
+	BiddingStep3      int       `json:"bidding_step_3" query:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6);"`
 	IsShow            bool      `json:"is_show" query:"is_show" gorm:"bool"`
 	IsExtra           bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsProcess         bool      `json:"is_process" query:"is_process" gorm:"bool"`
