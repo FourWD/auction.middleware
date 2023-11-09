@@ -1,12 +1,18 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"time"
+)
 
 type File struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
 
-	Name      string `json:"article_type_id" query:"article_type_id" gorm:"type:varchar(36)"`
-	Extention string `json:"extention" query:"extention" gorm:"type:varchar(3)"`
-	Path      string `json:"path" query:"path" gorm:"type:varchar(100)"`
+	CreatedAt time.Time `json:"created_at" query:"created_at" gorm:"<-:create"`
+	CreatedBy string    `json:"created_by" query:"created_by" gorm:"type:varchar(36)"`
+
+	FileName   string `json:"file_name" query:"file_name" gorm:"type:varchar(100)"`
+	Path       string `json:"path" query:"path" gorm:"type:varchar(500)"`
+	FullPath   string `json:"full_path"  query:"full_path" gorm:"type:varchar(500)"`
+	Cdn        string `json:"cdn" query:"cdn" gorm:"type:varchar(100)"`
+	BucketName string `json:"bucket_name" query:"bucket_name" gorm:"type:varchar(500)"`
 }
