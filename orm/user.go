@@ -14,14 +14,16 @@ type User struct {
 	UserTypeID   string `json:"user_type_id" query:"user_type_id" gorm:"type:varchar(2);"`
 	RMEmployeeID string `json:"rm_employee_id" query:"rm_employee_id" gorm:"type:varchar(36);"`
 
-	Username            string    `json:"username" query:"username" gorm:"type:varchar(20);"`
-	Password            string    `json:"password" query:"password" gorm:"type:varchar(20);"`
-	PrefixID            string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
-	Firstname           string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
-	Lastname            string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
-	FileAvatarID        string    `json:"file_avartar_id" query:"file_avartar_id" gorm:"type:varchar(36)"`
-	Mobile              string    `json:"mobile" query:"mobile" gorm:"type:varchar(20); unique"`
-	Email               string    `json:"email" query:"email" gorm:"type:varchar(20);"`
+	Username     string `json:"username" query:"username" gorm:"type:varchar(20);"`
+	Password     string `json:"password" query:"password" gorm:"type:varchar(20);"`
+	PrefixID     string `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
+	Firstname    string `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
+	Lastname     string `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
+	FileAvatarID string `json:"file_avartar_id" query:"file_avartar_id" gorm:"type:varchar(36)"`
+	Mobile       string `json:"mobile" query:"mobile" gorm:"type:varchar(20); unique"`
+	Email        string `json:"email" query:"email" gorm:"type:varchar(20);"`
+	RunningNo    int    `json:"running_no" query:"running_no" gorm:"type:tinyint;"`
+
 	Pin                 string    `json:"pin" query:"pin" gorm:"type:varchar(255);"`
 	IsNotiBeforeAuction bool      `json:"is_noti_before_auction" query:"is_noti_before_auction" gorm:"type:bool"`
 	IsNotiDuringAuction bool      `json:"is_noti_during_auction" query:"is_noti_during_auction" gorm:"type:bool"`
