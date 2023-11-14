@@ -19,10 +19,10 @@ type Refund struct {
 	RightToBid      int       `json:"right_to_bid" query:"right_to_bid" gorm:"type:int(5)"`
 	Amount          int       `json:"amount" query:"amount" gorm:"type:int"`
 	RequestDate     time.Time `json:"request_date" query:"request_date"`
-	EffectiveDate   time.Time `json:"effective_date" query:"effective_date"`
-	RefundStatusID  string    `json:"refund_status_id" query:"refund_status_id" gorm:"type:varchar(2)"`
-	IsApprove       bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
-	ApproveBy       string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
-	ApproveDate     time.Time `json:"approve_date" query:"approve_date"`
-	Remark          string    `json:"remark" query:"remark" gorm:"type:text;"`
+	// EffectiveDate   time.Time `json:"effective_date" query:"effective_date"`
+	RefundStatusID string    `json:"refund_status_id" query:"refund_status_id" gorm:"type:varchar(2)"`
+	IsApprove      bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
+	ApproveBy      string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
+	ApproveDate    time.Time `json:"approve_date" query:"approve_date"`
+	Remark         string    `json:"remark" query:"remark" gorm:"type:text;"`
 }
