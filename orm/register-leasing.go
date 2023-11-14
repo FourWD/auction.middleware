@@ -10,16 +10,17 @@ type RegisterLeasing struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	AuctionID              string `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
-	UserID                 string `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
-	PrefixID               string `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
-	Firstname              string `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
-	Lastname               string `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
-	IdcardNo               string `json:"idcard_no" query:"idcard_no" gorm:"type:varchar(13)"`
-	FileIDCardID           string `json:"file_id_card_id" query:"file_id_card_id" gorm:"type:varchar(36)"`
-	FileHouseParticularsID string `json:"file_house_particulars_id" query:"file_house_particulars_id" gorm:"type:varchar(36)"`
-	FilePayslipID          string `json:"file_payslip_id" query:"file_payslip_id" gorm:"type:varchar(36)"`
-	Telephone              string `json:"telephone" query:"telephone" gorm:"type:varchar(30)"`
+	RequestDate            time.Time `json:"request_date" query:"request_date"`
+	AuctionID              string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
+	UserID                 string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
+	PrefixID               string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
+	Firstname              string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
+	Lastname               string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
+	IdcardNo               string    `json:"idcard_no" query:"idcard_no" gorm:"type:varchar(13)"`
+	FileIDCardID           string    `json:"file_id_card_id" query:"file_id_card_id" gorm:"type:varchar(36)"`
+	FileHouseParticularsID string    `json:"file_house_particulars_id" query:"file_house_particulars_id" gorm:"type:varchar(36)"`
+	FilePayslipID          string    `json:"file_payslip_id" query:"file_payslip_id" gorm:"type:varchar(36)"`
+	Telephone              string    `json:"telephone" query:"telephone" gorm:"type:varchar(30)"`
 
 	Address       string `json:"address" query:"address" gorm:"type:text"`
 	Street        string `json:"street" query:"street" gorm:"type:varchar(200)"`
