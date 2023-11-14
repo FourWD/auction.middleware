@@ -10,8 +10,8 @@ type RegisterLeasing struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
 	orm.GormModel
 
-	AuctionID              string `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_register_leasings"`
-	UserID                 string `json:"user_id" query:"user_id" gorm:"type:varchar(36);uniqueIndex:idx_register_leasings"`
+	AuctionID              string `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
+	UserID                 string `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	PrefixID               string `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
 	Firstname              string `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
 	Lastname               string `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
@@ -39,4 +39,6 @@ type RegisterLeasing struct {
 	FinancialAmount      string    `json:"financial_amount" query:"financial_amount" gorm:"type:varchar(36)"`
 	UpdateLoanStatusBy   string    `json:"update_loan_status_by" query:"update_loan_status_by" gorm:"type:varchar(36)"`
 	UpdateLoanStatusDate time.Time `json:"update_loan_status_date" query:"update_loan_status_date" `
+	IsExpire             bool      `json:"is_expire" query:"is_expire" gorm:"type:bool"`
+	ExpireDate           time.Time `json:"expire_date" query:"expire_date"`
 }
