@@ -9,7 +9,7 @@ type Survey struct {
 	SurveyGroupID string `json:"survey_group_id" query:"survey_group_id" gorm:"type:varchar(36)"`
 	Subject       string `json:"subject" query:"subject" gorm:"type:varchar(100)"`
 	AnswerCount   int    `json:"answer_count" query:"answer_count" gorm:"type:int"`
-	orm.RowOrder
+	orm.GormRowOrder
 }
 
 // ชื่อของ survey เช่น survey "ประเภทรถ , ราคา"

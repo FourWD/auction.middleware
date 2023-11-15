@@ -17,5 +17,5 @@ type Maintenance struct {
 	MaintenanceDate       time.Time `json:"maintenance_date" query:"maintenance_date"`
 	Detail                string    `json:"detail" query:"detail" gorm:"type:varchar(500)"`
 
-	orm.RowOrder
+	orm.GormRowOrder
 }

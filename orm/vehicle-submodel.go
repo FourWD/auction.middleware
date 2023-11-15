@@ -14,5 +14,5 @@ type VehicleSubModel struct {
 	Name               string `json:"name" query:"name" gorm:"type:varchar(50);"`
 	Seat               string `json:"seat" query:"seat" gorm:"type:int(1);"`
 	EngineCC           int    `json:"engine_cc" query:"engine_cc" gorm:"type:varchar(4);"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

@@ -7,5 +7,5 @@ type VehicleSoldStatus struct {
 	orm.GormModel
 
 	Name string `json:"name" query:"name" gorm:"type:varchar(20);"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

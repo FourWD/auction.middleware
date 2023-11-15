@@ -7,5 +7,5 @@ type BankTransferStatus struct {
 	orm.GormModel
 
 	Name string `json:"name" query:"name" gorm:"type:varchar(50);"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

@@ -12,5 +12,5 @@ type Round struct {
 	Name     string `json:"name" query:"name" gorm:"type:varchar(50)"`
 	Color    string `json:"color" query:"color" gorm:"type:varchar(7)"`
 
-	orm.RowOrder
+	orm.GormRowOrder
 }

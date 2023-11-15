@@ -14,5 +14,5 @@ type Menu struct {
 	Url         string `json:"url" query:"url" gorm:"type:varchar(200)"`
 	YoutubeUrl  string `json:"youtube_url" query:"youtube_url" gorm:"type:varchar(100)"`
 	OpenType    string `json:"open_type" query:"open_type" gorm:"type:varchar(11)"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

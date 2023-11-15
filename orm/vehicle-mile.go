@@ -9,5 +9,5 @@ type VehicleMile struct {
 	Name    string `json:"name" query:"name" gorm:"type:varchar(20);"`
 	MileMin string `json:"mile_min" query:"mile_min" gorm:"type:varchar(10);"`
 	MileMax string `json:"mile_max" query:"mile_max" gorm:"type:varchar(10);"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

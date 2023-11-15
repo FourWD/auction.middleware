@@ -9,5 +9,5 @@ type VehicleGrade struct {
 	Name        string `json:"name" query:"name" gorm:"type:varchar(50);"`
 	Description string `json:"description" query:"description" gorm:"type:varchar(50);"`
 	ColorCode   string `json:"color_code" query:"color_code" gorm:"type:varchar(7)"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

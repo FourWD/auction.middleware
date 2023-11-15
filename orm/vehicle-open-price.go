@@ -9,5 +9,5 @@ type VehicleOpenPrice struct {
 	Name      string `json:"name" query:"name" gorm:"type:varchar(20);"`
 	OpenPrice string `json:"open_price" query:"open_price" gorm:"type:varchar(10);"`
 	EndPrice  string `json:"end_price" query:"end_price" gorm:"type:varchar(10);"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

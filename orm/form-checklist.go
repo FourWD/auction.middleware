@@ -8,5 +8,5 @@ type FormChecklist struct {
 
 	Name          string `json:"name" query:"name" gorm:"not null;type:varchar(500)"`
 	CountOfDetail int    `json:"count_of_detail" query:"count_of_detail" gorm:"not null;type:int(2)"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

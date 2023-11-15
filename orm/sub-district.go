@@ -10,5 +10,5 @@ type SubDistrict struct {
 	Name       string `json:"name" query:"name" gorm:"not null;type:varchar(50)"`
 	NameEn     string `json:"name_en" query:"name_en" gorm:"type:varchar(50)"`
 	PostCode   string `json:"post_code" query:"post_code" gorm:"type:varchar(5)"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

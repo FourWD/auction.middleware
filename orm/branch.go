@@ -19,5 +19,5 @@ type Branch struct {
 	Tiktok     string  `json:"tiktok" query:"tiktok" gorm:"type:varchar(20)"`
 	Latitude   float64 `json:"latitude" query:"latitude" gorm:"type:float"`
 	Longitude  float64 `json:"longitude" query:"longitude" gorm:"type:float"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

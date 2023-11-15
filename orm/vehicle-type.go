@@ -8,5 +8,5 @@ type VehicleType struct {
 
 	Name   string `json:"name" query:"name" gorm:"type:varchar(20);"`
 	NameTh string `json:"name_th" query:"name_th" gorm:"type:varchar(20);"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

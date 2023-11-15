@@ -10,5 +10,5 @@ type VehicleImage struct {
 	TemplateVehicleImageID string `json:"template_vehicle_image_id" query:"template_vehicle_image_id" gorm:"type:varchar(36);"`
 	ImagePath              string `json:"image_path" query:"image_path" gorm:"type:varchar(255)"`
 	IsDelete               bool   `json:"is_delete" query:"is_delete" gorm:"type:bool"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

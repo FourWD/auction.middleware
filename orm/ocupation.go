@@ -8,5 +8,5 @@ type Ocupation struct {
 	Name        string `json:"name" query:"name" gorm:"type:varchar(300);"`
 	FinanceID   string `json:"finance_id" query:"finance_id" gorm:"type:varchar(10)"`
 	OcupationID string `json:"ocupation_id" query:"ocupation_id" gorm:"type:varchar(36)"`
-	orm.RowOrder
+	orm.GormRowOrder
 }

@@ -15,5 +15,5 @@ type Article struct {
 	IsShowOnApp   bool   `json:"is_show_on_app" query:"is_show_on_app" gorm:"type:bool"`
 	Tag           string `json:"tag" query:"tag" gorm:"type:varchar(100)"`
 	CountView     int    `json:"count_view" query:"count_view" gorm:"type:int(11)"`
-	orm.RowOrder
+	orm.GormRowOrder
 }
