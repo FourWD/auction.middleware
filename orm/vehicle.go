@@ -2,6 +2,6 @@ package orm
 
 import "github.com/FourWD/auction.middleware/model"
 
-type VehicleExample struct {
+type Vehicle struct {
 	model.VehicleModel
 }

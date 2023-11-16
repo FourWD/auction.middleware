@@ -38,6 +38,7 @@ type VehicleModel struct {
 	VehicleFuelID         string    `json:"vehicle_fuel_id" query:"vehicle_fuel_id" gorm:"type:varchar(2);"`
 	Seat                  int       `json:"seat" query:"seat" gorm:"type:int(2);"`
 	VehicleTypeID         string    `json:"vehicle_type_id" query:"vehicle_type_id" gorm:"type:varchar(36);"`
+	VehicleSubTypeID      string    `json:"vehicle_sub_type_id" query:"vehicle_sub_type_id" gorm:"type:varchar(2);"`
 	VehicleBrandID        string    `json:"vehicle_brand_id" query:"vehicle_brand_id" gorm:"type:varchar(36);"`
 	RegisterTypeCode      string    `json:"register_type_code" query:"register_type_code" gorm:"type:varchar(36);"`
 	RegisterType          string    `json:"register_type" query:"register_type" gorm:"type:varchar(36);"`
