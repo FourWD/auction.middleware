@@ -38,4 +38,6 @@ type User struct {
 	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
 	ApproveBy           string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36);"`
 	ApproveDate         time.Time `json:"approve_date" query:"approve_dates"`
+
+	PaymentTypeID string `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2);"`
 }

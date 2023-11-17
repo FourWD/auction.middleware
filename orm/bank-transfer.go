@@ -26,6 +26,7 @@ type BankTransfer struct {
 	ApproveBy       string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate     time.Time `json:"approve_date" query:"approve_date"`
 	IsMobileBanking bool      `json:"is_mobile_banking" query:"is_mobile_banking" gorm:"type:bool"`
+	PaymentTypeID   string    `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2);"`
 	OcupationID     string    `json:"ocupation_id" query:"ocupation_id" gorm:"type:varchar(36)"`
 	// EffectiveDate   time.Time `json:"effective_date" query:"effective_date"`
 
