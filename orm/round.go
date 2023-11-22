@@ -1,10 +1,12 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"github.com/FourWD/middleware/model"
+)
 
 type Round struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(10);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(10);primary_key"`
+	model.GormModel
 
 	Logo     string `json:"logo" query:"logo" gorm:"type:varchar(255)"`
 	LogoHome string `json:"logo_home" query:"logo_home" gorm:"type:varchar(255)"`
@@ -12,5 +14,5 @@ type Round struct {
 	Name     string `json:"name" query:"name" gorm:"type:varchar(50)"`
 	Color    string `json:"color" query:"color" gorm:"type:varchar(7)"`
 
-	orm.GormRowOrder
+	model.GormRowOrder
 }

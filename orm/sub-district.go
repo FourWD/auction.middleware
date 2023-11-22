@@ -1,14 +1,16 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"github.com/FourWD/middleware/model"
+)
 
 type SubDistrict struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(6);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(6);primary_key"`
+	model.GormModel
 
 	DistrictID string `json:"district_id" query:"district_id" gorm:"type:varchar(4)"`
 	Name       string `json:"name" query:"name" gorm:"not null;type:varchar(50)"`
 	NameEn     string `json:"name_en" query:"name_en" gorm:"type:varchar(50)"`
 	PostCode   string `json:"post_code" query:"post_code" gorm:"type:varchar(5)"`
-	orm.GormRowOrder
+	model.GormRowOrder
 }

@@ -1,10 +1,12 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"github.com/FourWD/middleware/model"
+)
 
 type Menu struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	model.GormModel
 
 	MenuGroupID string `json:"menu_grounp_id" query:"menu_grounp_id" gorm:"type:varchar(36)"`
 
@@ -17,5 +19,5 @@ type Menu struct {
 	IsAppUrl     bool   `json:"is_app_url" query:"is_app_url" gorm:"type:bool"`
 	UserTypeList string `json:"user_type_list" query:"user_type_list" gorm:"type:varchar(10)"`
 
-	orm.GormRowOrder
+	model.GormRowOrder
 }

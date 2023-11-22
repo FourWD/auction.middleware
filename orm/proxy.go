@@ -3,12 +3,12 @@ package orm
 import (
 	"time"
 
-	"github.com/FourWD/middleware/orm"
+	"github.com/FourWD/middleware/model"
 )
 
 type Proxy struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	model.GormModel
 
 	AuctionID string `json:"auction_id" query:"auction_id" gorm:"type:varchar(36)"`
 	VehicleID string `json:"vehicle_id" query:"vehicle_id" gorm:"type:varchar(36)"`

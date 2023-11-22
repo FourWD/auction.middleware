@@ -3,12 +3,12 @@ package orm
 import (
 	"time"
 
-	"github.com/FourWD/middleware/orm"
+	"github.com/FourWD/middleware/model"
 )
 
 type Refund struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	model.GormModel
 
 	BankID          string    `json:"refund_bank_id" query:"refund_bank_id" gorm:"type:varchar(36)"`
 	UserID          string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
@@ -24,5 +24,5 @@ type Refund struct {
 	IsApprove      bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
 	ApproveBy      string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate    time.Time `json:"approve_date" query:"approve_date"`
-	Remark         string    `json:"remark" query:"remark" gorm:"type:text;"`
+	Remark         string    `json:"remark" query:"remark" gorm:"type:text"`
 }

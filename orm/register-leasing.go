@@ -3,19 +3,19 @@ package orm
 import (
 	"time"
 
-	"github.com/FourWD/middleware/orm"
+	"github.com/FourWD/middleware/model"
 )
 
 type RegisterLeasing struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	model.GormModel
 
 	RequestDate            time.Time `json:"request_date" query:"request_date"`
 	UserID                 string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	FinanceID              string    `json:"finance_id" query:"finance_id" gorm:"type:varchar(10)"`
-	PrefixID               string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2);"`
-	Firstname              string    `json:"firstname" query:"firstname" gorm:"type:varchar(100);"`
-	Lastname               string    `json:"lastname" query:"lastname" gorm:"type:varchar(100);"`
+	PrefixID               string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2)"`
+	Firstname              string    `json:"firstname" query:"firstname" gorm:"type:varchar(100)"`
+	Lastname               string    `json:"lastname" query:"lastname" gorm:"type:varchar(100)"`
 	IdcardNo               string    `json:"idcard_no" query:"idcard_no" gorm:"type:varchar(13)"`
 	FileIDCardID           string    `json:"file_id_card_id" query:"file_id_card_id" gorm:"type:varchar(36)"`
 	FileHouseParticularsID string    `json:"file_house_particulars_id" query:"file_house_particulars_id" gorm:"type:varchar(36)"`

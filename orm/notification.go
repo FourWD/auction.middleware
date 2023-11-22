@@ -3,12 +3,12 @@ package orm
 import (
 	"time"
 
-	"github.com/FourWD/middleware/orm"
+	"github.com/FourWD/middleware/model"
 )
 
 type Notification struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	model.GormModel
 
 	ToUserID           string    `json:"to_user_id" query:"to_user_id" gorm:"type:varchar(36)"`
 	NotificationTypeID string    `json:"notification_type_id" query:"notification_type_id" gorm:"type:varchar(36)"`

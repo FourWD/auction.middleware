@@ -1,11 +1,13 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"github.com/FourWD/middleware/model"
+)
 
 type BankTransferStatus struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(2);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(2);primary_key"`
+	model.GormModel
 
-	Name string `json:"name" query:"name" gorm:"type:varchar(50);"`
-	orm.GormRowOrder
+	Name string `json:"name" query:"name" gorm:"type:varchar(50)"`
+	model.GormRowOrder
 }

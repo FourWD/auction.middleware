@@ -3,12 +3,12 @@ package orm
 import (
 	"time"
 
-	"github.com/FourWD/middleware/orm"
+	"github.com/FourWD/middleware/model"
 )
 
 type Bidding struct {
 	ID uint `json:"id" query:"id" gorm:"primaryKey;autoIncrement"`
-	orm.GormModel
+	model.GormModel
 
 	AuctionID        string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_bidding"`
 	VehicleID        string    `json:"vehicle_id" query:"vehicle_id" gorm:"type:varchar(36);uniqueIndex:idx_bidding"`

@@ -1,10 +1,12 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import (
+	"github.com/FourWD/middleware/model"
+)
 
 type LogLogin struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	model.GormModel
 
 	UserID            string  `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	DeviceID          string  `json:"device_id" query:"device_id" gorm:"type:varchar(255)"`
@@ -16,5 +18,5 @@ type LogLogin struct {
 	NotificationToken string  `json:"notification_token" query:"notification_token" gorm:"type:varchar(255)"`
 	IsActive          bool    `json:"is_active" query:"is_active" gorm:"type:bool"`
 	IsLoginSuccess    bool    `json:"is_login_success" query:"is_login_success" gorm:"type:bool"`
-	orm.GormRowOrder
+	model.GormRowOrder
 }

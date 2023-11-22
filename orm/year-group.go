@@ -1,10 +1,10 @@
 package orm
 
-import "github.com/FourWD/middleware/orm"
+import "github.com/FourWD/middleware/model"
 
 type YearGroup struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(2);primary_key;"`
-	orm.GormModel
+	ID string `json:"id" query:"id" gorm:"type:varchar(2);primary_key"`
+	model.GormModel
 
 	Name     string `json:"name" query:"name" gorm:"type:varchar(100)"`
 	YearList string `json:"year_list" query:"year_list" gorm:"type:varchar(200)"`
