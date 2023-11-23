@@ -19,6 +19,6 @@ type AuctionVehicleUserFavorite struct {
 	IsFavorite      bool      `json:"is_favorite" query:"is_favorite" gorm:"bool"`
 	FavoriteDate    time.Time `json:"favorite_date" query:"favorite_date"`
 	IsBidding       bool      `json:"is_bidding" query:"is_bidding" gorm:"bool"`
-	Proxy           int       `json:"proxy" query:"proxy" gorm:"int"`
+	ProxyID         string    `json:"proxy_id" query:"proxy_id" gorm:"type:varchar(36)"`
 	MD5             string    `json:"md5" query:"md5" gorm:"type:varchar(32)"`
 }
