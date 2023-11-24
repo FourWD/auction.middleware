@@ -10,16 +10,15 @@ import (
 )
 
 func GetJwtToken(c *fiber.Ctx) (*model.AuctionToken, error) {
-	bearerToken := c.Get("Authorization")
 
 	err := errors.New("error")
 	if err != nil {
 		fmt.Println("GetJwtToken")
 	}
 	auctionToken := new(model.AuctionToken)
-	auctionToken.UserID, _ = common.EncodedJwtToken(bearerToken, "user_id")
-	auctionToken.MobileNo, _ = common.EncodedJwtToken(bearerToken, "mobile_no")
-	auctionToken.DeviceID, err = common.EncodedJwtToken(bearerToken, "noti_token")
+	auctionToken.UserID, _ = common.EncodedJwtToken(c, "user_id")
+	auctionToken.MobileNo, _ = common.EncodedJwtToken(c, "mobile_no")
+	auctionToken.DeviceID, err = common.EncodedJwtToken(c, "noti_token")
 
 	if err == nil {
 		return auctionToken, nil
