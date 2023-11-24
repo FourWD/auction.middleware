@@ -13,7 +13,7 @@ type User struct {
 	IsNotiBeforeAuction bool      `json:"is_noti_before_auction" query:"is_noti_before_auction" gorm:"type:bool"`
 	IsNotiDuringAuction bool      `json:"is_noti_during_auction" query:"is_noti_during_auction" gorm:"type:bool"`
 	IsNotiAfterAuction  bool      `json:"is_noti_after_auction" query:"is_noti_after_auction" gorm:"type:bool"`
-	IsUseTouchID        string    `json:"is_use_touch_id" query:"is_use_touch_id" gorm:"type:int(6)"`
+	IsUseTouchID        bool      `json:"is_use_touch_id" query:"is_use_touch_id" gorm:"type:bool"`
 	RightDeposit        int       `json:"right_deposit" query:"right_deposit" gorm:"type:int(5)"`
 	ReferralCode        string    `json:"referral_code" query:"referral_code" gorm:"type:varchar(20)"` // รหัสผู้แนะนำ
 	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
