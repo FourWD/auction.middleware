@@ -98,7 +98,6 @@ vc.name AS vehicle_color_name,
 vgr.name AS vehicle_grade_name,
 vgr.row_order AS vehicle_grade_value,
 p.name AS license_province_name,
-ac.auction_id,
 vst.name as vehicle_sub_type_name
 FROM (
 select * from `auction-vehicle-0001`.vehicles
@@ -132,8 +131,35 @@ UNION
 select * from `auction-vehicle-0015`.vehicles
 UNION
 select * from `auction-vehicle-0016`.vehicles
+UNION
+select * from `auction-vehicle-0017`.vehicles
+UNION
+select * from `auction-vehicle-0018`.vehicles
+UNION
+select * from `auction-vehicle-0019`.vehicles
+UNION
+select * from `auction-vehicle-0020`.vehicles
+UNION
+select * from `auction-vehicle-0021`.vehicles
+UNION
+select * from `auction-vehicle-0022`.vehicles
+UNION
+select * from `auction-vehicle-0023`.vehicles
+UNION
+select * from `auction-vehicle-0024`.vehicles
+UNION
+select * from `auction-vehicle-0025`.vehicles
+UNION
+select * from `auction-vehicle-0026`.vehicles
+UNION
+select * from `auction-vehicle-0027`.vehicles
+UNION
+select * from `auction-vehicle-0028`.vehicles
+UNION
+select * from `auction-vehicle-0029`.vehicles
+UNION
+select * from `auction-vehicle-0030`.vehicles
 ) AS vehicles
-LEFT JOIN auction_vehicles ac ON ac.vehicle_id = vehicles.id
 LEFT JOIN vehicle_sub_types vst ON vst.id = vehicles.vehicle_sub_type_id
 LEFT JOIN vehicle_sub_models vsm ON vsm.id = vehicles.vehicle_submodel_id
 LEFT JOIN vehicle_models vm ON vm.id = vsm.vehicle_model_id
