@@ -58,6 +58,10 @@ github.com/FourWD/middleware v1.2.9 h1:3BoWbrm94jBCinV8UaouX+HYGGWSYeXbYLNam/xBU
 github.com/FourWD/middleware v1.2.9/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
 github.com/FourWD/middleware v1.3.4 h1:S59ProhVv1qrvAobO/KfzP7/m8WRMelyNwfm0llYKCQ=
 github.com/FourWD/middleware v1.3.4/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
+github.com/FourWD/middleware v1.3.5 h1:yKzZDv1GA0btKEua96jcBp6Am9fGgiXurSqIVPLYX14=
+github.com/FourWD/middleware v1.3.5/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
+github.com/FourWD/middleware v1.3.6 h1:mPysMlldx97WDEM65PG/fSUKl2Bi+vwY+8ie7oNp8ZY=
+github.com/FourWD/middleware v1.3.6/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
 github.com/MicahParks/keyfunc v1.9.0/go.mod h1:IdnCilugA0O/99dW+/MkvlyrsX8+L8+x95xuVNtM5jw=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
