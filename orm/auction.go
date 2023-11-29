@@ -33,5 +33,5 @@ type Auction struct {
 	ImportRedbookDate time.Time `json:"import_redbook_date" query:"import_redbook_date"`
 	ImportRedbookBy   string    `json:"import_redbook_by" query:"import_redbook_by"`
 	Description       string    `json:"description" query:"description" gorm:"type:varchar(350)"`
-	RunningNo         int       `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
+	RunningNo         int       `json:"running_no" query:"running_no" gorm:"primary_key;"`
 }
