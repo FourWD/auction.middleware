@@ -27,7 +27,7 @@ type Auction struct {
 	IsProcess          bool      `json:"is_process" query:"is_process" gorm:"bool"`
 	ExtraTimeMinute    int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"` // 15 min in int
 	IsEnd              bool      `json:"is_end" query:"is_end" gorm:"bool"`
-	EndBy              string    `json:"end_by" query:"end_by" gorm:"type:varchar(36)"`
+	EndBy              string    `json:"end_by" query:"end_by" gorm:"type:varchar(36)"` //asdsd
 	IsAutoEnd          bool      `json:"is_auto_end" query:"is_auto_end" gorm:"bool"`
 	IsOperationApprove bool      `json:"is_operation_approve" query:"is_operation_approve" gorm:"bool"`
 	OperationBy        string    `json:"operation_by" query:"operation_by" gorm:"type:varchar(36)"`
