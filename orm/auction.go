@@ -27,6 +27,8 @@ type Auction struct {
 	IsProcess         bool      `json:"is_process" query:"is_process" gorm:"bool"`
 	ExtraTimeMinute   int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"` // 15 min in int
 	IsEnd             bool      `json:"is_end" query:"is_end" gorm:"bool"`
+	EndBy             string    `json:"end_by" query:"end_by" gorm:"type:varchar(36)"`
+	IsAutoEnd         bool      `json:"is_auto_end" query:"is_auto_end" gorm:"bool"`
 	IsImportRedbook   bool      `json:"is_import_redbook" query:"is_import_redbook" gorm:"bool"`
 	ImportRedbookDate time.Time `json:"import_redbook_date" query:"import_redbook_date"`
 	ImportRedbookBy   string    `json:"import_redbook_by" query:"import_redbook_by"`
