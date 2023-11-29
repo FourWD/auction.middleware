@@ -7,7 +7,7 @@ import (
 )
 
 type Auction struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36); "`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36); uniqueIndex:idx_id"`
 	model.GormModel
 
 	RoundID           string    `json:"round_id" query:"round_id" gorm:"type:varchar(36)"`
@@ -33,5 +33,5 @@ type Auction struct {
 	ImportRedbookDate time.Time `json:"import_redbook_date" query:"import_redbook_date"`
 	ImportRedbookBy   string    `json:"import_redbook_by" query:"import_redbook_by"`
 	Description       string    `json:"description" query:"description" gorm:"type:varchar(350)"`
-	RunningNo         int       `json:"running_no" query:"running_no" gorm:"primary_key;"`
+	RunningNo         int       `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
 }
