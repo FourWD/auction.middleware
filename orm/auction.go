@@ -17,6 +17,7 @@ type Auction struct {
 	ShowDate          time.Time `json:"show_date" query:"show_date"`
 	StartDate         time.Time `json:"start_date" query:"start_date"`
 	EndDate           time.Time `json:"end_date" query:"end_date"`
+	DisplayDate       time.Time `json:"display_date" query:"display_date"`
 	CountVehicle      int       `json:"count_vehicle" query:"count_vehicle" gorm:"type:int(6)"`
 	CountUserBidding  int       `json:"count_user_bidding" query:"count_user_bidding" gorm:"type:int(6)"`
 	BiddingStep1      int       `json:"bidding_step_1" query:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
