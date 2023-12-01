@@ -22,6 +22,7 @@ type AuctionVehicle struct {
 	IsExtra            bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsEnd              bool      `json:"is_end" query:"is_end" gorm:"bool"`
 	IsOperationApprove bool      `json:"is_operation_approve" query:"is_operation_approve" gorm:"bool"`
+	IsApprove          bool      `json:"is_approve" query:"is_approve" gorm:"bool"`
 	OperationBy        string    `json:"operation_by" query:"operation_by" gorm:"type:varchar(36)"`
 	BiddingStep1       int       `json:"bidding_step_1" query:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
 	BiddingStep2       int       `json:"bidding_step_2" query:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
