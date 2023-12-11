@@ -2,13 +2,10 @@ package orm
 
 import (
 	"time"
-
-	"github.com/FourWD/middleware/model"
 )
 
 type AuctionVehicleUserFavorite struct {
 	ID uint `json:"id" query:"id" gorm:"primaryKey;autoIncrement"`
-	model.GormModel
 
 	AuctionID       string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
 	UserID          string    `json:"user_id" query:"user_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
