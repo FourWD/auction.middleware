@@ -23,9 +23,9 @@ type Auction struct {
 	BiddingStep2       int       `json:"bidding_step_2" query:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
 	BiddingStep3       int       `json:"bidding_step_3" query:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6)"`
 	AuctionStatusID    string    `json:"auction_status_id" query:"auction_status_id" gorm:"type:varchar(2)"`
-	IsStart            bool      `json:"is_start" query:"is_start" gorm:"bool"`
 	IsExtra            bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsProcess          bool      `json:"is_process" query:"is_process" gorm:"bool"`
+	IsShow             bool      `json:"is_show" query:"is_show" gorm:"bool"`
 	ExtraTimeMinute    int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"` // 15 min in int
 	IsEnd              bool      `json:"is_end" query:"is_end" gorm:"bool"`
 	EndBy              string    `json:"end_by" query:"end_by" gorm:"type:varchar(36)"` //asdsd
