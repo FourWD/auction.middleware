@@ -23,8 +23,10 @@ vdt.name AS vehicle_drive_type_name,
 vg.name AS vehicle_gear_name,
 vft.name AS vehicle_fuel_type_name,
 vc.name AS vehicle_color_name,
-vgr.name AS vehicle_grade_name,
 vgr.row_order AS vehicle_grade_value,
+vgr.name AS vehicle_grade_name,
+vrt.code AS vehicle_register_type_code,
+vrt.name AS vehicle_register_type_name,
 p.name AS license_province_name
 FROM (
 select * from `auction-vehicle-0001`.vehicles
@@ -92,12 +94,13 @@ LEFT JOIN vehicle_models vm ON vm.id = vsm.vehicle_model_id
 LEFT JOIN vehicle_sub_types vst ON vst.id = vehicles.vehicle_sub_type_id
 LEFT JOIN vehicle_types vt ON vt.id = vst.vehicle_type_id
 LEFT JOIN vehicle_brands vb ON vb.id = vm.vehicle_brand_id
-LEFT JOIN vehicle_drive_types vdt ON vdt.id = vsm.vehicle_drive_type_id
-LEFT JOIN vehicle_gears vg ON vg.id = vsm.vehicle_gear_id
-LEFT JOIN vehicle_fuel_types vft ON vft.id = vsm.vehicle_fuel_id
+LEFT JOIN vehicle_drive_types vdt ON vdt.id = vehicles.vehicle_drive_type_id
+LEFT JOIN vehicle_gears vg ON vg.id = vehicles.vehicle_gear_id
+LEFT JOIN vehicle_fuel_types vft ON vft.id = vehicles.vehicle_fuel_type_id
 LEFT JOIN vehicle_colors vc ON vc.id = vehicles.vehicle_color_id
 LEFT JOIN vehicle_grades vgr ON vgr.id = vehicles.vehicle_grade_id
 LEFT JOIN sources s ON s.id = vehicles.source_id
 LEFT JOIN branches b ON b.id = vehicles.branch_id
-LEFT JOIN provinces p ON p.id = vehicles.license_provice_id;
+LEFT JOIN provinces p ON p.id = vehicles.license_provice_id
+LEFT JOIN vehicle_register_types vrt ON vehicles.vehicle_register_type_id = vrt.id;
 */
