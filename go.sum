@@ -54,16 +54,6 @@ firebase.google.com/go/v4 v4.11.0 h1:szjBoiF33A2FavRLIDZjW1mw+OsW/XAtHoYNIqWOjRk
 firebase.google.com/go/v4 v4.11.0/go.mod h1:60c36dWLK4+j05Vw5XMllek3b3PCynU3BfI46OSwsUE=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
-github.com/FourWD/middleware v1.2.9 h1:3BoWbrm94jBCinV8UaouX+HYGGWSYeXbYLNam/xBUGU=
-github.com/FourWD/middleware v1.2.9/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
-github.com/FourWD/middleware v1.3.4 h1:S59ProhVv1qrvAobO/KfzP7/m8WRMelyNwfm0llYKCQ=
-github.com/FourWD/middleware v1.3.4/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
-github.com/FourWD/middleware v1.3.5 h1:yKzZDv1GA0btKEua96jcBp6Am9fGgiXurSqIVPLYX14=
-github.com/FourWD/middleware v1.3.5/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
-github.com/FourWD/middleware v1.3.6 h1:mPysMlldx97WDEM65PG/fSUKl2Bi+vwY+8ie7oNp8ZY=
-github.com/FourWD/middleware v1.3.6/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
-github.com/FourWD/middleware v1.4.4 h1:396LUuvpay4rJur2Z8QC4VZDNpPXTAX0kMXk7vxB1S8=
-github.com/FourWD/middleware v1.4.4/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
 github.com/FourWD/middleware v1.4.5 h1:gumA47wgvSypKQDs2RpqJe+oIjEoPr9b9MLI5bdcAUQ=
 github.com/FourWD/middleware v1.4.5/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
