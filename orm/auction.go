@@ -42,4 +42,10 @@ type Auction struct {
 	IsAllVehicleApprove bool `json:"is_all_vehicle_approve" query:"is_all_vehicle_approve" gorm:"bool"`
 
 	RunningNo int `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
+
+	CountOfSedan  int `json:"count_of_sedan" query:"count_of_sedan" gorm:"type:int(6)"`
+	CountOfPickUp int `json:"count_of_pick_up" query:"count_of_pick_up" gorm:"type:int(6)"`
+	CountOfSUV    int `json:"count_of_suv" query:"count_of_suv" gorm:"type:int(6)"`
+	CountOfVan    int `json:"count_of_van" query:"count_of_van" gorm:"type:int(6)"`
+	CountOfTruck  int `json:"count_of_truck" query:"count_of_truck" gorm:"type:int(6)"`
 }
