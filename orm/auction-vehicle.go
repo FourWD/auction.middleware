@@ -17,6 +17,7 @@ type AuctionVehicle struct {
 	MinPrice           int       `json:"min_price" query:"min_price" gorm:"type:int(10)"`
 	ClosePrice         int       `json:"close_price" query:"close_price" gorm:"type:int(10)"`
 	IsWin              bool      `json:"is_win" query:"is_win" gorm:"type:bool"`
+	StartDate          time.Time `json:"start_date" query:"start_date"`
 	EndDate            time.Time `json:"end_date" query:"end_date"`
 	IsProcess          bool      `json:"is_process" query:"is_process" gorm:"bool"`
 	IsExtra            bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
