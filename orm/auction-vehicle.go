@@ -19,6 +19,7 @@ type AuctionVehicle struct {
 	IsWin              bool      `json:"is_win" query:"is_win" gorm:"type:bool"`
 	StartDate          time.Time `json:"start_date" query:"start_date"`
 	EndDate            time.Time `json:"end_date" query:"end_date"`
+	ActualEndDate      time.Time `json:"actual_end_date" query:"actual_end_date"`
 	IsProcess          bool      `json:"is_process" query:"is_process" gorm:"bool"`
 	IsExtra            bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsEnd              bool      `json:"is_end" query:"is_end" gorm:"bool"`
