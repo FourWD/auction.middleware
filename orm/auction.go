@@ -18,13 +18,13 @@ type Auction struct {
 	EndDate            time.Time `json:"end_date" query:"end_date"`
 	ActualEndDate      time.Time `json:"actual_end_date" query:"actual_end_date"`
 	CountVehicle       int       `json:"count_vehicle" query:"count_vehicle" gorm:"type:int(6)"`
-	CountBidding       int       `json:"count_bidding" query:"count_bidding" gorm:"type:int(6)"`
-	CountProxy         int       `json:"count_proxy" query:"count_proxy" gorm:"type:int(6)"`
+	//CountBidding       int       `json:"count_bidding" query:"count_bidding" gorm:"type:int(6)"`
+	//CountProxy         int       `json:"count_proxy" query:"count_proxy" gorm:"type:int(6)"`
 	CountUserBidding   int       `json:"count_user_bidding" query:"count_user_bidding" gorm:"type:int(6)"`
-	CountUserProxy     int       `json:"count_user_proxy" query:"count_user_proxy" gorm:"type:int(6)"`
-	CountUserFavorite  int       `json:"count_user_favorite" query:"count_user_favorite" gorm:"type:int(6)"`
-	CountUserJoin      int       `json:"count_user_join" query:"count_user_join" gorm:"type:int(6)"`
-	CountUserView      int       `json:"count_user_view" query:"count_user_view" gorm:"type:int(6)"`
+	//CountUserProxy     int       `json:"count_user_proxy" query:"count_user_proxy" gorm:"type:int(6)"`
+	//CountUserFavorite  int       `json:"count_user_favorite" query:"count_user_favorite" gorm:"type:int(6)"`
+	//CountUserJoin      int       `json:"count_user_join" query:"count_user_join" gorm:"type:int(6)"`
+	//CountUserView      int       `json:"count_user_view" query:"count_user_view" gorm:"type:int(6)"`
 	AuctionStatusID    string    `json:"auction_status_id" query:"auction_status_id" gorm:"type:varchar(2)"`
 	IsExtra            bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsProcess          bool      `json:"is_process" query:"is_process" gorm:"bool"`
