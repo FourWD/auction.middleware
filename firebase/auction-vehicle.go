@@ -4,7 +4,7 @@ import "time"
 
 type AuctionVehicle struct {
 	CountBidding      int       `firestore:"count_bidding"`
-	CountProxy        int       `firestore:"count_Proxy"`
+	CountProxy        int       `firestore:"count_proxy"`
 	CountUserFavorite int       `firestore:"count_user_favorite"`
 	CountUserView     int       `firestore:"count_user_view"`
 	CountUserJoin     int       `firestore:"count_user_join"`
