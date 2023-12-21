@@ -22,4 +22,5 @@ type AuctionVehicle struct {
 	BiddingStep1      int       `firestore:"bidding_step_1"`
 	BiddingStep2      int       `firestore:"bidding_step_2"`
 	BiddingStep3      int       `firestore:"bidding_step_3"`
+	CountView         int       `firestore:"count_view"`
 }
