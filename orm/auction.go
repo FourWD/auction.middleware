@@ -23,12 +23,12 @@ type Auction struct {
 	IsExtra             bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsShow              bool      `json:"is_show" query:"is_show" gorm:"bool"`
 	ExtraTimeMinute     int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"` // 15 min in int
-	IsApprove           bool      `json:"is_end" query:"is_end" gorm:"bool"`
-	IsAutoApprove       bool      `json:"is_auto_end" query:"is_auto_end" gorm:"bool"`
+	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"bool"`                      // 1
+	IsAutoApprove       bool      `json:"is_auto_approve" query:"is_auto_approve" gorm:"bool"`            // 0
 	IsOperationApprove  bool      `json:"is_operation_approve" query:"is_operation_approve" gorm:"bool"`
-	OperationBy         string    `json:"operation_by" query:"operation_by" gorm:"type:varchar(36)"`
+	OperationApproveBy  string    `json:"operation_approve_by" query:"operation_approve_by" gorm:"type:varchar(36)"`
 	IsOwnerApprove      bool      `json:"is_owner_approve" query:"is_owner_approve" gorm:"bool"`
-	OwnerBy             string    `json:"owner_by" query:"owner_by" gorm:"type:varchar(36)"`
+	OwnerApproveBy      string    `json:"owner_approve_by" query:"owner_approve_by" gorm:"type:varchar(36)"`
 	IsImportRedbook     bool      `json:"is_import_redbook" query:"is_import_redbook" gorm:"bool"`
 	ImportRedbookDate   time.Time `json:"import_redbook_date" query:"import_redbook_date"`
 	ImportRedbookBy     string    `json:"import_redbook_by" query:"import_redbook_by"`
