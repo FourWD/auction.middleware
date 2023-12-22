@@ -20,9 +20,7 @@ type AuctionVehicle struct {
 	StartDate          time.Time `json:"start_date" query:"start_date"`
 	EndDate            time.Time `json:"end_date" query:"end_date"`
 	ActualEndDate      time.Time `json:"actual_end_date" query:"actual_end_date"`
-	IsProcess          bool      `json:"is_process" query:"is_process" gorm:"bool"`
 	IsExtra            bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
-	IsEnd              bool      `json:"is_end" query:"is_end" gorm:"bool"`
 	IsOperationApprove bool      `json:"is_operation_approve" query:"is_operation_approve" gorm:"bool"`
 	IsApprove          bool      `json:"is_approve" query:"is_approve" gorm:"bool"`
 	OperationBy        string    `json:"operation_by" query:"operation_by" gorm:"type:varchar(36)"`
