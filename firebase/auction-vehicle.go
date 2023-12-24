@@ -1,8 +1,6 @@
 package firebase
 
-import "time"
-
-type AuctionVehicle struct {
+/* type AuctionVehicle struct {
 	CountBidding      int       `firestore:"count_bidding"`
 	CountProxy        int       `firestore:"count_proxy"`
 	CountUserFavorite int       `firestore:"count_user_favorite"`
@@ -25,3 +23,4 @@ type AuctionVehicle struct {
 	BiddingStep3      int       `firestore:"bidding_step_3"`
 	CountView         int       `firestore:"count_view"`
 }
+*/
