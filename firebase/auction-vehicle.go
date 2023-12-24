@@ -13,6 +13,7 @@ type AuctionVehicle struct {
 	CurrentPrice      int       `firestore:"current_price"`
 	StartDate         time.Time `firestore:"start_date"`
 	EndDate           time.Time `firestore:"end_date"`
+	ExtraTimeMinute   int       `firestore:"extra_time_minute"`
 	ActualEndDate     time.Time `firestore:"actual_end_date"`
 	IsEnd             bool      `firestore:"is_end"`
 	IsExtra           bool      `firestore:"is_extra"`

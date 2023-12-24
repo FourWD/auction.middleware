@@ -22,9 +22,9 @@ type Auction struct {
 	AuctionStatusID     string    `json:"auction_status_id" query:"auction_status_id" gorm:"type:varchar(2)"`
 	IsExtra             bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
 	IsShow              bool      `json:"is_show" query:"is_show" gorm:"bool"`
-	ExtraTimeMinute     int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"` // 15 min in int
-	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"bool"`                      // 1
-	IsAutoApprove       bool      `json:"is_auto_approve" query:"is_auto_approve" gorm:"bool"`            // 0
+	ExtraTimeMinute     int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"`
+	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"bool"`                     
+	IsAutoApprove       bool      `json:"is_auto_approve" query:"is_auto_approve" gorm:"bool"`         
 	IsOperationApprove  bool      `json:"is_operation_approve" query:"is_operation_approve" gorm:"bool"`
 	OperationApproveBy  string    `json:"operation_approve_by" query:"operation_approve_by" gorm:"type:varchar(36)"`
 	IsOwnerApprove      bool      `json:"is_owner_approve" query:"is_owner_approve" gorm:"bool"`
