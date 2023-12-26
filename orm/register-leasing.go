@@ -43,4 +43,10 @@ type RegisterLeasing struct {
 	UpdateLoanStatusDate time.Time `json:"update_loan_status_date" query:"update_loan_status_date" `
 	IsExpire             bool      `json:"is_expire" query:"is_expire" gorm:"type:bool"`
 	ExpireDate           time.Time `json:"expire_date" query:"expire_date"`
+
+	LastOperationUpdateBy   string    `json:"last_operation_update_by" query:"last_operation_update_by" gorm:"type:varchar(36)"`
+	LastOperationUpdateDate time.Time `json:"last_operation_update_date" query:"last_operation_update_date" `
+
+	LastFinanceUpdateBy   string    `json:"last_finance_update_by" query:"last_finance_update_by" gorm:"type:varchar(36)"`
+	LastFinanceUpdateDate time.Time `json:"last_finance_update_date" query:"last_finance_update_date" `
 }
