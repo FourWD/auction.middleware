@@ -24,5 +24,8 @@ type Refund struct {
 	IsApprove      bool      `json:"is_approve" query:"is_approve" gorm:"type:bool"`
 	ApproveBy      string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate    time.Time `json:"approve_date" query:"approve_date"`
+	IsTransfer     bool      `json:"is_transfer" query:"is_transfer" gorm:"type:bool"`
+	TransferBy     string    `json:"transfer_by" query:"transfer_by" gorm:"type:varchar(36)"`
+	TransfereDate  time.Time `json:"transfer_date" query:"transfer_date"`
 	Remark         string    `json:"remark" query:"remark" gorm:"type:text"`
 }
