@@ -32,6 +32,7 @@ type RegisterLeasing struct {
 	NetIncome        int       `json:"net_income" query:"net_income" gorm:"type:int"`
 	IsLoanSCB        bool      `json:"is_loan_scb" query:"is_loan_scb" gorm:"type:bool"`                 //มีสินเชื่อรถกับSCB ?
 	IsBankAccountSCB bool      `json:"is_bank_account_scb" query:"is_bank_account_scb" gorm:"type:bool"` //มีบัญชีSCB ?
+	IsApp            bool      `json:"is_app" query:"is_app" gorm:"type:bool"`                           //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
 	BirthDate        time.Time `json:"birth_date" query:"birth_date"`
 	YearExperience   int       `json:"year_experience" query:"year_experience" gorm:"type:int"` //ปีที่ทำงาน
 

@@ -26,8 +26,10 @@ type BankTransfer struct {
 	ApproveBy       string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate     time.Time `json:"approve_date" query:"approve_date"`
 	IsMobileBanking bool      `json:"is_mobile_banking" query:"is_mobile_banking" gorm:"type:bool"`
-	PaymentTypeID   string    `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
-	OccupationID    string    `json:"ocucpation_id" query:"occupation_id" gorm:"type:varchar(36)"`
+	IsApp           bool      `json:"is_app" query:"is_app" gorm:"type:bool"` //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
+
+	PaymentTypeID string `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
+	OccupationID  string `json:"ocucpation_id" query:"occupation_id" gorm:"type:varchar(36)"`
 	// EffectiveDate   time.Time `json:"effective_date" query:"effective_date"`
 
 	Address       string `json:"address" query:"address" gorm:"type:text"`
