@@ -10,7 +10,7 @@ type Refund struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
 	model.GormModel
 
-	RefundBankID    string    `json:"refund_bank_id" query:"refund_bank_id" gorm:"type:varchar(36)"`
+	// BankID          string    `json:"refund_bank_id" query:"refund_bank_id" gorm:"type:varchar(36)"`
 	UserID          string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	BankBranchName  string    `json:"refund_bank_branch_name" query:"refund_bank_branch_name" gorm:"type:varchar(200)"`
 	BankListID      string    `json:"bank_list_id" query:"bank_list_id" gorm:"type:varchar(2)"`
