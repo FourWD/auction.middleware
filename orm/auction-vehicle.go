@@ -12,7 +12,7 @@ type AuctionVehicle struct {
 
 	AuctionID          string    `json:"auction_id" query:"auction_id" firestore:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id"`
 	VehicleID          string    `json:"vehicle_id" query:"vehicle_id" firestore:"vehicle_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id"`
-	VehicleNo          string    `json:"vehicle_no" query:"vehicle_no" firestore:"vehicle_no" gorm:"type:varchar(10); "`
+	VehicleNo          int       `json:"vehicle_no" query:"vehicle_no" firestore:"vehicle_no" gorm:"type:int; "`
 	OpenPrice          int       `json:"open_price" query:"open_price" firestore:"open_price" gorm:"type:int(10)"`
 	MinPrice           int       `json:"min_price" query:"min_price" firestore:"min_price" gorm:"type:int(10)"`
 	ClosePrice         int       `json:"close_price" query:"close_price" firestore:"close_price" gorm:"type:int(10)"`
