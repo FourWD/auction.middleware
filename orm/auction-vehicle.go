@@ -7,7 +7,7 @@ import (
 )
 
 type AuctionVehicle struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	ID string `json:"id" query:"id" firestore:"id" gorm:"type:varchar(36);primary_key"`
 	model.GormModel
 
 	AuctionID          string    `json:"auction_id" query:"auction_id" firestore:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id"`
@@ -44,28 +44,3 @@ type AuctionVehicle struct {
 	ExtraTimeMinute    int       `json:"firestore" query:"firestore" firestore:"extra_time_minute" gorm:"type:int"`
 	RowOrder           float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
 }
-
-/* type AuctionVehicle struct {
-	CountBidding      int       `firestore:"count_bidding"`
-	CountProxy        int       `firestore:"count_proxy"`
-	CountUserFavorite int       `firestore:"count_user_favorite"`
-	CountUserView     int       `firestore:"count_user_view"`
-	CountUserJoin     int       `firestore:"count_user_join"`
-	CountUserBidding  int       `firestore:"count_user_bidding"`
-	CountUserProxy    int       `firestore:"count_user_proxy"`
-	CurrentPrice      int       `firestore:"current_price"`
-	StartDate         time.Time `firestore:"start_date"`
-	EndDate           time.Time `firestore:"end_date"`
-	ExtraTimeMinute   int       `firestore:"extra_time_minute"`
-	ActualEndDate     time.Time `firestore:"actual_end_date"`
-	IsEnd             bool      `firestore:"is_end"`
-	IsExtra           bool      `firestore:"is_extra"`
-	MinPrice          int       `firestore:"min_price"`
-	OpenPrice         int       `firestore:"open_price"`
-	UserID            string    `firestore:"user_id"`
-	BiddingStep1      int       `firestore:"bidding_step_1"`
-	BiddingStep2      int       `firestore:"bidding_step_2"`
-	BiddingStep3      int       `firestore:"bidding_step_3"`
-	CountView         int       `firestore:"count_view"`
-}
-*/
