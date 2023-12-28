@@ -12,19 +12,19 @@ type Auction struct {
 
 	RoundID             string    `json:"round_id" query:"round_id" gorm:"type:varchar(36)"`
 	Code                string    `json:"code" query:"code" gorm:"type:varchar(20)"`
-	Name                string    `json:"name" query:"name" gorm:"type:varchar(200)"`
+	Name                string    `json:"name" query:"name" firestore:"open_price" gorm:"type:varchar(200)"`
 	ShowDate            time.Time `json:"show_date" query:"show_date"`
-	StartDate           time.Time `json:"start_date" query:"start_date"`
-	EndDate             time.Time `json:"end_date" query:"end_date"`
-	ActualEndDate       time.Time `json:"actual_end_date" query:"actual_end_date"`
+	StartDate           time.Time `json:"start_date" query:"start_date" firestore:"start_date"`
+	EndDate             time.Time `json:"end_date" query:"end_date" firestore:"end_date"`
+	ActualEndDate       time.Time `json:"actual_end_date" query:"actual_end_date" firestore:"actual_end_date"`
 	CountVehicle        int       `json:"count_vehicle" query:"count_vehicle" gorm:"type:int(6)"`
 	CountUserBidding    int       `json:"count_user_bidding" query:"count_user_bidding" gorm:"type:int(6)"`
-	AuctionStatusID     string    `json:"auction_status_id" query:"auction_status_id" gorm:"type:varchar(2)"`
-	IsExtra             bool      `json:"is_extra" query:"is_extra" gorm:"bool"`
+	AuctionStatusID     string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
+	IsExtra             bool      `json:"is_extra" query:"is_extra" firestore:"is_extra" gorm:"bool"`
 	IsShow              bool      `json:"is_show" query:"is_show" gorm:"bool"`
-	ExtraTimeMinute     int       `json:"extra_time_minute" query:"extra_time_minute" gorm:"type:int(3)"`
-	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"bool"`                     
-	IsAutoApprove       bool      `json:"is_auto_approve" query:"is_auto_approve" gorm:"bool"`         
+	ExtraTimeMinute     int       `json:"extra_time_minute" query:"extra_time_minute" firestore:"extra_time_minute" gorm:"type:int(3)"`
+	IsApprove           bool      `json:"is_approve" query:"is_approve" gorm:"bool"`
+	IsAutoApprove       bool      `json:"is_auto_approve" query:"is_auto_approve" gorm:"bool"`
 	IsOperationApprove  bool      `json:"is_operation_approve" query:"is_operation_approve" gorm:"bool"`
 	OperationApproveBy  string    `json:"operation_approve_by" query:"operation_approve_by" gorm:"type:varchar(36)"`
 	IsOwnerApprove      bool      `json:"is_owner_approve" query:"is_owner_approve" gorm:"bool"`
