@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type AuctionVehicleUserFavorite struct {
+type AuctionVehicleUser struct {
 	ID uint `json:"id" query:"id" gorm:"primaryKey;autoIncrement"`
 
 	AuctionID       string    `json:"auction_id" query:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id_user_id"`
