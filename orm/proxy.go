@@ -13,4 +13,6 @@ type Proxy struct {
 	UserAuctionCode  string    `json:"user_auction_code" query:"user_auction_code" gorm:"type:varchar(5)"`
 	Created          time.Time `json:"created" query:"created"`
 	CreatedUnixMilli int64     `json:"created_unix_milli" query:"created_unix_milli" gorm:"type:int"`
+	IsProcess        bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
+	ProcessDate      time.Time `json:"process_data" query:"process_data"`
 }
