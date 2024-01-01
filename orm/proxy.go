@@ -14,5 +14,5 @@ type Proxy struct {
 	Created          time.Time `json:"created" query:"created"`
 	CreatedUnixMilli int64     `json:"created_unix_milli" query:"created_unix_milli" gorm:"type:int"`
 	IsProcess        bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
-	ProcessDate      time.Time `json:"process_data" query:"process_data"`
+	ProcessDate      time.Time `json:"process_date" query:"process_date"`
 }
