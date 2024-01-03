@@ -16,4 +16,4 @@ type UserAcceptMinPrice struct {
 	AcceptDate time.Time `json:"accept_date" query:"accept_date"`
 }
 
-// ทำเส้น check กับ save ลง tb นี้ ขึ้น
+// ทำเส้น check min price กับ save ลง tb นี้ ขึ้น
