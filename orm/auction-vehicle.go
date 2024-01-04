@@ -42,5 +42,6 @@ type AuctionVehicle struct {
 	IsWinByProxy       bool      `json:"is_win_by_proxy" query:"is_win_by_proxy" firestore:"is_win_by_proxy" gorm:"bool"`
 	CurrentPrice       int       `json:"current_price" query:"current_price" firestore:"current_price" gorm:"type:int"`
 	ExtraTimeMinute    int       `json:"firestore" query:"firestore" firestore:"extra_time_minute" gorm:"type:int"`
+	AuctionStatusID    string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
 	RowOrder           float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
 }
