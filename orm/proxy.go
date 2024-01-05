@@ -15,4 +15,5 @@ type Proxy struct {
 	CreatedUnixMilli int64     `json:"created_unix_milli" query:"created_unix_milli" gorm:"type:int"`
 	IsProcess        bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
 	ProcessDate      time.Time `json:"process_date" query:"process_date"`
+	IsMax            bool      `json:"is_max" query:"is_max" gorm:"type:bool"`
 }
