@@ -28,8 +28,8 @@ type BankTransfer struct {
 	IsMobileBanking      bool      `json:"is_mobile_banking" query:"is_mobile_banking" gorm:"type:bool"`
 	IsApp                bool      `json:"is_app" query:"is_app" gorm:"type:bool"` //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
 
-	PaymentTypeID string `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
-	OccupationID  string `json:"ocucpation_id" query:"occupation_id" gorm:"type:varchar(36)"`
+	// PaymentTypeID string `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
+	OccupationID string `json:"ocucpation_id" query:"occupation_id" gorm:"type:varchar(36)"`
 	// EffectiveDate   time.Time `json:"effective_date" query:"effective_date"`
 
 	Address       string `json:"address" query:"address" gorm:"type:text"`

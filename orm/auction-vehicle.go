@@ -46,3 +46,16 @@ type AuctionVehicle struct {
 	AuctionStatusID      string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
 	RowOrder             float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
 }
+
+/*
+
+
+operation approve button
+update is_operation_approve = 1 ,
+operation_approve_by = jwtuser ,
+operation_approve_date ,
+ is_approve = 1 ,
+ auction_status_id = "05"
+
+ ปุ่มนี้กดได้ is_win = true ด้วย
+*/
