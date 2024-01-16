@@ -20,6 +20,7 @@ type User struct {
 	ApproveBy           string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate         time.Time `json:"approve_date" query:"approve_dates"`
 	PaymentTypeID       string    `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
+	IsSuperAdmin        bool      `json:"is_super_admin" query:"is_super_admin" gorm:"type:bool"` //สำหรับแอดมิน
 }
 
 //	//AuctionCode              string    `json:"auction_code" query:"auction_code" gorm:"type:varchar(20)"` //รหัสผู้ประมูล
