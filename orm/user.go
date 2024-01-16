@@ -21,3 +21,6 @@ type User struct {
 	ApproveDate         time.Time `json:"approve_date" query:"approve_dates"`
 	PaymentTypeID       string    `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
 }
+
+//	//AuctionCode              string    `json:"auction_code" query:"auction_code" gorm:"type:varchar(20)"` //รหัสผู้ประมูล
+//VerifyCode               string    `json:"verify_code" query:"verify_code" gorm:"type:varchar(20)"`   //รหัสยื่นเรื่อง
