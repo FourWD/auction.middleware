@@ -7,10 +7,11 @@ import (
 )
 
 type RegisterLeasing struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);uniqueIndex:idx_id"`
 	model.GormModel
 
 	RequestDate            time.Time `json:"request_date" query:"request_date"`
+	Code                   string    `json:"code" query:"code" gorm:"type:varchar(20)"` //รหัสยื่นเรื่อง CS / FN
 	UserID                 string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	FinanceID              string    `json:"finance_id" query:"finance_id" gorm:"type:varchar(10)"`
 	PrefixID               string    `json:"prefix_id" query:"prefix_id" gorm:"type:varchar(2)"`
@@ -50,4 +51,5 @@ type RegisterLeasing struct {
 
 	LastFinanceUpdateBy   string    `json:"last_finance_update_by" query:"last_finance_update_by" gorm:"type:varchar(36)"`
 	LastFinanceUpdateDate time.Time `json:"last_finance_update_date" query:"last_finance_update_date" `
+	RunningNo             int       `json:"running_no" query:"running_no" gorm:"type:int"`
 }
