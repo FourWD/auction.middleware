@@ -29,7 +29,7 @@ type RegisterLeasing struct {
 	SubDistrictID string `json:"sub_district_id" query:"sub_district_id" gorm:"type:varchar(6)"` //ตำบล
 	ProvinceID    string `json:"province_id" query:"province_id" gorm:"type:varchar(2)"`
 
-	OcupationID      string    `json:"ocupation_id" query:"ocupation_id" gorm:"type:varchar(36)"`
+	OccupationID     string    `json:"occupation_id" query:"occupation_id" gorm:"type:varchar(36)"`
 	NetIncome        int       `json:"net_income" query:"net_income" gorm:"type:int"`
 	IsLoanSCB        bool      `json:"is_loan_scb" query:"is_loan_scb" gorm:"type:bool"`                 //มีสินเชื่อรถกับSCB ?
 	IsBankAccountSCB bool      `json:"is_bank_account_scb" query:"is_bank_account_scb" gorm:"type:bool"` //มีบัญชีSCB ?
