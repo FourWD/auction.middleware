@@ -35,7 +35,7 @@ type RegisterLeasing struct {
 	IsBankAccountSCB bool      `json:"is_bank_account_scb" query:"is_bank_account_scb" gorm:"type:bool"` //มีบัญชีSCB ?
 	IsApp            bool      `json:"is_app" query:"is_app" gorm:"type:bool"`                           //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
 	BirthDate        time.Time `json:"birth_date" query:"birth_date"`
-	YearExperience   string    `json:"year_experience" query:"year_experience" gorm:"varchar(2)"` //ปีที่ทำงาน
+	YearExperienceID string    `json:"year_experience_id" query:"year_experience_id" gorm:"varchar(2)"` //ปีที่ทำงาน
 
 	AcceptTCVersion      string    `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
 	LeasingStatusID      string    `json:"leasing_status_id" query:"leasing_status_id" gorm:"type:varchar(36)"`
