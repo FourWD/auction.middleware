@@ -37,9 +37,9 @@ type RegisterLeasing struct {
 	BirthDate        time.Time `json:"birth_date" query:"birth_date"`
 	YearExperienceID string    `json:"year_experience_id" query:"year_experience_id" gorm:"varchar(2)"` //ปีที่ทำงาน
 
-	AcceptTCVersion      string    `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
-	LeasingStatusID      string    `json:"leasing_status_id" query:"leasing_status_id" gorm:"type:varchar(36)"`
-	FinanceStatusID      string    `json:"finance_status_id" query:"finance_status_id" gorm:"type:varchar(36)"`
+	AcceptTCVersion string `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
+	LeasingStatusID string `json:"leasing_status_id" query:"leasing_status_id" gorm:"type:varchar(36)"`
+	//FinanceStatusID      string    `json:"finance_status_id" query:"finance_status_id" gorm:"type:varchar(36)"`
 	FinancialAmount      string    `json:"financial_amount" query:"financial_amount" gorm:"type:varchar(36)"`
 	UpdateLoanStatusBy   string    `json:"update_loan_status_by" query:"update_loan_status_by" gorm:"type:varchar(36)"`
 	UpdateLoanStatusDate time.Time `json:"update_loan_status_date" query:"update_loan_status_date" `
