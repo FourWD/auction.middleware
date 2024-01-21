@@ -30,5 +30,6 @@ type Refund struct {
 	Remark         string    `json:"remark" query:"remark" gorm:"type:text"`
 	FileSlipID     string    `json:"file_slip_id" query:"file_slip_id" gorm:"type:varchar(36)"`
 	IsApp          bool      `json:"is_app" query:"is_app" gorm:"type:bool"` //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
-
+	Code           string    `json:"code" query:"code" gorm:"type:varchar(20)"`
+	RunningNo      int       `json:"running_no" query:"running_no" gorm:"type:int"`
 }

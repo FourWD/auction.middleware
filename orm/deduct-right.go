@@ -19,5 +19,7 @@ type DeductRight struct {
 	ApproveBy           string    `json:"approve_by" query:"approve_by" gorm:"type:varchar(36)"`
 	ApproveDate         time.Time `json:"approve_date" query:"approve_date"`
 	// EffectiveDate       time.Time `json:"effective_date" query:"effective_date"`
-	Remark string `json:"remark" query:"remark" gorm:"type:text"`
+	Remark    string `json:"remark" query:"remark" gorm:"type:text"`
+	Code      string `json:"code" query:"code" gorm:"type:varchar(20)"`
+	RunningNo int    `json:"running_no" query:"running_no" gorm:"type:int"`
 }
