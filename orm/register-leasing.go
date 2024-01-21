@@ -29,13 +29,13 @@ type RegisterLeasing struct {
 	SubDistrictID string `json:"sub_district_id" query:"sub_district_id" gorm:"type:varchar(6)"` //ตำบล
 	ProvinceID    string `json:"province_id" query:"province_id" gorm:"type:varchar(2)"`
 
-	OccupationID     string    `json:"occupation_id" query:"occupation_id" gorm:"type:varchar(36)"`
-	NetIncome        int       `json:"net_income" query:"net_income" gorm:"type:int"`
-	IsLoanSCB        bool      `json:"is_loan_scb" query:"is_loan_scb" gorm:"type:bool"`                 //มีสินเชื่อรถกับSCB ?
-	IsBankAccountSCB bool      `json:"is_bank_account_scb" query:"is_bank_account_scb" gorm:"type:bool"` //มีบัญชีSCB ?
-	IsApp            bool      `json:"is_app" query:"is_app" gorm:"type:bool"`                           //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
-	BirthDate        time.Time `json:"birth_date" query:"birth_date"`
-	YearExperienceID string    `json:"year_experience_id" query:"year_experience_id" gorm:"varchar(2)"` //ปีที่ทำงาน
+	OccupationID        string    `json:"occupation_id" query:"occupation_id" gorm:"type:varchar(36)"`
+	NetIncome           int       `json:"net_income" query:"net_income" gorm:"type:int"`
+	IsLoanSCB           bool      `json:"is_loan_scb" query:"is_loan_scb" gorm:"type:bool"`                 //มีสินเชื่อรถกับSCB ?
+	IsBankAccountSCB    bool      `json:"is_bank_account_scb" query:"is_bank_account_scb" gorm:"type:bool"` //มีบัญชีSCB ?
+	IsApp               bool      `json:"is_app" query:"is_app" gorm:"type:bool"`                           //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
+	BirthDate           time.Time `json:"birth_date" query:"birth_date"`
+	WorkingExperienceID string    `json:"working_experience_id" query:"working_experience_id" gorm:"varchar(2)"` //ปีที่ทำงาน
 
 	AcceptTCVersion string `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
 	LeasingStatusID string `json:"leasing_status_id" query:"leasing_status_id" gorm:"type:varchar(36)"`
