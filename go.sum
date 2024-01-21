@@ -64,6 +64,8 @@ github.com/FourWD/middleware v1.5.53 h1:DvE5SQuZuCB16oIAfFCBN6t9fifR7m4yqdAw2wHl
 github.com/FourWD/middleware v1.5.53/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
 github.com/FourWD/middleware v1.5.54 h1:MW5QEGr3FWYXCoHUcK2pfHIWLLPH6RVJjWoyyJ0prpI=
 github.com/FourWD/middleware v1.5.54/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
+github.com/FourWD/middleware v1.5.63 h1:9E6n3vrTqu74SYp9UNAoUp4ANgJEf5Yz+UXvIIzQCvk=
+github.com/FourWD/middleware v1.5.63/go.mod h1:P7OBVlLL/8/HmzZURi3AU0KiA5F27iBREgTbJI/zQ+k=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
 github.com/MicahParks/keyfunc v1.9.0/go.mod h1:IdnCilugA0O/99dW+/MkvlyrsX8+L8+x95xuVNtM5jw=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=

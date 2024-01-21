@@ -29,17 +29,17 @@ type RegisterLeasing struct {
 	SubDistrictID string `json:"sub_district_id" query:"sub_district_id" gorm:"type:varchar(6)"` //ตำบล
 	ProvinceID    string `json:"province_id" query:"province_id" gorm:"type:varchar(2)"`
 
-	OcupationID      string    `json:"ocupation_id" query:"ocupation_id" gorm:"type:varchar(36)"`
+	OccupationID     string    `json:"occupation_id" query:"occupation_id" gorm:"type:varchar(36)"`
 	NetIncome        int       `json:"net_income" query:"net_income" gorm:"type:int"`
 	IsLoanSCB        bool      `json:"is_loan_scb" query:"is_loan_scb" gorm:"type:bool"`                 //มีสินเชื่อรถกับSCB ?
 	IsBankAccountSCB bool      `json:"is_bank_account_scb" query:"is_bank_account_scb" gorm:"type:bool"` //มีบัญชีSCB ?
 	IsApp            bool      `json:"is_app" query:"is_app" gorm:"type:bool"`                           //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
 	BirthDate        time.Time `json:"birth_date" query:"birth_date"`
-	YearExperience   string    `json:"year_experience" query:"year_experience" gorm:"varchar(2)"` //ปีที่ทำงาน
+	YearExperienceID string    `json:"year_experience_id" query:"year_experience_id" gorm:"varchar(2)"` //ปีที่ทำงาน
 
-	AcceptTCVersion      string    `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
-	LeasingStatusID      string    `json:"leasing_status_id" query:"leasing_status_id" gorm:"type:varchar(36)"`
-	FinanceStatusID      string    `json:"finance_status_id" query:"finance_status_id" gorm:"type:varchar(36)"`
+	AcceptTCVersion string `json:"accept_tc_version" query:"accept_tc_version" gorm:"type:varchar(36)"`
+	LeasingStatusID string `json:"leasing_status_id" query:"leasing_status_id" gorm:"type:varchar(36)"`
+	//FinanceStatusID      string    `json:"finance_status_id" query:"finance_status_id" gorm:"type:varchar(36)"`
 	FinancialAmount      string    `json:"financial_amount" query:"financial_amount" gorm:"type:varchar(36)"`
 	UpdateLoanStatusBy   string    `json:"update_loan_status_by" query:"update_loan_status_by" gorm:"type:varchar(36)"`
 	UpdateLoanStatusDate time.Time `json:"update_loan_status_date" query:"update_loan_status_date" `
