@@ -66,23 +66,26 @@ func UpdateBanktrasferCode(userID string) (string, error) {
 						WHERE u.id = '%s'`, userID)
 
 	common.Database.Raw(sql).Scan(&verifyCode)
-
+	common.Print(sql, "verifycode")
 	type Count struct {
 		Count int64 `json:"count"`
 	}
 
 	var count Count
 	year := time.Now().Year()
+	month := time.Now().Month()
 	day := time.Now().Day()
 
-	queryBanktransfer := fmt.Sprintf(`SELECT COUNT(*) FROM bank_transfers WHERE YEAR(created_at) = %d AND DAY(created_at) = %d `, year, day)
+	queryBanktransfer := fmt.Sprintf(`SELECT COUNT(*) FROM bank_transfers WHERE YEAR(created_at) = %d AND MONTH(created_at) = %d AND DAY(created_at) = %d `, year, month, day)
 	common.Database.Raw(queryBanktransfer).Scan(&count.Count)
 	common.Print(queryBanktransfer, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
+	fmonth := fmt.Sprintf("%02d", month)
 	fday := fmt.Sprintf("%02d", day)
 
-	verifyBanktransfer := fmt.Sprintf("%s%s%s%03d", verifyCode.Code, fyear[2:4], fday, count.Count)
+	verifyBanktransfer := fmt.Sprintf("%s%s%s%s%03d", "CS", fyear[2:4], fmonth, fday, count.Count)
+
 	updateBanktransfer := fmt.Sprintf(`UPDATE bank_transfers SET code = '%s' WHERE id = '%s'`, verifyBanktransfer, userID)
 
 	checkUpdate := common.Database.Exec(updateBanktransfer)
@@ -114,16 +117,18 @@ func UpdateRefundCode(userID string) (string, error) {
 
 	var count Count
 	year := time.Now().Year()
+	month := time.Now().Month()
 	day := time.Now().Day()
 
-	queryRefund := fmt.Sprintf(`SELECT COUNT(*) FROM refunds WHERE YEAR(created_at) = %d AND DAY(created_at) = %d `, year, day)
+	queryRefund := fmt.Sprintf(`SELECT COUNT(*) FROM refunds WHERE YEAR(created_at) = %d  AND MONTH(created_at) = %d AND DAY(created_at) = %d `, year, month, day)
 	common.Database.Raw(queryRefund).Scan(&count.Count)
 	common.Print(queryRefund, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
+	fmonth := fmt.Sprintf("%02d", month)
 	fday := fmt.Sprintf("%02d", day)
 
-	verifyRefund := fmt.Sprintf("%s%s%s%03d", "RE", fyear[2:4], fday, count.Count)
+	verifyRefund := fmt.Sprintf("%s%s%s%s%03d", "RE", fyear[2:4], fmonth, fday, count.Count)
 	updateRefund := fmt.Sprintf(`UPDATE refunds SET code = '%s' WHERE id = '%s'`, verifyRefund, userID)
 
 	checkUpdate := common.Database.Exec(updateRefund)
@@ -156,16 +161,19 @@ func UpdateDeductCode(userID string) (string, error) {
 
 	var count Count
 	year := time.Now().Year()
+	month := time.Now().Month()
 	day := time.Now().Day()
 
-	queryRefund := fmt.Sprintf(`SELECT COUNT(*) FROM refunds WHERE YEAR(created_at) = %d AND DAY(created_at) = %d `, year, day)
-	common.Database.Raw(queryRefund).Scan(&count.Count)
-	common.Print(queryRefund, fmt.Sprintf("%d", count.Count))
+	queryDeduct := fmt.Sprintf(`SELECT COUNT(*) FROM deduct_rights WHERE YEAR(created_at) = %d  AND MONTH(created_at) = %d AND DAY(created_at) = %d `, year, month, day)
+	common.Database.Raw(queryDeduct).Scan(&count.Count)
+	common.Print(queryDeduct, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
+	fmonth := fmt.Sprintf("%02d", month)
+
 	fday := fmt.Sprintf("%02d", day)
 
-	verifyDeduct := fmt.Sprintf("%s%s%s%03d", "DE", fyear[2:4], fday, count.Count)
+	verifyDeduct := fmt.Sprintf("%s%s%s%s%03d", "DE", fyear[2:4], fmonth, fday, count.Count)
 	updateDeduct := fmt.Sprintf(`UPDATE deduct_rights SET code = '%s' WHERE id = '%s'`, verifyDeduct, userID)
 
 	checkUpdate := common.Database.Exec(updateDeduct)
