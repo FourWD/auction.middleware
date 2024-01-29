@@ -212,22 +212,19 @@ func UpdateRegisterLeasingCode(id string) (string, error) {
 	year := time.Now().Year()
 	month := time.Now().Month()
 
-	queryBanktransfer := fmt.Sprintf(`SELECT COUNT(*) FROM register_leasings WHERE YEAR(created_at) = %d AND MONTH(created_at) = %d `, year, month)
-	common.Database.Raw(queryBanktransfer).Scan(&count.Count)
-	common.Print(queryBanktransfer, fmt.Sprintf("%d", count.Count))
+	queryLeasing := fmt.Sprintf(`SELECT COUNT(*) FROM register_leasings WHERE YEAR(created_at) = %d AND MONTH(created_at) = %d `, year, month)
+	common.Database.Raw(queryLeasing).Scan(&count.Count)
+	common.Print(queryLeasing, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
 	fmonth := fmt.Sprintf("%02d", month)
 
-	verifyLeasing := fmt.Sprintf("%s%s%s%s%03d", "FN", verifyCode.Financeid, fyear[2:4], fmonth, count.Count)
+	verifyLeasing := fmt.Sprintf("%s%s%s%s%03d", "FN", verifyCode.Code, fyear[2:4], fmonth, count.Count)
 
 	updateBanktransfer := fmt.Sprintf(`UPDATE register_leasings SET code = '%s' WHERE id = '%s'`, verifyLeasing, id)
 	checkupdate := common.Database.Exec(updateBanktransfer)
-
 	if checkupdate.RowsAffected == 0 {
-		errMsg := fmt.Sprintf("Error updating register leasing code for id %s", id)
-		common.PrintError(errMsg, updateBanktransfer)
+		common.PrintError("Error checkupdate", id)
 	}
-
 	return verifyLeasing, nil
 }
