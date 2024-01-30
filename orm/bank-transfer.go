@@ -38,8 +38,8 @@ type BankTransfer struct {
 	SubDistrictID string `json:"sub_district_id" query:"sub_district_id" gorm:"type:varchar(6)"` //ตำบล
 	ProvinceID    string `json:"province_id" query:"province_id" gorm:"type:varchar(2)"`
 
-	FileIDCompanyRegister string `json:"file_id_company_register" query:"file_id_company_register" gorm:"type:varchar(36)"`
-	FileIDPP20            string `json:"file_id_pp20" query:"file_id_pp20" gorm:"type:varchar(36)"`
+	FileCompanyRegisterID string `json:"file_company_register_id" query:"file_company_register_id" gorm:"type:varchar(36)"`
+	FilePP20ID            string `json:"file_pp20_id" query:"file_pp20_id" gorm:"type:varchar(36)"`
 	Code                  string `json:"code" query:"code" gorm:"type:varchar(20)"`
 	RunningNo             int    `json:"running_no" query:"running_no" gorm:"type:int"`
 

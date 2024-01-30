@@ -14,4 +14,9 @@ type UserProfile struct {
 	BankID                string `json:"bank_id" query:"bank_id" gorm:"type:varchar(2)"`
 	BankAccountName       string `json:"refund_bank_account_name" query:"refund_bank_account_name" gorm:"type:varchar(15)"`
 	BankAccountNo         string `json:"refund_bank_account_no" query:"refund_bank_account_no" gorm:"type:varchar(15)"`
+
+	FileIdcardID           string `json:"file_idcard_id" query:"file_idcard_id" gorm:"type:varchar(36)"`
+	FileCompanyRegisterID  string `json:"file_company_register_id" query:"file_company_register_id" gorm:"type:varchar(36)"`
+	FilePP20ID             string `json:"file_pp20_id" query:"file_pp20_id" gorm:"type:varchar(36)"`
+	FileHouseParticularsID string `json:"file_house_particulars_id" query:"file_house_particulars_id" gorm:"type:varchar(36)"`
 }
