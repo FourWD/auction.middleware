@@ -14,8 +14,8 @@ type Refund struct {
 	UserID          string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	BankBranchName  string    `json:"refund_bank_branch_name" query:"refund_bank_branch_name" gorm:"type:varchar(200)"`
 	BankID          string    `json:"bank_id" query:"bank_id" gorm:"type:varchar(2)"`
-	BankAccountName string    `json:"refund_bank_account_name" query:"refund_bank_account_name" gorm:"type:varchar(15)"`
-	BankAccountNo   string    `json:"refund_bank_account_no" query:"refund_bank_account_no" gorm:"type:varchar(15)"`
+	BankAccountName string    `json:"bank_account_name" query:"refund_bank_account_name" gorm:"type:varchar(100)"`
+	BankAccountNo   string    `json:"bank_account_no" query:"refund_bank_account_no" gorm:"type:varchar(15)"`
 	RightToBid      int       `json:"right_to_bid" query:"right_to_bid" gorm:"type:int(5)"`
 	Amount          int       `json:"amount" query:"amount" gorm:"type:int"`
 	RequestDate     time.Time `json:"request_date" query:"request_date"`
