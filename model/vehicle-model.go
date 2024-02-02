@@ -87,10 +87,12 @@ CREATE VIEW `vehicles` AS
 SELECT vehicles.* ,
 s.name AS source_name,
 b.name AS branch_name,
+vt.id AS vehicle_type_id,
 vt.name AS vehicle_type_name,
 vm.name AS vehicle_model_name,
+vb.id AS vehicle_brand_id,
 vb.name AS vehicle_brand_name,
-vsm.name AS vehicle_submodel_name,
+vsm.name AS vehicle_sub_model_name,
 vdt.name AS vehicle_drive_type_name,
 vg.name AS vehicle_gear_name,
 vft.name AS vehicle_fuel_type_name,
@@ -161,7 +163,7 @@ UNION
 select * from `auction-vehicle-0030`.vehicles
 ) AS vehicles
 LEFT JOIN vehicle_sub_types vst ON vst.id = vehicles.vehicle_sub_type_id
-LEFT JOIN vehicle_sub_models vsm ON vsm.id = vehicles.vehicle_submodel_id
+LEFT JOIN vehicle_sub_models vsm ON vsm.id = vehicles.vehicle_sub_model_id
 LEFT JOIN vehicle_models vm ON vm.id = vsm.vehicle_model_id
 LEFT JOIN vehicle_types vt ON vt.id = vm.vehicle_type_id
 LEFT JOIN vehicle_brands vb ON vb.id = vm.vehicle_brand_id
