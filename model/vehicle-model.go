@@ -163,9 +163,9 @@ UNION
 select * from `auction-vehicle-0030`.vehicles
 ) AS vehicles
 LEFT JOIN vehicle_sub_types vst ON vst.id = vehicles.vehicle_sub_type_id
+LEFT JOIN vehicle_types vt ON vt.id = vst.vehicle_type_id
 LEFT JOIN vehicle_sub_models vsm ON vsm.id = vehicles.vehicle_sub_model_id
 LEFT JOIN vehicle_models vm ON vm.id = vsm.vehicle_model_id
-LEFT JOIN vehicle_types vt ON vt.id = vm.vehicle_type_id
 LEFT JOIN vehicle_brands vb ON vb.id = vm.vehicle_brand_id
 LEFT JOIN vehicle_drive_types vdt ON vdt.id = vsm.vehicle_drive_type_id
 LEFT JOIN vehicle_gears vg ON vg.id = vsm.vehicle_gear_id
