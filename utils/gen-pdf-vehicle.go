@@ -42,7 +42,7 @@ func GenPDFVehicle(auctionID string, userID string, vehicles []string) (string, 
 		return "", err
 	}
 
-	filepathStr := "C:/Users/User/OneDrive/เดสก์ท็อป/gserver/pdf/pdf/images/pdf/"
+	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
 	// Create new PDF instance
 	pdf := gofpdf.New("P", "mm", "A4", "")
