@@ -3,7 +3,7 @@ module github.com/FourWD/auction.middleware
 go 1.19
 
 require (
-	github.com/FourWD/middleware v1.5.91
+	github.com/FourWD/middleware v1.5.105
 	github.com/gofiber/fiber/v2 v2.49.1
 )
 
@@ -36,6 +36,7 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect
+	github.com/jung-kurt/gofpdf v1.16.2 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
