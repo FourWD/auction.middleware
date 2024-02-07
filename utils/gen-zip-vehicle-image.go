@@ -8,9 +8,9 @@ import (
 	"github.com/FourWD/middleware/common"
 )
 
-func GenZipDownloadVehicleImage(auctionID string, userID string) (string, error) {
+func GenZipVehicleImage(auctionID string, userID string) (string, error) {
 
-	mainPath := common.DateString() + "_" + common.HashPassword(auctionID + userID)[:4]
+	mainPath := common.DateString() + "_" + common.MD5(auctionID + userID)[:4]
 	vehicles := prepareData(auctionID, userID)
 	if len(vehicles) < 1 {
 		return "no data", errors.New("no data")
@@ -60,7 +60,6 @@ type vehicleImage struct {
 }
 
 func prepareData(auctionID string, userID string) []vehicleImage {
-
 	var vehicleList []vehicleImage
 
 	sql := fmt.Sprintf(`SELECT v.license , vm.name as image_name , vem.image_path 
