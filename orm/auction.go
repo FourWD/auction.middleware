@@ -42,6 +42,7 @@ type Auction struct {
 	CountOfSUV           int       `json:"count_of_suv" query:"count_of_suv" firestore:"count_of_suv" gorm:"type:int(6)"`
 	CountOfVan           int       `json:"count_of_van" query:"count_of_van" firestore:"count_of_van" gorm:"type:int(6)"`
 	CountOfTruck         int       `json:"count_of_truck" query:"count_of_truck" firestore:"count_of_truck" gorm:"type:int(6)"`
+	IsSyncBidding        bool      `json:"is_sync_bidding" query:"is_sync_bidding" firestore:"is_sync_bidding" gorm:"bool"`
 }
 
 /*
