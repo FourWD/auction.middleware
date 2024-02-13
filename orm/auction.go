@@ -30,7 +30,7 @@ type Auction struct {
 	OperationApproveDate time.Time `json:"operation_approve_date" query:"operation_approve_date" firestore:"operation_approve_date"`
 	IsOwnerApprove       bool      `json:"is_owner_approve" query:"is_owner_approve" firestore:"is_owner_approve" gorm:"bool"`
 	OwnerApproveBy       string    `json:"owner_approve_by" query:"owner_approve_by" firestore:"owner_approve_by" gorm:"type:varchar(36)"`
-	OwnerApproveDate     time.Time `json:"owner_approve_date" query:"owner_approve_date" firestore:"owner_approve_date"`
+	OwnerApproveDate     time.Time `json:"owner_approve_date" query:"owner_approve_date" firestore:"owner_approve_date"` //วันที่ประกาศผล
 	IsImportRedbook      bool      `json:"is_import_redbook" query:"is_import_redbook" firestore:"is_import_redbook" gorm:"bool"`
 	ImportRedbookDate    time.Time `json:"import_redbook_date" query:"import_redbook_date" firestore:"import_redbook_date" `
 	ImportRedbookBy      string    `json:"import_redbook_by" query:"import_redbook_by" firestore:"import_redbook_by" gorm:"type:varchar(36)"`
