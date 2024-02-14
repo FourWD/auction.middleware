@@ -19,4 +19,5 @@ type AuctionVehicleUser struct {
 	ProxyID         string    `json:"proxy_id" query:"proxy_id" gorm:"type:varchar(36)"`
 	CountView       int       `json:"count_view" query:"count_view" gorm:"type:int"`
 	CountBidding    int       `json:"count_bidding" query:"count_bidding" gorm:"type:int"`
+	LastBidding     int       `json:"last_bidding" query:"last_bidding" gorm:"type:int"`
 }
