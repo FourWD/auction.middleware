@@ -48,6 +48,7 @@ type AuctionVehicle struct {
 	AuctionStatusID       string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
 	FirstOpenPrice        int       `json:"first_open_price" query:"first_open_price" firestore:"first_open_price" gorm:"type:int"`
 	CountAuction          int       `json:"count_auction" query:"count_auction" firestore:"count_auction" gorm:"type:int"` // ผ่านการประมูลมาแล้วกี่รอบ
+	ProxyToken            string    `json:"proxy_token" query:"proxy_token" firestore:"proxy_token" gorm:"type:varchar(36);default:NULL"`
 	RowOrder              float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
 }
 
