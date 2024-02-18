@@ -17,9 +17,10 @@ import (
 // 	Created         time.Time `json:"created" query:"created"`
 // 	CreatedUnixNano int64     `json:"created_unix_nano" query:"created_unix_nano" gorm:"type:int"`
 // }
+//1706671971558-0000197500-PN-19864
 
 type Bidding struct {
-	ID              string    `json:"id" query:"id" firestore:"id" gorm:"type:varchar(36);primary_key"` //1706671971558-0000197500-PN-19864
+	ID              string    `json:"id" query:"id" firestore:"id" gorm:"type:varchar(36);primary_key"`
 	AuctionID       string    `json:"auction_id" query:"auction_id" firestore:"auction_id" gorm:"type:varchar(36)"`
 	VehicleID       string    `json:"vehicle_id" query:"vehicle_id" firestore:"vehicle_id" gorm:"type:varchar(36)"`
 	UserID          string    `json:"user_id" query:"user_id" firestore:"user_id" gorm:"type:varchar(36)"`

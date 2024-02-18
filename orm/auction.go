@@ -18,6 +18,7 @@ type Auction struct {
 	EndDate              time.Time `json:"end_date" query:"end_date" firestore:"end_date"`
 	ActualEndDate        time.Time `json:"actual_end_date" query:"actual_end_date" firestore:"actual_end_date"`
 	CountVehicle         int       `json:"count_vehicle" query:"count_vehicle" firestore:"count_vehicle" gorm:"type:int(6)"`
+	CountUserJoin        int       `json:"count_user_join" query:"count_user_join" firestore:"count_user_join" gorm:"type:int(6)"`
 	CountUserBidding     int       `json:"count_user_bidding" query:"count_user_bidding" firestore:"count_user_bidding" gorm:"type:int(6)"`
 	AuctionStatusID      string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
 	IsExtra              bool      `json:"is_extra" query:"is_extra" firestore:"is_extra" gorm:"bool"`
