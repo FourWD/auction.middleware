@@ -19,7 +19,7 @@ import (
 // }
 
 type Bidding struct {
-	ID              string    `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	ID              string    `json:"id" query:"id" gorm:"type:varchar(36);primary_key"` //1706671971558-0000197500-PN-19864
 	AuctionID       string    `json:"auction_id" query:"auction_id" firestore:"auction_id" gorm:"type:varchar(36)"`
 	VehicleID       string    `json:"vehicle_id" query:"vehicle_id" firestore:"vehicle_id" gorm:"type:varchar(36)"`
 	UserID          string    `json:"user_id" query:"user_id" firestore:"user_id" gorm:"type:varchar(36)"`
@@ -32,7 +32,7 @@ type Bidding struct {
 	IsOpenPrice     bool      `json:"is_open_price" query:"is_open_price" firestore:"is_open_price" gorm:"type:bool"`
 	RowOrder        int       `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:int"`
 	Created         time.Time `json:"created" query:"created" firestore:"created"`
-	CreatedUnixNano string    `json:"created_unix_nano" query:"created_unix_nano" firestore:"created_unix_nano" gorm:"type:varchar(15)"` //  larger than firebase maximum integer
+	CreatedUnixNano string    `json:"created_unix_nano" query:"created_unix_nano" firestore:"created_unix_nano" gorm:"type:varchar(19)"` //  larger than firebase maximum integer
 }
 
 //1706671971558
