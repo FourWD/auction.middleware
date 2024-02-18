@@ -23,10 +23,10 @@ type AuctionVehicle struct {
 	LastBiddingDate       time.Time `json:"last_bidding_date" query:"last_bidding_date" firestore:"last_bidding_date"`
 	LastProcessDate       time.Time `json:"last_process_date" query:"last_process_date" firestore:"last_process_date"`
 	LastSyncBiddingDate   time.Time `json:"last_sync_bidding_date" query:"last_sync_bidding_date" firestore:"last_sync_bidding_date"`
-	IsExtra               bool      `json:"is_extra" query:"is_extra" firestore:"is_extra" gorm:"bool"`
-	IsEnd                 bool      `json:"is_end" query:"is_end" firestore:"is_end" gorm:"bool"`
-	IsApprove             bool      `json:"is_approve" query:"is_approve" firestore:"is_approve" gorm:"bool"`
-	IsOperationApprove    bool      `json:"is_operation_approve" query:"is_operation_approve" firestore:"is_operation_approve" gorm:"bool"`
+	IsExtra               bool      `json:"is_extra" query:"is_extra" firestore:"is_extra" gorm:"type:bool"`
+	IsEnd                 bool      `json:"is_end" query:"is_end" firestore:"is_end" gorm:"type:bool"`
+	IsApprove             bool      `json:"is_approve" query:"is_approve" firestore:"is_approve" gorm:"type:bool"`
+	IsOperationApprove    bool      `json:"is_operation_approve" query:"is_operation_approve" firestore:"is_operation_approve" gorm:"type:bool"`
 	OperationApproveBy    string    `json:"operation_approve_by" query:"operation_approve_by" firestore:"operation_approve_by" gorm:"type:varchar(36)"`
 	OperationApproveDate  time.Time `json:"operation_approve_date" query:"operation_approve_date" firestore:"operation_approve_date"`
 	BiddingStep1          int       `json:"bidding_step_1" query:"bidding_step_1" firestore:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
@@ -42,7 +42,7 @@ type AuctionVehicle struct {
 	CountProxy            int       `json:"count_proxy" query:"count_proxy" firestore:"count_proxy" gorm:"type:int"`
 	WinnerUserID          string    `json:"winner_user_id" query:"winner_user_id" firestore:"winner_user_id" gorm:"type:varchar(36); "`
 	WinnerUserAuctionCode string    `json:"winner_user_auction_code" query:"winner_user_auction_code" firestore:"winner_user_auction_code" gorm:"type:varchar(5); "`
-	IsWinByProxy          bool      `json:"is_win_by_proxy" query:"is_win_by_proxy" firestore:"is_win_by_proxy" gorm:"bool"`
+	IsWinByProxy          bool      `json:"is_win_by_proxy" query:"is_win_by_proxy" firestore:"is_win_by_proxy" gorm:"type:bool"`
 	CurrentPrice          int       `json:"current_price" query:"current_price" firestore:"current_price" gorm:"type:int"`
 	CurrentProxyID        string    `json:"current_proxy_id" query:"current_proxy_id" firestore:"current_proxy_id" gorm:"type:varchar(36)"`
 	ExtraTimeMinute       int       `json:"firestore" query:"firestore" firestore:"extra_time_minute" gorm:"type:int"`
