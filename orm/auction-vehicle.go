@@ -32,12 +32,12 @@ type AuctionVehicle struct {
 	BiddingStep1          int       `json:"bidding_step_1" query:"bidding_step_1" firestore:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
 	BiddingStep2          int       `json:"bidding_step_2" query:"bidding_step_2" firestore:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
 	BiddingStep3          int       `json:"bidding_step_3" query:"bidding_step_3" firestore:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6)"`
-	CountUserView         int       `json:"count_user_view" query:"count_user_view" firestore:"count_user_view" gorm:"type:int(10)"`
+	CountUserView         int       `json:"count_user_view" query:"count_user_view" firestore:"count_user_view" gorm:"type:int"`
 	CountUserFavorite     int       `json:"count_user_favorite" query:"count_user_favorite" firestore:"count_user_favorite" gorm:"type:int"`
-	CountUserJoin         int       `json:"count_user_join" query:"count_user_join" firestore:"count_user_join" gorm:"type:int(10)"`
-	CountUserBidding      int       `json:"count_user_bidding" query:"count_user_bidding" firestore:"count_user_bidding"  gorm:"type:int(10)"`
-	CountUserProxy        int       `json:"count_user_proxy" query:"count_user_proxy" firestore:"count_user_proxy" gorm:"type:int(10)"`
-	CountBidding          int       `json:"count_bidding" query:"count_bidding" firestore:"count_bidding" gorm:"type:int(10)"`
+	CountUserJoin         int       `json:"count_user_join" query:"count_user_join" firestore:"count_user_join" gorm:"type:int"`
+	CountUserBidding      int       `json:"count_user_bidding" query:"count_user_bidding" firestore:"count_user_bidding"  gorm:"type:int"`
+	CountUserProxy        int       `json:"count_user_proxy" query:"count_user_proxy" firestore:"count_user_proxy" gorm:"type:int"`
+	CountBidding          int       `json:"count_bidding" query:"count_bidding" firestore:"count_bidding" gorm:"type:int"`
 	CountView             int       `json:"count_view" query:"count_view" firestore:"count_view" gorm:"type:int"`
 	CountProxy            int       `json:"count_proxy" query:"count_proxy" firestore:"count_proxy" gorm:"type:int"`
 	WinnerUserID          string    `json:"winner_user_id" query:"winner_user_id" firestore:"winner_user_id" gorm:"type:varchar(36); "`
