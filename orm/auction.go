@@ -23,6 +23,7 @@ type Auction struct {
 	AuctionStatusID      string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
 	IsExtra              bool      `json:"is_extra" query:"is_extra" firestore:"is_extra" gorm:"type:bool"`
 	IsShow               bool      `json:"is_show" query:"is_show" firestore:"is_show" gorm:"type:bool"`
+	IsMinPrice           bool      `json:"is_min_price" query:"is_min_price" gorm:"type:bool"`
 	ExtraTimeMinute      int       `json:"extra_time_minute" query:"extra_time_minute" firestore:"extra_time_minute" gorm:"type:int(3)"`
 	IsApprove            bool      `json:"is_approve" query:"is_approve" firestore:"is_approve" gorm:"type:bool"`
 	IsAutoApprove        bool      `json:"is_auto_approve" query:"is_auto_approve" firestore:"is_auto_approve" gorm:"type:bool"`
