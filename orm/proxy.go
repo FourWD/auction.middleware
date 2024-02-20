@@ -16,5 +16,6 @@ type Proxy struct {
 	IsProcess       bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
 	ProcessDate     time.Time `json:"process_date" query:"process_date"`
 	IsClear         bool      `json:"is_clear" query:"is_clear" gorm:"type:bool"`
+	Remark          string    `json:"remark" query:"remark" gorm:"type:varchar(100)"`
 	//IsWin           bool      `json:"is_win" query:"is_win" gorm:"type:bool"`
 }
