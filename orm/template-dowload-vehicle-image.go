@@ -4,7 +4,7 @@ import (
 	"github.com/FourWD/middleware/model"
 )
 
-type TemplateDowloadVehicleImage struct {
+type TemplateDownloadVehicleImage struct {
 	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
 	model.GormModel
 
