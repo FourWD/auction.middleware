@@ -53,7 +53,7 @@ type AuctionVehicle struct {
 	RowOrder              float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
 }
 
-/*
+/* //
 
 
 operation approve button
