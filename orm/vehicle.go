@@ -5,7 +5,7 @@ import "github.com/FourWD/auction.middleware/model"
 type Vehicle struct {
 	model.VehicleModel
 	OpenPrice   int    `json:"open_price" query:"open_price" gorm:"type:int(10)"`
-	GradeRemark string `json:"grade_remark" query:"grade_remark" gorm:"type:text"`
+
 }
 
 /*
