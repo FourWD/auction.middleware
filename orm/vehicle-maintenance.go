@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type Maintenance struct {
+type VehicleMaintenance struct {
 	ID                  string    `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
 	MaintenanceTypeName string    `json:"maintenance_type_name" query:"maintenance_type_name" gorm:"type:varchar(200)"`
 	LocationName        string    `json:"location_name" query:"location_name" gorm:"type:varchar(500)"`
