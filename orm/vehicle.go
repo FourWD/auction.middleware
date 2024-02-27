@@ -4,8 +4,7 @@ import "github.com/FourWD/auction.middleware/model"
 
 type Vehicle struct {
 	model.VehicleModel
-	OpenPrice   int    `json:"open_price" query:"open_price" gorm:"type:int(10)"`
-
+	OpenPrice int `json:"open_price" query:"open_price" gorm:"type:int(10)"`
 }
 
 /*
@@ -28,7 +27,8 @@ vgr.row_order AS vehicle_grade_value,
 vgr.name AS vehicle_grade_name,
 vrt.code AS vehicle_register_type_code,
 vrt.name AS vehicle_register_type_name,
-p.name AS license_province_name
+p.name AS license_province_name ,
+vgrr.grade_remark AS grade_remark
 FROM (
 select * from `auction-vehicle-0001`.vehicles
 UNION
@@ -103,5 +103,6 @@ LEFT JOIN vehicle_grades vgr ON vgr.id = vehicles.vehicle_grade_id
 LEFT JOIN sources s ON s.id = vehicles.source_id
 LEFT JOIN branches b ON b.id = vehicles.branch_id
 LEFT JOIN provinces p ON p.id = vehicles.license_provice_id
-LEFT JOIN vehicle_register_types vrt ON vehicles.vehicle_register_type_id = vrt.id;
+LEFT JOIN vehicle_register_types vrt ON vehicles.vehicle_register_type_id = vrt.id
+LEFT JOIN vehicle_grade_remarks vgrr ON vehicles.chassis_no = vgrr.chassis_number;
 */
