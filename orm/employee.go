@@ -6,5 +6,5 @@ import (
 
 type Employee struct {
 	midOrm.Employee
-	SourceID string `json:"source_id" query:"source_id" gorm:"type:varchar(100)"`
+	SourceList string `json:"source_list" query:"source_list" gorm:"type:varchar(100)"`
 }
