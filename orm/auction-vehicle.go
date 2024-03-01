@@ -43,9 +43,10 @@ type AuctionVehicle struct {
 	WinnerUserID          string    `json:"winner_user_id" query:"winner_user_id" firestore:"winner_user_id" gorm:"type:varchar(36); "`
 	WinnerUserAuctionCode string    `json:"winner_user_auction_code" query:"winner_user_auction_code" firestore:"winner_user_auction_code" gorm:"type:varchar(5); "`
 	IsWinByProxy          bool      `json:"is_win_by_proxy" query:"is_win_by_proxy" firestore:"is_win_by_proxy" gorm:"type:bool"`
+	IsProcess             bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
 	CurrentPrice          int       `json:"current_price" query:"current_price" firestore:"current_price" gorm:"type:int"`
 	CurrentProxyID        string    `json:"current_proxy_id" query:"current_proxy_id" firestore:"current_proxy_id" gorm:"type:varchar(36)"`
-	ExtraTimeMinute       int       `json:"firestore" query:"firestore" firestore:"extra_time_minute" gorm:"type:int"`
+	ExtraTimeMinute       int       `json:"extra_time_minute" query:"extra_time_minute" firestore:"extra_time_minute" gorm:"type:int"`
 	AuctionStatusID       string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" gorm:"type:varchar(2)"`
 	FirstOpenPrice        int       `json:"first_open_price" query:"first_open_price" firestore:"first_open_price" gorm:"type:int"`
 	CountAuction          int       `json:"count_auction" query:"count_auction" firestore:"count_auction" gorm:"type:int"` // ผ่านการประมูลมาแล้วกี่รอบ

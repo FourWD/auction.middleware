@@ -45,6 +45,9 @@ type Auction struct {
 	CountOfVan           int       `json:"count_of_van" query:"count_of_van" firestore:"count_of_van" gorm:"type:int(6)"`
 	CountOfTruck         int       `json:"count_of_truck" query:"count_of_truck" firestore:"count_of_truck" gorm:"type:int(6)"`
 	IsSyncBidding        bool      `json:"is_sync_bidding" query:"is_sync_bidding" firestore:"is_sync_bidding" gorm:"type:bool"`
+	BiddingStep1         int       `json:"bidding_step_1" query:"bidding_step_1" firestore:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
+	BiddingStep2         int       `json:"bidding_step_2" query:"bidding_step_2" firestore:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
+	BiddingStep3         int       `json:"bidding_step_3" query:"bidding_step_3" firestore:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6)"`
 }
 
 /*
