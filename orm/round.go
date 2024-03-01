@@ -13,6 +13,7 @@ type Round struct {
 	Code     string `json:"code" query:"code" gorm:"type:varchar(4)"`
 	Name     string `json:"name" query:"name" gorm:"type:varchar(200)"`
 	Color    string `json:"color" query:"color" gorm:"type:varchar(7)"`
+	IsActive bool   `json:"is_active" query:"is_active" gorm:"type:bool"`
 
 	model.GormRowOrder
 }
