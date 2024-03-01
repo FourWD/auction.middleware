@@ -5,7 +5,7 @@ import (
 )
 
 type Round struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(10);primary_key"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
 	model.GormModel
 
 	Logo     string `json:"logo" query:"logo" gorm:"type:varchar(255)"`
