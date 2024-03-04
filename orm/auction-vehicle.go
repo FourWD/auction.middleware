@@ -43,7 +43,7 @@ type AuctionVehicle struct {
 	WinnerUserID          string    `json:"winner_user_id" query:"winner_user_id" firestore:"winner_user_id" gorm:"type:varchar(36); "`
 	WinnerUserAuctionCode string    `json:"winner_user_auction_code" query:"winner_user_auction_code" firestore:"winner_user_auction_code" gorm:"type:varchar(5); "`
 	IsWinByProxy          bool      `json:"is_win_by_proxy" query:"is_win_by_proxy" firestore:"is_win_by_proxy" gorm:"type:bool"`
-	IsProcess             bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
+	IsProcess             bool      `json:"is_process" query:"is_process" firestore:"is_process" gorm:"type:bool"`
 	CurrentPrice          int       `json:"current_price" query:"current_price" firestore:"current_price" gorm:"type:int"`
 	CurrentProxyID        string    `json:"current_proxy_id" query:"current_proxy_id" firestore:"current_proxy_id" gorm:"type:varchar(36)"`
 	ExtraTimeMinute       int       `json:"extra_time_minute" query:"extra_time_minute" firestore:"extra_time_minute" gorm:"type:int"`
