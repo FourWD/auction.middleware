@@ -20,6 +20,8 @@ firebase.google.com/go/v4 v4.13.0/go.mod h1:e1/gaR6EnbQfsmTnAMx1hnz+ninJIrrr/RAh
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/FourWD/middleware v1.5.218 h1:5s/utxzgkD3WUjs774L9R6j3gUQiL8hNGV5jN1e1JbQ=
 github.com/FourWD/middleware v1.5.218/go.mod h1:9OTDBWVD+bNJggvCS8A5Lg6u0v0vKhMOaB1e6xs2JMQ=
+github.com/FourWD/middleware v1.5.220 h1:pSutP0CgnHbpsY3s22S8/Uw5i+5sz9Ec5q7Mhg6C2D4=
+github.com/FourWD/middleware v1.5.220/go.mod h1:9OTDBWVD+bNJggvCS8A5Lg6u0v0vKhMOaB1e6xs2JMQ=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
 github.com/MicahParks/keyfunc v1.9.0/go.mod h1:IdnCilugA0O/99dW+/MkvlyrsX8+L8+x95xuVNtM5jw=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
