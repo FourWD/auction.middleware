@@ -36,7 +36,7 @@ func GenCode(userID string) (string, error) {
 	// day := time.Now().Day()
 
 	query := fmt.Sprintf(`SELECT COUNT(*) FROM users WHERE YEAR(created_at) = %d AND MONTH(created_at) = %d
-	AND running_no <= '%d' AND user_type_id = '%s'`, year, month, user.RunningNo, user.UserTypeID)
+	AND running_no <= %d AND user_type_id = '%s'`, year, month, user.RunningNo, user.UserTypeID)
 	common.Database.Raw(query).Debug().Scan(&count.Count)
 	common.Print(query, fmt.Sprintf("%d", count.Count))
 
