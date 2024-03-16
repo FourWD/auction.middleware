@@ -23,7 +23,6 @@ func GenCode(userID string) (string, error) {
 						WHERE users.id = '%s' `, userID)
 
 	common.Database.Raw(sql).Debug().Scan(&user)
-	common.Print(sql, "ssss")
 	common.Print("struct", common.StructToString(user))
 
 	type Count struct {
