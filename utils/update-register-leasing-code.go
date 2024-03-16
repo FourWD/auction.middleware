@@ -16,12 +16,13 @@ func GenCode(userID string) (string, error) {
 		UserTypeCode string `json:"user_type_code" query:"user_type_code"`
 	}
 	var user CustomerCode
+	common.PrintError("GencodeUserID", userID)
 	sql := fmt.Sprintf(`SELECT users.running_no, users.user_type_id, user_types.code as user_type_code
 							FROM users
 						LEFT JOIN user_types ON users.user_type_id = user_types.id
 						WHERE users.id = '%s' `, userID)
 
-	common.Database.Raw(sql).Scan(&user)
+	common.Database.Raw(sql).Debug().Scan(&user)
 	common.Print(sql, "ssss")
 	common.Print("struct", common.StructToString(user))
 
@@ -36,7 +37,7 @@ func GenCode(userID string) (string, error) {
 
 	query := fmt.Sprintf(`SELECT COUNT(*) FROM users WHERE YEAR(created_at) = %d AND MONTH(created_at) = %d
 	AND running_no <= '%d' AND user_type_id = '%s'`, year, month, user.RunningNo, user.UserTypeID)
-	common.Database.Raw(query).Scan(&count.Count)
+	common.Database.Raw(query).Debug().Scan(&count.Count)
 	common.Print(query, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
@@ -45,7 +46,7 @@ func GenCode(userID string) (string, error) {
 	code := fmt.Sprintf("%s%s%s%04d", user.UserTypeCode, fyear[2:4], fmonth, count.Count)
 
 	update := fmt.Sprintf(`UPDATE users set code = '%s' where id = '%s'`, code, userID)
-	checkupdate := common.Database.Exec(update)
+	checkupdate := common.Database.Debug().Exec(update)
 	if checkupdate.RowsAffected == 0 {
 		common.PrintError("Error checkupdate", userID)
 	}
