@@ -21,6 +21,7 @@ type User struct {
 	ApproveDate         time.Time `json:"approve_date" query:"approve_dates"`
 	PaymentTypeID       string    `json:"payment_type_id" query:"payment_type_id" gorm:"type:varchar(2)"`
 	IsSuperAdmin        bool      `json:"is_super_admin" query:"is_super_admin" gorm:"type:bool"` //สำหรับแอดมิน
+	IsAddressTax        bool      `json:"is_address_tax" query:"is_address_tax" gorm:"type:bool"` //สำหรับ ติ๊ก
 }
 
 //	//AuctionCode              string    `json:"auction_code" query:"auction_code" gorm:"type:varchar(20)"` //รหัสผู้ประมูล
