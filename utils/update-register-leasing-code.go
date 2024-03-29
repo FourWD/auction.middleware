@@ -88,7 +88,9 @@ func UpdateBanktrasferCode(userID string) (string, error) {
 
 	verifyBanktransfer := fmt.Sprintf("%s%s%s%s%03d", "CS", fyear[2:4], fmonth, fday, count.Count)
 
-	updateBanktransfer := fmt.Sprintf(`UPDATE bank_transfers SET code = '%s' WHERE id = '%s'`, verifyBanktransfer, userID)
+	// date := common.NilDate()
+
+	updateBanktransfer := fmt.Sprintf(`UPDATE bank_transfers SET code = '%s' , updated_at = '%s' WHERE id = '%s'`, verifyBanktransfer, common.NilDate(), userID)
 
 	checkUpdate := common.Database.Exec(updateBanktransfer)
 
