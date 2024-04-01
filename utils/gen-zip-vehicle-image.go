@@ -62,17 +62,17 @@ type vehicleImage struct {
 func prepareData(auctionID string, userID string) []vehicleImage {
 	var vehicleList []vehicleImage
 
-	sql := fmt.Sprintf(`SELECT v.license , vm.name as image_name , vem.image_path 
+	sql := `SELECT v.license , vm.name as image_name , vem.image_path 
 	FROM template_download_vehicle_images dm
-    LEFT JOIN template_vehicle_images vm ON dm.vehicle_image_id = vm.id
-    LEFT JOIN vehicle_images vem ON vm.id = vem.template_vehicle_image_id
+	LEFT JOIN template_vehicle_images vm ON dm.vehicle_image_id = vm.id
+	LEFT JOIN vehicle_images vem ON vm.id = vem.template_vehicle_image_id
 	LEFT JOIN vehicles v ON vem.vehicle_id = v.id
-    WHERE vem.vehicle_id IN (SELECT v.id FROM vehicles v
-        LEFT JOIN auction_vehicles av ON v.id = av.vehicle_id 
-        WHERE av.auction_id = '%s' AND av.winner_user_id = '%s' AND av.is_win = 1) AND vem.is_delete = 0 
-		ORDER BY vehicle_id , dm.row_order`, auctionID, userID)
+	WHERE vem.vehicle_id IN (SELECT v.id FROM vehicles v
+	LEFT JOIN auction_vehicles av ON v.id = av.vehicle_id 
+	WHERE av.auction_id = ? AND av.winner_user_id = ? AND av.is_win = 1) AND vem.is_delete = 0 
+	ORDER BY vehicle_id , dm.row_order`
 
-	common.Database.Raw(sql).Scan(&vehicleList)
+	common.Database.Raw(sql, auctionID, userID).Scan(&vehicleList)
 
 	return vehicleList
 }
