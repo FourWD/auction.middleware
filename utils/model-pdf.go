@@ -79,6 +79,9 @@ type VehicleSummary struct {
 	LicenseProvinceName string `json:"license_province_name"`
 }
 type Summary struct {
+	StartDateAuction string `json:"start_date_auction"`
+
+	SourceName  string `json:"source_name"`
 	RoundName   string `json:"round_name"`
 	AuctionName string `json:"auction_name"`
 	TotalCar    int    `json:"total_car"`

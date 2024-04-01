@@ -18,12 +18,10 @@ filippo.io/edwards25519 v1.1.0/go.mod h1:BxyFTGdWcka3PhytdK4V28tE5sGfRvvvRV7EaN4
 firebase.google.com/go/v4 v4.13.0 h1:meFz9nvDNh/FDyrEykoAzSfComcQbmnQSjoHrePRqeI=
 firebase.google.com/go/v4 v4.13.0/go.mod h1:e1/gaR6EnbQfsmTnAMx1hnz+ninJIrrr/RAh59Tpfn8=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/FourWD/middleware v1.5.218 h1:5s/utxzgkD3WUjs774L9R6j3gUQiL8hNGV5jN1e1JbQ=
-github.com/FourWD/middleware v1.5.218/go.mod h1:9OTDBWVD+bNJggvCS8A5Lg6u0v0vKhMOaB1e6xs2JMQ=
-github.com/FourWD/middleware v1.5.220 h1:pSutP0CgnHbpsY3s22S8/Uw5i+5sz9Ec5q7Mhg6C2D4=
-github.com/FourWD/middleware v1.5.220/go.mod h1:9OTDBWVD+bNJggvCS8A5Lg6u0v0vKhMOaB1e6xs2JMQ=
 github.com/FourWD/middleware v1.5.221 h1:zfkIMzwqYTfcSKXLuErb16FumxFo0YAdCb+T7bBjdHg=
 github.com/FourWD/middleware v1.5.221/go.mod h1:9OTDBWVD+bNJggvCS8A5Lg6u0v0vKhMOaB1e6xs2JMQ=
+github.com/FourWD/middleware v1.5.244 h1:5qXsFXapk5OFDlP9ZpJ+x3ENJvuoZlvzvDTNZliy9bE=
+github.com/FourWD/middleware v1.5.244/go.mod h1:9OTDBWVD+bNJggvCS8A5Lg6u0v0vKhMOaB1e6xs2JMQ=
 github.com/MicahParks/keyfunc v1.9.0 h1:lhKd5xrFHLNOWrDc4Tyb/Q1AJ4LCzQ48GVJyVIID3+o=
 github.com/MicahParks/keyfunc v1.9.0/go.mod h1:IdnCilugA0O/99dW+/MkvlyrsX8+L8+x95xuVNtM5jw=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
