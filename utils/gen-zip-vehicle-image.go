@@ -63,7 +63,7 @@ func prepareData(auctionID string, userID string) []vehicleImage {
 	var vehicleList []vehicleImage
 
 	sql := `SELECT v.license , vm.name as image_name , vem.image_path 
-	FROM template_download_vehicle_images dm
+	FROM template_download_zip_vehicle_images dm
 	LEFT JOIN template_vehicle_images vm ON dm.vehicle_image_id = vm.id
 	LEFT JOIN vehicle_images vem ON vm.id = vem.template_vehicle_image_id
 	LEFT JOIN vehicles v ON vem.vehicle_id = v.id
