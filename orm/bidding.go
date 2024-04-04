@@ -25,7 +25,7 @@ type Bidding struct {
 	VehicleID       string    `json:"vehicle_id" query:"vehicle_id" firestore:"vehicle_id" gorm:"type:varchar(36)"`
 	UserID          string    `json:"user_id" query:"user_id" firestore:"user_id" gorm:"type:varchar(36)"`
 	UserAuctionCode string    `json:"user_auction_code" query:"user_auction_code" firestore:"user_auction_code" gorm:"type:varchar(5)"`
-	UserDisplayName string    `json:"user_display_name" query:"user_display_name" firestore:"user_display_name" gorm:"-"`
+	UserDisplayName string    `json:"user_display_name" query:"user_display_name" firestore:"user_display_name" gorm:"type:varchar(500)"`
 	Price           int       `json:"price" query:"price" firestore:"price" gorm:"type:int"`
 	BiddingStep     int       `json:"bidding_step" query:"bidding_step" firestore:"bidding_step" gorm:"type:int"`
 	IsProxy         bool      `json:"is_proxy" query:"is_proxy" firestore:"is_proxy" gorm:"type:bool"`
