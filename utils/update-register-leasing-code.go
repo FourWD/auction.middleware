@@ -94,9 +94,9 @@ func UpdateBanktrasferCode(userID string) (string, error) {
 	// date := common.NilDate()
 
 	updateBanktransfer := `UPDATE bank_transfers 
-	SET code = ?, updated_at = ? WHERE id = ?`
+	SET code = ?, updated_at = '` + "1900-01-01 06:42:04.000" + `' WHERE id = ?`
 
-	checkUpdate := common.Database.Exec(updateBanktransfer, verifyBanktransfer, common.NilDate(), userID)
+	checkUpdate := common.Database.Exec(updateBanktransfer, verifyBanktransfer, userID)
 
 	if checkUpdate.RowsAffected == 0 {
 		common.PrintError("Error checkupdate", userID)
