@@ -11,7 +11,7 @@ type Proxy struct {
 	Price           int       `json:"price" query:"price" gorm:"type:int;uniqueIndex:idx_auction_id_vehicle_id_price"`
 	UserID          string    `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
 	UserAuctionCode string    `json:"user_auction_code" query:"user_auction_code" gorm:"type:varchar(5)"`
-	UserDisplayName string    `json:"user_display_name" query:"user_display_name" gorm:"-"`
+	UserDisplayName string    `json:"user_display_name" query:"user_display_name" gorm:"type:varchar(200)"`
 	Created         time.Time `json:"created" query:"created"`
 	CreatedUnixNano int64     `json:"created_unix_nano" query:"created_unix_nano" gorm:"type:int"`
 	IsProcess       bool      `json:"is_process" query:"is_process" gorm:"type:bool"`
