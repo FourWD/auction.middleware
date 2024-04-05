@@ -8,25 +8,25 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-func GenPDFVehicleResult(auctionID string) (string, error) { //ใบประกาศ ผลประมูล
+// func GenPDFVehicleResult(auctionID string) (string, error) { //ใบประกาศ ผลประมูล
 
-	pdf := gofpdf.New("P", "mm", "A4", "")
+// 	pdf := gofpdf.New("P", "mm", "A4", "")
 
-	GenPDFResult(pdf, auctionID)
+// 	GenPDFResult(pdf, auctionID)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
-	if err != nil {
-		return "", err
-	}
-	return path, nil
-}
+// 	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return path, nil
+// }
 
-func GenPDFResult(pdf *gofpdf.Fpdf, auctionID string) (string, error) { //ใบประกาศ ผลประมูล
+func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ ผลประมูล
 	vehicles, _ := prepareResult(auctionID)
 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
-	// pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf := gofpdf.New("P", "mm", "A4", "")
 
 	pdf.AddPage()
 	pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
@@ -185,7 +185,7 @@ func GenPDFResult(pdf *gofpdf.Fpdf, auctionID string) (string, error) { //ใบ
 	// 	fmt.Println("Error:", err)
 	// }
 	// return filedesination, nil
-	path, err := common.UploadPdfToGoogle(pdf, "pdf", "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}

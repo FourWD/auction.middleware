@@ -8,17 +8,17 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-func GenPDFVehicleReport(auctionID string, vehicleID string) (string, error) { //ใบรายงานผลการประมูล สรรพากร
-	pdf := gofpdf.New("P", "mm", "A4", "")
+// func GenPDFVehicleReport(auctionID string, vehicleID string) (string, error) { //ใบรายงานผลการประมูล สรรพากร
+// 	pdf := gofpdf.New("P", "mm", "A4", "")
 
-	GenPDFReport(pdf, auctionID, vehicleID)
+// 	GenPDFReport(pdf, auctionID, vehicleID)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
-	if err != nil {
-		return "", err
-	}
-	return path, nil
-}
+// 	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return path, nil
+// }
 
 //	type SummaryReport struct {
 //		StartDateAuction string `json:"start_date_auction"`
@@ -154,13 +154,13 @@ func headertableReport(pdf gofpdf.Pdf, tabley int) {
 	pdf.SetFillColor(255, 255, 255)
 }
 
-func GenPDFReport(pdf *gofpdf.Fpdf, auctionID string, vehicleID string) (string, error) { //ใบรายงานผลการประมูล สรรพากร
+func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบรายงานผลการประมูล สรรพากร
 
 	vehicles, _ := prepareVehicleResult(auctionID, vehicleID)
 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
-	// pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf := gofpdf.New("P", "mm", "A4", "")
 
 	for _, v := range vehicles {
 
@@ -389,7 +389,7 @@ func GenPDFReport(pdf *gofpdf.Fpdf, auctionID string, vehicleID string) (string,
 	}
 	pdf.Ln(-1)
 
-	path, err := common.UploadPdfToGoogle(pdf, "pdf", "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, "ใบรายงานผลการประมูล", "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}

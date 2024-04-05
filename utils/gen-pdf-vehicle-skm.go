@@ -8,17 +8,17 @@ import (
 	"github.com/jung-kurt/gofpdf/contrib/httpimg"
 )
 
-func GenPDFVehicleSKM(auctionID string) (string, error) {
-	pdf := gofpdf.New("P", "mm", "A3", "")
+// func GenPDFVehicleSKM(auctionID string) (string, error) {
+// 	pdf := gofpdf.New("P", "mm", "A3", "")
 
-	GenPDFDownloadVehicle(pdf, auctionID)
+// 	GenPDFDownloadVehicle(pdf, auctionID)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบ สคบ.", "auction", "fourwd-auction")
-	if err != nil {
-		return "", err
-	}
-	return path, nil
-}
+// 	path, err := common.UploadPdfToGoogle(pdf, "ใบ สคบ.", "auction", "fourwd-auction")
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return path, nil
+// }
 
 // type Image struct {
 // 	VehicleID string `json:"vehicle_id"`

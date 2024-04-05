@@ -6,28 +6,24 @@ import (
 	"strings"
 
 	"github.com/FourWD/middleware/common"
-	"github.com/gofiber/fiber/v2"
 	"github.com/jung-kurt/gofpdf"
 )
 
-func GetPDFVehicle(c *fiber.Ctx) (string, error) {
+// func GetPDFVehicle(c *fiber.Ctx) (string, error) {
 
-	pdf := gofpdf.New("P", "mm", "A4", "")
+// 	auctionID := c.Params("auction_id")
+// 	query := c.Queries()
+// 	vehicleIDList := query["vehicle_id"]
+// 	vehicleArr := strings.Split(vehicleIDList, ",")
 
-	auctionID := c.Params("auction_id")
-	userID := common.GetSessionUserID(c)
-	query := c.Queries()
-	vehicleIDList := query["vehicle_id"]
-	vehicleArr := strings.Split(vehicleIDList, ",")
+// 	GenPDFVehicle(auctionID, vehicleArr)
 
-	GenPDFVehicle(pdf, auctionID, userID, vehicleArr)
-
-	path, err := common.UploadPdfToGoogle(pdf, "รายการประมูลรถยนต์", "auction", "fourwd-auction") //carlist
-	if err != nil {
-		return "", err
-	}
-	return path, nil
-}
+// 	path, err := common.UploadPdfToGoogle(pdf, "รายการประมูลรถยนต์", "auction", "fourwd-auction") //carlist
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return path, nil
+// }
 
 // ==================================
 
@@ -46,7 +42,9 @@ func headerCarlist(pdf gofpdf.Pdf) {
 	pdf.Ln(-1)
 
 }
-func GenPDFVehicle(pdf *gofpdf.Fpdf, auctionID string, userID string, vehicles []string) (string, error) {
+func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carlist
+
+	pdf := gofpdf.New("P", "mm", "A4", "")
 	auctionDetail, err := prepareAuctionAndVehicleDetails(auctionID, vehicles)
 	if err != nil {
 		return "", err

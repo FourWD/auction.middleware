@@ -8,19 +8,19 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-func GenPDFDetailList(auctionID string) (string, error) { //list รายการราคารถ
-	pdf := gofpdf.New("P", "mm", "A4", "")
+// func GenPDFDetailList(auctionID string) (string, error) { //list รายการราคารถ
+// 	pdf := gofpdf.New("P", "mm", "A4", "")
 
-	// auctionID := c.Params("auction_id")
-	GenPDFVehicleDetail(pdf, auctionID)
+// 	// auctionID := c.Params("auction_id")
+// 	GenPDFVehicleDetail(pdf, auctionID)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบลิสต์รายการราคารถ", "auction", "fourwd-auction")
-	if err != nil {
-		return "", err
-	}
-	return path, nil
+// 	path, err := common.UploadPdfToGoogle(pdf, "ใบลิสต์รายการราคารถ", "auction", "fourwd-auction")
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return path, nil
 
-}
+// }
 
 type VehicleSummaryDetail struct {
 	RoundID              string `json:"round_id"`
@@ -94,12 +94,12 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 
 }
 
-func GenPDFVehicleDetail(pdf *gofpdf.Fpdf, auctionID string) (string, error) {
+func GenPDFVehicleDetail(auctionID string) (string, error) {
 	vehicles := prepareDetailList(auctionID)
 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
-	// pdf := gofpdf.New("L", "mm", "A4", "")
+	pdf := gofpdf.New("L", "mm", "A4", "")
 
 	pdf.AddPage()
 	pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")

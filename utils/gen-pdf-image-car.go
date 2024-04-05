@@ -15,20 +15,20 @@ import (
 	"github.com/jung-kurt/gofpdf/contrib/httpimg"
 )
 
-func GenPDFImageCar(auctionID string) (string, error) { //หน้าใบปลิวรถ
-	pdf := gofpdf.New("P", "mm", "A4", "")
+// func GenPDFImageCar(auctionID string) (string, error) { //หน้าใบปลิวรถ
+// 	pdf := gofpdf.New("P", "mm", "A4", "")
 
-	// auctionID := c.Params("auction_id")
-	GenPDFImageCarDetail(pdf, auctionID)
+// 	// auctionID := c.Params("auction_id")
+// 	GenPDFImageCarDetail(pdf, auctionID)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวภาพรถ", "auction", "fourwd-auction")
-	if err != nil {
-		return "", err
-	}
-	return path, nil
-}
+// 	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวภาพรถ", "auction", "fourwd-auction")
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return path, nil
+// }
 
-func GenPDFImageCarDetail(pdf *gofpdf.Fpdf, auctionID string) (string, error) {
+func GenPDFImageCarDetail(pdf *gofpdf.Fpdf, auctionID string) (string, error) { //หน้าใบปลิวรถ
 	vehicles := prepareDetailList(auctionID)
 
 	filepathStr := "images/pdf/"
@@ -203,7 +203,7 @@ func GenPDFImageCarDetail(pdf *gofpdf.Fpdf, auctionID string) (string, error) {
 	// 	fmt.Println("Error:", err)
 	// }
 	// return filedesination
-	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวรูป", "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวรก", "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
