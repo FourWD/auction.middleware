@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/FourWD/middleware/common"
 	"github.com/jung-kurt/gofpdf"
@@ -42,9 +43,9 @@ func headerCarlist(pdf gofpdf.Pdf) {
 	pdf.Ln(-1)
 
 }
+
 func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carlist
 
-	pdf := gofpdf.New("P", "mm", "A4", "")
 	auctionDetail, err := prepareAuctionAndVehicleDetails(auctionID, vehicles)
 	if err != nil {
 		return "", err
@@ -53,7 +54,7 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
 	// Create new PDF instance
-	// pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.SetMargins(5, 7, 5)
 	// Add page to PDF
 	pdf.AddPage()
@@ -125,7 +126,15 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 		DDMMYYYY := "02/01/2006"
 
 		pdf.CellFormat(20, 8, vehicle.Year, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(20, 8, vehicle.TaxExpireDate.Format(DDMMYYYY), "1", 0, "C", true, 0, "")
+		// pdf.CellFormat(20, 8, vehicle.TaxExpireDate.Format(DDMMYYYY), "1", 0, "C", true, 0, "")
+
+		var taxExpireDate string
+		if !vehicle.TaxExpireDate.IsZero() && vehicle.TaxExpireDate.After(time.Date(1900, 1, 1, 0, 0, 0, 0, time.UTC)) {
+			taxExpireDate = vehicle.TaxExpireDate.Format(DDMMYYYY)
+		} else {
+			taxExpireDate = ""
+		}
+		pdf.CellFormat(20, 8, taxExpireDate, "1", 0, "C", true, 0, "")
 
 		// h := 50
 		// numFloat := float64(h)
