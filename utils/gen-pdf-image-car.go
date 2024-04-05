@@ -28,12 +28,12 @@ import (
 // 	return path, nil
 // }
 
-func GenPDFImageCarDetail(pdf *gofpdf.Fpdf, auctionID string) (string, error) { //หน้าใบปลิวรถ
+func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใบปลิวรถ
 	vehicles := prepareDetailList(auctionID)
 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
-	// pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
 	pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
 	pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")

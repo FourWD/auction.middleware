@@ -66,7 +66,7 @@ type Vehicle struct {
 	ImagePath []Image
 }
 
-func GenPDFDownloadVehicle(pdf *gofpdf.Fpdf, auctionID string) (string, error) {
+func GenPDFDownloadVehicle(auctionID string) (string, error) {
 	vehicles := prepareVehicleSKM(auctionID)
 
 	filepathStr := "images/pdf/"
@@ -75,7 +75,7 @@ func GenPDFDownloadVehicle(pdf *gofpdf.Fpdf, auctionID string) (string, error) {
 		VehicleID string `json:"vehicle_id"`
 	}
 	// fileextention := ".pdf"
-	// pdf := gofpdf.New("P", "mm", "A3", "")
+	pdf := gofpdf.New("P", "mm", "A3", "")
 	for _, v := range vehicles {
 
 		pdf.AddPage()
