@@ -22,7 +22,7 @@ func GetPDFVehicle(c *fiber.Ctx) (string, error) {
 
 	GenPDFVehicle(pdf, auctionID, userID, vehicleArr)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, "รายการประมูลรถยนต์", "auction", "fourwd-auction") //carlist
 	if err != nil {
 		return "", err
 	}
