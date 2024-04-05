@@ -10,28 +10,23 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-func GetPDFVehicle(c *fiber.Ctx) error {
-	type Data struct {
-		Title string `json:"title"`
-		Path  string `json:"path"`
-	}
-	data := new(Data)
+func GetPDFVehicle(c *fiber.Ctx) (string, error) {
+
+	pdf := gofpdf.New("P", "mm", "A4", "")
 
 	auctionID := c.Params("auction_id")
 	userID := common.GetSessionUserID(c)
 	query := c.Queries()
 	vehicleIDList := query["vehicle_id"]
 	vehicleArr := strings.Split(vehicleIDList, ",")
-	path, err := GenPDFVehicle(auctionID, userID, vehicleArr)
 
+	GenPDFVehicle(pdf, auctionID, userID, vehicleArr)
+
+	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
 	if err != nil {
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{"status": 0, "code": "B001", "message": err.Error()})
+		return "", err
 	}
-
-	data.Title = "รายการประมูลรถยนต์" //carlist
-	data.Path = path
-
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{"status": 1, "code": "0000", "message": "success", "data": data})
+	return path, nil
 }
 
 // ==================================
@@ -51,7 +46,7 @@ func headerCarlist(pdf gofpdf.Pdf) {
 	pdf.Ln(-1)
 
 }
-func GenPDFVehicle(auctionID string, userID string, vehicles []string) (string, error) {
+func GenPDFVehicle(pdf *gofpdf.Fpdf, auctionID string, userID string, vehicles []string) (string, error) {
 	auctionDetail, err := prepareAuctionAndVehicleDetails(auctionID, vehicles)
 	if err != nil {
 		return "", err
@@ -60,7 +55,7 @@ func GenPDFVehicle(auctionID string, userID string, vehicles []string) (string, 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
 	// Create new PDF instance
-	pdf := gofpdf.New("P", "mm", "A4", "")
+	// pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.SetMargins(5, 7, 5)
 	// Add page to PDF
 	pdf.AddPage()
