@@ -203,7 +203,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	// 	fmt.Println("Error:", err)
 	// }
 	// return filedesination
-	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวรก", "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวรถ", "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
