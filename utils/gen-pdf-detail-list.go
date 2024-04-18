@@ -139,9 +139,9 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 			counter[v.BranchLabel] = 1
 		} else {
 			counter[v.BranchLabel]++
-			if counter[v.BranchLabel] > 7 {
-				counter[v.BranchLabel] = 1
-			}
+			// if counter[v.BranchLabel] > 7 {
+			// 	counter[v.BranchLabel] = 1
+			// }
 		}
 		pdf.CellFormat(10, 8, strconv.Itoa(counter[v.BranchLabel]), "1", 0, "C", true, 0, "")
 
