@@ -5,6 +5,7 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -14,19 +15,6 @@ import (
 	"github.com/jung-kurt/gofpdf"
 	"github.com/jung-kurt/gofpdf/contrib/httpimg"
 )
-
-// func GenPDFImageCar(auctionID string) (string, error) { //หน้าใบปลิวรถ
-// 	pdf := gofpdf.New("P", "mm", "A4", "")
-
-// 	// auctionID := c.Params("auction_id")
-// 	GenPDFImageCarDetail(pdf, auctionID)
-
-// 	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวภาพรถ", "auction", "fourwd-auction")
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	return path, nil
-// }
 
 func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใบปลิวรถ
 	vehicles := prepareDetailList(auctionID)
@@ -43,17 +31,24 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	pdf.Rect(0, 0, 210, 297, "F")
 
 	x := 2.5
-	y := 75.0
-	imagesInRow := 0
+	// y := 75.0
+	y := 6.0
 
-	// location := filepathStr + "m-removebg-preview.png"
-	// page := 1
-	// imageperpage := 18
-	// imageperpage2 := 24
-	imageindex := 1
+	imagesInRow := 0
+	imageRowCount := 1
 	page := 1
-	// perpage := 18
-	// line := 1
+	addon := 3 - len(vehicles)%3 // 012
+	if addon == 3 {
+		addon = 0
+	}
+	// log.Println(addon)
+	for i := 0; i < addon; i++ {
+		vnull := new(VehicleSummaryDetail)
+		vehicles = append(vehicles, *vnull)
+		log.Println(i)
+
+	}
+
 	for i, v := range vehicles {
 
 		i++
@@ -61,23 +56,22 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 
 		} else {
 
-			y = 10
+			y = 0
 			// perpage = 24
 			pdf.SetFillColor(196, 16, 22)
 			pdf.Rect(0, 0, 210, 297, "F")
 		}
+		if v.License != "" {
 
-		// fmt.Printf("index = %d, License = %s", i, v.License)
-		// fmt.Printf(", page = %d, perpage = %d", page, perpage)
-		// fmt.Printf(", imageindex = %d, line = %d", imageindex, line)
-		// fmt.Println("========================")
+			// fmt.Printf("index = %d, License = %s", i, v.License)
+			// fmt.Printf(", page = %d, perpage = %d", page, perpage)
+			// fmt.Printf(", imageindex = %d, line = %d", imageindex, line)
+			// fmt.Println("========================")
 
-		if i == 1 {
-			header := filepathStr + "bar-top.jpg"
-			pdf.Image(header, 0, 0, 210, 70, false, "", 0, "")
-		}
-
-		if v.ImagePreviewPath != "" {
+			// if i == 1 {
+			// 	header := filepathStr + "bar-top.jpg"
+			// 	pdf.Image(header, 0, 0, 210, 70, false, "", 0, "")
+			// }
 
 			pdf.SetFillColor(255, 255, 255)
 			pdf.Rect(x, y, 67, 30, "F")
@@ -85,11 +79,18 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 
 			// ลงทะเบียนรูปภาพ
 			pdf.SetFont("Sarabun", "", 7)
-			httpimg.Register(pdf, v.ImagePreviewPath, "")
-			pdf.Image(v.ImagePreviewPath, x+1, y+1, 32, 22, false, "", 0, "")
-			pdf.SetTextColor(255, 255, 255)
-			pdf.SetFillColor(133, 133, 133)
-			pdf.RoundedRect(x+23, y+18.3, 5, 4.75, 0.4, "1,2", "F")
+			if v.ImagePreviewPath != "" {
+
+				httpimg.Register(pdf, v.ImagePreviewPath, "")
+				pdf.Image(v.ImagePreviewPath, x+1, y+1, 32, 22, false, "", 0, "")
+				pdf.SetTextColor(255, 255, 255)
+				pdf.SetFillColor(133, 133, 133)
+				pdf.RoundedRect(x+23, y+18.3, 5, 4.75, 0.4, "1,2", "F")
+			} else {
+				logo := filepathStr + "Logo-BG-003.png"
+				// httpimg.Register(pdf, v.ImagePreviewPath, "")
+				pdf.Image(logo, x+1, y+1, 32, 22, false, "", 0, "")
+			}
 			pdf.Text(x+23.5, y+20, "เลขรถ")
 			pdf.Text(x+25, y+22, v.VehicleNo)
 
@@ -114,11 +115,10 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 				pdf.SetFont("Sarabun", "", 6)
 				openprice = "รอกำหนดราคา"
 			} else {
-				openprice = "฿" + common.FloatWithCommas(openPriceFloat, 2)
-
+				openprice = common.FloatWithCommas(openPriceFloat, 0)
 			}
 			pdf.Text(x+2.5, y+26.5, "ราคาเปิด ")
-			pdf.Text(x+21, y+26.5, openprice)
+			pdf.Text(x+21, y+26.5, "฿"+openprice)
 			// pdf.CellFormat(25, 8, openPriceComma, "1", 0, "R", true, 0, "")
 
 			// เพิ่มข้อความรายละเอียดรถ
@@ -154,46 +154,29 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 
 			pdf.Text(x+34, y+23, "ผู้ถือกรรมสิทธิ์ : ")
 			pdf.Text(x+34, y+27, v.SourceName)
-
-			x += 69.0
-			imagesInRow++
-			//18+24
-
-			if imagesInRow >= 3 {
-
-				// รีเซ็ตค่า x และเพิ่มค่า y เพื่อเริ่มต้นรูปใหม่ในแถวถัดไป
-				x = 2.5
-				y += 32.0
-				imagesInRow = 0
-
-			}
-
-			headerdown := filepathStr + "bar-down.jpg"
-			pdf.Image(headerdown, 0, 274, 210, 23, false, "", 0, "")
+		} else {
+			pdf.Rect(x, y, 67, 30, "D") // กล่องภาพ
+			logoX := x
+			logoY := y
+			logoWidth := 67.0
+			logoHeight := 30.0
+			logo := filepathStr + "logo-omakase.png"
+			pdf.Image(logo, logoX, logoY, logoWidth, logoHeight, false, "", 0, "")
 		}
+		x += 69.0
+		imagesInRow++
+		//18+24
 
-		imageindex++
-		newpage := false
-		if i == 18 {
-			newpage = true
+		if imagesInRow >= 3 {
 
-		} else if i > 18 {
-			temp := i - 18
-			if temp%24 == 0 {
-				newpage = true
-			}
-		}
-		if newpage {
-			pdf.AddPage()
-			pdf.SetFillColor(196, 16, 22)
-			pdf.Rect(0, 0, 210, 297, "F")
 			x = 2.5
-			y = 15
-			imageindex = 1
-			// imagesInRow = 0
-
+			y += 32.0
+			imagesInRow = 0
+			imageRowCount++
 		}
-		i++
+
+		headerdown := filepathStr + "bar-down.jpg"
+		pdf.Image(headerdown, 0, 274, 210, 23, false, "", 0, "")
 	}
 	// common.Print("len", fmt.Sprintf("%d", len(vehicles)))
 
@@ -209,7 +192,6 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	}
 	return path, nil
 }
-
 func hexToRGB(hex string) (int, int, int) {
 	var r, g, b int
 	fmt.Sscanf(hex, "#%02x%02x%02x", &r, &g, &b)
@@ -280,7 +262,7 @@ func textcolor(colors []string) []string {
 
 		// Save the modified image to a new PNG file
 		outputFilename := filepath.Join(filepathStr, color+".png")
-		output, err := os.CreateTemp("", color+".png")
+		output, err := os.Create(outputFilename)
 		if err != nil {
 			panic(err)
 		}
