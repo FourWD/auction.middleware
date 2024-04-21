@@ -3,7 +3,7 @@ module github.com/FourWD/auction.middleware
 go 1.19
 
 require (
-	github.com/FourWD/middleware v1.5.264
+	github.com/FourWD/middleware v1.5.267
 	github.com/gofiber/fiber/v2 v2.52.2
 	github.com/jung-kurt/gofpdf v1.16.2
 )
