@@ -3,8 +3,7 @@ module github.com/FourWD/auction.middleware
 go 1.19
 
 require (
-	github.com/FourWD/middleware v1.5.280
-	github.com/gofiber/fiber/v2 v2.52.2
+	github.com/FourWD/middleware v1.5.286
 	github.com/jung-kurt/gofpdf v1.16.2
 )
 
@@ -27,7 +26,7 @@ require (
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.8.0 // indirect
-	github.com/gofiber/jwt/v2 v2.2.7 // indirect
+	github.com/gofiber/fiber/v2 v2.52.2 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
