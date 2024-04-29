@@ -85,7 +85,7 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		x := 9.00
 		y := 6.00
 		width := 40.00
-		height := 28.00
+		height := 22.00
 
 		imagePath := filepathStr + "simple.png"
 		pdf.Image(imagePath, x, y, width, height, false, "", 0, "")
@@ -350,15 +350,15 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.Text(154, 408, v.BranchLabel)
 		//qr
 
-		// qr := new(Qr)
-		// qr.AuctionID = auctionID
-		// qr.VehicleID = v.VehicleID
-		// common.Print("vehicle_iddddddddddddddddddddddd", common.StructToString(qr))
-		// buf, _ := common.GenBufferQrPdf(common.StructToString(qr))
-		// pdf.RegisterImageReader("image", "jpg", &buf)
-		// xx, yy := 45.0, 46.0
-		// widthh, heightt := 40.0, 40.0
-		// pdf.Image("image", xx, yy, widthh, heightt, false, "", 0, "")
+		qr := new(Qr)
+		qr.AuctionID = auctionID
+		qr.VehicleID = v.VehicleID
+		common.Print("vehicle_iddddddddddddddddddddddd", common.StructToString(qr))
+		buf, _ := common.GenBufferQrPdf(common.StructToString(qr))
+		pdf.RegisterImageReader("image", "jpg", &buf)
+		xx, yy := 45.0, 46.0
+		widthh, heightt := 40.0, 40.0
+		pdf.Image("image", xx, yy, widthh, heightt, false, "", 0, "")
 
 		// url := common.GenBufferQRPDF(common.StructToString(qr))
 		pdf.SetTextColor(255, 0, 0)
