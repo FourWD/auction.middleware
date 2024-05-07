@@ -2,6 +2,6 @@ package utils
 
 import "github.com/FourWD/middleware/common"
 
-func NotiAcceptLoan(notiToken string, userID string, loanID string) error {
-	return common.SendMessageToUser(notiToken, "Accept Loan", "Accept Loan", nil)
+func NotiAcceptLoan(userID string, loanID string) error {
+	return common.SendMessageToUser(userID, "Accept Loan", "Accept Loan", nil)
 }
