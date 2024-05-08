@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/FourWD/middleware/common"
@@ -348,17 +349,18 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.Text(154, 394, "สถานที่ประกอบการ")
 		pdf.SetFont("Sarabun", "B", 50)
 		pdf.Text(154, 408, v.BranchLabel)
-		//qr
 
-		qr := new(Qr)
-		qr.AuctionID = auctionID
-		qr.VehicleID = v.VehicleID
-		common.Print("vehicle_iddddddddddddddddddddddd", common.StructToString(qr))
+		//qr
+		qr := Qr{
+			AuctionID: auctionID,
+			VehicleID: v.VehicleID,
+		}
 		buf, _ := common.GenBufferQrPdf(common.StructToString(qr))
-		pdf.RegisterImageReader("image", "jpg", &buf)
+		pdf.RegisterImageReader(fmt.Sprintf("qr_%s", v.VehicleID), "jpg", &buf)
 		xx, yy := 45.0, 46.0
 		widthh, heightt := 40.0, 40.0
-		pdf.Image("image", xx, yy, widthh, heightt, false, "", 0, "")
+		pdf.Image(fmt.Sprintf("qr_%s", v.VehicleID), xx, yy, widthh, heightt, false, "", 0, "")
+		common.Print("vehicle_iddddddddddddddddddddddd", common.StructToString(qr))
 
 		// url := common.GenBufferQRPDF(common.StructToString(qr))
 		pdf.SetTextColor(255, 0, 0)
