@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -207,21 +208,24 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 	pdf.CellFormat(10, 10, "**บริษัทฯ ขอสงวนสิทธิ์ในการพิจารณายกเลิก หรือเปลี่ยนแปลงการประมูลขายรถบางรายการได้ตามความเหมาะสม โดยไม่ต้องแจ้งให้ทราบล่วงหน้า", "", 0, "L", false, 0, "")
 	pdf.Ln(-1)
 
-	// filedestination := filepathStr + "รายการประมูลรถยนต์" + fileextention
-
-	// Output PDF to file
-	// err = pdf.OutputFileAndClose(filedestination)
-	// if err != nil {
-	// 	return "", err
-	// }
-	path, err := common.UploadPdfToGoogle(pdf, "รายการประมูลรถยนต์"+auctionDetail.Auction[0].Name+" | "+auctionDetail.Auction[0].AuctionName, "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, "รายการประมูลรถยนต์"+auctionDetail.Auction[0].Name+" | "+auctionDetail.Auction[0].AuctionName+".pdf", "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
-	return path, nil
+	sanitizedPath := sanitizeFilename(path)
 
-	// return filedestination, nil
+	return sanitizedPath, nil
 
+}
+
+func sanitizeFilename(filename string) string {
+	validFilename := regexp.MustCompile(`^[^\\\/:\*\?\"<>\|]+$`)
+
+	if !validFilename.MatchString(filename) {
+		filename = validFilename.ReplaceAllString(filename, "_")
+	}
+
+	return filename
 }
 
 func prepareAuctionAndVehicleDetails(auctionID string, vehicleID []string) (AuctionVehicleDetail, error) {
