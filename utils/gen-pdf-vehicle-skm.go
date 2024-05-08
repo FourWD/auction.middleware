@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 
@@ -28,6 +29,7 @@ import (
 // }
 
 type Vehicle struct {
+	AdditionalCode       string `json:"additional_code"`
 	VehicleID            string `json:"vehicle_id"`
 	VehicleAuctionRecipt string `json:"vehicle_auction_receipt"`
 	VehicleGradeID       string `json:"vehicle_grade_id"`
@@ -350,6 +352,9 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.SetFont("Sarabun", "B", 50)
 		pdf.Text(154, 408, v.BranchLabel)
 
+		if v.AdditionalCode == "06" {
+			return "", errors.New("G001: Auction has ended, cannot generate PDF")
+		}
 		//qr
 		qr := Qr{
 			AuctionID: auctionID,
@@ -394,43 +399,85 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 	return path, nil
 
 }
-
 func prepareVehicleSKM(auctionID string) []Vehicle {
-
 	var vehicles []Vehicle
-	common.Database.Raw(`SELECT v.id as vehicle_id, v.license_receive_date,v.sku, v.vehicle_grade_id, v.vehicle_brand_name, vm.name_en as vehicle_brand_name_th,vb.name_en as vehicle_brand_name_th,v.vehicle_model_name, a.open_price,
-	v.year_manufacturing as years, v.vehicle_color_name,v.engine_size,
-   engine_capacity,v.vehicle_fuel_type_name,v.period_of_use,v.chassis_no,v.engine_no,v.vehicle_type_name,v.vehicle_sub_type_name,v.year_register,
-   vm.name_en as vehicle_model_name_th,v.vehicle_sub_model_name, v.source_name,v.source_id,v.license,
-   v.license_provice_id,
-   v.license_province_name,
-   v.mile AS mile,
-   b.label as branch_label,
-   v.branch_name as branch,
-   COALESCE(v.vehicle_grade_id, '') AS vehicle_grade_id,
-   COALESCE(v.vehicle_grade_value, '') AS vehicle_grade_value,
-   COALESCE(a.vehicle_no, 0) AS vehicle_no,
-   vi.image_path AS image_preview_path ,
-   a.bidding_step_1,
-   a.bidding_step_2,
-   a.bidding_step_3,
-   auc.start_date,
-   auc.end_date,
-   p.price AS proxy
-   FROM auction_vehicles AS a
-   LEFT JOIN vehicles AS v ON a.vehicle_id = v.id
-   LEFT JOIN branches b ON v.branch_id = b.id
-   LEFT JOIN vehicle_brands vb ON v.vehicle_brand_id = vb.id
-   LEFT JOIN vehicle_models vm ON v.vehicle_model_id = vm.id
-   LEFT JOIN vehicle_images AS vi ON a.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' 
-   AND vi.is_delete = 0
-   LEFT JOIN auctions AS auc ON a.auction_id = auc.id
-   LEFT JOIN auction_vehicle_users AS a_fav ON a_fav.auction_id = auc.id AND a_fav.vehicle_id = v.id and a_fav.user_id = ''
-   LEFT JOIN proxies p ON a_fav.proxy_id = p.id AND p.id != ''
-	WHERE a.auction_id = ? AND v.id != '' AND a.vehicle_no != 0 
-	ORDER BY a.vehicle_no ASC`, auctionID).Scan(&vehicles)
-	common.Print(auctionID, "auctionID")
-	common.Print("vehicle", common.StructToString(vehicles))
+	common.Database.Raw(`
+        SELECT 
+            CASE WHEN a.auction_status_id = '06' THEN 'G001' ELSE '' END AS additional_code,
+            a.auction_status_id,
+            v.id as vehicle_id, 
+            v.license_receive_date,
+            v.sku, 
+            v.vehicle_grade_id, 
+            v.vehicle_brand_name, 
+            vm.name_en as vehicle_brand_name_th,
+            vb.name_en as vehicle_brand_name_th,
+            v.vehicle_model_name, 
+            a.open_price,
+            v.year_manufacturing as years, 
+            v.vehicle_color_name,
+            v.engine_size,
+            engine_capacity,
+            v.vehicle_fuel_type_name,
+            v.period_of_use,
+            v.chassis_no,
+            v.engine_no,
+            v.vehicle_type_name,
+            v.vehicle_sub_type_name,
+            v.year_register,
+            vm.name_en as vehicle_model_name_th,
+            v.vehicle_sub_model_name, 
+            v.source_name,
+            v.source_id,
+            v.license,
+            v.license_provice_id,
+            v.license_province_name,
+            v.mile AS mile,
+            b.label as branch_label,
+            v.branch_name as branch,
+            COALESCE(v.vehicle_grade_id, '') AS vehicle_grade_id,
+            COALESCE(v.vehicle_grade_value, '') AS vehicle_grade_value,
+            COALESCE(a.vehicle_no, 0) AS vehicle_no,
+            vi.image_path AS image_preview_path ,
+            a.bidding_step_1,
+            a.bidding_step_2,
+            a.bidding_step_3,
+            auc.start_date,
+            auc.end_date,
+            p.price AS proxy
+        FROM 
+            auction_vehicles AS a
+        LEFT JOIN 
+            vehicles AS v ON a.vehicle_id = v.id
+        LEFT JOIN 
+            branches b ON v.branch_id = b.id
+        LEFT JOIN 
+            vehicle_brands vb ON v.vehicle_brand_id = vb.id
+        LEFT JOIN 
+            vehicle_models vm ON v.vehicle_model_id = vm.id
+        LEFT JOIN 
+            vehicle_images AS vi ON a.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' 
+            AND vi.is_delete = 0
+        LEFT JOIN 
+            auctions AS auc ON a.auction_id = auc.id
+        LEFT JOIN 
+            auction_vehicle_users AS a_fav ON a_fav.auction_id = auc.id AND a_fav.vehicle_id = v.id and a_fav.user_id = ''
+        LEFT JOIN 
+            proxies p ON a_fav.proxy_id = p.id AND p.id != ''
+        WHERE 
+            a.auction_id = ? AND v.id != '' AND a.vehicle_no != 0 
+        ORDER BY 
+            a.vehicle_no ASC`, auctionID).Scan(&vehicles)
+
+	for i := range vehicles {
+		if vehicles[i].AdditionalCode == "G001" {
+			// ทำงานเมื่อ additional_code เป็น 'G001'
+			fmt.Println("Additional code is G001")
+		} else {
+			// ทำงานเมื่อ additional_code ไม่ใช่ 'G001'
+			fmt.Println("Additional code is not G001")
+		}
+	}
 
 	return vehicles
 }
