@@ -16,16 +16,18 @@ func NotiSendAuctionResult(auctionID string) error {
 		"auction_id": auctionID,
 		"event_code": "R0001",
 	}
-	common.SendMessageToSubscriber(fmt.Sprintf(`JOIN_AUCTION_%s`, auctionID), title, body, data)
+	if errSendToSubscriber := common.SendMessageToSubscriber(fmt.Sprintf(`JOIN_AUCTION_%s`, auctionID), title, body, data); errSendToSubscriber != nil {
+		return errSendToSubscriber
+	}
 
 	type userJoinList struct {
 		UserID string `json:"user_id"`
 	}
 	var toUser []userJoinList
-	common.Database.Raw(`SELECT user_id FROM auction_vehicle_users WHERE auction_id = '` + auctionID + `' AND is_join = 1 GROUP BY user_id `).Scan(&toUser)
+	common.Database.Raw(`SELECT user_id FROM auction_vehicle_users WHERE auction_id = ? AND is_join = 1 GROUP BY user_id`, auctionID).Scan(&toUser)
 
 	for _, data := range toUser {
-		common.Database.Model(orm.Notification{}).Create(orm.Notification{
+		common.Database.Model(orm.Notification{}).Debug().Create(orm.Notification{
 			ID:                 uuid.NewString(),
 			ToUserID:           data.UserID,
 			NotificationTypeID: "01",
