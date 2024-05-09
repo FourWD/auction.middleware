@@ -140,13 +140,19 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			textWidth := pdf.GetStringWidth("ab" + " " + v.BranchLabel)
 			pdf.RoundedRect(x+34, y+19-2.5, textWidth+2, 3.65, 0.75, "1,2,3,4", "F")
 
-			// pdf.Text(x+34.5, y+19-2, "&#xf3c5")
-			imagePaths := textcolor([]string{v.TextColor})
+			// // pdf.Text(x+34.5, y+19-2, "&#xf3c5")
+			// imagePaths := textcolor([]string{v.TextColor})
 
-			for _, imagePath := range imagePaths {
-				pdf.Image(
-					imagePath, x+34.5, y+19-2, 2.5, 2.5, false, "", 0, "")
-			}
+			// for _, imagePath := range imagePaths {
+			// 	pdf.Image(
+			// 		imagePath, x+34.5, y+19-2, 2.5, 2.5, false, "", 0, "")
+			// }
+			imagePaths := textcolor2(v.TextColor)
+			println(imagePaths)
+			// for _, imagePath := range imagePaths {
+			pdf.Image(imagePaths, x+34.5, y+19-2, 2.5, 2.5, false, "", 0, "")
+			// }
+
 			pdf.SetTextColor(0, 0, 0)
 
 			pdf.Text(x+37.5, y+19, v.BranchLabel)
@@ -193,6 +199,10 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 		return "", err
 	}
 	return path, nil
+}
+func textcolor2(color string) string {
+	// color1 := []string{"https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%2320B2AA.png", "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%237DC3D4.png", "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%23ED1C24.png", "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%23C41016.png"}
+	return fmt.Sprintf("https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%s.png", color)
 }
 func generateFileNameImageCar(auctionName string) string {
 	auctionName = strings.ReplaceAll(auctionName, " ", "_")
