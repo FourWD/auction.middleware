@@ -12,9 +12,9 @@ func NotiAcceptDeposit(userID string, depositID string) error {
 	sqlDeposit := `SELECT * FROM bank_transfers WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlDeposit, depositID, userID).Scan(&deposit)
 
-	var notificationToken string
-	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ?`
-	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+	notificationToken := ""
+	// sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ?`
+	// common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
 	title := "คำขอโอนเงินได้รับอนุมัติแล้ว"
 	body := "กดที่นี่เพื่อดูผลคำขอโอนเงิน"
