@@ -19,7 +19,7 @@ import (
 func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใบปลิวรถ
 	vehicles := prepareDetailList(auctionID)
 
-	filepathStr := "images/pdf/"
+	// filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
 	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
@@ -87,9 +87,11 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 				pdf.SetFillColor(133, 133, 133)
 				pdf.RoundedRect(x+23, y+18.3, 5, 4.75, 0.4, "1,2", "F")
 			} else {
-				logo := filepathStr + "Logo-BG-003.png"
+				logooma := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/Logo-BG-003.png"
+				httpimg.Register(pdf, logooma, "")
+				// logo := filepathStr + "Logo-BG-003.png"
 				// httpimg.Register(pdf, v.ImagePreviewPath, "")
-				pdf.Image(logo, x+1, y+1, 32, 22, false, "", 0, "")
+				pdf.Image(logooma, x+1, y+1, 32, 22, false, "", 0, "")
 			}
 			pdf.Text(x+23.5, y+20, "เลขรถ")
 			pdf.Text(x+25, y+22, v.VehicleNo)
@@ -167,7 +169,8 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			logoY := y
 			logoWidth := 67.0
 			logoHeight := 30.0
-			logo := filepathStr + "logo-omakase.png"
+			logo := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/logo-omakase.png"
+			httpimg.Register(pdf, logo, "")
 			pdf.Image(logo, logoX, logoY, logoWidth, logoHeight, false, "", 0, "")
 		}
 		x += 69.0
@@ -182,8 +185,10 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			imageRowCount++
 		}
 
-		headerdown := filepathStr + "bar-down.jpg"
-		pdf.Image(headerdown, 0, 274, 210, 23, false, "", 0, "")
+		// headerdown := filepathStr + "bar-down.jpg"
+		headerdownpath := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/bar-down.jpg"
+		httpimg.Register(pdf, headerdownpath, "")
+		pdf.Image(headerdownpath, 0, 274, 210, 23, false, "", 0, "")
 	}
 	// common.Print("len", fmt.Sprintf("%d", len(vehicles)))
 
