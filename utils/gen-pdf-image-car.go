@@ -148,6 +148,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			// 		imagePath, x+34.5, y+19-2, 2.5, 2.5, false, "", 0, "")
 			// }
 			imagePaths := textcolor2(v.TextColor)
+			httpimg.Register(pdf, imagePaths, "")
 			println(imagePaths)
 			// for _, imagePath := range imagePaths {
 			pdf.Image(imagePaths, x+34.5, y+19-2, 2.5, 2.5, false, "", 0, "")
