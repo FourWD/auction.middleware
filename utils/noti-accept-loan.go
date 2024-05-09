@@ -5,8 +5,6 @@ import (
 	"strconv"
 
 	"github.com/FourWD/middleware/common"
-	midOrm "github.com/FourWD/middleware/orm"
-	"github.com/google/uuid"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 )
@@ -35,13 +33,13 @@ func NotiAcceptLoan(userID string, loanID string) error {
 		return errSendMsg
 	}
 
-	common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
-		ID:                 uuid.NewString(),
-		ToUserID:           userID,
-		NotificationTypeID: "01",
-		Message:            `{ tile : ` + title + ` body : ` + body + `}`,
-		Url:                "",
-	})
+	// common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
+	// 	ID:                 uuid.NewString(),
+	// 	ToUserID:           userID,
+	// 	NotificationTypeID: "01",
+	// 	Message:            `{ tile : ` + title + ` body : ` + body + `}`,
+	// 	Url:                "",
+	// })
 
 	return nil
 }

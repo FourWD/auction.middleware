@@ -5,8 +5,6 @@ import (
 	"strings"
 
 	"github.com/FourWD/middleware/common"
-	midOrm "github.com/FourWD/middleware/orm"
-	"github.com/google/uuid"
 )
 
 func NotiAcceptRefund(userID string, refundID string) error {
@@ -38,13 +36,13 @@ func NotiAcceptRefund(userID string, refundID string) error {
 		return errSendMsg
 	}
 
-	common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
-		ID:                 uuid.NewString(),
-		ToUserID:           userID,
-		NotificationTypeID: "01",
-		Message:            `{ tile : ` + title + ` body : ` + body + `}`,
-		Url:                "",
-	})
+	// common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
+	// 	ID:                 uuid.NewString(),
+	// 	ToUserID:           userID,
+	// 	NotificationTypeID: "01",
+	// 	Message:            `{ tile : ` + title + ` body : ` + body + `}`,
+	// 	Url:                "",
+	// })
 
 	return nil
 }
