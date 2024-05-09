@@ -222,7 +222,7 @@ func generateFileNameVehicle(auctionName, auctionDate string) string {
 	auctionName = strings.ReplaceAll(auctionName, " ", "_")
 	auctionDate = strings.ReplaceAll(auctionDate, "/", "")
 	auctionDate = strings.ReplaceAll(auctionDate, ":", "")
-	fileName := "รายการประมูลรถยนต์_" + auctionName + "_" + auctionDate + ".pdf"
+	fileName := "รายการประมูลรถยนต์_" + auctionName + "_" + auctionDate
 	return fileName
 }
 

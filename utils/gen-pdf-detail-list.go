@@ -236,7 +236,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 
 func generateFileNameList(auctionName string) string {
 	auctionName = strings.ReplaceAll(auctionName, " ", "_")
-	fileName := "ใบ List_" + auctionName + ".pdf"
+	fileName := "ใบ List_" + auctionName
 	return fileName
 }
 func prepareDetailList(auctionID string) []VehicleSummaryDetail {

@@ -196,7 +196,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 }
 func generateFileNameImageCar(auctionName string) string {
 	auctionName = strings.ReplaceAll(auctionName, " ", "_")
-	fileName := "ใบปลิวรถ_" + auctionName + ".pdf"
+	fileName := "ใบปลิวรถ_" + auctionName
 	return fileName
 }
 func hexToRGB(hex string) (int, int, int) {
