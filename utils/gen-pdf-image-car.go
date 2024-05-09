@@ -201,8 +201,8 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	return path, nil
 }
 func textcolor2(color string) string {
-	// color1 := []string{"https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%2320B2AA.png", "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%237DC3D4.png", "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%23ED1C24.png", "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%23C41016.png"}
-	return fmt.Sprintf("https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%s.png", color)
+	colorWithPercent := strings.Replace(color, "#", "%", -1)
+	return fmt.Sprintf("https://storage.googleapis.com/fourwd-auction/app/pdf_resource/%s.png", colorWithPercent)
 }
 func generateFileNameImageCar(auctionName string) string {
 	auctionName = strings.ReplaceAll(auctionName, " ", "_")
