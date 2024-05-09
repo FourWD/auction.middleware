@@ -471,10 +471,8 @@ func prepareVehicleSKM(auctionID string) []Vehicle {
 
 	for i := range vehicles {
 		if vehicles[i].AdditionalCode == "G001" {
-			// ทำงานเมื่อ additional_code เป็น 'G001'
 			fmt.Println("Additional code is G001")
 		} else {
-			// ทำงานเมื่อ additional_code ไม่ใช่ 'G001'
 			fmt.Println("Additional code is not G001")
 		}
 	}

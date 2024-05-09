@@ -207,7 +207,7 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 	pdf.CellFormat(10, 10, "**บริษัทฯ ขอสงวนสิทธิ์ในการพิจารณายกเลิก หรือเปลี่ยนแปลงการประมูลขายรถบางรายการได้ตามความเหมาะสม โดยไม่ต้องแจ้งให้ทราบล่วงหน้า", "", 0, "L", false, 0, "")
 	pdf.Ln(-1)
 
-	fileName := generateFileName(auctionDetail.Auction[0].Name, auctionDetail.Auction[0].AuctionName)
+	fileName := generateFileNameVehicle(auctionDetail.Auction[0].Name, auctionDetail.Auction[0].AuctionName)
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
@@ -218,12 +218,11 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 
 }
 
-func generateFileName(auctionName, auctionDate string) string {
-	// นำชื่อประมูลรถยนต์และวันที่ประมูลมาสร้างชื่อไฟล์
+func generateFileNameVehicle(auctionName, auctionDate string) string {
 	auctionName = strings.ReplaceAll(auctionName, " ", "_")
 	auctionDate = strings.ReplaceAll(auctionDate, "/", "")
 	auctionDate = strings.ReplaceAll(auctionDate, ":", "")
-	fileName := "รายการประมูลรถยนต์" + auctionName + "_" + auctionDate + ".pdf"
+	fileName := "รายการประมูลรถยนต์_" + auctionName + "_" + auctionDate + ".pdf"
 	return fileName
 }
 

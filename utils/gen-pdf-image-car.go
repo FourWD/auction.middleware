@@ -186,11 +186,18 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	// 	fmt.Println("Error:", err)
 	// }
 	// return filedesination
-	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิวรถ", "auction", "fourwd-auction")
+	fileName := generateFileNameImageCar(vehicles[0].AuctionName)
+
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
 	return path, nil
+}
+func generateFileNameImageCar(auctionName string) string {
+	auctionName = strings.ReplaceAll(auctionName, " ", "_")
+	fileName := "ใบปลิวรถ_" + auctionName + ".pdf"
+	return fileName
 }
 func hexToRGB(hex string) (int, int, int) {
 	var r, g, b int

@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/FourWD/middleware/common"
 	"github.com/jung-kurt/gofpdf"
@@ -217,7 +218,9 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	}
 	pdf.Ln(-1)
 
-	path, err := common.UploadPdfToGoogle(pdf, "ใบปลิว List", "auction", "fourwd-auction")
+	fileName := generateFileNameList(vehicles[0].AuctionName)
+
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
@@ -231,6 +234,11 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	// return filedestination, nil
 }
 
+func generateFileNameList(auctionName string) string {
+	auctionName = strings.ReplaceAll(auctionName, " ", "_")
+	fileName := "ใบ List_" + auctionName + ".pdf"
+	return fileName
+}
 func prepareDetailList(auctionID string) []VehicleSummaryDetail {
 
 	var vs []VehicleSummaryDetail
