@@ -1,30 +1,29 @@
 package utils
 
 import (
-	"github.com/FourWD/auction.middleware/orm"
+	"fmt"
+
 	"github.com/FourWD/middleware/common"
 	midOrm "github.com/FourWD/middleware/orm"
 	"github.com/google/uuid"
 )
 
 func NotiAcceptDeposit(userID string, depositID string) error {
-	deposit := new(orm.BankTransfer)
-	sqlDeposit := `SELECT * FROM bank_transfers WHERE id = ? AND user_id = ?`
+	deposit := 0
+	sqlDeposit := `SELECT amount FROM bank_transfers WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlDeposit, depositID, userID).Scan(&deposit)
 
 	notificationToken := ""
-	// sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ?`
-	// common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDERY BY updated_at DESC LIMIT 1`
+	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
-	title := "คำขอโอนเงินได้รับอนุมัติแล้ว"
-	body := "กดที่นี่เพื่อดูผลคำขอโอนเงิน"
+	title := "👏 ยินดีด้วย คุณได้รับสิทธิ์เข้าร่วมประมูล"
+	body := fmt.Sprintf("ท่านมีสิทธิ์ชนะการประมูลได้ %d คัน", deposit/1000)
 
 	data := map[string]string{
 		"ีuser_id":   userID,
 		"event_code": "R0001",
 	}
-
-	notificationToken = `fIW8kFalzU01uf2vI7ljNI:APA91bHhnQ9rOmCOWUcSSPhyo_LrrKaF58T3dhDkMFoo_M1xFGkFQL1RAhuYPHtugSFAQ9jBWUnxgJY3AZerBnqlgkQRsv6cpGhvjUC52A3qiRXjh8_X1E-Zug6sl6QAKQL6H8nM_X5g`
 
 	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {
 		return errSendMsg

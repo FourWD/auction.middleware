@@ -1,30 +1,37 @@
 package utils
 
 import (
-	"github.com/FourWD/auction.middleware/orm"
+	"fmt"
+	"strconv"
+
 	"github.com/FourWD/middleware/common"
 	midOrm "github.com/FourWD/middleware/orm"
 	"github.com/google/uuid"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 )
 
 func NotiAcceptLoan(userID string, loanID string) error {
-	loan := new(orm.RegisterLeasing)
-	sqlLoan := `SELECT * FROM register_leasings WHERE id = ? AND user_id = ?`
+	loan := ""
+	sqlLoan := `SELECT financial_amount FROM register_leasings WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlLoan, loanID, userID).Scan(&loan)
 
-	logUserLogin := new(midOrm.LogUserLogin)
-	sqlNotiToken := `SELECT * FROM log_user_logins WHERE user_id = ?`
-	common.Database.Raw(sqlNotiToken, userID).Scan(&logUserLogin)
+	notificationToken := ""
+	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDERY BY updated_at DESC LIMIT 1`
+	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
-	title := "คำขอเงินกู้ได้รับอนุมัติแล้ว"
-	body := "กดที่นี่เพื่อดูผลคำขอเงินกู้"
+	loanInt, _ := strconv.Atoi(loan)
+	p := message.NewPrinter(language.English)
+	loanWithCommaThousandSep := p.Sprintf("%f", loanInt)
+	title := "👏 ยินดีด้วย คุณได้รับสิทธิ์เข้าร่วมประมูล"
+	body := fmt.Sprintf("วงเงินเช่าซื้อเบื้อง %s บาท (เงื่อนไขเป็นไปตามที่สถาบันการเงินกําหนด)", loanWithCommaThousandSep)
 
 	data := map[string]string{
 		"ีuser_id":   userID,
 		"event_code": "R0001",
 	}
 
-	if errSendMsg := common.SendMessageToUser(logUserLogin.NotificationToken, title, body, data); errSendMsg != nil {
+	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {
 		return errSendMsg
 	}
 

@@ -1,30 +1,40 @@
 package utils
 
 import (
-	"github.com/FourWD/auction.middleware/orm"
+	"fmt"
+	"strings"
+
 	"github.com/FourWD/middleware/common"
 	midOrm "github.com/FourWD/middleware/orm"
 	"github.com/google/uuid"
 )
 
 func NotiAcceptRefund(userID string, refundID string) error {
-	refund := new(orm.Refund)
-	sqlRefund := `SELECT * FROM refunds WHERE id = ? AND user_id = ?`
+	type Refund struct {
+		Amount        int    `json:"amount"`
+		ApproveDate   string `json:"approve_date"`
+		BankAccountNo string `json:"bank_account_no"`
+		BankName      string `json:"bank_name"`
+	}
+	refund := new(Refund)
+	sqlRefund := `SELECT r.amount, DATE(r.approve_date) approve_date, r.bank_account_no, b.name_en bank_name FROM refunds r LEFT JOIN banks b ON r.bank_id = b.id WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlRefund, refundID, userID).Scan(&refund)
 
-	logUserLogin := new(midOrm.LogUserLogin)
-	sqlNotiToken := `SELECT * FROM log_user_logins WHERE user_id = ?`
-	common.Database.Raw(sqlNotiToken, userID).Scan(&logUserLogin)
+	notificationToken := ""
+	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDERY BY updated_at DESC LIMIT 1`
+	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
-	title := "คำขอคืนเงินได้รับอนุมัติแล้ว"
-	body := "กดที่นี่เพื่อดูผลคำขอคืนเงิน"
+	obfuscated := strings.Repeat("x", len(refund.BankAccountNo)-3) + refund.BankAccountNo[len(refund.BankAccountNo)-3:]
+
+	title := "🙏 Omakase Car Auction ขอขอบคุณ"
+	body := fmt.Sprintf("คืนเงินมัดจําประมูล %d บาท %s เลขบัญชี %s %s", refund.Amount, refund.ApproveDate, obfuscated, refund.BankName)
 
 	data := map[string]string{
 		"ีuser_id":   userID,
 		"event_code": "R0001",
 	}
 
-	if errSendMsg := common.SendMessageToUser(logUserLogin.NotificationToken, title, body, data); errSendMsg != nil {
+	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {
 		return errSendMsg
 	}
 
