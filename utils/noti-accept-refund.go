@@ -21,7 +21,7 @@ func NotiAcceptRefund(userID string, refundID string) error {
 	common.Database.Raw(sqlRefund, refundID, userID).Scan(&refund)
 
 	notificationToken := ""
-	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDERY BY updated_at DESC LIMIT 1`
+	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
 	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
 	obfuscated := strings.Repeat("x", len(refund.BankAccountNo)-3) + refund.BankAccountNo[len(refund.BankAccountNo)-3:]

@@ -17,7 +17,7 @@ func NotiAcceptLoan(userID string, loanID string) error {
 	common.Database.Raw(sqlLoan, loanID, userID).Scan(&loan)
 
 	notificationToken := ""
-	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDERY BY updated_at DESC LIMIT 1`
+	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
 	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
 	loanInt, _ := strconv.Atoi(loan)
