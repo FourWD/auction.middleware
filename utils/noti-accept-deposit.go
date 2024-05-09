@@ -12,9 +12,9 @@ func NotiAcceptDeposit(userID string, depositID string) error {
 	sqlDeposit := `SELECT * FROM bank_transfers WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlDeposit, depositID, userID).Scan(&deposit)
 
-	logUserLogin := new(midOrm.LogUserLogin)
-	sqlNotiToken := `SELECT * FROM log_user_logins WHERE user_id = ?`
-	common.Database.Raw(sqlNotiToken, userID).Scan(&logUserLogin)
+	var notificationToken string
+	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ?`
+	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
 
 	title := "คำขอโอนเงินได้รับอนุมัติแล้ว"
 	body := "กดที่นี่เพื่อดูผลคำขอโอนเงิน"
@@ -24,7 +24,9 @@ func NotiAcceptDeposit(userID string, depositID string) error {
 		"event_code": "R0001",
 	}
 
-	if errSendMsg := common.SendMessageToUser(logUserLogin.NotificationToken, title, body, data); errSendMsg != nil {
+	notificationToken = `fIW8kFalzU01uf2vI7ljNI:APA91bHhnQ9rOmCOWUcSSPhyo_LrrKaF58T3dhDkMFoo_M1xFGkFQL1RAhuYPHtugSFAQ9jBWUnxgJY3AZerBnqlgkQRsv6cpGhvjUC52A3qiRXjh8_X1E-Zug6sl6QAKQL6H8nM_X5g`
+
+	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {
 		return errSendMsg
 	}
 
