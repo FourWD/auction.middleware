@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 
@@ -17,6 +18,11 @@ func NotiAcceptLoan(userID string, loanID string) error {
 	notificationToken := ""
 	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
 	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+
+	if notificationToken == "" {
+		common.PrintError("notificationToken", "notiToken is empty")
+		return errors.New("notiToken is empty")
+	}
 
 	loanInt, _ := strconv.Atoi(loan)
 	p := message.NewPrinter(language.English)

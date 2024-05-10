@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -21,6 +22,11 @@ func NotiAcceptRefund(userID string, refundID string) error {
 	notificationToken := ""
 	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
 	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+
+	if notificationToken == "" {
+		common.PrintError("notificationToken", "notiToken is empty")
+		return errors.New("notiToken is empty")
+	}
 
 	obfuscated := strings.Repeat("x", len(refund.BankAccountNo)-3) + refund.BankAccountNo[len(refund.BankAccountNo)-3:]
 

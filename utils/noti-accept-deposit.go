@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/FourWD/middleware/common"
@@ -14,6 +15,11 @@ func NotiAcceptDeposit(userID string, depositID string) error {
 	notificationToken := ""
 	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
 	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+
+	if notificationToken == "" {
+		common.PrintError("notificationToken", "notiToken is empty")
+		return errors.New("notiToken is empty")
+	}
 
 	title := "👏 ยินดีด้วย คุณได้รับสิทธิ์เข้าร่วมประมูล"
 	body := fmt.Sprintf("ท่านมีสิทธิ์ชนะการประมูลได้ %d คัน", deposit/1000)
