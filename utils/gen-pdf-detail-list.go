@@ -1,12 +1,12 @@
 package utils
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 
 	"github.com/FourWD/middleware/common"
 	"github.com/jung-kurt/gofpdf"
+	"github.com/jung-kurt/gofpdf/contrib/httpimg"
 )
 
 // func GenPDFDetailList(auctionID string) (string, error) { //list รายการราคารถ
@@ -79,17 +79,17 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 	pdf.CellFormat(20, 8, "สถานที่จอด", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(60, 8, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(66, 8, "รุ่นรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(20, 8, "สี", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 8, "รุ่นปี", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(15, 8, "เกียร์", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 8, "เกรด", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(20, 8, "เลขไมล์", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(40, 8, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(30, 8, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(25, 8, "ราคาประมูลเริ่มต้น", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(12, 8, "%CRP", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(25, 8, "CRP(ไม่รวม vat)", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 8, "หมายเหตุ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(35, 8, "ราคาป้ายแดง (ไม่รวม vat)", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(15, 8, "หมายเหตุ", "1", 0, "C", true, 0, "")
 	pdf.SetTextColor(0, 0, 0)
 	pdf.SetFillColor(255, 255, 255)
 
@@ -98,7 +98,7 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 func GenPDFVehicleDetail(auctionID string) (string, error) {
 	vehicles := prepareDetailList(auctionID)
 
-	filepathStr := "images/pdf/"
+	// filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
 	pdf := gofpdf.New("L", "mm", "A4", "")
 
@@ -108,16 +108,20 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 
 	// header := filepathStr + "top-bar-detail.jpg"
 	// pdf.Image(header, 0, 0, 297, 45, false, "", 0, "")
+	header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
+	httpimg.Register(pdf, header, "")
+	pdf.Image(header, 0, 0, 297, 53, false, "", 0, "")
 
-	headertable(pdf, 0)
+	headertable(pdf, 53)
 
 	pdf.SetFont("Sarabun", "B", 12)
-	tableYz := 8
+	tableYz := 60.5
 	page := 1
 	counter := make(map[string]int)
 
-	perpage := 20
+	perpage := 16
 	line := 1
+
 	for i, v := range vehicles {
 
 		i++
@@ -126,10 +130,10 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		} else {
 			perpage = 22
 		}
-		fmt.Printf("index = %d, License = %s", i, v.License)
-		fmt.Printf(", page = %d, perpage = %d", page, perpage)
-		fmt.Printf(", line = %d", line)
-		fmt.Println("========================")
+		// fmt.Printf("index = %d, License = %s", i, v.License)
+		// fmt.Printf(", page = %d, perpage = %d", page, perpage)
+		// fmt.Printf(", line = %d", line)
+		// fmt.Println("========================")
 
 		tableX := 0
 		pdf.SetXY(float64(tableX), float64(tableYz))
@@ -145,8 +149,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 			// }
 		}
 		pdf.CellFormat(10, 8, strconv.Itoa(counter[v.BranchLabel]), "1", 0, "C", true, 0, "")
-
-		pdf.CellFormat(60, 8, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
+		pdf.CellFormat(66, 8, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
 		pdf.CellFormat(20, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.Years, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, 8, v.VehicleGearName, "1", 0, "C", true, 0, "")
@@ -155,7 +158,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		mileComma := common.FloatWithCommas(mile, 0)
 
 		pdf.CellFormat(20, 8, mileComma, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(40, 8, v.License, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
 		openPriceFloat, _ := strconv.ParseFloat(v.OpenPrice, 64)
 
 		var openprice string
@@ -184,16 +187,15 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 
 		pdf.Ln(-1)
 		tableYz += 8
-		// branchCounts[v.BranchLabel]++
 
 		line++
 		newpage := false
 
-		if i == 20 {
+		if i == 16 {
 			newpage = true
 
-		} else if i > 20 {
-			temp := i - 20
+		} else if i > 16 {
+			temp := i - 16
 			if temp%perpage == 0 {
 				newpage = true
 			}
@@ -201,18 +203,15 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		if newpage {
 			line = 1
 			page++
-
-			pdf.AddPage()
-			// pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
-			// pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")
-			// pdf.SetFont("Sarabun", "B", 12)
-
-			tableYz = 8
-
-			headertable(pdf, 0)
-
+			if i < len(vehicles) {
+				pdf.AddPage()
+				tableYz = 8
+				headertable(pdf, 0)
+			}
 		}
-		headerdown := filepathStr + "down-bar-detail.jpg"
+		headerdown := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
+		httpimg.Register(pdf, headerdown, "")
+		// headerdown := filepathStr + "down-bar-detail.jpg"
 		pdf.Image(headerdown, 0, 197, 297, 12, false, "", 0, "")
 
 	}
