@@ -128,7 +128,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			pdf.SetTextColor(0, 0, 0)
 
 			pdf.Text(x+34, y+4, "ปี "+v.YearRegister+" "+v.VehicleBrandName)
-			pdf.SetFont("Sarabun", "", 8)
+			pdf.SetFont("Sarabun", "", 7)
 			pdf.Text(x+34, y+7, v.VehicleModelName+" "+v.VehicleSubModelName)
 
 			pdf.Text(x+34, y+11, "ทะเบียน : "+v.License+" "+v.LicenseProvinceName)
@@ -173,17 +173,45 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			httpimg.Register(pdf, logo, "")
 			pdf.Image(logo, logoX, logoY, logoWidth, logoHeight, false, "", 0, "")
 		}
+		// x += 69.0
+		// imagesInRow++
+		// //18+24
+
+		// if imagesInRow >= 3 {
+
+		// 	x = 2.5
+		// 	y += 32.0
+		// 	imagesInRow = 0
+		// 	imageRowCount++
+		// }
+
 		x += 69.0
 		imagesInRow++
 		//18+24
-
 		if imagesInRow >= 3 {
-
 			x = 2.5
 			y += 32.0
 			imagesInRow = 0
 			imageRowCount++
 		}
+		newpage := false
+		if i == 24 {
+			newpage = true
+		} else if i > 24 {
+			temp := i - 24
+			if temp%24 == 0 {
+				newpage = true
+			}
+		}
+		if newpage {
+			pdf.AddPage()
+			pdf.SetFillColor(196, 16, 22)
+			pdf.Rect(0, 0, 210, 297, "F")
+			x = 2.5
+			y = 15
+			imagesInRow = 0
+		}
+		i++
 
 		// headerdown := filepathStr + "bar-down.jpg"
 		headerdownpath := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/bar-down.jpg"
