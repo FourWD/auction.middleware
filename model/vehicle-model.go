@@ -19,7 +19,7 @@ type VehicleModel struct {
 	// YearManufacturing     string    `json:"year_manufacturing" query:"year_manufacturing" gorm:"type:varchar(4)"`
 	// YearRegister          string    `json:"year_register" query:"year_register" gorm:"type:varchar(4)"`
 	// License               string    `json:"license" query:"license" gorm:"type:varchar(10)"`
-	// LicenseProviceID      string    `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36)"`
+	// LicenseProvinceID      string    `json:"license_province_id" query:"license_province_id" gorm:"type:varchar(36)"`
 	// VehicleGradeID        string    `json:"vehicle_grade_id" query:"vehicle_grade_id" gorm:"type:varchar(36)"`
 	// BranchID              string    `json:"branch_id" query:"branch_id" gorm:"type:varchar(36)"`
 	// ImagePreviewPath      string    `json:"image_preview_path" query:"image_preview_path" gorm:"type:varchar(400)"`
@@ -174,5 +174,5 @@ LEFT JOIN vehicle_colors vc ON vc.id = vehicles.vehicle_color_id
 LEFT JOIN vehicle_grades vgr ON vgr.id = vehicles.vehicle_grade_id
 LEFT JOIN sources s ON s.id = vehicles.source_id
 LEFT JOIN branches b ON b.id = vehicles.branch_id
-LEFT JOIN provinces p ON p.id = vehicles.license_provice_id;
+LEFT JOIN provinces p ON p.id = vehicles.license_province_id;
 */

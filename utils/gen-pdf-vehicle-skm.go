@@ -430,7 +430,7 @@ func prepareVehicleSKM(auctionID string) []Vehicle {
             v.source_name,
             v.source_id,
             v.license,
-            v.license_provice_id,
+            v.license_province_id,
             v.license_province_name,
             v.mile AS mile,
             b.label as branch_label,
