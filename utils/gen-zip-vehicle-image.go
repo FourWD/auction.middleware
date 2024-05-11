@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/FourWD/middleware/common"
 )
@@ -30,12 +31,13 @@ func GenZipVehicleImage(auctionID string, userID string) (string, error) {
 			common.PrintError("error make sub dir", errss.Error())
 			return "", errss
 		}
-		file_name = v.License + "_" + v.ImageName + ".jpg"
+		file_name = v.License + "_" + strings.ReplaceAll(v.ImageName, "/", "") + ".jpg"
 		err := common.DownloadFile(v.ImagePath, vehiclePath+"/"+file_name, "auction", "fourwd-auction")
 		if err != nil {
 			println("download " + file_name + " failed")
 			return "", err
 		}
+
 		println("download " + file_name + " work")
 		// download v.image path to this folder rename to imagename
 	}
