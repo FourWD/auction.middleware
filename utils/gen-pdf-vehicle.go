@@ -161,9 +161,9 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 
 		if vehicle.GradeRemark != "" {
 
-			pdf.SetFont("THSarabun", "", 9)
+			pdf.SetFont("THSarabun", "", 8)
 			// pdf.CellFormat(5, x, "", "1", 0, "C", false, 0, "")
-			pdf.MultiCell(0, 5.25, vehicle.GradeRemark, "1", "L", false) // MultiCell for remark column
+			pdf.MultiCell(0, 4.75, vehicle.GradeRemark, "1", "L", false) // MultiCell for remark column
 			pdf.SetFillColor(240, 240, 240)
 
 		}

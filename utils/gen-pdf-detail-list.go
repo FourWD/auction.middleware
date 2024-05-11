@@ -187,31 +187,31 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		// branchCounts[v.BranchLabel]++
 
 		line++
-		// newpage := false
+		newpage := false
 
-		// if i == 20 {
-		// 	newpage = true
+		if i == 20 {
+			newpage = true
 
-		// } else if i > 20 {
-		// 	temp := i - 20
-		// 	if temp%perpage == 0 {
-		// 		newpage = true
-		// 	}
-		// }
-		// if newpage {
-		// 	line = 1
-		// 	page++
+		} else if i > 20 {
+			temp := i - 20
+			if temp%perpage == 0 {
+				newpage = true
+			}
+		}
+		if newpage {
+			line = 1
+			page++
 
-		// 	pdf.AddPage()
-		// 	// pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
-		// 	// pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")
-		// 	// pdf.SetFont("Sarabun", "B", 12)
+			pdf.AddPage()
+			// pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
+			// pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")
+			// pdf.SetFont("Sarabun", "B", 12)
 
-		// 	tableYz = 8
+			tableYz = 8
 
-		// 	headertable(pdf, 0)
+			headertable(pdf, 0)
 
-		// }
+		}
 		headerdown := filepathStr + "down-bar-detail.jpg"
 		pdf.Image(headerdown, 0, 197, 297, 12, false, "", 0, "")
 
