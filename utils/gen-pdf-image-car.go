@@ -188,7 +188,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 		// headerdown := filepathStr + "bar-down.jpg"
 		headerdownpath := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/bar-down.jpg"
 		httpimg.Register(pdf, headerdownpath, "")
-		pdf.Image(headerdownpath, 0, 274, 210, 23, false, "", 0, "")
+		pdf.Image(headerdownpath, 0, 279, 210, 18, false, "", 0, "")
 	}
 	// common.Print("len", fmt.Sprintf("%d", len(vehicles)))
 
