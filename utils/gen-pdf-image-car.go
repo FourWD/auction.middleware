@@ -5,7 +5,6 @@ import (
 	"image"
 	"image/color"
 	"image/png"
-	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -37,16 +36,16 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	imagesInRow := 0
 	imageRowCount := 1
 	page := 1
-	addon := 3 - len(vehicles)%3 // 012
-	if addon == 3 {
-		addon = 0
-	}
-	// log.Println(addon)
-	for i := 0; i < addon; i++ {
-		vnull := new(VehicleSummaryDetail)
-		vehicles = append(vehicles, *vnull)
-		log.Println(i)
+	vehicleCount := (len(vehicles))
+	mod := vehicleCount % 24
+	if mod != 0 {
+		emptyVehicle := 24 - mod
+		println(emptyVehicle)
 
+		for i := 1; i <= emptyVehicle; i++ {
+			vnull := new(VehicleSummaryDetail)
+			vehicles = append(vehicles, *vnull)
+		}
 	}
 
 	for i, v := range vehicles {
@@ -199,7 +198,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			newpage = true
 		} else if i > 24 {
 			temp := i - 24
-			if temp%24 == 0 {
+			if temp%24 == 0 && i < vehicleCount {
 				newpage = true
 			}
 		}
