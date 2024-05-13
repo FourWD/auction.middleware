@@ -41,16 +41,17 @@ type Auction struct {
 	IsGenFile            bool      `json:"is_gen_file" query:"is_gen_file" firestore:"is_gen_file" gorm:"type:bool"`
 	GenFileDate          time.Time `json:"gen_file_date" query:"gen_file_date" firestore:"gen_file_date" `
 
-	RunningNo     int  `json:"running_no" query:"running_no" firestore:"running_no" gorm:"primary_key;auto_increment;not_null"`
-	CountOfSedan  int  `json:"count_of_sedan" query:"count_of_sedan" firestore:"count_of_sedan" gorm:"type:int(6)"`
-	CountOfPickup int  `json:"count_of_pickup" query:"count_of_pickup" firestore:"count_of_pickup" gorm:"type:int(6)"`
-	CountOfSUV    int  `json:"count_of_suv" query:"count_of_suv" firestore:"count_of_suv" gorm:"type:int(6)"`
-	CountOfVan    int  `json:"count_of_van" query:"count_of_van" firestore:"count_of_van" gorm:"type:int(6)"`
-	CountOfTruck  int  `json:"count_of_truck" query:"count_of_truck" firestore:"count_of_truck" gorm:"type:int(6)"`
-	IsSyncBidding bool `json:"is_sync_bidding" query:"is_sync_bidding" firestore:"is_sync_bidding" gorm:"type:bool"`
-	BiddingStep1  int  `json:"bidding_step_1" query:"bidding_step_1" firestore:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
-	BiddingStep2  int  `json:"bidding_step_2" query:"bidding_step_2" firestore:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
-	BiddingStep3  int  `json:"bidding_step_3" query:"bidding_step_3" firestore:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6)"`
+	RunningNo      int    `json:"running_no" query:"running_no" firestore:"running_no" gorm:"primary_key;auto_increment;not_null"`
+	CountOfSedan   int    `json:"count_of_sedan" query:"count_of_sedan" firestore:"count_of_sedan" gorm:"type:int(6)"`
+	CountOfPickup  int    `json:"count_of_pickup" query:"count_of_pickup" firestore:"count_of_pickup" gorm:"type:int(6)"`
+	CountOfSUV     int    `json:"count_of_suv" query:"count_of_suv" firestore:"count_of_suv" gorm:"type:int(6)"`
+	CountOfVan     int    `json:"count_of_van" query:"count_of_van" firestore:"count_of_van" gorm:"type:int(6)"`
+	CountOfTruck   int    `json:"count_of_truck" query:"count_of_truck" firestore:"count_of_truck" gorm:"type:int(6)"`
+	IsSyncBidding  bool   `json:"is_sync_bidding" query:"is_sync_bidding" firestore:"is_sync_bidding" gorm:"type:bool"`
+	BiddingStep1   int    `json:"bidding_step_1" query:"bidding_step_1" firestore:"bidding_step_1" gorm:"column:bidding_step_1;type:int(6)"`
+	BiddingStep2   int    `json:"bidding_step_2" query:"bidding_step_2" firestore:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
+	BiddingStep3   int    `json:"bidding_step_3" query:"bidding_step_3" firestore:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6)"`
+	FileResultPath string `json:"file_result_path" query:"file_result_path" gorm:"type:varchar(256)"`
 }
 
 /*

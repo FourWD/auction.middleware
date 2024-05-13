@@ -110,7 +110,7 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 		// Set the fill color to light gray
 		pdf.SetFillColor(240, 240, 240) // Light gray color for the cell background
 
-		pdf.SetFont("THSarabun", "B", 9)
+		pdf.SetFont("THSarabun", "B", 8.5)
 		pdf.CellFormat(5, 8, vehicle.VehicleNo, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(80, 8, vehicle.License+" "+vehicle.LicenseProvinceName+" | "+
 
