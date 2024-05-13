@@ -10,7 +10,7 @@ import (
 	"golang.org/x/text/message"
 )
 
-func NotiAcceptLoan(userID string, loanID string) error {
+func NotiSendAcceptLoan(userID string, loanID string) error {
 	loan := ""
 	sqlLoan := `SELECT financial_amount FROM register_leasings WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlLoan, loanID, userID).Scan(&loan)

@@ -7,7 +7,7 @@ import (
 	"github.com/FourWD/middleware/common"
 )
 
-func NotiAcceptDeposit(userID string, depositID string) error {
+func NotiSendAcceptDeposit(userID string, depositID string) error {
 	deposit := 0
 	sqlDeposit := `SELECT amount FROM bank_transfers WHERE id = ? AND user_id = ?`
 	common.Database.Raw(sqlDeposit, depositID, userID).Scan(&deposit)

@@ -8,7 +8,7 @@ import (
 	"github.com/FourWD/middleware/common"
 )
 
-func NotiAcceptRefund(userID string, refundID string) error {
+func NotiSendAcceptRefund(userID string, refundID string) error {
 	type Refund struct {
 		Amount        int    `json:"amount"`
 		ApproveDate   string `json:"approve_date"`
