@@ -241,9 +241,13 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.SetFont("Sarabun", "B", 50)
 		pdf.Text(193, 148, "")
 
+		// if v.ImagePreviewPath != "" {
+		// 	httpimg.Register(pdf, v.ImagePreviewPath, "")
+		// 	pdf.Image(v.ImagePreviewPath, 12, 95, 70, 45, false, "", 0, "")
+		// }
 		if v.ImagePreviewPath != "" {
 			httpimg.Register(pdf, v.ImagePreviewPath, "")
-			pdf.Image(v.ImagePreviewPath, 12, 95, 70, 45, false, "", 0, "")
+			pdf.Image(v.ImagePreviewPath, 9, 90, 74, 0, false, "", 0, "")
 		}
 		//บน 25
 		//ล่าง 26

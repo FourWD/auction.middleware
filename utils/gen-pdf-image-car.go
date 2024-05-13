@@ -75,7 +75,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 			if v.ImagePreviewPath != "" {
 
 				httpimg.Register(pdf, v.ImagePreviewPath, "")
-				pdf.Image(v.ImagePreviewPath, x+1, y+1, 32, 22, false, "", 0, "")
+				pdf.Image(v.ImagePreviewPath, x+1, y+1, 32, 0, false, "", 0, "")
 				pdf.SetTextColor(255, 255, 255)
 				pdf.SetFillColor(133, 133, 133)
 				pdf.RoundedRect(x+23, y+18.3, 5, 4.75, 0.4, "1,2", "F")
