@@ -231,7 +231,8 @@ LEFT JOIN vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_
         LEFT JOIN vehicles v on av.vehicle_id = v.id
         LEFT JOIN auctions a ON av.auction_id = a.id 
 	where
-	  av.auction_id = ? AND av.is_win = true`, auctionID).Scan(&summary)
+	  av.auction_id = ? AND av.is_win = true 
+	  GROUP BY DATE(a.start_date), a.name`, auctionID).Scan(&summary)
 	common.Print(auctionID, "auctionID")
 
 	return vehicles, *summary
