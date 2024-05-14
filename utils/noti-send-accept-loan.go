@@ -26,7 +26,7 @@ func NotiSendAcceptLoan(userID string, loanID string) error {
 
 	loanInt, _ := strconv.Atoi(loan)
 	p := message.NewPrinter(language.English)
-	loanWithCommaThousandSep := p.Sprintf("%f", loanInt)
+	loanWithCommaThousandSep := p.Sprintf("%d", loanInt)
 	title := "👏 ยินดีด้วย คุณได้รับสิทธิ์เข้าร่วมประมูล"
 	body := fmt.Sprintf("วงเงินเช่าซื้อเบื้อง %s บาท (เงื่อนไขเป็นไปตามที่สถาบันการเงินกําหนด)", loanWithCommaThousandSep)
 
