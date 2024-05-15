@@ -34,11 +34,11 @@ func GenZipVehicleImage(auctionID string, userID string) (string, error) {
 		file_name = v.License + "_" + strings.ReplaceAll(v.ImageName, "/", "") + ".jpg"
 		err := common.DownloadFile(v.ImagePath, vehiclePath+"/"+file_name, "auction", "fourwd-auction")
 		if err != nil {
-			println("download " + file_name + " failed")
+			// println("download " + file_name + " failed") // COMMENT WORKING PATH
 			return "", err
 		}
 
-		println("download " + file_name + " work")
+		// println("download " + file_name + " work") // COMMENT WORKING PATH
 		// download v.image path to this folder rename to imagename
 	}
 	// zip folder mainpath

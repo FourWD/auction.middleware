@@ -40,6 +40,8 @@ type Auction struct {
 	IsAllVehicleApprove  bool      `json:"is_all_vehicle_approve" query:"is_all_vehicle_approve" firestore:"is_all_vehicle_approve" gorm:"type:bool"`
 	IsGenFile            bool      `json:"is_gen_file" query:"is_gen_file" firestore:"is_gen_file" gorm:"type:bool"`
 	GenFileDate          time.Time `json:"gen_file_date" query:"gen_file_date" firestore:"gen_file_date" `
+	IsGenEodUser         bool      `json:"is_gen_eod_user" query:"is_gen_eod_user" firestore:"is_gen_eod_user" gorm:"type:bool"`
+	GenEodUserDate       time.Time `json:"gen_eod_user_date" query:"gen_eod_user_date" firestore:"gen_eod_user_date" `
 
 	RunningNo      int    `json:"running_no" query:"running_no" firestore:"running_no" gorm:"primary_key;auto_increment;not_null"`
 	CountOfSedan   int    `json:"count_of_sedan" query:"count_of_sedan" firestore:"count_of_sedan" gorm:"type:int(6)"`
