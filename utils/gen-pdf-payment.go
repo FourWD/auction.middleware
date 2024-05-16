@@ -505,7 +505,10 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 	// pdf.Ln(4)
 
 	pdf.SetFont("Sarabun", "", 16)
-	pdf.Text(10, 55, "รอบการประมูลของ"+summary.RoundName+" | "+summary.AuctionName)
+	pdf.Text(10, 55, summary.AuctionName)
+
+	// pdf.SetFont("Sarabun", "", 16)
+	// pdf.Text(10, 55, "รอบการประมูลของ"+summary.RoundName+" | "+summary.AuctionName)
 
 	pdf.SetFont("Sarabun", "B", 18)
 	pdf.Text(175, 55, "จำนวน "+strconv.Itoa(summary.TotalCar)+" คัน")
