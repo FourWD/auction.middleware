@@ -110,7 +110,7 @@ type VehicleReport struct {
 // pdf.SetFillColor(255, 255, 255)
 // }
 
-func headertableReport(pdf gofpdf.Pdf, tabley int) {
+func headertableReport(pdf gofpdf.Pdf, tabley int, y int) {
 	// Define table headers
 	pdf.SetFillColor(196, 16, 22)
 	pdf.SetTextColor(255, 255, 255) // ตั้งค่าสีข้อความเป็นสีขาว
@@ -124,13 +124,14 @@ func headertableReport(pdf gofpdf.Pdf, tabley int) {
 	cellHeight := 10.0
 	// border := "10"
 	pdf.CellFormat(10, 18, "เลขรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 18, "ยี่ห้อรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(15, 18, "ยี่ห้อรถ", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(65, 18, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(60, 18, "รุ่นรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(15, 18, "ปีผลิต", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 18, "เกรด", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 18, "สี", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(30, 18, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(15, 18, "สี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(25, 18, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(20, 18, "ราคาเปิด", "1", 0, "C", true, 0, "")
 
 	// กำหนดพื้นหลังสีเหมือนกันสำหรับเซลล์ทั้งหมด
 	pdf.SetFillColor(196, 16, 22)
@@ -141,12 +142,10 @@ func headertableReport(pdf gofpdf.Pdf, tabley int) {
 
 	pdf.CellFormat(40, 8, "ราคาประมูลสูงสุด", "1", 0, "C", true, 0, "")
 	pdf.SetFont("Sarabun", "B", 10)
-
-	pdf.SetXY(170, 78)
+	pdf.SetXY(170, float64(y))
 	pdf.MultiCell(cellWidth, cellHeight/2, "ไม่รวมภาษี\nมูลค่าเพิ่ม", "1", "C", true)
-	pdf.SetXY(190, 78)
+	pdf.SetXY(190, float64(y))
 	pdf.MultiCell(cellWidth, cellHeight/2, "รวมภาษี\nมูลค่าเพิ่ม", "1", "C", true)
-
 	// pdf.CellFormat(20, 8, "รวมภาษีมูลค่าเพิ่ม", "1", 0, "C", true, 0, "")
 
 	// กำหนดสีข้อความและพื้นหลังเป็นค่าเริ่มต้น

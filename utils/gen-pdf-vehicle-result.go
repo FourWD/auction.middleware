@@ -32,7 +32,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 	pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
 	pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")
 
-	headertableReport(pdf, 70)
+	headertableReport(pdf, 70, 78)
 
 	header := filepathStr + "Head-2.png"
 	pdf.Image(header, 0, 0, 210, 70, false, "", 0, "")
@@ -71,7 +71,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 	page := 1
 	// y := 75.0
-	perpage := 25
+	perpage := 23
 	line := 1
 	tableYz := 88
 
@@ -80,7 +80,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 		if page == 1 {
 		} else {
-			perpage = 26
+			perpage = 28
 		}
 		fmt.Printf("index = %d, License = %s", i, v.License)
 		fmt.Printf(", page = %d, perpage = %d", page, perpage)
@@ -117,50 +117,15 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 		pdf.Ln(-1)
 
-		//มีราคาเปิด
-		// pdf.SetXY(float64(tableX), float64(tableYz))
-		// pdf.SetFont("Sarabun", "", 13)
-		// pdf.CellFormat(10, 8, v.VehicleNo, "1", 0, "C", true, 0, "")
-		// pdf.CellFormat(15, 8, v.VehicleBrandName, "1", 0, "C", true, 0, "")
-		// // pdf.CellFormat(10, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
-		// pdf.CellFormat(60, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
-		// pdf.CellFormat(15, 8, v.YearRegister, "1", 0, "C", true, 0, "")
-		// pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
-
-		// pdf.CellFormat(15, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
-
-		// pdf.SetFont("Sarabun", "B", 14)
-		// openprice, _ := strconv.ParseFloat(v.OpenPrice, 64)
-		// formattedOpenPrice := common.FloatWithCommas(openprice, 0)
-
-		// pdf.CellFormat(25, 8, v.License, "1", 0, "C", true, 0, "")
-		// pdf.CellFormat(20, 8, formattedOpenPrice, "1", 0, "R", true, 0, "")
-
-		// closeprice, _ := strconv.ParseFloat(v.ClosePrice, 64)
-		// imcvat := float64(float64(closeprice) * 1.07)
-
-		// formattedVatPrice := common.FloatWithCommas(imcvat, 0)
-		// formattedCloseprice := common.FloatWithCommas(closeprice, 0)
-
-		// // pdf.CellFormat(20, 8, v.ClosePrice, "1", 0, "C", true, 0, "")
-
-		// pdf.CellFormat(20, 8, formattedCloseprice, "1", 0, "R", true, 0, "")
-		// pdf.SetFont("Sarabun", "", 13)
-
-		// pdf.CellFormat(20, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
-
-		// pdf.Ln(-1)
-
 		tableYz += 8
 
 		line++
 		newpage := false
-
-		if i == 25 {
+		if i == 23 {
 			newpage = true
 
-		} else if i > 25 {
-			temp := i - 25
+		} else if i > 23 {
+			temp := i - 23
 			if temp%perpage == 0 {
 				newpage = true
 			}
@@ -168,13 +133,13 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		if newpage {
 			line = 1
 			page++
-			pdf.AddPage()
-			tableYz = 8
+			if i < len(vehicles) {
+				pdf.AddPage()
+				tableYz = 18
+				headertableReport(pdf, 0, 8)
 
-			headertable(pdf, 0)
-
+			}
 		}
-
 		headerdown := filepathStr + "Bottom.png"
 		pdf.Image(headerdown, 0, 279, 210, 18, false, "", 0, "")
 	}
