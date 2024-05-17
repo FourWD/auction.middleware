@@ -76,6 +76,10 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 	pdf.Text(10, 33, auctionDetail.Auction[0].AuctionName)
 	pdf.Ln(10)
 
+	// pdf.SetFont("THSarabun", "", 16)
+	// pdf.Text(10, 33, "รอบการประมูลของ "+auctionDetail.Auction[0].Name+" | "+auctionDetail.Auction[0].AuctionName)
+	// pdf.Ln(10)
+
 	pdf.SetLineWidth(0.2) // Set line width
 	pdf.Line(10, 25, 200, 25)
 	pdf.Ln(10)
