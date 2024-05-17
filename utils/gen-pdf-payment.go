@@ -351,7 +351,7 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 
 	pdf.Text(125, 30, "ใบแจ้งผู้ประมูลราคาสูงสุด")
 	pdf.Ln(5)
-	common.Print("sq", user.UserTypeID)
+	// common.Print("sq", user.UserTypeID)
 	if user.UserTypeID == "01" {
 		pdf.SetFont("Sarabun", "B", 14)
 		pdf.Text(10, 30, "คุณ "+user.UserFirstname+" "+user.UserLastname)
@@ -681,7 +681,7 @@ func preparePayment(auctionID string, userID string) (UserSummary, []VehicleSumm
 where
 	u.id = ?
 						`, userID).Scan(&user)
-	common.Print("resultddddddddddddddd", common.StructToString(user))
+	// common.Print("resultddddddddddddddd", common.StructToString(user))
 	var vehicles []VehicleSummary
 	common.Database.Raw(`SELECT v.id,DATE(av.end_date) as end_date ,a.name as auction_name,a.code as code_auction,av.vehicle_no as vehicle_no,b.label as branch_label,v.license, v.license_province_name, v.vehicle_grade_id, v.branch_name, av.close_price,
 	v.vehicle_brand_name,v.vehicle_model_name,v.vehicle_sub_model_name,v.year_manufacturing,v.year_register,v.vehicle_color_name,
@@ -694,7 +694,7 @@ where
 	LEFT JOIN vehicle_grade_remarks vgr ON v.chassis_no = vgr.chassis_number AND v.license = vgr.license
 	WHERE av.auction_id = ? AND av.winner_user_id = ? AND av.is_win = 1 order by vehicle_no
 						`, auctionID, userID).Debug().Scan(&vehicles)
-	common.Print("vehicle", common.StructToString(vehicles))
+	// common.Print("vehicle", common.StructToString(vehicles))
 
 	summary := new(Summary)
 	common.Database.Raw(`
@@ -706,7 +706,7 @@ where
         LEFT JOIN rounds r ON a.round_id = r.id
 	where
 	  av.auction_id = ? AND av.winner_user_id = ? AND av.is_win = 1`, auctionID, userID).Scan(&summary)
-	common.Print(auctionID, "auctionID")
+	// common.Print(auctionID, "auctionID")
 
 	return *user, vehicles, *summary
 }
@@ -1062,7 +1062,7 @@ func prepareDataVehicle(auctionID string, userID string) []VehicleImage {
 	left join auction_vehicles av on v.id = av.vehicle_id 
 	where av.auction_id = ? AND av.winner_user_id = ?
 	AND av.is_win = 1 order by vehicle_no`, auctionID, userID).Scan(&vehicles)
-	common.Print(auctionID, userID)
+	// common.Print(auctionID, userID)
 	var images []Image
 	common.Database.Raw(`
 	SELECT vem.vehicle_id,vem.image_path,vm.name as image_name from template_download_vehicle_images dm
@@ -1073,8 +1073,8 @@ func prepareDataVehicle(auctionID string, userID string) []VehicleImage {
 		where av.auction_id = ? AND av.winner_user_id = ?
 		AND av.is_win = 1) and vem.is_delete = 0 
 	ORDER BY vehicle_id , dm.row_order`, auctionID, userID).Scan(&images)
-	common.Print("vehicle", common.StructToString(vehicles))
-	common.Print("image", common.StructToString(images))
+	// common.Print("vehicle", common.StructToString(vehicles))
+	// common.Print("image", common.StructToString(images))
 
 	var vehicleImage []VehicleImage
 	for _, v := range vehicles {
@@ -1091,7 +1091,7 @@ func prepareDataVehicle(auctionID string, userID string) []VehicleImage {
 
 		vehicleImage = append(vehicleImage, *vi)
 	}
-	common.Print("finalarray", common.StructToString(vehicleImage))
+	// common.Print("finalarray", common.StructToString(vehicleImage))
 
 	return vehicleImage
 }

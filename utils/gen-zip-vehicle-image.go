@@ -16,7 +16,7 @@ func GenZipVehicleImage(auctionID string, userID string) (string, error) {
 	if len(vehicles) < 1 {
 		return "no data", errors.New("no data")
 	}
-	println(mainPath)
+	// println(mainPath)
 
 	_, errs := os.MkdirTemp("/tmp", mainPath)
 	if errs != nil {
@@ -51,7 +51,7 @@ func GenZipVehicleImage(auctionID string, userID string) (string, error) {
 	if errss != nil {
 		return "", errss
 	}
-	common.Print("zip path", resultPath)
+	// common.Print("zip path", resultPath)
 	return resultPath, nil
 }
 
