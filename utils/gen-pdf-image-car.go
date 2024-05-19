@@ -31,13 +31,14 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	// header := filepathStr + "top-list.jpg"
 	header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
 	httpimg.Register(pdf, header, "")
-	pdf.Image(header, 0, 0, 210, 35, false, "", 0, "")
+	// pdf.Image(header, 0, 0, 210, 35, false, "", 0, "")
+	pdf.Image(header, 0, 0, 210, 63, false, "", 0, "")
 
 	// x := 2.5
 	// // y := 75.0
 	// y := 6.0
 	x := 2.5
-	y := 40.0
+	y := 68.0
 
 	imagesInRow := 0
 	imageRowCount := 1

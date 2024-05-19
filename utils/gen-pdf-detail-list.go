@@ -76,16 +76,16 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 
 	// border := "10"
 	pdf.CellFormat(10, 8, "ลำดับ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 8, "สถานที่จอด", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(25, 8, "สถานที่จอด", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(66, 8, "รุ่นรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 8, "สี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(71, 8, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(15, 8, "สี", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 8, "รุ่นปี", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(15, 8, "เกียร์", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 8, "เกรด", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(20, 8, "เลขไมล์", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(30, 8, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(25, 8, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(25, 8, "ราคาประมูลเริ่มต้น", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(12, 8, "%CRP", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(35, 8, "ราคาป้ายแดง (ไม่รวม vat)", "1", 0, "C", true, 0, "")
@@ -139,7 +139,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		pdf.SetXY(float64(tableX), float64(tableYz))
 
 		pdf.CellFormat(10, 8, v.VehicleNo, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(20, 8, v.BranchLabel, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(25, 8, v.BranchLabel, "1", 0, "C", true, 0, "")
 		if _, ok := counter[v.BranchLabel]; !ok {
 			counter[v.BranchLabel] = 1
 		} else {
@@ -149,8 +149,8 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 			// }
 		}
 		pdf.CellFormat(10, 8, strconv.Itoa(counter[v.BranchLabel]), "1", 0, "C", true, 0, "")
-		pdf.CellFormat(66, 8, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
-		pdf.CellFormat(20, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(71, 8, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
+		pdf.CellFormat(15, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.Years, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, 8, v.VehicleGearName, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
@@ -158,7 +158,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		mileComma := common.FloatWithCommas(mile, 0)
 
 		pdf.CellFormat(20, 8, mileComma, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(25, 8, v.License, "1", 0, "C", true, 0, "")
 		openPriceFloat, _ := strconv.ParseFloat(v.OpenPrice, 64)
 
 		var openprice string
@@ -182,8 +182,8 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		}
 
 		pdf.CellFormat(12, 8, formattedCRPPer+"%", "1", 0, "R", true, 0, "")
-		pdf.CellFormat(25, 8, formattedCRP, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(20, 8, "", "1", 0, "C", true, 0, "")
+		pdf.CellFormat(35, 8, formattedCRP, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(15, 8, "", "1", 0, "C", true, 0, "")
 
 		pdf.Ln(-1)
 		tableYz += 8
