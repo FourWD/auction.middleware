@@ -8,19 +8,16 @@ import (
 	"github.com/google/uuid"
 )
 
-func LogAuctionStatus(auctionID string, auctionStatus string) error {
+func SaveLogAuctionStatus(auctionID string, auctionStatusID string) error {
+	log := new(orm.LogAuctionStatus)
+	log.ID = uuid.NewString()
+	log.AuctionID = auctionID
+	log.AuctionStatusID = auctionStatusID
+	log.CreatedAt = time.Now()
 
-	logAuctionStatus := new(orm.LogAuctionStatus)
-
-	logAuctionStatus.ID = uuid.NewString()
-	logAuctionStatus.AuctionID = auctionID
-	logAuctionStatus.AuctionStatusID = auctionStatus
-	logAuctionStatus.CreatedAt = time.Now()
-
-	if err := common.Database.Model(&orm.LogAuctionStatus{}).Create(&logAuctionStatus); err.Error != nil {
+	if err := common.Database.Model(&orm.LogAuctionStatus{}).Create(&log); err.Error != nil {
 		return err.Error
 	}
 
 	return nil
-
 }
