@@ -4,7 +4,7 @@ import (
 	"github.com/FourWD/middleware/model"
 )
 
-type LogAuctionVehicle struct {
+type LogAuctionVehicleStatus struct {
 	ID string `json:"id" query:"id" firestore:"id" gorm:"type:varchar(36);primary_key"`
 	model.GormModel
 
