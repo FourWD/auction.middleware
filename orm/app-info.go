@@ -9,5 +9,4 @@ type AppInfo struct {
 	AppEnv     string `json:"app_env" query:"app_env" gorm:"type:varchar(20)"`
 	AppVersion string `json:"app_version" query:"app_version" gorm:"type:varchar(20)"`
 	AppUrl     string `json:"app_url" query:"app_url" gorm:"type:varchar(500)"`
-	IsLasted   bool   `json:"is_lasted" query:"is_lasted" gorm:"type:bool"`
 }
