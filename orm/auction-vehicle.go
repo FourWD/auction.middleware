@@ -22,7 +22,8 @@ type AuctionVehicle struct {
 	ActualEndDate         time.Time `json:"actual_end_date" query:"actual_end_date" firestore:"actual_end_date"`
 	LastBiddingDate       time.Time `json:"last_bidding_date" query:"last_bidding_date" firestore:"last_bidding_date"`
 	LastProcessDate       time.Time `json:"last_process_date" query:"last_process_date" firestore:"last_process_date"`
-	LastSyncBiddingDate   time.Time `json:"last_sync_bidding_date" query:"last_sync_bidding_date" firestore:"last_sync_bidding_date"`
+	IsSyncBidding         bool      `json:"is_sync_bidding" query:"is_sync_bidding" firestore:"is_sync_bidding" gorm:"type:bool"`
+	SyncBiddingDate       time.Time `json:"sync_bidding_date" query:"sync_bidding_date" firestore:"sync_bidding_date"`
 	IsExtra               bool      `json:"is_extra" query:"is_extra" firestore:"is_extra" gorm:"type:bool"`
 	IsEnd                 bool      `json:"is_end" query:"is_end" firestore:"is_end" gorm:"type:bool"`
 	IsApprove             bool      `json:"is_approve" query:"is_approve" firestore:"is_approve" gorm:"type:bool"`
