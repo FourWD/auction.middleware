@@ -4,6 +4,9 @@ import (
 	"errors"
 	"fmt"
 
+	midOrm "github.com/FourWD/middleware/orm"
+	"github.com/google/uuid"
+
 	"github.com/FourWD/middleware/common"
 )
 
@@ -33,13 +36,17 @@ func NotiSendAcceptDeposit(userID string, depositID string) error {
 		return errSendMsg
 	}
 
-	// common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
-	// 	ID:                 uuid.NewString(),
-	// 	ToUserID:           userID,
-	// 	NotificationTypeID: "01",
-	// 	Message:            `{ tile : ` + title + ` body : ` + body + `}`,
-	// 	Url:                "",
-	// })
+	notification := midOrm.Notification{
+		ID:                 uuid.NewString(),
+		ToUserID:           userID,
+		NotificationTypeID: "01",
+		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
+		Url:                "",
+	}
+
+	if err := common.Database.Debug().Create(&notification).Error; err != nil {
+		return fmt.Errorf("failed to insert notification: %v", err)
+	}
 
 	return nil
 }

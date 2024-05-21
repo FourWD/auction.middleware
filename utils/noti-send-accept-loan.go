@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
+	midOrm "github.com/FourWD/middleware/orm"
+	"github.com/google/uuid"
+
 	"github.com/FourWD/middleware/common"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
@@ -31,7 +34,7 @@ func NotiSendAcceptLoan(userID string, loanID string) error {
 	body := fmt.Sprintf("วงเงินเช่าซื้อเบื้อง %s บาท (เงื่อนไขเป็นไปตามที่สถาบันการเงินกําหนด)", loanWithCommaThousandSep)
 
 	data := map[string]string{
-		"ีuser_id":   userID,
+		"user_id":    userID,
 		"event_code": "R0001",
 	}
 
@@ -39,13 +42,17 @@ func NotiSendAcceptLoan(userID string, loanID string) error {
 		return errSendMsg
 	}
 
-	// common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
-	// 	ID:                 uuid.NewString(),
-	// 	ToUserID:           userID,
-	// 	NotificationTypeID: "01",
-	// 	Message:            `{ tile : ` + title + ` body : ` + body + `}`,
-	// 	Url:                "",
-	// })
+	notification := midOrm.Notification{
+		ID:                 uuid.NewString(),
+		ToUserID:           userID,
+		NotificationTypeID: "01",
+		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
+		Url:                "",
+	}
+
+	if err := common.Database.Debug().Create(&notification).Error; err != nil {
+		return fmt.Errorf("failed to insert notification: %v", err)
+	}
 
 	return nil
 }

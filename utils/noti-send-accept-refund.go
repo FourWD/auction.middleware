@@ -6,6 +6,8 @@ import (
 	"strings"
 
 	"github.com/FourWD/middleware/common"
+	midOrm "github.com/FourWD/middleware/orm"
+	"github.com/google/uuid"
 )
 
 func NotiSendAcceptRefund(userID string, refundID string) error {
@@ -40,6 +42,18 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 
 	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {
 		return errSendMsg
+	}
+
+	notification := midOrm.Notification{
+		ID:                 uuid.NewString(),
+		ToUserID:           userID,
+		NotificationTypeID: "01",
+		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
+		Url:                "",
+	}
+
+	if err := common.Database.Debug().Create(&notification).Error; err != nil {
+		return fmt.Errorf("failed to insert notification: %v", err)
 	}
 
 	// common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
