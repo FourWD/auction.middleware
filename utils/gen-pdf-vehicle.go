@@ -171,8 +171,11 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 			trimmedRemark := strings.TrimSpace(cleanedRemark)
 
 			if trimmedRemark != "" || trimmedGradeRemark != "" {
+				pdf.SetFont("THSarabun", "B", 8)
+				pdf.MultiCell(0, 4.75, trimmedRemark+" ", "1", "L", false) // MultiCell for remark column
 				pdf.SetFont("THSarabun", "", 8)
-				pdf.MultiCell(0, 4.75, trimmedRemark+trimmedGradeRemark, "1", "L", false) // MultiCell for remark column
+				pdf.MultiCell(0, 4.75, trimmedGradeRemark, "1", "L", false) // MultiCell for remark column
+
 				pdf.SetFillColor(240, 240, 240)
 			}
 		}

@@ -49,7 +49,7 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 		ID:                 uuid.NewString(),
 		ToUserID:           userID,
 		NotificationTypeID: "01",
-		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
+		Message:            fmt.Sprintf(`"%s","%s"`, title, body),
 		Url:                "",
 		ShowDate:           time.Now(),
 	}
