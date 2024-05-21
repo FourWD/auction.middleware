@@ -19,25 +19,28 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 		BankName      string `json:"bank_name"`
 	}
 	refund := new(Refund)
-	sqlRefund := `SELECT r.amount, DATE(r.approve_date) approve_date, r.bank_account_no, b.name_en bank_name FROM refunds r LEFT JOIN banks b ON r.bank_id = b.id WHERE id = ? AND user_id = ?`
-	common.Database.Raw(sqlRefund, refundID, userID).Scan(&refund)
+	sqlRefund := `SELECT r.amount, DATE(r.approve_date) approve_date, r.bank_account_no, b.name_en bank_name FROM refunds r LEFT JOIN banks b ON r.bank_id = b.id WHERE r.id = ? AND r.user_id = ?`
+	common.Database.Raw(sqlRefund, refundID, userID).Scan(refund)
 
-	notificationToken := ""
+	var notificationToken string
 	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
-	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+	common.Database.Raw(sqlNotiToken, userID).Scan(&notificationToken)
 
 	if notificationToken == "" {
 		common.PrintError("notificationToken", "notiToken is empty")
-		return errors.New("notiToken is empty")
+		return errors.New("notification token is empty")
 	}
 
-	obfuscated := strings.Repeat("x", len(refund.BankAccountNo)-3) + refund.BankAccountNo[len(refund.BankAccountNo)-3:]
+	obfuscated := refund.BankAccountNo
+	if len(refund.BankAccountNo) > 3 {
+		obfuscated = strings.Repeat("x", len(refund.BankAccountNo)-3) + refund.BankAccountNo[len(refund.BankAccountNo)-3:]
+	}
 
 	title := "🙏 Omakase Car Auction ขอขอบคุณ"
 	body := fmt.Sprintf("คืนเงินมัดจําประมูล %d บาท %s เลขบัญชี %s %s", refund.Amount, refund.ApproveDate, obfuscated, refund.BankName)
 
 	data := map[string]string{
-		"ีuser_id":   userID,
+		"user_id":    userID,
 		"event_code": "R0001",
 	}
 
@@ -49,7 +52,7 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 		ID:                 uuid.NewString(),
 		ToUserID:           userID,
 		NotificationTypeID: "01",
-		Message:            fmt.Sprintf(`"%s","%s"`, title, body),
+		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
 		Url:                "",
 		ShowDate:           time.Now(),
 	}
@@ -57,14 +60,6 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 	if err := common.Database.Debug().Create(&notification).Error; err != nil {
 		return fmt.Errorf("failed to insert notification: %v", err)
 	}
-
-	// common.Database.Model(midOrm.Notification{}).Debug().Create(midOrm.Notification{
-	// 	ID:                 uuid.NewString(),
-	// 	ToUserID:           userID,
-	// 	NotificationTypeID: "01",
-	// 	Message:            `{ tile : ` + title + ` body : ` + body + `}`,
-	// 	Url:                "",
-	// })
 
 	return nil
 }
