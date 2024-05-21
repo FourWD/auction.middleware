@@ -3,7 +3,6 @@ package utils
 import (
 	"errors"
 	"fmt"
-	"strconv"
 	"time"
 
 	midOrm "github.com/FourWD/middleware/orm"
@@ -15,24 +14,23 @@ import (
 )
 
 func NotiSendAcceptLoan(userID string, loanID string) error {
-	loan := ""
+	var loanAmount int
 	sqlLoan := `SELECT financial_amount FROM register_leasings WHERE id = ? AND user_id = ?`
-	common.Database.Raw(sqlLoan, loanID, userID).Scan(&loan)
+	common.Database.Raw(sqlLoan, loanID, userID).Scan(&loanAmount)
 
-	notificationToken := ""
+	var notificationToken string
 	sqlNotiToken := `SELECT notification_token FROM log_user_logins WHERE user_id = ? ORDER BY updated_at DESC LIMIT 1`
-	common.Database.Raw(sqlNotiToken, userID).Debug().Scan(&notificationToken)
+	common.Database.Raw(sqlNotiToken, userID).Scan(&notificationToken)
 
 	if notificationToken == "" {
-		common.PrintError("notificationToken", "notiToken is empty")
-		return errors.New("notiToken is empty")
+		common.PrintError("notificationToken", "notification token is empty")
+		return errors.New("notification token is empty")
 	}
 
-	loanInt, _ := strconv.Atoi(loan)
 	p := message.NewPrinter(language.English)
-	loanWithCommaThousandSep := p.Sprintf("%d", loanInt)
+	loanWithCommaThousandSep := p.Sprintf("%d", loanAmount)
 	title := "👏 ยินดีด้วย คุณได้รับสิทธิ์เข้าร่วมประมูล"
-	body := fmt.Sprintf("วงเงินเช่าซื้อเบื้อง %s บาท (เงื่อนไขเป็นไปตามที่สถาบันการเงินกําหนด)", loanWithCommaThousandSep)
+	body := fmt.Sprintf("วงเงินเช่าซื้อเบื้องต้น %s บาท (เงื่อนไขเป็นไปตามที่สถาบันการเงินกำหนด)", loanWithCommaThousandSep)
 
 	data := map[string]string{
 		"user_id":    userID,
@@ -47,7 +45,7 @@ func NotiSendAcceptLoan(userID string, loanID string) error {
 		ID:                 uuid.NewString(),
 		ToUserID:           userID,
 		NotificationTypeID: "01",
-		Message:            fmt.Sprintf(`"%s","%s"`, title, body),
+		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
 		Url:                "",
 		ShowDate:           time.Now(),
 	}
