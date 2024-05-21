@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/FourWD/middleware/common"
 	midOrm "github.com/FourWD/middleware/orm"
@@ -50,6 +51,7 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 		NotificationTypeID: "01",
 		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
 		Url:                "",
+		ShowDate:           time.Now(),
 	}
 
 	if err := common.Database.Debug().Create(&notification).Error; err != nil {

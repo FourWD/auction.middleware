@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"time"
 
 	midOrm "github.com/FourWD/middleware/orm"
 	"github.com/google/uuid"
@@ -48,6 +49,7 @@ func NotiSendAcceptLoan(userID string, loanID string) error {
 		NotificationTypeID: "01",
 		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
 		Url:                "",
+		ShowDate:           time.Now(),
 	}
 
 	if err := common.Database.Debug().Create(&notification).Error; err != nil {

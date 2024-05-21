@@ -3,6 +3,7 @@ package utils
 import (
 	"errors"
 	"fmt"
+	"time"
 
 	midOrm "github.com/FourWD/middleware/orm"
 	"github.com/google/uuid"
@@ -28,7 +29,7 @@ func NotiSendAcceptDeposit(userID string, depositID string) error {
 	body := fmt.Sprintf("ท่านมีสิทธิ์ชนะการประมูลได้ %d คัน", deposit/1000)
 
 	data := map[string]string{
-		"ีuser_id":   userID,
+		"user_id":    userID,
 		"event_code": "R0001",
 	}
 
@@ -42,6 +43,7 @@ func NotiSendAcceptDeposit(userID string, depositID string) error {
 		NotificationTypeID: "01",
 		Message:            fmt.Sprintf(`{"title": "%s", "body": "%s"}`, title, body),
 		Url:                "",
+		ShowDate:           time.Now(),
 	}
 
 	if err := common.Database.Debug().Create(&notification).Error; err != nil {
