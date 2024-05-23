@@ -16,17 +16,22 @@ func NotiSendAuctionResult(auctionID string) error {
 
 	data := map[string]string{
 		"auction_id": auctionID,
-		"event_code": "R0001",
+		// "event_code": "R0001",
 	}
+	common.PrintError(common.StructToString(data), "tdasdasdasdas")
+
 	topics := fmt.Sprintf(`JOIN_AUCTION_%s`, auctionID)
+	common.PrintError(topics, "topicstopicstopicstopicstopicstopicstopicstopics")
 
 	if errSendToSubscriber := common.SendMessageToSubscriber(topics, title, body, data); errSendToSubscriber != nil {
 		common.PrintError("errSendToSubscriber", errSendToSubscriber.Error())
-		return errSendToSubscriber
 	}
 	topicid := ""
 	sql := `SELECT id FROM notification_topics WHERE name = ?`
 	common.Database.Raw(sql, topics).Scan(&topicid)
+	common.PrintError(topicid, "topicid")
+	common.PrintError(sql, "sqlqqqqqqqqqqqqqqqqqqqqqqqqq")
+
 	notificationresult := midOrm.Notification{
 		ID:                    uuid.NewString(),
 		ToNotificationTopicID: topicid,
@@ -34,6 +39,7 @@ func NotiSendAuctionResult(auctionID string) error {
 		Message:               fmt.Sprintf(`"%s", "%s"`, title, body),
 		ShowDate:              time.Now(),
 	}
+	common.PrintError(common.StructToString(notificationresult), "notificationresultnotificationresultnotificationresultnotificationresultnotificationresultnotificationresultnotificationresultnotificationresult")
 
 	if err := common.Database.Debug().Create(&notificationresult).Error; err != nil {
 		return fmt.Errorf("failed to insert notificationresult: %v", err)
