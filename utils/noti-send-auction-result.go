@@ -2,6 +2,10 @@ package utils
 
 import (
 	"fmt"
+	"time"
+
+	midOrm "github.com/FourWD/middleware/orm"
+	"github.com/google/uuid"
 
 	"github.com/FourWD/middleware/common"
 )
@@ -14,11 +18,26 @@ func NotiSendAuctionResult(auctionID string) error {
 		"auction_id": auctionID,
 		"event_code": "R0001",
 	}
-	if errSendToSubscriber := common.SendMessageToSubscriber(fmt.Sprintf(`JOIN_AUCTION_%s`, auctionID), title, body, data); errSendToSubscriber != nil {
+	topics := fmt.Sprintf(`JOIN_AUCTION_%s`, auctionID)
+
+	if errSendToSubscriber := common.SendMessageToSubscriber(topics, title, body, data); errSendToSubscriber != nil {
 		common.PrintError("errSendToSubscriber", errSendToSubscriber.Error())
 		return errSendToSubscriber
 	}
+	topicid := ""
+	sql := `SELECT id FROM notification_topics WHERE name = ?`
+	common.Database.Raw(sql, topics).Scan(&topicid)
+	notificationresult := midOrm.Notification{
+		ID:                    uuid.NewString(),
+		ToNotificationTopicID: topicid,
+		NotificationTypeID:    "02",
+		Message:               fmt.Sprintf(`"%s", "%s"`, title, body),
+		ShowDate:              time.Now(),
+	}
 
+	if err := common.Database.Debug().Create(&notificationresult).Error; err != nil {
+		return fmt.Errorf("failed to insert notificationresult: %v", err)
+	}
 	// type userJoinList struct {
 	// 	UserID string `json:"user_id"`
 	// }
