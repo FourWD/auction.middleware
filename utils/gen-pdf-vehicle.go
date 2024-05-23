@@ -163,6 +163,22 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 		pdf.Ln(-1)
 		tableYz += 2
 
+		// if vehicle.Remark != "" || vehicle.GradeRemark != "" {
+		// 	cleanedGradeRemark := strings.ReplaceAll(vehicle.GradeRemark, "\u200b", "")
+		// 	cleanedRemark := strings.ReplaceAll(vehicle.Remark, "\u200b", "")
+
+		// 	trimmedGradeRemark := strings.TrimSpace(cleanedGradeRemark)
+		// 	trimmedRemark := strings.TrimSpace(cleanedRemark)
+
+		// 	if trimmedRemark != "" || trimmedGradeRemark != "" {
+		// 		pdf.SetFont("THSarabun", "B", 8)
+		// 		pdf.MultiCell(0, 4.75, trimmedRemark+" ", "1", "L", false) // MultiCell for remark column
+		// 		pdf.SetFont("THSarabun", "", 8)
+		// 		pdf.MultiCell(0, 4.75, trimmedGradeRemark, "1", "L", false) // MultiCell for remark column
+
+		// 		pdf.SetFillColor(240, 240, 240)
+		// 	}
+		// }
 		if vehicle.Remark != "" || vehicle.GradeRemark != "" {
 			cleanedGradeRemark := strings.ReplaceAll(vehicle.GradeRemark, "\u200b", "")
 			cleanedRemark := strings.ReplaceAll(vehicle.Remark, "\u200b", "")
@@ -170,13 +186,19 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 			trimmedGradeRemark := strings.TrimSpace(cleanedGradeRemark)
 			trimmedRemark := strings.TrimSpace(cleanedRemark)
 
-			if trimmedRemark != "" || trimmedGradeRemark != "" {
-				pdf.SetFont("THSarabun", "B", 8)
-				pdf.MultiCell(0, 4.75, trimmedRemark+" ", "1", "L", false) // MultiCell for remark column
-				pdf.SetFont("THSarabun", "", 8)
-				pdf.MultiCell(0, 4.75, trimmedGradeRemark, "1", "L", false) // MultiCell for remark column
+			// Default font style
+			pdf.SetFont("THSarabun", "", 8)
 
-				pdf.SetFillColor(240, 240, 240)
+			if trimmedRemark != "" {
+				pdf.SetFont("THSarabun", "B", 8)
+				pdf.MultiCell(0, 4.75, trimmedRemark, "LR", "L", false) // MultiCell for remark column
+			}
+
+			// Reset to default font style
+			pdf.SetFont("THSarabun", "", 8)
+
+			if trimmedGradeRemark != "" {
+				pdf.MultiCell(0, 4.75, trimmedGradeRemark, "LRB", "L", false) // MultiCell for grade remark column with left, right, and bottom border
 			}
 		}
 
