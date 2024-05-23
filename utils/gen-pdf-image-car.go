@@ -29,7 +29,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	pdf.SetFillColor(196, 16, 22)
 	pdf.Rect(0, 0, 210, 297, "F")
 	// header := filepathStr + "top-list.jpg"
-	header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
+	header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/Bar%20%E0%B9%83%E0%B8%9A%E0%B8%9B%E0%B8%A5%E0%B8%B4%E0%B8%A7-156-1_0.jpg"
 	httpimg.Register(pdf, header, "")
 	// pdf.Image(header, 0, 0, 210, 35, false, "", 0, "")
 	pdf.Image(header, 0, 0, 210, 63, false, "", 0, "")
