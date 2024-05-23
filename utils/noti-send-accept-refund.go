@@ -40,8 +40,7 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 	body := fmt.Sprintf("คืนเงินมัดจําประมูล %d บาท %s เลขบัญชี %s %s", refund.Amount, refund.ApproveDate, obfuscated, refund.BankName)
 
 	data := map[string]string{
-		"user_id":    userID,
-		"event_code": "R0001",
+		"user_id": userID,
 	}
 
 	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {

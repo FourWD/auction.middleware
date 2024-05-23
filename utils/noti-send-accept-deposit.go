@@ -29,8 +29,7 @@ func NotiSendAcceptDeposit(userID string, depositID string) error {
 	body := fmt.Sprintf("ท่านมีสิทธิ์ชนะการประมูลได้ %d คัน", deposit/1000)
 
 	data := map[string]string{
-		"user_id":    userID,
-		"event_code": "R0001",
+		"user_id": userID,
 	}
 
 	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {

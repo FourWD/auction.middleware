@@ -33,8 +33,7 @@ func NotiSendAcceptLoan(userID string, loanID string) error {
 	body := fmt.Sprintf("วงเงินเช่าซื้อเบื้องต้น %s บาท (เงื่อนไขเป็นไปตามที่สถาบันการเงินกำหนด)", loanWithCommaThousandSep)
 
 	data := map[string]string{
-		"user_id":    userID,
-		"event_code": "R0001",
+		"user_id": userID,
 	}
 
 	if errSendMsg := common.SendMessageToUser(notificationToken, title, body, data); errSendMsg != nil {
