@@ -4,9 +4,9 @@ import (
 	"github.com/FourWD/middleware/common"
 )
 
-func NotiAddUserAll(notiToken string) error {
+func NotiAddUserAll(notiToken string, userID string) error {
 	topic := "ALL"
-	return common.AddUserToSubscription(notiToken, topic)
+	return common.AddUserToSubscription(topic, userID, notiToken)
 }
 
 // func AddUserToAuctionGroup(userToken string, auctionID string, vehicleID string) error {
