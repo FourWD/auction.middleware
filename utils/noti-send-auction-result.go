@@ -16,7 +16,7 @@ func NotiSendAuctionResult(auctionID string) error {
 
 	data := map[string]string{
 		"auction_id": auctionID,
-		// "event_code": "R0001",
+		"event_code": "R0001",
 	}
 	common.PrintError(common.StructToString(data), "tdasdasdasdas")
 
