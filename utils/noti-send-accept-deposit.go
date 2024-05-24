@@ -40,7 +40,8 @@ func NotiSendAcceptDeposit(userID string, depositID string) error {
 		ID:                 uuid.NewString(),
 		ToUserID:           userID,
 		NotificationTypeID: "01",
-		Message:            fmt.Sprintf(`"%s","%s"`, title, body),
+		Message:            body,
+		Title:              title,
 		Url:                "",
 		ShowDate:           time.Now(),
 	}

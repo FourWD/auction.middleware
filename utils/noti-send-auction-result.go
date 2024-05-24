@@ -36,7 +36,8 @@ func NotiSendAuctionResult(auctionID string) error {
 		ID:                    uuid.NewString(),
 		ToNotificationTopicID: topicid,
 		NotificationTypeID:    "02",
-		Message:               fmt.Sprintf(`"%s", "%s"`, title, body),
+		Message:               body,
+		Title:                 title,
 		ShowDate:              time.Now(),
 	}
 	common.PrintError(common.StructToString(notificationresult), "notificationresultnotificationresultnotificationresultnotificationresultnotificationresultnotificationresultnotificationresultnotificationresult")

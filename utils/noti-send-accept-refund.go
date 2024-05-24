@@ -51,7 +51,8 @@ func NotiSendAcceptRefund(userID string, refundID string) error {
 		ID:                 uuid.NewString(),
 		ToUserID:           userID,
 		NotificationTypeID: "01",
-		Message:            fmt.Sprintf(`"%s", "%s"`, title, body),
+		Message:            body,
+		Title:              title,
 		Url:                "",
 		ShowDate:           time.Now(),
 	}
