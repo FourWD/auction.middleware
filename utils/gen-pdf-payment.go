@@ -28,9 +28,9 @@ func GenPDFPayment(auctionID string, userID string) (string, error) { //ใบ�
 
 	var fileName string
 	if user.UserTypeID == "01" {
-		fileName = fmt.Sprintf("%s_%s_%s_%s.pdf", user.UserFirstname, user.UserLastname, summary.RoundName, vehicles[0].EndDate)
+		fileName = fmt.Sprintf("%s_%s_%s_%s", user.UserFirstname, user.UserLastname, summary.RoundName, common.DateToString(vehicles[0].EndDate))
 	} else {
-		fileName = fmt.Sprintf("%s_%s_%s.pdf", user.CompanyName, summary.RoundName, vehicles[0].EndDate)
+		fileName = fmt.Sprintf("%s_%s_%s", user.CompanyName, summary.RoundName, common.DateToString(vehicles[0].EndDate))
 	}
 
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
