@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	model "github.com/FourWD/auction.middleware/model"
 
@@ -10,6 +11,10 @@ import (
 	"github.com/jung-kurt/gofpdf"
 	"github.com/jung-kurt/gofpdf/contrib/httpimg"
 )
+
+func DateToString(date time.Time) string {
+	return date.Format("2006-01-02")
+}
 
 // return "https://storage.googleapis.com/fourwd-auction/auction/2023/2.pdf", nil
 func GenPDFPayment(auctionID string, userID string) (string, error) { //ใบแจ้งผู้ประมูลราคาสูงสุด
@@ -28,9 +33,9 @@ func GenPDFPayment(auctionID string, userID string) (string, error) { //ใบ�
 
 	var fileName string
 	if user.UserTypeID == "01" {
-		fileName = fmt.Sprintf("%s_%s_%s_%s", user.UserFirstname, user.UserLastname, summary.RoundName, common.DateToString(vehicles[0].EndDate))
+		fileName = fmt.Sprintf("%s_%s_%s_%s", user.UserFirstname, user.UserLastname, summary.RoundName, DateToString(vehicles[0].EndDate))
 	} else {
-		fileName = fmt.Sprintf("%s_%s_%s", user.CompanyName, summary.RoundName, common.DateToString(vehicles[0].EndDate))
+		fileName = fmt.Sprintf("%s_%s_%s", user.CompanyName, summary.RoundName, DateToString(vehicles[0].EndDate))
 	}
 
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
