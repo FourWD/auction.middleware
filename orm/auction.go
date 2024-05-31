@@ -54,6 +54,11 @@ type Auction struct {
 	BiddingStep2   int    `json:"bidding_step_2" query:"bidding_step_2" firestore:"bidding_step_2" gorm:"column:bidding_step_2;type:int(6)"`
 	BiddingStep3   int    `json:"bidding_step_3" query:"bidding_step_3" firestore:"bidding_step_3" gorm:"column:bidding_step_3;type:int(6)"`
 	FileResultPath string `json:"file_result_path" query:"file_result_path" gorm:"type:varchar(256)"`
+
+	HeaderImageVerical    string `json:"header_image_verical" query:"header_image_verical" gorm:"type:varchar(500)"`
+	BottomImageVerical    string `json:"bottom_image_verical" query:"bottom_image_verical" gorm:"type:varchar(500)"`
+	HeaderImageHorizontal string `json:"header_image_horizontal" query:"header_image_horizontal" gorm:"type:varchar(500)"`
+	BottomImageHorizontal string `json:"bottom_image_horizontal" query:"bottom_image_horizontal" gorm:"type:varchar(500)"`
 }
 
 /*
