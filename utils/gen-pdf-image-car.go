@@ -28,10 +28,17 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	// กำหนดสีพื้นหลังเป็นสีแดง
 	pdf.SetFillColor(196, 16, 22)
 	pdf.Rect(0, 0, 210, 297, "F")
-	// header := filepathStr + "top-list.jpg"
-	header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/Bar%20%E0%B9%83%E0%B8%9A%E0%B8%9B%E0%B8%A5%E0%B8%B4%E0%B8%A7-156-1_0.jpg"
+	// // header := filepathStr + "top-list.jpg"
+	// header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/Bar%20%E0%B9%83%E0%B8%9A%E0%B8%9B%E0%B8%A5%E0%B8%B4%E0%B8%A7-156-1_0.jpg"
+	// httpimg.Register(pdf, header, "")
+	// // pdf.Image(header, 0, 0, 210, 35, false, "", 0, "")
+	// pdf.Image(header, 0, 0, 210, 63, false, "", 0, "")
+
+	header := ""
+	sql := `select header_image_verical from auctions where id = ?`
+	common.Database.Raw(sql, auctionID).Scan(&header)
+	// header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
 	httpimg.Register(pdf, header, "")
-	// pdf.Image(header, 0, 0, 210, 35, false, "", 0, "")
 	pdf.Image(header, 0, 0, 210, 63, false, "", 0, "")
 
 	// x := 2.5
@@ -43,16 +50,31 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 	imagesInRow := 0
 	imageRowCount := 1
 	page := 1
-	vehicleCount := (len(vehicles))
-	mod := vehicleCount % 27
-	if mod != 0 {
-		emptyVehicle := 27 - mod
 
-		for i := 1; i <= emptyVehicle; i++ {
-			vnull := new(VehicleSummaryDetail)
-			vehicles = append(vehicles, *vnull)
+	vehicleCount := (len(vehicles))
+	fmt.Println("vehicle count original ", vehicleCount)
+	var emptypVehicle int
+	if vehicleCount <= 21 {
+		emptypVehicle = 21 - vehicleCount
+	} else {
+		vehicleCount2 := vehicleCount - 21
+		fmt.Println("vehicle count 2 ", vehicleCount2)
+
+		mod := vehicleCount2 % 27
+		if mod != 0 {
+			emptypVehicle = 27 - mod
 		}
+		fmt.Println("mod", mod)
 	}
+
+	for i := 1; i <= emptypVehicle; i++ {
+		vnull := new(VehicleSummaryDetail)
+		vehicles = append(vehicles, *vnull)
+	}
+	fmt.Println("emptyp", emptypVehicle)
+	fmt.Println("vehicle count original + emptyp", len(vehicles))
+
+	currentPage := 1
 
 	for i, v := range vehicles {
 
@@ -157,14 +179,23 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 
 			pdf.Text(x+34, y+23, "ผู้ถือกรรมสิทธิ์ : ")
 			pdf.Text(x+34, y+27, v.SourceName)
+			// } else {
+			// 	pdf.Rect(x, y, 67, 30, "D") // กล่องภาพ
+			// 	logoX := x
+			// 	logoY := y
+			// 	logoWidth := 67.0
+			// 	logoHeight := 30.0
+			// 	logo := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/logo-omakase.png"
+			// 	httpimg.Register(pdf, logo, "")
+			// 	pdf.Image(logo, logoX, logoY, logoWidth, logoHeight, false, "", 0, "")
+			// }
 		} else {
-			pdf.Rect(x, y, 67, 30, "D") // กล่องภาพ
+			pdf.Rect(x, y, 67, 28.9, "D") // กล่องภาพ
 			logoX := x
 			logoY := y
 			logoWidth := 67.0
-			logoHeight := 30.0
+			logoHeight := 28.9
 			logo := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/logo-omakase.png"
-			httpimg.Register(pdf, logo, "")
 			pdf.Image(logo, logoX, logoY, logoWidth, logoHeight, false, "", 0, "")
 		}
 		x += 69.0
@@ -178,22 +209,20 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 		}
 		newpage := false
 		if i == 21 {
-			newpage = true
-		} else if i > 27 {
-			temp := i - 27
+			if vehicleCount > 21 {
+				newpage = true
+			}
+		} else if i > 21 {
+			temp := i - 21
 			if temp%27 == 0 && i < vehicleCount {
 				newpage = true
 			}
 		}
-		// if newpage {
-		// 	pdf.AddPage()
-		// 	pdf.SetFillColor(196, 16, 22)
-		// 	pdf.Rect(0, 0, 210, 297, "F")
-		// 	x = 2.5
-		// 	y = 15
-		// 	imagesInRow = 0
-		// }
 		if newpage {
+			currentPage++
+			fmt.Println("currentPage", currentPage)
+
+			fmt.Println("newpage", i)
 			pdf.AddPage()
 			pdf.SetFillColor(196, 16, 22)
 			pdf.Rect(0, 0, 210, 297, "F")
@@ -204,9 +233,20 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 		i++
 
 		// headerdown := filepathStr + "bar-down.jpg"
-		headerdownpath := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
-		httpimg.Register(pdf, headerdownpath, "")
-		pdf.Image(headerdownpath, 0, 287, 210, 10, false, "", 0, "")
+		headerdown := ""
+		sql := `select bottom_image_verical from auctions where id = ?`
+		common.Database.Raw(sql, auctionID).Scan(&headerdown)
+		// headerdownpath := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/bar-down.jpg"
+		httpimg.Register(pdf, headerdown, "")
+		pdf.Image(headerdown, 0, 279, 210, 18, false, "", 0, "")
+
+		// headerdown := ""
+		// sql := `select header_image_horizontal from auctions where id = ?`
+		// common.Database.Raw(sql).Scan(&header)
+		// // header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
+		// httpimg.Register(pdf, header, "")
+		// pdf.Image(header, 0, 0, 297, 53, false, "", 0, "")
+
 	}
 
 	fileName := generateFileNameImageCar(vehicles[0].AuctionName)

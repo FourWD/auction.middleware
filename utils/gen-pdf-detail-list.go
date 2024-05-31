@@ -75,21 +75,32 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 	pdf.SetXY(float64(tableX), float64(tableY))
 
 	// border := "10"
-	pdf.CellFormat(10, 8, "ลำดับ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(25, 8, "สถานที่จอด", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 10, "ลำดับ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(25, 10, "สถานที่จอด", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 10, "ช่อง", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(71, 8, "รุ่นรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(15, 8, "สี", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(10, 8, "รุ่นปี", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(15, 8, "เกียร์", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(10, 8, "เกรด", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 8, "เลขไมล์", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(25, 8, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(25, 8, "ราคาประมูลเริ่มต้น", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(12, 8, "%CRP", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(35, 8, "ราคาป้ายแดง (ไม่รวม vat)", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(15, 8, "หมายเหตุ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(71, 10, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(20, 10, "สี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 10, "รุ่นปี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(15, 10, "เกียร์", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 10, "เกรด", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(20, 10, "เลขไมล์", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(30, 10, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(25, 10, "ราคาประมูลเริ่มต้น", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(12, 10, "%CRP", "1", 0, "C", true, 0, "")
+
+	// pdf.CellFormat(35, 8, "ราคาป้ายแดง (ไม่รวม vat)", "1", 0, "C", true, 0, "")
+	// pdf.SetFont("Sarabun", "B", 12)
+	// pdf.CellFormat(25, 8, "ราคาป้ายแดง", "1", 0, "C", true, 0, "")
+	cellWidth := 25.0
+	cellHeight := 10.0
+	pdf.SetFont("Sarabun", "B", 12)
+	pdf.SetXY(258, float64(tabley))
+	pdf.MultiCell(cellWidth, cellHeight/2.15, "ราคาป้ายแดง\n(ไม่รวม vat)", "1", "C", true)
+	pdf.SetXY(283, float64(tabley))
+	pdf.MultiCell(15, cellHeight, "หมายเหตุ", "1", "C", true)
+	// pdf.CellFormat(15, 8, "หมายเหตุ", "1", 0, "C", true, 0, "")
+
 	pdf.SetTextColor(0, 0, 0)
 	pdf.SetFillColor(255, 255, 255)
 
@@ -108,14 +119,17 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 
 	// header := filepathStr + "top-bar-detail.jpg"
 	// pdf.Image(header, 0, 0, 297, 45, false, "", 0, "")
-	header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
+	header := ""
+	sql := `select header_image_horizontal from auctions where id = ?`
+	common.Database.Raw(sql).Scan(&header)
+	// header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
 	httpimg.Register(pdf, header, "")
 	pdf.Image(header, 0, 0, 297, 53, false, "", 0, "")
 
 	headertable(pdf, 53)
 
 	pdf.SetFont("Sarabun", "B", 12)
-	tableYz := 60.5
+	tableYz := 62
 	page := 1
 	counter := make(map[string]int)
 
@@ -158,7 +172,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		mileComma := common.FloatWithCommas(mile, 0)
 
 		pdf.CellFormat(20, 8, mileComma, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(25, 8, v.License, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
 		openPriceFloat, _ := strconv.ParseFloat(v.OpenPrice, 64)
 
 		var openprice string
@@ -182,7 +196,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		}
 
 		pdf.CellFormat(12, 8, formattedCRPPer+"%", "1", 0, "R", true, 0, "")
-		pdf.CellFormat(35, 8, formattedCRP, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(25, 8, formattedCRP, "1", 0, "R", true, 0, "")
 		pdf.CellFormat(15, 8, "", "1", 0, "C", true, 0, "")
 
 		pdf.Ln(-1)
@@ -209,10 +223,13 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 				headertable(pdf, 0)
 			}
 		}
-		headerdown := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
+		headerdown := ""
+		sql := `select bottom_image_horizontal from auctions where id = ?`
+		common.Database.Raw(sql, auctionID).Scan(&headerdown)
+		// headerdown := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
 		httpimg.Register(pdf, headerdown, "")
 		// headerdown := filepathStr + "down-bar-detail.jpg"
-		pdf.Image(headerdown, 0, 197, 297, 12, false, "", 0, "")
+		pdf.Image(headerdown, 0, 198, 297, 12, false, "", 0, "")
 
 	}
 	pdf.Ln(-1)
