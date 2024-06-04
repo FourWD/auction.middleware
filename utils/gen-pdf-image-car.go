@@ -37,7 +37,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 	pdf.Image("header", 0, 0, 210, 63, false, "", 0, "")
 
 	x := 2.5
-	y := 68.0
+	y := 64.0
 
 	imagesInRow := 0
 	imageRowCount := 1
@@ -173,7 +173,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 		imagesInRow++
 		if imagesInRow >= 3 {
 			x = 2.5
-			y += 31.5
+			y += 30.5
 			imagesInRow = 0
 			imageRowCount++
 		}
