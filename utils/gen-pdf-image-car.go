@@ -179,16 +179,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //หน้าใ�
 
 			pdf.Text(x+34, y+23, "ผู้ถือกรรมสิทธิ์ : ")
 			pdf.Text(x+34, y+27, v.SourceName)
-			// } else {
-			// 	pdf.Rect(x, y, 67, 30, "D") // กล่องภาพ
-			// 	logoX := x
-			// 	logoY := y
-			// 	logoWidth := 67.0
-			// 	logoHeight := 30.0
-			// 	logo := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/logo-omakase.png"
-			// 	httpimg.Register(pdf, logo, "")
-			// 	pdf.Image(logo, logoX, logoY, logoWidth, logoHeight, false, "", 0, "")
-			// }
+
 		} else {
 			pdf.Rect(x, y, 67, 28.9, "D") // กล่องภาพ
 			logoX := x

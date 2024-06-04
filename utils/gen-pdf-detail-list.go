@@ -63,6 +63,49 @@ type VehicleSummaryDetail struct {
 	TextColor           string `json:"text_color"`
 }
 
+// func headertable(pdf gofpdf.Pdf, tabley int) {
+// 	// Define table headers
+// 	pdf.SetFillColor(196, 16, 22)
+// 	pdf.SetTextColor(255, 255, 255)
+// 	pdf.SetDrawColor(0, 0, 0)
+// 	pdf.SetLineWidth(0.2)
+// 	pdf.SetFont("Sarabun", "B", 12)
+// 	tableX := 0
+// 	tableY := tabley
+// 	pdf.SetXY(float64(tableX), float64(tableY))
+
+// 	// border := "10"
+// 	pdf.CellFormat(10, 10, "ลำดับ", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(25, 10, "สถานที่จอด", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(10, 10, "ช่อง", "1", 0, "C", true, 0, "")
+// 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(71, 10, "รุ่นรถ", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(20, 10, "สี", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(10, 10, "รุ่นปี", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(15, 10, "เกียร์", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(10, 10, "เกรด", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(20, 10, "เลขไมล์", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(30, 10, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(25, 10, "ราคาประมูลเริ่มต้น", "1", 0, "C", true, 0, "")
+// 	pdf.CellFormat(12, 10, "%CRP", "1", 0, "C", true, 0, "")
+
+// 	// pdf.CellFormat(35, 8, "ราคาป้ายแดง (ไม่รวม vat)", "1", 0, "C", true, 0, "")
+// 	// pdf.SetFont("Sarabun", "B", 12)
+// 	// pdf.CellFormat(25, 8, "ราคาป้ายแดง", "1", 0, "C", true, 0, "")
+// 	cellWidth := 25.0
+// 	cellHeight := 10.0
+// 	pdf.SetFont("Sarabun", "B", 12)
+// 	pdf.SetXY(258, float64(tabley))
+// 	pdf.MultiCell(cellWidth, cellHeight/2.15, "ราคาป้ายแดง\n(ไม่รวม vat)", "1", "C", true)
+// 	pdf.SetXY(283, float64(tabley))
+// 	pdf.MultiCell(15, cellHeight, "หมายเหตุ", "1", "C", true)
+// 	// pdf.CellFormat(15, 8, "หมายเหตุ", "1", 0, "C", true, 0, "")
+
+// 	pdf.SetTextColor(0, 0, 0)
+// 	pdf.SetFillColor(255, 255, 255)
+
+// }
+
 func headertable(pdf gofpdf.Pdf, tabley int) {
 	// Define table headers
 	pdf.SetFillColor(196, 16, 22)
@@ -75,30 +118,34 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 	pdf.SetXY(float64(tableX), float64(tableY))
 
 	// border := "10"
-	pdf.CellFormat(10, 10, "ลำดับ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(25, 10, "สถานที่จอด", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(10, 10, "ช่อง", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 12, "ลำดับ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(25, 12, "สถานที่จอด", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 12, "ช่อง", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(71, 10, "รุ่นรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 10, "สี", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(10, 10, "รุ่นปี", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(15, 10, "เกียร์", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(10, 10, "เกรด", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 10, "เลขไมล์", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(30, 10, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(25, 10, "ราคาประมูลเริ่มต้น", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(12, 10, "%CRP", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(71, 12, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(20, 12, "สี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 12, "รุ่นปี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(15, 12, "เกียร์", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(10, 12, "เกรด", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(20, 12, "เลขไมล์", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(30, 12, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
+
+	cellHeight := 12.0
+	pdf.SetXY(221, float64(tabley))
+	pdf.MultiCell(20, cellHeight/2, "ราคาประมูล\nเริ่มต้น", "1", "C", true)
+	pdf.SetXY(241, float64(tabley))
+	// pdf.CellFormat(12, 10, "%CRP", "1", 0, "C", true, 0, "")
+	pdf.MultiCell(12, cellHeight, "%CRP", "1", "C", true)
 
 	// pdf.CellFormat(35, 8, "ราคาป้ายแดง (ไม่รวม vat)", "1", 0, "C", true, 0, "")
 	// pdf.SetFont("Sarabun", "B", 12)
 	// pdf.CellFormat(25, 8, "ราคาป้ายแดง", "1", 0, "C", true, 0, "")
-	cellWidth := 25.0
-	cellHeight := 10.0
+
 	pdf.SetFont("Sarabun", "B", 12)
-	pdf.SetXY(258, float64(tabley))
-	pdf.MultiCell(cellWidth, cellHeight/2.15, "ราคาป้ายแดง\n(ไม่รวม vat)", "1", "C", true)
-	pdf.SetXY(283, float64(tabley))
-	pdf.MultiCell(15, cellHeight, "หมายเหตุ", "1", "C", true)
+	pdf.SetXY(253, float64(tabley))
+	pdf.MultiCell(20, cellHeight/2, "ราคาป้ายแดง\n(ไม่รวม vat)", "1", "C", true)
+	pdf.SetXY(273, float64(tabley))
+	pdf.MultiCell(25, cellHeight, "หมายเหตุ", "1", "C", true)
 	// pdf.CellFormat(15, 8, "หมายเหตุ", "1", 0, "C", true, 0, "")
 
 	pdf.SetTextColor(0, 0, 0)
@@ -124,17 +171,17 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	common.Database.Raw(sql).Scan(&header)
 	// header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
 	httpimg.Register(pdf, header, "")
-	pdf.Image(header, 0, 0, 297, 53, false, "", 0, "")
+	pdf.Image(header, 0, 0, 297, 55, false, "", 0, "")
 
-	headertable(pdf, 53)
+	headertable(pdf, 55)
 
 	pdf.SetFont("Sarabun", "B", 12)
-	tableYz := 62
+	tableYz := 67
 	page := 1
 	counter := make(map[string]int)
 
-	perpage := 16
-	line := 1
+	perpage := 14
+	line := 0
 
 	for i, v := range vehicles {
 
@@ -181,7 +228,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		} else {
 			openprice = common.FloatWithCommas(openPriceFloat, 0)
 		}
-		pdf.CellFormat(25, 8, openprice, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(20, 8, openprice, "1", 0, "R", true, 0, "")
 
 		crpFloat, _ := strconv.ParseFloat(v.CRP, 64)
 		crp := crpFloat * (100.00 / 107.00)
@@ -196,30 +243,43 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		}
 
 		pdf.CellFormat(12, 8, formattedCRPPer+"%", "1", 0, "R", true, 0, "")
-		pdf.CellFormat(25, 8, formattedCRP, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(15, 8, "", "1", 0, "C", true, 0, "")
+		pdf.CellFormat(20, 8, formattedCRP, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(25, 8, "", "1", 0, "C", true, 0, "")
 
 		pdf.Ln(-1)
 		tableYz += 8
 
 		line++
-		newpage := false
+		// newpage := false
 
-		if i == 16 {
-			newpage = true
+		// if i == 16 {
+		// 	newpage = true
 
-		} else if i > 16 {
-			temp := i - 16
-			if temp%perpage == 0 {
-				newpage = true
-			}
-		}
-		if newpage {
-			line = 1
+		// } else if i > 16 {
+		// 	temp := i - 16
+		// 	if temp%perpage == 0 {
+		// 		newpage = true
+		// 	}
+		// }
+		// if newpage {
+		// 	line = 1
+		// 	page++
+		// 	if i < len(vehicles) {
+		// 		pdf.AddPage()
+		// 		tableYz = 8
+		// 		headertable(pdf, 0)
+		// 	}
+		// }
+		if line > perpage {
+
+			line = 0
 			page++
-			if i < len(vehicles) {
+			if page == 2 {
+				perpage = 21
+			}
+			if i < len(vehicles)-1 {
 				pdf.AddPage()
-				tableYz = 8
+				tableYz = 12
 				headertable(pdf, 0)
 			}
 		}
