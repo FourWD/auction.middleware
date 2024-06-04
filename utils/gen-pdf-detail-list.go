@@ -10,7 +10,6 @@ import (
 
 	"github.com/FourWD/middleware/common"
 	"github.com/jung-kurt/gofpdf"
-	"github.com/jung-kurt/gofpdf/contrib/httpimg"
 )
 
 // func GenPDFDetailList(auctionID string) (string, error) { //list รายการราคารถ
@@ -159,39 +158,26 @@ func headertable(pdf gofpdf.Pdf, tabley int) {
 
 func GenPDFVehicleDetail(auctionID string) (string, error) {
 	vehicles := prepareDetailList(auctionID)
-
-	// filepathStr := "images/pdf/"
-	// fileextention := ".pdf"
 	pdf := gofpdf.New("L", "mm", "A4", "")
 
 	pdf.AddPage()
 	pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
 	pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")
 
-	// header := filepathStr + "top-bar-detail.jpg"
-	// pdf.Image(header, 0, 0, 297, 45, false, "", 0, "")
-	// header := ""
-	// sql := `select header_image_horizontal from auctions where id = ?`
-	// common.Database.Raw(sql).Scan(&header)
-	// if header == "" {
-	// 	common.PrintError("err header_image_horizontal", "pdf")
-	// }
-	// // header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
-	// httpimg.Register(pdf, header, "")
-	// pdf.Image(header, 0, 0, 297, 55, false, "", 0, "")
 	var header string
 	sql := `select header_image_horizontal from auctions where id = ?`
 	common.Database.Raw(sql, auctionID).Scan(&header)
-	fmt.Println("Header image URL:", header) // Debug
+	fmt.Println("URL รูปภาพหัว:", header) // Debug
 	if header == "" {
 		return "", fmt.Errorf("URL รูปภาพหัวว่างเปล่า")
 	}
-	header = strings.TrimSpace(header)
-	if err := registerImageFromURL(pdf, header, "header"); err != nil {
-		return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพหัวได้")
+	header = strings.TrimSpace(header) // ลบช่องว่างก่อนหลังของ URL
 
+	if err := registerImageFromURL(pdf, header, "header"); err != nil {
+		return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพหัวได้: %v", err)
 	}
-	pdf.Image(header, 0, 0, 297, 55, false, "", 0, "")
+	pdf.Image("header", 0, 0, 297, 55, false, "", 0, "")
+
 	headertable(pdf, 55)
 
 	pdf.SetFont("Sarabun", "B", 12)
@@ -203,17 +189,12 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	line := 0
 
 	for i, v := range vehicles {
-
 		i++
 
 		if page == 1 {
 		} else {
 			perpage = 22
 		}
-		// fmt.Printf("index = %d, License = %s", i, v.License)
-		// fmt.Printf(", page = %d, perpage = %d", page, perpage)
-		// fmt.Printf(", line = %d", line)
-		// fmt.Println("========================")
 
 		tableX := 0
 		pdf.SetXY(float64(tableX), float64(tableYz))
@@ -224,9 +205,6 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 			counter[v.BranchLabel] = 1
 		} else {
 			counter[v.BranchLabel]++
-			// if counter[v.BranchLabel] > 7 {
-			// 	counter[v.BranchLabel] = 1
-			// }
 		}
 		pdf.CellFormat(10, 8, strconv.Itoa(counter[v.BranchLabel]), "1", 0, "C", true, 0, "")
 		pdf.CellFormat(71, 8, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
@@ -269,28 +247,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		tableYz += 8
 
 		line++
-		// newpage := false
-
-		// if i == 16 {
-		// 	newpage = true
-
-		// } else if i > 16 {
-		// 	temp := i - 16
-		// 	if temp%perpage == 0 {
-		// 		newpage = true
-		// 	}
-		// }
-		// if newpage {
-		// 	line = 1
-		// 	page++
-		// 	if i < len(vehicles) {
-		// 		pdf.AddPage()
-		// 		tableYz = 8
-		// 		headertable(pdf, 0)
-		// 	}
-		// }
 		if line > perpage {
-
 			line = 0
 			page++
 			if page == 2 {
@@ -302,38 +259,30 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 				headertable(pdf, 0)
 			}
 		}
-		// headerdown := ""
-		// sql := `select bottom_image_horizontal from auctions where id = ?`
-		// common.Database.Raw(sql, auctionID).Scan(&headerdown)
-		// if headerdown == "" {
-		// 	common.PrintError("err bottom_image_horizontal", "pdf")
-		// }
-		// // headerdown := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
-		// httpimg.Register(pdf, headerdown, "")
-		// // headerdown := filepathStr + "down-bar-detail.jpg"
-		// pdf.Image(headerdown, 0, 198, 297, 12, false, "", 0, "")
-		var headerdown string
-		sql = `select bottom_image_horizontal from auctions where id = ?`
-		common.Database.Raw(sql, auctionID).Scan(&headerdown)
-		fmt.Println("Bottom image URL:", headerdown) // Debug
-		if headerdown == "" {
-			return "", fmt.Errorf("bottom image URL is empty")
-		}
-		if err := httpimg.Register(pdf, headerdown, ""); err != nil {
-			return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพท้ายได้")
-		}
-		pdf.Image(headerdown, 0, 198, 297, 12, false, "", 0, "")
 	}
+
+	var headerdown string
+	sql = `select bottom_image_horizontal from auctions where id = ?`
+	common.Database.Raw(sql, auctionID).Scan(&headerdown)
+	fmt.Println("URL รูปภาพท้าย:", headerdown) // Debug
+	if headerdown == "" {
+		return "", fmt.Errorf("URL รูปภาพท้ายว่างเปล่า")
+	}
+	headerdown = strings.TrimSpace(headerdown) // ลบช่องว่างก่อนหลังของ URL
+
+	if err := registerImageFromURL(pdf, headerdown, "headerdown"); err != nil {
+		return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพท้ายได้: %v", err)
+	}
+	pdf.Image("headerdown", 0, 198, 297, 12, false, "", 0, "")
+
 	pdf.Ln(-1)
 
 	fileName := generateFileNameList(vehicles[0].AuctionName)
-
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
 	return path, nil
-
 }
 
 func sanitizeFileName(fileName string) string {
@@ -386,6 +335,8 @@ func prepareDetailList(auctionID string) []VehicleSummaryDetail {
 
 	return vs
 }
+
+// ฟังก์ชั่นสำหรับดาวน์โหลดรูปภาพจาก URL
 func downloadImage(url string) ([]byte, error) {
 	resp, err := http.Get(url)
 	if err != nil {
@@ -405,14 +356,12 @@ func downloadImage(url string) ([]byte, error) {
 	return imgData, nil
 }
 
+// ฟังก์ชั่นสำหรับลงทะเบียนรูปภาพจาก URL
 func registerImageFromURL(pdf *gofpdf.Fpdf, url string, imgName string) error {
 	imgData, err := downloadImage(url)
 	if err != nil {
 		return err
 	}
-
-	// Debugging: Print the first few bytes of the image data
-	fmt.Printf("Image data for %s: %v\n", imgName, imgData[:10])
 
 	pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "JPG"}, bytes.NewReader(imgData))
 	return nil
