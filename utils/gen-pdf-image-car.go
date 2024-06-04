@@ -205,7 +205,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 		headerdown := ""
 		sql := `select bottom_image_verical from auctions where id = ?`
 		common.Database.Raw(sql, auctionID).Scan(&headerdown)
-		headerdown = strings.TrimSpace(headerdown) // ลบช่องว่างก่อนหลังของ URL
+		headerdown = strings.TrimSpace(headerdown)
 
 		if err := registerImageFromURL(pdf, headerdown, "headerdown"); err != nil {
 			return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพท้ายได้: %v", err)
