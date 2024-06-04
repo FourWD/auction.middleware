@@ -1,7 +1,10 @@
 package utils
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"net/http"
 	"strconv"
 	"strings"
 
@@ -181,10 +184,12 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	common.Database.Raw(sql, auctionID).Scan(&header)
 	fmt.Println("Header image URL:", header) // Debug
 	if header == "" {
-		return "", fmt.Errorf("header image URL is empty")
+		return "", fmt.Errorf("URL รูปภาพหัวว่างเปล่า")
 	}
-	if err := httpimg.Register(pdf, header, ""); err != nil {
-		return "", fmt.Errorf("failed to register header image: %v", err)
+	header = strings.TrimSpace(header)
+	if err := registerImageFromURL(pdf, header, "header"); err != nil {
+		return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพหัวได้")
+
 	}
 	pdf.Image(header, 0, 0, 297, 55, false, "", 0, "")
 	headertable(pdf, 55)
@@ -315,7 +320,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 			return "", fmt.Errorf("bottom image URL is empty")
 		}
 		if err := httpimg.Register(pdf, headerdown, ""); err != nil {
-			return "", fmt.Errorf("failed to register bottom image: %v", err)
+			return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพท้ายได้")
 		}
 		pdf.Image(headerdown, 0, 198, 297, 12, false, "", 0, "")
 	}
@@ -378,7 +383,37 @@ func prepareDetailList(auctionID string) []VehicleSummaryDetail {
 	//     where a.round_id = ?
 	// `, vehicleID).Scan(&vs)
 	common.Print(auctionID, "auctionID")
-	common.Print("v", common.StructToString(vs))
 
 	return vs
+}
+func downloadImage(url string) ([]byte, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, fmt.Errorf("ไม่สามารถดาวน์โหลดรูปภาพได้: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("การตอบกลับจากเซิร์ฟเวอร์ไม่ถูกต้อง: %v", resp.Status)
+	}
+
+	imgData, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("ไม่สามารถอ่านข้อมูลรูปภาพได้: %v", err)
+	}
+
+	return imgData, nil
+}
+
+func registerImageFromURL(pdf *gofpdf.Fpdf, url string, imgName string) error {
+	imgData, err := downloadImage(url)
+	if err != nil {
+		return err
+	}
+
+	// Debugging: Print the first few bytes of the image data
+	fmt.Printf("Image data for %s: %v\n", imgName, imgData[:10])
+
+	pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "JPG"}, bytes.NewReader(imgData))
+	return nil
 }
