@@ -363,8 +363,7 @@ func registerImageFromURL(pdf *gofpdf.Fpdf, url string, imgName string) error {
 		return err
 	}
 
-	pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "JPG"}, bytes.NewReader(imgData))
-	pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "PNG"}, bytes.NewReader(imgData))
+	pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "JPG" + "PNG"}, bytes.NewReader(imgData))
 
 	return nil
 }
