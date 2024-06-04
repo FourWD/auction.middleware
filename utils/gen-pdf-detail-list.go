@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -166,13 +167,26 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 
 	// header := filepathStr + "top-bar-detail.jpg"
 	// pdf.Image(header, 0, 0, 297, 45, false, "", 0, "")
-	header := ""
+	// header := ""
+	// sql := `select header_image_horizontal from auctions where id = ?`
+	// common.Database.Raw(sql).Scan(&header)
+	// if header == "" {
+	// 	common.PrintError("err header_image_horizontal", "pdf")
+	// }
+	// // header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
+	// httpimg.Register(pdf, header, "")
+	// pdf.Image(header, 0, 0, 297, 55, false, "", 0, "")
+	var header string
 	sql := `select header_image_horizontal from auctions where id = ?`
-	common.Database.Raw(sql).Scan(&header)
-	// header := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/top-list.jpg"
-	httpimg.Register(pdf, header, "")
+	common.Database.Raw(sql, auctionID).Scan(&header)
+	fmt.Println("Header image URL:", header) // Debug
+	if header == "" {
+		return "", fmt.Errorf("header image URL is empty")
+	}
+	if err := httpimg.Register(pdf, header, ""); err != nil {
+		return "", fmt.Errorf("failed to register header image: %v", err)
+	}
 	pdf.Image(header, 0, 0, 297, 55, false, "", 0, "")
-
 	headertable(pdf, 55)
 
 	pdf.SetFont("Sarabun", "B", 12)
@@ -283,14 +297,27 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 				headertable(pdf, 0)
 			}
 		}
-		headerdown := ""
-		sql := `select bottom_image_horizontal from auctions where id = ?`
+		// headerdown := ""
+		// sql := `select bottom_image_horizontal from auctions where id = ?`
+		// common.Database.Raw(sql, auctionID).Scan(&headerdown)
+		// if headerdown == "" {
+		// 	common.PrintError("err bottom_image_horizontal", "pdf")
+		// }
+		// // headerdown := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
+		// httpimg.Register(pdf, headerdown, "")
+		// // headerdown := filepathStr + "down-bar-detail.jpg"
+		// pdf.Image(headerdown, 0, 198, 297, 12, false, "", 0, "")
+		var headerdown string
+		sql = `select bottom_image_horizontal from auctions where id = ?`
 		common.Database.Raw(sql, auctionID).Scan(&headerdown)
-		// headerdown := "https://storage.googleapis.com/fourwd-auction/app/pdf_resource/down-list.jpg"
-		httpimg.Register(pdf, headerdown, "")
-		// headerdown := filepathStr + "down-bar-detail.jpg"
+		fmt.Println("Bottom image URL:", headerdown) // Debug
+		if headerdown == "" {
+			return "", fmt.Errorf("bottom image URL is empty")
+		}
+		if err := httpimg.Register(pdf, headerdown, ""); err != nil {
+			return "", fmt.Errorf("failed to register bottom image: %v", err)
+		}
 		pdf.Image(headerdown, 0, 198, 297, 12, false, "", 0, "")
-
 	}
 	pdf.Ln(-1)
 
@@ -302,17 +329,21 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	}
 	return path, nil
 
-	// filedestination := filepathStr + "ใบราคา List TEST" + fileextention
-	// err := pdf.OutputFileAndClose(filedestination)
-	// if err != nil {
-	// 	fmt.Println("Error:", err)
-	// }
-	// return filedestination, nil
+}
+
+func sanitizeFileName(fileName string) string {
+	sanitizedFileName := strings.Map(func(r rune) rune {
+		if r == ' ' || r == '\\' || r == '/' || r == ':' || r == '*' || r == '?' || r == '"' || r == '<' || r == '>' || r == '|' {
+			return '_'
+		}
+		return r
+	}, fileName)
+	return sanitizedFileName
 }
 
 func generateFileNameList(auctionName string) string {
-	auctionName = strings.ReplaceAll(auctionName, " ", "_")
-	fileName := "ใบ List_" + auctionName
+	sanitizedAuctionName := sanitizeFileName(auctionName)
+	fileName := "ใบ_List_" + sanitizedAuctionName
 	return fileName
 }
 func prepareDetailList(auctionID string) []VehicleSummaryDetail {
