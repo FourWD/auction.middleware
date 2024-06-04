@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -356,14 +357,37 @@ func downloadImage(url string) ([]byte, error) {
 	return imgData, nil
 }
 
-// ฟังก์ชั่นสำหรับลงทะเบียนรูปภาพจาก URL
 func registerImageFromURL(pdf *gofpdf.Fpdf, url string, imgName string) error {
 	imgData, err := downloadImage(url)
 	if err != nil {
 		return err
 	}
 
-	pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "JPG" + "PNG"}, bytes.NewReader(imgData))
+	imageType := getImageType(imgData)
+	if imageType == "png" {
+		pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "PNG"}, bytes.NewReader(imgData))
+	} else if imageType == "jpg" || imageType == "jpeg" {
+		pdf.RegisterImageOptionsReader(imgName, gofpdf.ImageOptions{ImageType: "JPG"}, bytes.NewReader(imgData))
+	} else {
+		return errors.New("unsupported image type: " + imageType)
+	}
 
 	return nil
+}
+
+// ฟังก์ชั่นเพื่อตรวจสอบประเภทของรูปภาพ
+func getImageType(data []byte) string {
+	if len(data) < 4 {
+		return ""
+	}
+	if data[0] == 0x89 && data[1] == 0x50 && data[2] == 0x4e && data[3] == 0x47 {
+		return "png"
+	}
+	if data[0] == 0xff && data[1] == 0xd8 && data[2] == 0xff {
+		return "jpg"
+	}
+	if data[0] == 0xff && data[1] == 0xd8 && data[2] == 0xff && data[3] == 0xe0 {
+		return "jpeg"
+	}
+	return ""
 }

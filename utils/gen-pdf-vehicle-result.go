@@ -93,7 +93,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		pdf.CellFormat(10, 8, v.VehicleNo, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, 8, v.VehicleBrandName, "1", 0, "C", true, 0, "")
 		// pdf.CellFormat(10, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
-		pdf.CellFormat(60, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
+		pdf.CellFormat(55, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
 		pdf.CellFormat(15, 8, v.YearRegister, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
 
@@ -103,7 +103,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		openprice, _ := strconv.ParseFloat(v.OpenPrice, 64)
 		formattedOpenPrice := common.FloatWithCommas(openprice, 0)
 
-		pdf.CellFormat(25, 8, v.License, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(20, 8, formattedOpenPrice, "1", 0, "R", true, 0, "")
 
 		closeprice, _ := strconv.ParseFloat(v.ClosePrice, 64)
