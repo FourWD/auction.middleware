@@ -17,7 +17,7 @@ func DateToString(date time.Time) string {
 }
 
 // return "https://storage.googleapis.com/fourwd-auction/auction/2023/2.pdf", nil
-func GenPDFPayment(auctionID string, userID string) (string, error) { //ใบแจ้งผู้ประมูลราคาสูงสุด
+func GenPDFPayment(auctionID string, userID string) (string, string, error) {
 	user, vehicles, summary := preparePayment(auctionID, userID)
 
 	pdf := gofpdf.New("P", "mm", "A4", "")
@@ -40,9 +40,9 @@ func GenPDFPayment(auctionID string, userID string) (string, error) { //ใบ�
 
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
-	return path, nil
+	return path, fileName, nil
 }
 
 func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, summary Summary) {
