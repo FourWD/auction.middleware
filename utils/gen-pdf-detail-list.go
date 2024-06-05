@@ -190,12 +190,12 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	line := 0
 
 	for i, v := range vehicles {
-		i++
+		// i++
 
-		if page == 1 {
-		} else {
-			perpage = 22
-		}
+		// if page == 1 {
+		// } else {
+		// 	perpage = 22
+		// }
 
 		tableX := 0
 		pdf.SetXY(float64(tableX), float64(tableYz))
@@ -209,7 +209,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		}
 		pdf.CellFormat(10, 8, strconv.Itoa(counter[v.BranchLabel]), "1", 0, "C", true, 0, "")
 		pdf.CellFormat(71, 8, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
-		pdf.CellFormat(15, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(20, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.Years, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, 8, v.VehicleGearName, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
@@ -248,7 +248,9 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		tableYz += 8
 
 		line++
+
 		if line > perpage {
+
 			line = 0
 			page++
 			if page == 2 {
@@ -260,21 +262,20 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 				headertable(pdf, 0)
 			}
 		}
-	}
+		var headerdown string
+		sql = `select bottom_image_horizontal from auctions where id = ?`
+		common.Database.Raw(sql, auctionID).Scan(&headerdown)
+		fmt.Println("URL รูปภาพท้าย:", headerdown) // Debug
+		if headerdown == "" {
+			return "", fmt.Errorf("URL รูปภาพท้ายว่างเปล่า")
+		}
+		headerdown = strings.TrimSpace(headerdown) // ลบช่องว่างก่อนหลังของ URL
 
-	var headerdown string
-	sql = `select bottom_image_horizontal from auctions where id = ?`
-	common.Database.Raw(sql, auctionID).Scan(&headerdown)
-	fmt.Println("URL รูปภาพท้าย:", headerdown) // Debug
-	if headerdown == "" {
-		return "", fmt.Errorf("URL รูปภาพท้ายว่างเปล่า")
+		if err := registerImageFromURL(pdf, headerdown, "headerdown"); err != nil {
+			return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพท้ายได้: %v", err)
+		}
+		pdf.Image("headerdown", 0, 198, 297, 12, false, "", 0, "")
 	}
-	headerdown = strings.TrimSpace(headerdown) // ลบช่องว่างก่อนหลังของ URL
-
-	if err := registerImageFromURL(pdf, headerdown, "headerdown"); err != nil {
-		return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพท้ายได้: %v", err)
-	}
-	pdf.Image("headerdown", 0, 198, 297, 12, false, "", 0, "")
 
 	pdf.Ln(-1)
 
