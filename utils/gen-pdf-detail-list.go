@@ -216,7 +216,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		mile, _ := strconv.ParseFloat(v.Mile, 64)
 		mileComma := common.FloatWithCommas(mile, 0)
 
-		pdf.CellFormat(20, 8, mileComma, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(20, 8, mileComma, "1", 0, "R", true, 0, "")
 		pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
 		openPriceFloat, _ := strconv.ParseFloat(v.OpenPrice, 64)
 
