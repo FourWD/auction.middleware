@@ -155,7 +155,7 @@ func headertableReport(pdf gofpdf.Pdf, tabley int, y int) {
 
 func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบรายงานผลการประมูล สรรพากร
 
-	vehicles, summary := prepareVehicleResult(auctionID, vehicleID)
+	vehicles, _ := prepareVehicleResult(auctionID, vehicleID)
 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
@@ -388,7 +388,7 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 	}
 	pdf.Ln(-1)
 
-	path, err := common.UploadPdfToGoogle(pdf, summary.AuctionName, "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, vehicles[0].SourceName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
