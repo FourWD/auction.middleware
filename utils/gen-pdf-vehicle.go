@@ -205,11 +205,11 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 		line++
 		newpage := false
 
-		if i == 8 {
+		if i == 7 {
 			newpage = true
 
-		} else if i > 8 {
-			temp := i - 8
+		} else if i > 7 {
+			temp := i - 7
 			if temp%perpage == 0 {
 				newpage = true
 			}
