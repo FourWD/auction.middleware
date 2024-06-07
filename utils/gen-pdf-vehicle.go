@@ -93,7 +93,7 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 	headerCarlist(pdf)
 
 	page := 1
-	perpage := 8
+	perpage := 6
 	line := 1
 	tableYz := 53
 	//loop vehicle
@@ -104,7 +104,7 @@ func GenPDFVehicle(auctionID string, vehicles []string) (string, error) { //carl
 
 		if page == 1 {
 		} else {
-			perpage = 9
+			perpage = 7
 		}
 		fmt.Printf("index = %d, License = %s", i, vehicle.License)
 		fmt.Printf(", page = %d, perpage = %d", page, perpage)
