@@ -239,10 +239,10 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 		pdf.SetTextColor(0, 0, 0)
 		pdf.SetFont("Sarabun", "B", 15)
 		pdf.CellFormat(15, 8, "ลำดับที่", "1", 0, "C", true, 0, "")
-		pdf.CellFormat(35, 8, "เลขที่ใบรับรถ", "1", 0, "C", true, 0, "")
-		pdf.CellFormat(65, 8, "รายละเอียด", "1", 0, "C", true, 0, "")
-		pdf.CellFormat(25, 8, "ผลประมูล", "1", 0, "C", true, 0, "")
-		pdf.CellFormat(35, 8, "ราคาที่ประมูล", "1", 0, "C", true, 0, "")
+		pdf.CellFormat(30, 8, "เลขที่ใบรับรถ", "1", 0, "C", true, 0, "")
+		pdf.CellFormat(80, 8, "รายละเอียด", "1", 0, "C", true, 0, "")
+		pdf.CellFormat(20, 8, "ผลประมูล", "1", 0, "C", true, 0, "")
+		pdf.CellFormat(30, 8, "ราคาที่ประมูล", "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, 8, "ค่าอื่นๆ", "1", 0, "C", true, 0, "")
 
 		pdf.Ln(-1)
@@ -251,8 +251,8 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 
 		pdf.Text(16, 113, v.VehicleNo)
 		pdf.CellFormat(15, 60, "", "1", 0, "TC", false, 0, "")
-		pdf.Text(29, 113, v.Receipt)
-		pdf.CellFormat(35, 60, "", "1", 0, "TC", false, 0, "")
+		pdf.Text(27, 113, v.Receipt)
+		pdf.CellFormat(30, 60, "", "1", 0, "TC", false, 0, "")
 
 		var test1 string
 		if v.License != "" && v.LicenseProvinceName != "" {
@@ -260,37 +260,32 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 		} else {
 			test1 = "ทะเบียน : " + v.ChassisNo
 		}
-		// test1 := "ทะเบียน : " + v.License + " " + v.LicenseProvinceName
 		test2 := "ยี่ห้อ : " + v.VehicleBrandName + " รุ่น : " + v.VehicleModelName
-		// test3 := "รุ่น : " + v.VehicleModelName
 		test4 := "รุ่นย่อย : " + v.VehicleSubModelName
-		// test5 := "สี : " + v.VehicleColorName
 		test6 := "ปี : " + v.YearRegister + " เกียร์ : " + v.VehicleGearName
-		// test7 := "เกียร์ : " + v.VehicleGearName
 		test8 := "เลขเครื่อง : " + v.EngineNo
 		test9 := "เลขตัวถัง : " + v.ChassisNo
 		test10 := "เลขที่สัญญา  : " + v.CN
 
-		pdf.MultiCell(70, 7, test1+"\n"+test2+"\n"+test4+"\n"+test6+"\n"+test8+"\n"+test9+"\n"+test10+"\n", "0", "L", false)
+		pdf.MultiCell(80, 7, test1+"\n"+test2+"\n"+test4+"\n"+test6+"\n"+test8+"\n"+test9+"\n"+test10+"\n", "0", "L", false)
 
 		closePriceFloat, _ := strconv.ParseFloat(v.ClosePrice, 64)
 		closePriceComma := common.FloatWithCommas(closePriceFloat, 2)
 
-		pdf.SetXY(125, 108) // ตั้งตำแหน่ง X และ Y ใหม่
-		pdf.Text(132, 113, "ขายได้")
-		pdf.CellFormat(25, 60, "", "1", 0, "TC", false, 0, "")
+		pdf.SetXY(135, 108) // ตั้งตำแหน่ง X และ Y ใหม่
+		pdf.Text(140, 113, "ขายได้")
+		pdf.CellFormat(20, 60, "", "1", 0, "TC", false, 0, "")
 		// pdf.Text(154, 113, closePriceComma)
-		pdf.CellFormat(35, 60, closePriceComma, "1", 0, "TC", false, 0, "")
+		pdf.CellFormat(30, 60, closePriceComma, "1", 0, "TC", false, 0, "")
 		pdf.CellFormat(15, 60, "", "1", 0, "TC", false, 0, "")
-
 		pdf.Ln(-1)
 
 		pdf.SetFont("Sarabun", "B", 15)
 		pdf.CellFormat(15, 8, "", "1", 0, "", false, 0, "")
-		pdf.CellFormat(35, 8, "", "1", 0, "", false, 0, "")
-		pdf.CellFormat(90, 8, "รวมเงิน", "1", 0, "R", false, 0, "")
+		pdf.CellFormat(30, 8, "", "1", 0, "", false, 0, "")
+		pdf.CellFormat(100, 8, "รวมเงิน", "1", 0, "R", false, 0, "")
 
-		pdf.CellFormat(35, 8, closePriceComma, "1", 0, "C", false, 0, "")
+		pdf.CellFormat(30, 8, closePriceComma, "1", 0, "C", false, 0, "")
 		pdf.CellFormat(15, 8, "", "1", 0, "", false, 0, "")
 		// End of Table
 
