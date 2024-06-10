@@ -126,12 +126,12 @@ func headertableReport(pdf gofpdf.Pdf, tabley int, y int) {
 	pdf.CellFormat(10, 18, "เลขรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(15, 18, "ยี่ห้อรถ", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(55, 18, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(75, 18, "รุ่นรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(15, 18, "ปีผลิต", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 18, "เกรด", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(15, 18, "สี", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(30, 18, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(20, 18, "ราคาเปิด", "1", 0, "C", true, 0, "")
+	// pdf.CellFormat(20, 18, "ราคาเปิด", "1", 0, "C", true, 0, "")
 
 	// กำหนดพื้นหลังสีเหมือนกันสำหรับเซลล์ทั้งหมด
 	pdf.SetFillColor(196, 16, 22)

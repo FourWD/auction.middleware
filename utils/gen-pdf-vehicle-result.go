@@ -89,33 +89,31 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 		tableX := 0
 		pdf.SetXY(float64(tableX), float64(tableYz))
-		pdf.SetFont("Sarabun", "", 13)
+		pdf.SetFont("Sarabun", "", 12)
 		pdf.CellFormat(10, 8, v.VehicleNo, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, 8, v.VehicleBrandName, "1", 0, "C", true, 0, "")
 		// pdf.CellFormat(10, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
-		pdf.CellFormat(55, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
+		pdf.CellFormat(75, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
 		pdf.CellFormat(15, 8, v.YearRegister, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
 
 		pdf.CellFormat(15, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
 
-		pdf.SetFont("Sarabun", "B", 14)
-		openprice, _ := strconv.ParseFloat(v.OpenPrice, 64)
-		formattedOpenPrice := common.FloatWithCommas(openprice, 0)
+		pdf.SetFont("Sarabun", "B", 12)
+		// openprice, _ := strconv.ParseFloat(v.OpenPrice, 64)
+		// formattedOpenPrice := common.FloatWithCommas(openprice, 0)
 
 		pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(20, 8, formattedOpenPrice, "1", 0, "R", true, 0, "")
+		// pdf.CellFormat(20, 8, formattedOpenPrice, "1", 0, "R", true, 0, "")
 
 		closeprice, _ := strconv.ParseFloat(v.ClosePrice, 64)
 		imcvat := float64(float64(closeprice) * 1.07)
 
 		formattedVatPrice := common.FloatWithCommas(imcvat, 0)
 		formattedCloseprice := common.FloatWithCommas(closeprice, 0)
-
 		// pdf.CellFormat(20, 8, v.ClosePrice, "1", 0, "C", true, 0, "")
-
 		pdf.CellFormat(20, 8, formattedCloseprice, "1", 0, "R", true, 0, "")
-		pdf.SetFont("Sarabun", "", 13)
+		pdf.SetFont("Sarabun", "", 12)
 
 		pdf.CellFormat(20, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
 
@@ -125,6 +123,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 		line++
 		newpage := false
+
 		if i == 23 {
 			newpage = true
 
@@ -144,6 +143,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 			}
 		}
+
 		headerdown := filepathStr + "Bottom.png"
 		pdf.Image(headerdown, 0, 279, 210, 18, false, "", 0, "")
 	}
