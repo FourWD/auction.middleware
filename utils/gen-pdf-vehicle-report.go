@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"strconv"
 	"time"
 
@@ -386,9 +385,9 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 
 	var fileName string
 	if vehicleID == "" {
-		fileName = fmt.Sprintf("%s", summary.AuctionName)
+		fileName = summary.AuctionName
 	} else {
-		fileName = fmt.Sprintf("%s_%s", summary.AuctionName, vehicles[0].License)
+		fileName = summary.AuctionName + "_" + vehicles[0].License
 	}
 
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
