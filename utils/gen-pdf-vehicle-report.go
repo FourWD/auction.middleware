@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -155,7 +156,7 @@ func headertableReport(pdf gofpdf.Pdf, tabley int, y int) {
 
 func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบรายงานผลการประมูล สรรพากร
 
-	vehicles, _ := prepareVehicleResult(auctionID, vehicleID)
+	vehicles, summary := prepareVehicleResult(auctionID, vehicleID)
 
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
@@ -383,7 +384,14 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 	}
 	pdf.Ln(-1)
 
-	path, err := common.UploadPdfToGoogle(pdf, vehicles[0].SourceName, "auction", "fourwd-auction")
+	var fileName string
+	if vehicleID == "" {
+		fileName = fmt.Sprintf("%s", summary.AuctionName)
+	} else {
+		fileName = fmt.Sprintf("%s_%s", summary.AuctionName, vehicles[0].License)
+	}
+
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}
