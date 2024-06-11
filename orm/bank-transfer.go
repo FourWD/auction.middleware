@@ -44,5 +44,5 @@ type BankTransfer struct {
 	RunningNo             int    `json:"running_no" query:"running_no" gorm:"type:int"`
 
 	Remark   string `json:"remark" query:"remark" gorm:"type:text"`
-	PostCode string `json:"postcode" query:"postcode" gorm:"type:varchar(5)"`
+	Postcode string `json:"postcode" query:"postcode" gorm:"type:varchar(5)"`
 }
