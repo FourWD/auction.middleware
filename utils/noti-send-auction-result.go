@@ -52,6 +52,7 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 	title := "ประกาศผล"
 
 	type AuctionDetails struct {
+		AuctionID    string `json:"auction_id"`
 		AuctionName  string `json:"auction_name"`
 		RoundName    string `json:"round_name"`
 		CountVehicle int    `json:"count_vehicle"`
@@ -61,7 +62,9 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 	var auctionDetails AuctionDetails
 
 	sql := `SELECT 
-				a.name as auction_name, r.name as round_name, 
+				a.id as auction_id, 
+				a.name as auction_name, 
+				r.name as round_name, 
 				(SELECT COUNT(*) FROM auction_vehicles av2 WHERE av2.auction_id = a.id) as count_vehicle, 
 				av.winner_user_id
 			FROM 
@@ -73,7 +76,8 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 			WHERE 
 				a.id = ?
 			GROUP BY 
-				a.name, r.name, av.winner_user_id`
+				a.id, a.name, r.name, av.winner_user_id`
+
 	if err := common.Database.Raw(sql, auctionID).Scan(&auctionDetails).Error; err != nil {
 		common.PrintError("Error retrieving auction details", err.Error())
 		return fmt.Errorf("failed to retrieve auction details: %v", err)
