@@ -48,7 +48,8 @@ import (
 
 //		return nil
 //	}
-func NotiSendAuctionResult(auctionID string, userID string) error {
+func NotiSendAuctionResult(auctionID string, userID string, notificationToken string) error {
+
 	title := "ประกาศผล"
 
 	type AuctionDetails struct {
@@ -88,12 +89,12 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 	var body string
 	if auctionDetails.WinnerUserID == userID {
 		body = fmt.Sprintf("🎉 ยินดีด้วย คุณชนะการประมูล\nรอบการประมูลวันที่ %s รอบ %s จํานวนรถ %d คัน",
-			auctionDetails.AuctionDate.Format("2 มกราคม 2006"),
+			auctionDetails.AuctionName,
 			auctionDetails.RoundName,
 			auctionDetails.CountVehicle)
 	} else {
 		body = fmt.Sprintf("🙏 Omakase Car Auction ขอขอบคุณ\nท่านไมมีรถที่ชนะการประมูลในรอบการประมูลวันที่ %s รอบ %s พบกันใหม่ในการประมูลครั้งหน้านะคะ",
-			auctionDetails.AuctionDate.Format("2 มกราคม 2006"),
+			auctionDetails.AuctionName,
 			auctionDetails.RoundName)
 	}
 
@@ -107,7 +108,7 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 	topics := fmt.Sprintf(`JOIN_AUCTION_%s`, auctionID)
 	common.PrintError(topics, "Notification topic")
 
-	if errSendToSubscriber := common.SendMessageToSubscriber(topics, title, body, data); errSendToSubscriber != nil {
+	if errSendToSubscriber := common.SendMessageToUser(notificationToken, title, body, data); errSendToSubscriber != nil {
 		common.PrintError("Error sending to subscriber", errSendToSubscriber.Error())
 		return fmt.Errorf("failed to send message to subscriber: %v", errSendToSubscriber)
 	}
