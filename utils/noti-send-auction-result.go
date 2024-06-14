@@ -46,9 +46,8 @@ import (
 // 		return fmt.Errorf("failed to insert notificationresult: %v", err)
 // 	}
 
-// 	return nil
-// }
-
+//		return nil
+//	}
 func NotiSendAuctionResult(auctionID string, userID string) error {
 	title := "ประกาศผล"
 
@@ -60,23 +59,26 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 		AuctionDate  time.Time
 	}
 	var auctionDetails AuctionDetails
+
 	sql := `SELECT 
-				a.name as auction_name,r.name as round_name, 
-				(SELECT COUNT(*) FROM auction_vehicles av WHERE av.auction_id = a.id) as count_vehicle, 
+				a.name as auction_name, r.name as round_name, 
+				(SELECT COUNT(*) FROM auction_vehicles av2 WHERE av2.auction_id = a.id) as count_vehicle, 
 				av.winner_user_id
 			FROM 
 				auctions a
 			LEFT JOIN 
 				auction_vehicles av ON a.id = av.auction_id 
-      LEFT JOIN 
+			LEFT JOIN 
 				rounds r ON a.round_id = r.id 
 			WHERE 
 				a.id = ?
-      GROUP BY av.winner_user_id`
+			GROUP BY 
+				a.name, r.name, av.winner_user_id`
 	if err := common.Database.Raw(sql, auctionID).Scan(&auctionDetails).Error; err != nil {
 		common.PrintError("Error retrieving auction details", err.Error())
 		return fmt.Errorf("failed to retrieve auction details: %v", err)
 	}
+
 	common.PrintError(auctionDetails.AuctionName, "Auction details")
 
 	var body string
@@ -93,7 +95,6 @@ func NotiSendAuctionResult(auctionID string, userID string) error {
 
 	data := map[string]string{
 		"auction_id": auctionID,
-		"user_id":    userID,
 		"event_code": "R0001",
 	}
 	common.PrintError(common.StructToString(data), "Notification data")
