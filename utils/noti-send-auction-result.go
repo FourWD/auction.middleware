@@ -67,7 +67,7 @@ func NotiSendAuctionResult(auctionID string, userID string, notificationToken st
 				r.name as round_name, 
 				(SELECT COUNT(*) FROM auction_vehicles av2 WHERE av2.auction_id = a.id) as count_vehicle, 
 				av.winner_user_id,
-				a.auction_date
+				a.end_date
 			FROM 
 				auctions a
 			LEFT JOIN 
@@ -77,7 +77,7 @@ func NotiSendAuctionResult(auctionID string, userID string, notificationToken st
 			WHERE 
 				a.id = ?
 			GROUP BY 
-				a.id, a.name, r.name, av.winner_user_id, a.auction_date`
+				a.id, a.name, r.name, av.winner_user_id, a.end_date`
 
 	if err := common.Database.Raw(sql, auctionID).Scan(&auctionDetails).Error; err != nil {
 		common.PrintError("Error retrieving auction details", err.Error())
