@@ -55,6 +55,7 @@ type AuctionVehicle struct {
 	ProxyToken            string    `json:"proxy_token" query:"proxy_token" firestore:"proxy_token" gorm:"type:varchar(36);default:NULL"`
 	LogLastBiddingPrice   int       `json:"log_last_bidding_price" query:"log_last_bidding_price" firestore:"log_last_bidding_price" gorm:"type:int"`
 	LogLastBiddingUserID  string    `json:"log_last_bidding_user_id" query:"log_last_bidding_user_id" firestore:"log_last_bidding_user_id" gorm:"type:varchar(36)"`
+	LogMaxProxyID         string    `json:"log_max_proxy_id" query:"log_max_proxy_id" firestore:"log_max_proxy_id" gorm:"type:varchar(36)"`
 	LogMaxProxyPrice      int       `json:"log_max_proxy_price" query:"log_max_proxy_price" firestore:"log_max_proxy_price" gorm:"type:int"`
 	LogMaxProxyUserID     string    `json:"log_max_proxy_user_id" query:"log_max_proxy_user_id" firestore:"log_max_proxy_user_id" gorm:"type:varchar(36)"`
 	RowOrder              float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
