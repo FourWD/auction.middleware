@@ -53,12 +53,12 @@ type AuctionVehicle struct {
 	FirstOpenPrice        int       `json:"first_open_price" query:"first_open_price" firestore:"first_open_price" gorm:"type:int"`
 	CountAuction          int       `json:"count_auction" query:"count_auction" firestore:"count_auction" gorm:"type:int"` // ผ่านการประมูลมาแล้วกี่รอบ
 	ProxyToken            string    `json:"proxy_token" query:"proxy_token" firestore:"proxy_token" gorm:"type:varchar(36);default:NULL"`
-	LogLastBiddingPrice   int       `json:"log_last_bidding_price" query:"log_last_bidding_price" firestore:"log_last_bidding_price" gorm:"type:int"`
-	LogLastBiddingUserID  string    `json:"log_last_bidding_user_id" query:"log_last_bidding_user_id" firestore:"log_last_bidding_user_id" gorm:"type:varchar(36)"`
-	LogMaxProxyID         string    `json:"log_max_proxy_id" query:"log_max_proxy_id" firestore:"log_max_proxy_id" gorm:"type:varchar(36)"`
-	LogMaxProxyPrice      int       `json:"log_max_proxy_price" query:"log_max_proxy_price" firestore:"log_max_proxy_price" gorm:"type:int"`
-	LogMaxProxyUserID     string    `json:"log_max_proxy_user_id" query:"log_max_proxy_user_id" firestore:"log_max_proxy_user_id" gorm:"type:varchar(36)"`
-	RowOrder              float32   `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
+	// LogLastBiddingPrice   int       `json:"log_last_bidding_price" query:"log_last_bidding_price" firestore:"log_last_bidding_price" gorm:"type:int"`
+	// LogLastBiddingUserID  string    `json:"log_last_bidding_user_id" query:"log_last_bidding_user_id" firestore:"log_last_bidding_user_id" gorm:"type:varchar(36)"`
+	// LogMaxProxyID         string    `json:"log_max_proxy_id" query:"log_max_proxy_id" firestore:"log_max_proxy_id" gorm:"type:varchar(36)"`
+	// LogMaxProxyPrice      int       `json:"log_max_proxy_price" query:"log_max_proxy_price" firestore:"log_max_proxy_price" gorm:"type:int"`
+	// LogMaxProxyUserID     string    `json:"log_max_proxy_user_id" query:"log_max_proxy_user_id" firestore:"log_max_proxy_user_id" gorm:"type:varchar(36)"` // comment model p'del for create auction vehicle
+	RowOrder float32 `json:"row_order" query:"row_order" firestore:"row_order" gorm:"type:decimal(5,2)"`
 }
 
 /* //
