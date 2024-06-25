@@ -280,7 +280,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 	pdf.Ln(-1)
 
 	fileName := generateFileNameList(vehicles[0].AuctionName)
-	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction", auctionID)
 	if err != nil {
 		return "", err
 	}
