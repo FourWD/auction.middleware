@@ -34,7 +34,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 	if err := registerImageFromURL(pdf, header, "header"); err != nil {
 		return "", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพหัวได้: %v", err)
 	}
-	pdf.Image("header", 0, 0, 210, 68, false, "", 0, "")
+	pdf.Image("header", 0, 0, 210, 65, false, "", 0, "")
 
 	x := 2.5
 	y := 64.0
