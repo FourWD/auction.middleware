@@ -305,7 +305,7 @@ func generateFileNameList(auctionName string) string {
 func prepareDetailList(auctionID string) []VehicleSummaryDetail {
 
 	var vs []VehicleSummaryDetail
-	common.Database.Raw(`SELECT b.text_color,b.background_color,s.name as source_name,vg.color_code as color_code,v.id as vehicle_id, v.license_receive_date,(r.crp-(r.crp*7/100)) AS crp_p_vat,	r.crp as crp,
+	common.Database.Raw(`SELECT r.name as auction_name,b.text_color,b.background_color,s.name as source_name,vg.color_code as color_code,v.id as vehicle_id, v.license_receive_date,(r.crp-(r.crp*7/100)) AS crp_p_vat,	r.crp as crp,
 		v.vehicle_grade_id, v.vehicle_gear_name, v.vehicle_brand_name,vb.name_en as vehicle_brand_name_th,v.vehicle_color_name,
 		v.vehicle_model_name, av.open_price,av.close_price as close_price, v.year_manufacturing as years,v.year_register, vm.name_en as vehicle_model_name_th,v.vehicle_sub_model_name,v.license,
 		  v.license_province_id, v.license_province_name, v.mile AS mile, b.label as branch_label,v.remark,
@@ -315,6 +315,7 @@ func prepareDetailList(auctionID string) []VehicleSummaryDetail {
 	vi.image_path AS image_preview_path
 	FROM auction_vehicles AS av
 	LEFT JOIN auctions AS a ON av.auction_id = a.id
+	LEFT JOIN rounds AS r ON a.round_id = r.id
 	LEFT JOIN vehicles AS v ON  v.id = av.vehicle_id
 	LEFT JOIN vehicle_grades AS vg ON v.vehicle_grade_id = vg.id
 	LEFT JOIN sources AS s ON v.source_id = s.id
