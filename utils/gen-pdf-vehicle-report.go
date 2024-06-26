@@ -431,7 +431,7 @@ func GenPDFReport(auctionID string, vehicleID string) (string, error) { //ใบ
 		fileName = summary.AuctionName + "_" + vehicles[0].License
 	}
 
-	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction", auctionID)
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}

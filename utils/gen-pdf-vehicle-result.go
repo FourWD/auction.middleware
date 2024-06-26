@@ -233,7 +233,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 	// 	fmt.Println("Error:", err)
 	// }
 	// return filedesination, nil
-	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction", auctionID)
+	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}

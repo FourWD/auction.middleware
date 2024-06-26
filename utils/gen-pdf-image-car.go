@@ -216,7 +216,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 
 	fileName := generateFileNameImageCar(vehicles[0].AuctionName)
 
-	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction", auctionID)
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", err
 	}

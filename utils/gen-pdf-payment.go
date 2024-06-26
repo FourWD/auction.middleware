@@ -38,7 +38,7 @@ func GenPDFPayment(auctionID string, userID string) (string, string, error) {
 		fileName = fmt.Sprintf("%s_%s_%s", user.CompanyName, summary.RoundName, DateToString(vehicles[0].EndDate))
 	}
 
-	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction", auctionID)
+	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
 	if err != nil {
 		return "", "", err
 	}
