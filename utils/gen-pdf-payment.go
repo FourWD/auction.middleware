@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	model "github.com/FourWD/auction.middleware/model"
@@ -35,7 +36,8 @@ func GenPDFPayment(auctionID string, userID string) (string, string, error) {
 	if user.UserTypeID == "01" {
 		fileName = fmt.Sprintf("%s_%s_%s_%s", user.UserFirstname, user.UserLastname, summary.RoundName, DateToString(vehicles[0].EndDate))
 	} else {
-		fileName = fmt.Sprintf("%s_%s_%s", user.CompanyName, summary.RoundName, DateToString(vehicles[0].EndDate))
+		companyName := strings.ReplaceAll(user.CompanyName, " ", "_")
+		fileName = fmt.Sprintf("%s_%s_%s", companyName, summary.RoundName, DateToString(vehicles[0].EndDate))
 	}
 
 	path, err := common.UploadPdfToGoogle(pdf, fileName, "auction", "fourwd-auction")
