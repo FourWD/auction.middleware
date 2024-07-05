@@ -65,7 +65,6 @@ type Vehicle struct {
 
 	License             string `json:"license"`
 	LicenseProvinceName string `json:"license_province_name"`
-	LicenseReceiveDate  string `json:"license_receive_date"`
 
 	ImagePath []Image
 }
@@ -294,7 +293,7 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.SetFont("Sarabun", "", 18)
 		pdf.Text(154, 238, "วันที่จดทะเบียน")
 		pdf.SetFont("Sarabun", "B", 50)
-		pdf.Text(154, 252, v.LicenseReceiveDate)
+		pdf.Text(154, 252, v.YearRegister)
 		//
 		pdf.SetFont("Sarabun", "", 18)
 		pdf.Text(12, 264, "เลขตัวรถ")
