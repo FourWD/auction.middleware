@@ -299,7 +299,11 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		if err != nil {
 			return "err stringtodate", err
 		}
-		pdf.Text(154, 252, date.Format("02/01/2006"))
+		year := date.Year() + 543
+		monthsThai := []string{"", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"}
+		monthThai := monthsThai[date.Month()]
+		dateThai := fmt.Sprintf("%02d %s %d", date.Day(), monthThai, year)
+		pdf.Text(154, 252, dateThai)
 
 		//
 		pdf.SetFont("Sarabun", "", 18)
