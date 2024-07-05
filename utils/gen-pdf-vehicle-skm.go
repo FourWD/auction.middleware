@@ -415,7 +415,7 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 
 }
 func prepareVehicleSKM(auctionID string) []Vehicle { //sql skm
-	var vehicles []Vehicle
+	var vehicles []Vehicle //
 	common.Database.Raw(`
         SELECT 
             CASE WHEN a.auction_status_id = '06' THEN 'G001' ELSE '' END AS additional_code,
