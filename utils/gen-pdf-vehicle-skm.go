@@ -404,7 +404,7 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 	return path, nil
 
 }
-func prepareVehicleSKM(auctionID string) []Vehicle {
+func prepareVehicleSKM(auctionID string) []Vehicle { //sql skm
 	var vehicles []Vehicle
 	common.Database.Raw(`
         SELECT 
