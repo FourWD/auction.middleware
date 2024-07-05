@@ -17,7 +17,7 @@ func DateToString(date time.Time) string {
 	return date.Format("2006-01-02")
 }
 
-// return "https://storage.googleapis.com/fourwd-auction/auction/2023/2.pdf", nil
+// return "https://storage.googleapis.com/fourwd-auction/auction/2023/2.pdf", nil //
 func GenPDFPayment(auctionID string, userID string) (string, string, error) {
 	user, vehicles, summary := preparePayment(auctionID, userID)
 
