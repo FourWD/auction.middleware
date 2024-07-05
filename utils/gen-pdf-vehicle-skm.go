@@ -297,7 +297,7 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.SetFont("Sarabun", "B", 50)
 		date, err := time.Parse(time.RFC3339, v.LicenseReceiveDate)
 		if err != nil {
-			return "err stringtodate"
+			return "err stringtodate", err
 		}
 		pdf.Text(154, 252, date.Format("02/01/2006"))
 
