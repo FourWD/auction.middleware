@@ -228,10 +228,17 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.SetFont("Sarabun", "", 18)
 		pdf.Text(94, 110, "ราคาตั้งประมูล ( ไม่รวม VAT )")
 		pdf.SetFont("Sarabun", "B", 50)
-		price, _ := strconv.ParseFloat(v.OpenPrice, 64)
-		openprice := common.FloatWithCommas(price, 0)
-		pdf.Text(94, 122, openprice+" ( ไม่รวม VAT )")
-		pdf.Text(94, 122, " ")
+		// price, _ := strconv.ParseFloat(v.OpenPrice, 64)
+		// openprice := common.FloatWithCommas(price, 0)
+		// pdf.Text(94, 122, openprice+" ( ไม่รวม VAT )")
+		// pdf.Text(94, 122, " ")
+		if v.OpenPrice == "0" {
+			pdf.Text(94, 122, "รอกำหนดราคา")
+		} else {
+			price, _ := strconv.ParseFloat(v.OpenPrice, 64)
+			openprice := common.FloatWithCommas(price, 0)
+			pdf.Text(94, 122, openprice+" ( ไม่รวม VAT )")
+		}
 
 		pdf.SetFont("Sarabun", "", 18)
 		pdf.Text(94, 137, "ดาวน์")
