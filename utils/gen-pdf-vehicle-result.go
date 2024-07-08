@@ -71,7 +71,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 	page := 1
 	// y := 75.0
-	perpage := 23
+	perpage := 31
 	line := 1
 	tableYz := 88.00
 
@@ -153,7 +153,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 		if page == 1 {
 		} else {
-			perpage = 28
+			perpage = 43
 		}
 		fmt.Printf("index = %d, License = %s", i, v.License)
 		fmt.Printf(", page = %d, perpage = %d", page, perpage)
@@ -205,10 +205,10 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		line++
 		newpage := false
 
-		if i == 23 {
+		if i == 31 {
 			newpage = true
-		} else if i > 23 {
-			temp := i - 23
+		} else if i > 31 {
+			temp := i - 31
 			if temp%perpage == 0 {
 				newpage = true
 			}
