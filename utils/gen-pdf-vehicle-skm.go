@@ -219,7 +219,7 @@ func GenPDFDownloadVehicle(auctionID string) (string, error) {
 		pdf.SetFont("Sarabun", "B", 50)
 		pdf.Text(94, 72, v.VehicleBrandNameTh)
 
-		pdf.SetFont("Sarabun", "", 18)
+		pdf.SetFont("Sarabun", "", 18) //
 		pdf.Text(94, 84, "รุ่นรถ")
 		pdf.SetFont("Sarabun", "B", 50)
 		// pdf.Text(94, 98, v.VehicleModelNameTh+" "+v.VehicleSubModelName)
