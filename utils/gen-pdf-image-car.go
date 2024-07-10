@@ -129,7 +129,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 			pdf.SetFont("Sarabun", "B", 12)
 			pdf.SetTextColor(0, 0, 0)
 
-			pdf.Text(x+34, y+4, "ปี "+v.YearRegister+" "+v.VehicleBrandName)
+			pdf.Text(x+34, y+4, "ปี "+v.Years+" "+v.VehicleBrandName)
 			pdf.SetFont("Sarabun", "", 7)
 			pdf.Text(x+34, y+7, v.VehicleModelName+" "+v.VehicleSubModelName)
 
