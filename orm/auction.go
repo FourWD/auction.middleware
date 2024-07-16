@@ -39,7 +39,7 @@ type Auction struct {
 	Description          string    `json:"description" query:"description" firestore:"description" gorm:"type:varchar(350)"`
 	IsAllVehicleApprove  bool      `json:"is_all_vehicle_approve" query:"is_all_vehicle_approve" firestore:"is_all_vehicle_approve" gorm:"type:bool"`
 	IsGenFile            bool      `json:"is_gen_file" query:"is_gen_file" firestore:"is_gen_file" gorm:"type:bool"`
-	GenFileDate          time.Time `json:"gen_file_date" query:"gen_file_date" firestore:"gen_file_date" `
+	GenFileDate          time.Time `json:"gen_file_date" query:"gen_file_date" firestore:"gen_file_date"`
 	IsGenEodUser         bool      `json:"is_gen_eod_user" query:"is_gen_eod_user" firestore:"is_gen_eod_user" gorm:"type:bool"`
 	GenEodUserDate       time.Time `json:"gen_eod_user_date" query:"gen_eod_user_date" firestore:"gen_eod_user_date" `
 

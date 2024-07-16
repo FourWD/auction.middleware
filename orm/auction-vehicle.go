@@ -53,6 +53,9 @@ type AuctionVehicle struct {
 	FirstOpenPrice        int       `json:"first_open_price" query:"first_open_price" firestore:"first_open_price" gorm:"type:int"`
 	CountAuction          int       `json:"count_auction" query:"count_auction" firestore:"count_auction" gorm:"type:int"` // ผ่านการประมูลมาแล้วกี่รอบ
 	ProxyToken            string    `json:"proxy_token" query:"proxy_token" firestore:"proxy_token" gorm:"type:varchar(36);default:NULL"`
+
+	IsGenFile   bool      `json:"is_gen_file" query:"is_gen_file" firestore:"is_gen_file" gorm:"type:bool"`
+	GenFileDate time.Time `json:"gen_file_date" query:"gen_file_date" firestore:"gen_file_date"`
 	// LogLastBiddingPrice   int       `json:"log_last_bidding_price" query:"log_last_bidding_price" firestore:"log_last_bidding_price" gorm:"type:int"`
 	// LogLastBiddingUserID  string    `json:"log_last_bidding_user_id" query:"log_last_bidding_user_id" firestore:"log_last_bidding_user_id" gorm:"type:varchar(36)"`
 	// LogMaxProxyID         string    `json:"log_max_proxy_id" query:"log_max_proxy_id" firestore:"log_max_proxy_id" gorm:"type:varchar(36)"`
