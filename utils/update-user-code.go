@@ -16,7 +16,9 @@ func UpdateUserCode(id string) (string, error) {
 		UserTypeCode string `json:"user_type_code" query:"user_type_code"`
 	}
 	var user User
-	common.Database.First(&user, id)
+	// common.Database.First(&user, id)
+	sqlID := `SELECT * FROM users WHERE id = ?`
+	common.Database.Raw(sqlID, id).Scan(&user)
 
 	type Count struct {
 		Count int64 `json:"count"`

@@ -12,10 +12,9 @@ import (
 
 func UpdateDeductCode(id string) (string, error) {
 	var deduct orm.DeductRight
-	common.Database.First(&deduct, id)
-
-	// sql := `SELECT * FROM deduct_rights WHERE id = ?`
-	// common.Database.Raw(sql, id).Scan(&deduct)
+	// common.Database.First(&deduct, id)
+	sqlID := `SELECT * FROM deduct_rights WHERE id = ?`
+	common.Database.Raw(sqlID, id).Scan(&deduct)
 
 	type Count struct {
 		Count int64 `json:"count"`

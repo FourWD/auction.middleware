@@ -12,10 +12,9 @@ import (
 
 func UpdateRefundCode(id string) (string, error) {
 	var refund orm.Refund
-	common.Database.First(&refund, id)
-
-	// sql := `SELECT * refunds WHERE id = ?`
-	// common.Database.Raw(sql, userID).Scan(&refund)
+	// common.Database.First(&refund, id)
+	sqlID := `SELECT * refunds WHERE id = ?`
+	common.Database.Raw(sqlID, id).Scan(&refund)
 
 	type Count struct {
 		Count int64 `json:"count"`
