@@ -14,7 +14,7 @@ func UpdateRefundCode(id string) (string, error) {
 	var refund orm.Refund
 	//common.Database.First(&refund, id)
 	sqlID := `SELECT * refunds WHERE id = ?`
-	common.Database.Raw(sqlID, id).Scan(&refund)
+	common.Database.Raw(sqlID, id).Debug().Scan(&refund)
 
 	type Count struct {
 		Count int64 `json:"count"`
@@ -28,7 +28,7 @@ func UpdateRefundCode(id string) (string, error) {
 	FROM refunds 
 	WHERE YEAR(created_at) = ? 
 	AND MONTH(created_at) = ? AND DAY(created_at) = ? AND running_no <= ? `
-	common.Database.Raw(sql, year, month, day, refund.RunningNo).Scan(&count.Count)
+	common.Database.Raw(sql, year, month, day, refund.RunningNo).Debug().Scan(&count.Count)
 	// common.Print(sql, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
