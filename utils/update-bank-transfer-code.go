@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"time"
 
@@ -9,51 +10,34 @@ import (
 	"github.com/FourWD/middleware/common"
 )
 
-func UpdateBanktrasferCode(userID string) (string, error) {
-	type Code struct {
-		orm.BankTransfer
-		Code string `json:"code" query:"code"`
-	}
+func UpdateBankTransferCode(id string) (string, error) {
+	var bank orm.BankTransfer
+	common.Database.First(&bank, id)
 
-	var verifyCode Code
+	// sql := `SELECT * FROM bank_transfers WHERE id = ?`
+	// common.Database.Raw(sql, id).Scan(&bank)
 
-	sql := `SELECT u.id,p.code, bt.running_no FROM users u 
-							LEFT JOIN payment_types p ON u.payment_type_id = p.id
-							LEFT JOIN bank_transfers bt ON u.id = bt.user_id
-						WHERE u.id = ?`
-	common.Database.Raw(sql, userID).Scan(&verifyCode)
-	common.Print(sql, "verifycode")
 	type Count struct {
 		Count int64 `json:"count"`
 	}
-
 	var count Count
 	year := time.Now().Year()
 	month := time.Now().Month()
 	day := time.Now().Day()
 
-	queryBanktransfer := `SELECT COUNT(*) 
+	sql := `SELECT COUNT(*) 
 	FROM bank_transfers WHERE YEAR(created_at) = ? 
-	AND MONTH(created_at) = ? AND DAY(created_at) = ? AND runinng_no <= ?`
-	common.Database.Raw(queryBanktransfer, year, month, day, verifyCode.RunningNo).Scan(&count.Count)
-	//common.Print(queryBanktransfer, fmt.Sprintf("%d", count.Count))
+	AND MONTH(created_at) = ? AND DAY(created_at) = ? AND running_no <= ?`
+	common.Database.Raw(sql, year, month, day, bank.RunningNo).Scan(&count.Count)
 
 	fyear := strconv.Itoa(year)
 	fmonth := fmt.Sprintf("%02d", month)
 	fday := fmt.Sprintf("%02d", day)
+	code := fmt.Sprintf("%s%s%s%s%03d", "CS", fyear[2:4], fmonth, fday, count.Count)
 
-	verifyBanktransfer := fmt.Sprintf("%s%s%s%s%03d", "CS", fyear[2:4], fmonth, fday, count.Count)
-
-	// date := common.NilDate()
-
-	updateBanktransfer := `UPDATE bank_transfers 
-	SET code = ?, updated_at = '` + "1900-01-01 06:42:04.000" + `' WHERE id = ?`
-
-	checkUpdate := common.Database.Exec(updateBanktransfer, verifyBanktransfer, userID)
-
-	if checkUpdate.RowsAffected == 0 {
-		common.PrintError("Error checkupdate", userID)
+	updateSql := `UPDATE bank_transfers SET code = ? WHERE id = ?`
+	if err := common.Database.Exec(updateSql, code, id).Error; err != nil {
+		log.Println(err)
 	}
-
-	return verifyBanktransfer, nil
+	return code, nil
 }
