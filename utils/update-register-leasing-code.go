@@ -12,7 +12,9 @@ import (
 
 func UpdateRegisterLeasingCode(id string) (string, error) {
 	var leasing orm.RegisterLeasing
-	common.Database.First(&leasing, id)
+	// common.Database.First(&leasing, id)
+	sqlID := `SELECT * FROM register_leasings WHERE id = ?`
+	common.Database.Raw(sqlID, id).Scan(&leasing)
 
 	type Count struct {
 		Count int64 `json:"count"`

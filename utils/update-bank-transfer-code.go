@@ -12,10 +12,9 @@ import (
 
 func UpdateBankTransferCode(id string) (string, error) {
 	var bank orm.BankTransfer
-	common.Database.First(&bank, id)
-
-	// sql := `SELECT * FROM bank_transfers WHERE id = ?`
-	// common.Database.Raw(sql, id).Scan(&bank)
+	// common.Database.First(&bank, id)
+	sqlID := `SELECT * FROM bank_transfers WHERE id = ?`
+	common.Database.Raw(sqlID, id).Scan(&bank)
 
 	type Count struct {
 		Count int64 `json:"count"`
