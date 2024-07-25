@@ -13,7 +13,7 @@ import (
 func UpdateRefundCode(id string) (string, error) {
 	var refund orm.Refund
 	//common.Database.First(&refund, id)
-	sqlID := `SELECT * refunds WHERE id = ?`
+	sqlID := `SELECT * FROM refunds WHERE id = ?`
 	common.Database.Raw(sqlID, id).Debug().Scan(&refund)
 
 	type Count struct {

@@ -18,7 +18,7 @@ func UpdateUserCode(id string) (string, error) {
 	var user User
 	// common.Database.First(&user, id)
 	sqlID := `SELECT * FROM users WHERE id = ?`
-	common.Database.Raw(sqlID, id).Scan(&user)
+	common.Database.Raw(sqlID, id).Debug().Scan(&user)
 
 	type Count struct {
 		Count int64 `json:"count"`
@@ -31,7 +31,7 @@ func UpdateUserCode(id string) (string, error) {
 	FROM users 
 	WHERE YEAR(created_at) = ? AND MONTH(created_at) = ?
 	AND user_type_id = ? AND running_no <= ?`
-	common.Database.Raw(sql, year, month, user.UserTypeID, user.RunningNo).Scan(&count.Count)
+	common.Database.Raw(sql, year, month, user.UserTypeID, user.RunningNo).Debug().Scan(&count.Count)
 	// common.Print(sql, fmt.Sprintf("%d", count.Count))
 
 	fyear := strconv.Itoa(year)
@@ -39,7 +39,7 @@ func UpdateUserCode(id string) (string, error) {
 	code := fmt.Sprintf("%s%s%s%04d", user.UserTypeCode, fyear[2:4], fmonth, count.Count)
 
 	updateSql := `UPDATE users set code = ? where id = ?`
-	if err := common.Database.Exec(updateSql, code, id).Error; err != nil {
+	if err := common.Database.Debug().Exec(updateSql, code, id).Error; err != nil {
 		log.Println(err)
 	}
 	return code, nil
