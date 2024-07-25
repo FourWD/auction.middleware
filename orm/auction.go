@@ -7,7 +7,7 @@ import (
 )
 
 type Auction struct {
-	ID string `json:"id" query:"id" firestore:"id" gorm:"type:varchar(36); uniqueIndex:idx_id"`
+	ID string `json:"id" query:"id" firestore:"id" gorm:"type:varchar(36);uniqueIndex:idx_id"`
 	model.GormModel
 
 	RoundID              string    `json:"round_id" query:"round_id" firestore:"round_id" gorm:"type:varchar(36)"`

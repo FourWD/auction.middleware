@@ -51,5 +51,5 @@ type RegisterLeasing struct {
 
 	LastFinanceUpdateBy   string    `json:"last_finance_update_by" query:"last_finance_update_by" gorm:"type:varchar(36)"`
 	LastFinanceUpdateDate time.Time `json:"last_finance_update_date" query:"last_finance_update_date" `
-	RunningNo             int       `json:"running_no" query:"running_no" gorm:"type:int"`
+	RunningNo             int       `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
 }

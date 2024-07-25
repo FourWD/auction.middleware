@@ -7,7 +7,7 @@ import (
 )
 
 type Refund struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);uniqueIndex:idx_id"`
 	model.GormModel
 
 	// BankID          string    `json:"refund_bank_id" query:"refund_bank_id" gorm:"type:varchar(36)"`
@@ -31,5 +31,5 @@ type Refund struct {
 	FileSlipID     string    `json:"file_slip_id" query:"file_slip_id" gorm:"type:varchar(36)"`
 	IsApp          bool      `json:"is_app" query:"is_app" gorm:"type:bool"` //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
 	Code           string    `json:"code" query:"code" gorm:"type:varchar(20)"`
-	RunningNo      int       `json:"running_no" query:"running_no" gorm:"type:int"`
+	RunningNo      int       `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
 }

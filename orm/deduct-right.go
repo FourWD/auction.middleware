@@ -7,7 +7,7 @@ import (
 )
 
 type DeductRight struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);uniqueIndex:idx_id"`
 	model.GormModel
 
 	DeductAmount        int       `json:"deduct_amount" query:"deduct_amount" gorm:"type:int"`
@@ -21,5 +21,5 @@ type DeductRight struct {
 	// EffectiveDate       time.Time `json:"effective_date" query:"effective_date"`
 	Remark    string `json:"remark" query:"remark" gorm:"type:text"`
 	Code      string `json:"code" query:"code" gorm:"type:varchar(20)"`
-	RunningNo int    `json:"running_no" query:"running_no" gorm:"type:int"`
+	RunningNo int    `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
 }

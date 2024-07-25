@@ -7,7 +7,7 @@ import (
 )
 
 type BankTransfer struct {
-	ID string `json:"id" query:"id" gorm:"type:varchar(36);primary_key"`
+	ID string `json:"id" query:"id" gorm:"type:varchar(36);uniqueIndex:idx_id"`
 	model.GormModel
 
 	UserID string `json:"user_id" query:"user_id" gorm:"type:varchar(36)"`
@@ -41,7 +41,7 @@ type BankTransfer struct {
 	FileCompanyRegisterID string `json:"file_company_register_id" query:"file_company_register_id" gorm:"type:varchar(36)"`
 	FilePP20ID            string `json:"file_pp20_id" query:"file_pp20_id" gorm:"type:varchar(36)"`
 	Code                  string `json:"code" query:"code" gorm:"type:varchar(20)"`
-	RunningNo             int    `json:"running_no" query:"running_no" gorm:"type:int"`
+	RunningNo             int    `json:"running_no" query:"running_no" gorm:"primary_key;auto_increment;not_null"`
 
 	Remark   string `json:"remark" query:"remark" gorm:"type:text"`
 	Postcode string `json:"postcode" query:"postcode" gorm:"type:varchar(5)"`
