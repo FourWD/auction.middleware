@@ -26,7 +26,7 @@ type Refund struct {
 	ApproveDate    time.Time `json:"approve_date" query:"approve_date"`
 	IsTransfer     bool      `json:"is_transfer" query:"is_transfer" gorm:"type:bool"`
 	TransferBy     string    `json:"transfer_by" query:"transfer_by" gorm:"type:varchar(36)"`
-	TransfereDate  time.Time `json:"transfer_date" query:"transfer_date"`
+	TransferDate   time.Time `json:"transfer_date" query:"transfer_date"`
 	Remark         string    `json:"remark" query:"remark" gorm:"type:text"`
 	FileSlipID     string    `json:"file_slip_id" query:"file_slip_id" gorm:"type:varchar(36)"`
 	IsApp          bool      `json:"is_app" query:"is_app" gorm:"type:bool"` //มาจากหน้าบ้าน = true , มาจากหลังบ้าน = false
