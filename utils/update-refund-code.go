@@ -12,7 +12,7 @@ import (
 
 func UpdateRefundCode(id string) (string, error) {
 	var refund orm.Refund
-	// common.Database.First(&refund, id)
+	//common.Database.First(&refund, id)
 	sqlID := `SELECT * refunds WHERE id = ?`
 	common.Database.Raw(sqlID, id).Scan(&refund)
 
