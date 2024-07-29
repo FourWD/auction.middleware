@@ -27,7 +27,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 	pdf.Rect(0, 0, 210, 297, "F")
 
 	header := ""
-	sql := `select header_image_verical from auctions where id = ?`
+	sql := `select header_image_vertical from auctions where id = ?`
 	common.Database.Raw(sql, auctionID).Scan(&header)
 	header = strings.TrimSpace(header) // ลบช่องว่างก่อนหลังของ URL
 
@@ -203,7 +203,7 @@ func GenPDFImageCarDetail(auctionID string) (string, error) { //ใบปริ�
 		i++
 
 		headerdown := ""
-		sql := `select bottom_image_verical from auctions where id = ?`
+		sql := `select bottom_image_vertical from auctions where id = ?`
 		common.Database.Raw(sql, auctionID).Scan(&headerdown)
 		headerdown = strings.TrimSpace(headerdown)
 
