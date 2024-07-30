@@ -7,7 +7,7 @@ import (
 )
 
 type AuctionVehicle struct {
-	ID string `json:"id" query:"id" firestore:"id" bson:"id,omitempty" gorm:"type:varchar(36);primary_key"`
+	ID string `json:"id" query:"id" firestore:"id" bson:"_id,omitempty" gorm:"type:varchar(36);primary_key"`
 	model.GormModel
 	AuctionID             string    `json:"auction_id" query:"auction_id" firestore:"auction_id" bson:"auction_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id"`
 	VehicleID             string    `json:"vehicle_id" query:"vehicle_id" firestore:"vehicle_id" bson:"vehicle_id" gorm:"type:varchar(36);uniqueIndex:idx_auction_id_vehicle_id"`
