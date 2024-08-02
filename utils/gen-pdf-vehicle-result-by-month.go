@@ -9,19 +9,6 @@ import (
 	"github.com/jung-kurt/gofpdf"
 )
 
-// func GenPDFVehicleResult(auctionID string) (string, error) { //ใบประกาศ ผลประมูล
-
-// 	pdf := gofpdf.New("P", "mm", "A4", "")
-
-// 	GenPDFResult(pdf, auctionID)
-
-// 	path, err := common.UploadPdfToGoogle(pdf, "ใบประกาศผลประมูล", "auction", "fourwd-auction")
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	return path, nil
-// }
-
 func GenPDFResultByMonth(month string) (string, error) { //ใบประกาศ ผลประมูล
 
 	auctionlist, _ := prepareAuctionListByMonth(month) // 2024-08
@@ -52,10 +39,15 @@ func GenPDFResultByMonth(month string) (string, error) { //ใบประกา
 		pdf.SetDrawColor(0, 0, 0)
 		pdf.CellFormat(35, 8, "ผลการประมูลรถ", "0", 0, "C", true, 0, "")
 
-		pdf.SetXY(150, 30)
+		pdf.SetXY(140, 30)
 		pdf.SetFillColor(255, 255, 255)
 		pdf.SetDrawColor(0, 0, 0)
-		pdf.CellFormat(35, 8, "รอบประมูลวันที่", "0", 0, "C", true, 0, "")
+		pdf.CellFormat(35, 8, "รอบประมูล "+auction.AuctionName, "0", 0, "L", true, 0, "")
+
+		pdf.SetXY(120, 40)
+		pdf.SetFillColor(255, 255, 255)
+		pdf.SetDrawColor(0, 0, 0)
+		pdf.CellFormat(35, 8, "วันที่", "0", 0, "C", true, 0, "")
 
 		// for _, v := range vehicles {
 
@@ -180,10 +172,11 @@ func GenPDFResultByMonth(month string) (string, error) { //ใบประกา
 	return path, nil
 }
 
-func prepareAuctionListByMonth(month string) ([]VehicleReportAuction, Summary) {
+func prepareAuctionListByMonth(month string) ([]AuctionListResult, Summary) {
 
-	var auctions []VehicleReportAuction
-	common.Database.Raw(`SELECT  DATE(a.start_date) as start_date_auction,DATE(a.end_date) as end_date_auction,av.auction_id AS auction_id
+	var auctions []AuctionListResult
+	common.Database.Raw(`SELECT  DATE(a.start_date) as start_date_auction,DATE(a.end_date) as end_date_auction,
+	av.auction_id AS auction_id,r.name AS auction_name
 	FROM auction_vehicles AS av
 	LEFT JOIN auctions AS a ON av.auction_id = a.id
 	LEFT JOIN vehicles AS v ON  v.id = av.vehicle_id
@@ -195,10 +188,11 @@ func prepareAuctionListByMonth(month string) ([]VehicleReportAuction, Summary) {
 	LEFT JOIN vehicle_brands vb ON v.vehicle_brand_id = vb.id
 	LEFT JOIN vehicle_models vm ON v.vehicle_model_id = vm.id
 	LEFT JOIN vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' AND vi.is_delete = 0
+	LEFT JOIN rounds AS r ON a.round_id = r.id
 	WHERE DATE_FORMAT(a.actual_end_date, '%Y-%m') = ? AND av.is_win = true
-	GROUP BY av.auction_id ORDER BY av.vehicle_no ASC`, month).Scan(&auctions)
-	common.Print(month, "month")
-	common.Print("vehicle", common.StructToString(auctions))
+	GROUP BY av.auction_id ORDER BY end_date_auction ASC`, month).Scan(&auctions)
+	// common.Print(month, "month")
+	// common.Print("vehicle", common.StructToString(auctions))
 
 	summary := new(Summary)
 	common.Database.Raw(`
@@ -211,7 +205,7 @@ func prepareAuctionListByMonth(month string) ([]VehicleReportAuction, Summary) {
         LEFT JOIN auctions a ON av.auction_id = a.id
 	where
 	DATE_FORMAT(a.actual_end_date, '%Y-%m') = ? AND av.is_win = true  GROUP BY MONTH(a.start_date) , auction_name`, month).Scan(&summary)
-	common.Print("year month", month)
+	// common.Print("year month", month)
 
 	return auctions, *summary
 }
@@ -241,8 +235,8 @@ LEFT JOIN vehicle_models vm ON v.vehicle_model_id = vm.id
 LEFT JOIN vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' AND vi.is_delete = 0
 						WHERE av.auction_id = ? AND av.is_win = true
 							ORDER BY av.vehicle_no ASC`, auctionID).Scan(&vehicles)
-	common.Print(auctionID, "auctionID")
-	common.Print("vehicle", common.StructToString(vehicles))
+	// common.Print(auctionID, "auctionID")
+	// common.Print("vehicle", common.StructToString(vehicles))
 
 	summary := new(Summary)
 	common.Database.Raw(`
@@ -256,53 +250,16 @@ LEFT JOIN vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_
 	where
 	  av.auction_id = ? AND av.is_win = true 
 	  GROUP BY DATE(a.start_date), a.name`, auctionID).Scan(&summary)
-	common.Print(auctionID, "auctionID")
+	// common.Print(auctionID, "auctionID")
 
 	return vehicles, *summary
 }
 
-type VehicleReportAuction struct {
-	VehicleID       string `json:"vehicle_id"`
-	VehicleNo       string `json:"vehicle_no"`
-	Receipt         string `json:"receipt"`
-	VehicleGradeID  string `json:"vehicle_grade_id"`
-	VehicleGearName string `json:"vehicle_gear_name"`
-	CN              string `json:"cn"`
-
-	VehicleBrandName      string `json:"vehicle_brand_name"`
-	VehicleBrandNameTh    string `json:"vehicle_brand_name_th"`
-	VehicleSubModelNameTh string `json:"vehicle_sub_model_name_th"`
-	VehicleSubModelName   string `json:"vehicle_sub_model_name"`
-	VehicleModelName      string `json:"vehicle_model_name"`
-	VehicleModelNameTh    string `json:"vehicle_model_name_th"`
-	VehicleColorName      string `json:"vehicle_color_name"`
-	Years                 string `json:"years"`
-	YearRegister          string `json:"year_register"`
-	ImagePreviewPath      string `json:"image_preview_path"`
-	OpenPrice             string `json:"open_price"`
-	ClosePrice            string `json:"close_price"`
-	TotalCar              string `json:"total_car"`
-
-	SKU                 string `json:"sku"`
-	EngineSize          string `json:"engine_size"`
-	EngineNo            string `json:"engine_no"`
-	EngineCapacity      string `json:"engine_capacity"`
-	VehicleFuelTypeName string `json:"vehicle_fuel_type_name"`
-	Mile                string `json:"mile"`
-	ChassisNo           string `json:"chassis_no"`
-	VehicleTypeName     string `json:"vehicle_type_name"`
-	VehicleSubTypeName  string `json:"vehicle_sub_type_name"`
-	SourceName          string `json:"source_name"`
-	SourceID            string `json:"source_id"`
-	Branch              string `json:"branch"`
-	BranchLabel         string `json:"branch_label"`
-	License             string `json:"license"`
-	LicenseProvinceName string `json:"license_province_name"`
-
-	LicenseReceiveDate string    `json:"license_receive_date"`
-	AuctionID          string    `json:"auction_id"`
-	StartDateAuction   time.Time `json:"start_date_auction"`
-	EndDateAuction     time.Time `json:"end_date_auction"`
+type AuctionListResult struct {
+	AuctionID        string    `json:"auction_id"`
+	AuctionName      string    `json:"auction_name"`
+	StartDateAuction time.Time `json:"start_date_auction"`
+	EndDateAuction   time.Time `json:"end_date_auction"`
 }
 
 /*
