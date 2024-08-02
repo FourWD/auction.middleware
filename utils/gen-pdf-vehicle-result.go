@@ -75,79 +75,81 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 	line := 1
 	tableYz := 88.00
 
-	// for i, v := range vehicles {
-	// 	i++
+	/*
+		// for i, v := range vehicles {
+		// 	i++
 
-	// 	if page == 1 {
-	// 	} else {
-	// 		perpage = 28
-	// 	}
-	// 	fmt.Printf("index = %d, License = %s", i, v.License)
-	// 	fmt.Printf(", page = %d, perpage = %d", page, perpage)
-	// 	fmt.Printf(", line = %d", line)
-	// 	fmt.Println("========================")
+		// 	if page == 1 {
+		// 	} else {
+		// 		perpage = 28
+		// 	}
+		// 	fmt.Printf("index = %d, License = %s", i, v.License)
+		// 	fmt.Printf(", page = %d, perpage = %d", page, perpage)
+		// 	fmt.Printf(", line = %d", line)
+		// 	fmt.Println("========================")
 
-	// 	tableX := 0
-	// 	pdf.SetXY(float64(tableX), float64(tableYz))
-	// 	pdf.SetFont("Sarabun", "", 12)
-	// 	pdf.CellFormat(10, 8, v.VehicleNo, "1", 0, "C", true, 0, "")
-	// 	pdf.CellFormat(15, 8, v.VehicleBrandName, "1", 0, "C", true, 0, "")
-	// 	// pdf.CellFormat(10, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
-	// 	pdf.CellFormat(75, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
-	// 	pdf.CellFormat(15, 8, v.YearRegister, "1", 0, "C", true, 0, "")
-	// 	pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
+		// 	tableX := 0
+		// 	pdf.SetXY(float64(tableX), float64(tableYz))
+		// 	pdf.SetFont("Sarabun", "", 12)
+		// 	pdf.CellFormat(10, 8, v.VehicleNo, "1", 0, "C", true, 0, "")
+		// 	pdf.CellFormat(15, 8, v.VehicleBrandName, "1", 0, "C", true, 0, "")
+		// 	// pdf.CellFormat(10, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
+		// 	pdf.CellFormat(75, 8, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
+		// 	pdf.CellFormat(15, 8, v.YearRegister, "1", 0, "C", true, 0, "")
+		// 	pdf.CellFormat(10, 8, v.VehicleGradeID, "1", 0, "C", true, 0, "")
 
-	// 	pdf.CellFormat(15, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
+		// 	pdf.CellFormat(15, 8, v.VehicleColorName, "1", 0, "C", true, 0, "")
 
-	// 	pdf.SetFont("Sarabun", "B", 12)
-	// 	// openprice, _ := strconv.ParseFloat(v.OpenPrice, 64)
-	// 	// formattedOpenPrice := common.FloatWithCommas(openprice, 0)
+		// 	pdf.SetFont("Sarabun", "B", 12)
+		// 	// openprice, _ := strconv.ParseFloat(v.OpenPrice, 64)
+		// 	// formattedOpenPrice := common.FloatWithCommas(openprice, 0)
 
-	// 	pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
-	// 	// pdf.CellFormat(20, 8, formattedOpenPrice, "1", 0, "R", true, 0, "")
+		// 	pdf.CellFormat(30, 8, v.License, "1", 0, "C", true, 0, "")
+		// 	// pdf.CellFormat(20, 8, formattedOpenPrice, "1", 0, "R", true, 0, "")
 
-	// 	closeprice, _ := strconv.ParseFloat(v.ClosePrice, 64)
-	// 	imcvat := float64(float64(closeprice) * 1.07)
+		// 	closeprice, _ := strconv.ParseFloat(v.ClosePrice, 64)
+		// 	imcvat := float64(float64(closeprice) * 1.07)
 
-	// 	formattedVatPrice := common.FloatWithCommas(imcvat, 0)
-	// 	formattedCloseprice := common.FloatWithCommas(closeprice, 0)
-	// 	// pdf.CellFormat(20, 8, v.ClosePrice, "1", 0, "C", true, 0, "")
-	// 	pdf.CellFormat(20, 8, formattedCloseprice, "1", 0, "R", true, 0, "")
-	// 	pdf.SetFont("Sarabun", "", 12)
+		// 	formattedVatPrice := common.FloatWithCommas(imcvat, 0)
+		// 	formattedCloseprice := common.FloatWithCommas(closeprice, 0)
+		// 	// pdf.CellFormat(20, 8, v.ClosePrice, "1", 0, "C", true, 0, "")
+		// 	pdf.CellFormat(20, 8, formattedCloseprice, "1", 0, "R", true, 0, "")
+		// 	pdf.SetFont("Sarabun", "", 12)
 
-	// 	pdf.CellFormat(20, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
+		// 	pdf.CellFormat(20, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
 
-	// 	pdf.Ln(-1)
+		// 	pdf.Ln(-1)
 
-	// 	tableYz += 8
+		// 	tableYz += 8
 
-	// 	line++
-	// 	newpage := false
+		// 	line++
+		// 	newpage := false
 
-	// 	if i == 23 {
-	// 		newpage = true
+		// 	if i == 23 {
+		// 		newpage = true
 
-	// 	} else if i > 23 {
-	// 		temp := i - 23
-	// 		if temp%perpage == 0 {
-	// 			newpage = true
-	// 		}
-	// 	}
-	// 	if newpage {
-	// 		line = 1
-	// 		page++
-	// 		if i < len(vehicles) {
-	// 			pdf.AddPage()
-	// 			tableYz = 18
-	// 			headertableReport(pdf, 0, 8)
+		// 	} else if i > 23 {
+		// 		temp := i - 23
+		// 		if temp%perpage == 0 {
+		// 			newpage = true
+		// 		}
+		// 	}
+		// 	if newpage {
+		// 		line = 1
+		// 		page++
+		// 		if i < len(vehicles) {
+		// 			pdf.AddPage()
+		// 			tableYz = 18
+		// 			headertableReport(pdf, 0, 8)
 
-	// 		}
-	// 	}
+		// 		}
+		// 	}
 
-	// 	headerdown := filepathStr + "Bottom.png"
-	// 	pdf.Image(headerdown, 0, 279, 210, 18, false, "", 0, "")
-	// }
-	// pdf.Ln(-1)
+		// 	headerdown := filepathStr + "Bottom.png"
+		// 	pdf.Image(headerdown, 0, 279, 210, 18, false, "", 0, "")
+		// }
+		// pdf.Ln(-1)
+	*/
 	for i, v := range vehicles {
 		i++
 
