@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/FourWD/middleware/common"
 	"github.com/jung-kurt/gofpdf"
@@ -50,22 +51,27 @@ func GenPDFResultByMonth(month string) (string, error) { //ใบประกา
 	pdf.SetDrawColor(0, 0, 0)
 	pdf.CellFormat(35, 8, "รอบประมูลวันที่", "0", 0, "C", true, 0, "")
 
-	for _, v := range vehicles {
+	// for _, v := range vehicles {
 
-		// currentTime := time.Now()
-		// thaiYear := currentTime.Year() + 543
+	// currentTime := time.Now()
+	// thaiYear := currentTime.Year() + 543
 
-		// formattedEndDate := v
-		currentDate := v.EndDateAuction
-		formattedEndDate := strconv.Itoa(currentDate.Day()) + " " + getThaiMonth(currentDate.Month().String()) + " " + strconv.Itoa(currentDate.Year()+543)
-		// formattedStartDateThai := fmt.Sprintf("%s %d", formattedEndDate, thaiYear)
-		fmt.Println(formattedEndDate)
-		pdf.SetXY(150, 40)
-		pdf.SetFillColor(255, 255, 255)
-		pdf.SetDrawColor(0, 0, 0)
-		pdf.CellFormat(35, 8, formattedEndDate, "0", 0, "C", true, 0, "")
-
+	// formattedEndDate := v
+	// Parse the string to time.Time
+	currentDate, err := time.Parse("2006-01", month)
+	if err != nil {
+		fmt.Println("Error parsing date:", err)
+		return "", err
 	}
+	formattedEndDate := getThaiMonth(currentDate.Month().String()) + " " + strconv.Itoa(currentDate.Year()+543)
+	// formattedStartDateThai := fmt.Sprintf("%s %d", formattedEndDate, thaiYear)
+	fmt.Println(formattedEndDate)
+	pdf.SetXY(150, 40)
+	pdf.SetFillColor(255, 255, 255)
+	pdf.SetDrawColor(0, 0, 0)
+	pdf.CellFormat(35, 8, formattedEndDate, "0", 0, "C", true, 0, "")
+
+	// }
 
 	pdf.SetTextColor(0, 0, 0)
 
