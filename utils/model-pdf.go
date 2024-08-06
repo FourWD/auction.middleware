@@ -81,11 +81,15 @@ type VehicleSummary struct {
 type Summary struct {
 	StartDateAuction string `json:"start_date_auction"`
 
-	SourceName  string `json:"source_name"`
-	RoundName   string `json:"round_name"`
-	AuctionName string `json:"auction_name"`
-	TotalCar    int    `json:"total_car"`
-	TotalPrice  int    `json:"total_price"`
+	SourceName    string `json:"source_name"`
+	RoundName     string `json:"round_name"`
+	BankQr        string `json:"bank_qr"`
+	BankName      string `json:"bank_name"`
+	BankAccount   string `json:"bank_account"`
+	BankAccountNo string `json:"bank_account_no"`
+	AuctionName   string `json:"auction_name"`
+	TotalCar      int    `json:"total_car"`
+	TotalPrice    int    `json:"total_price"`
 }
 
 //vehicle carlist

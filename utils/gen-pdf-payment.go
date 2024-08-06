@@ -278,11 +278,35 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 	pdf.Ln(-1)
 
 	pdf.Ln(40)
-	downscan := filepathStr + "detail-price.png"
+	downscan := filepathStr + "detail-price-new2.png"
 	pdf.Image(downscan, 10, 190, 190, 25, false, "", 0, "")
 	pdf.Ln(-1)
 
-	qr := filepathStr + "qr-code.jpg"
+	pdf.SetFont("Sarabun", "", 10)
+	xTextBankName := 11
+	yTextBankName := 196
+	pdf.SetXY(float64(xTextBankName), float64(yTextBankName))
+	bank := summary.BankName
+	pdf.CellFormat(0, 5, bank, "", 0, "L", false, 0, "")
+	pdf.SetTextColor(0, 0, 0)
+
+	pdf.SetFont("Sarabun", "B", 24)
+	xTextBankAccountNo := 65
+	yTextBankAccountNo := 202
+	pdf.SetXY(float64(xTextBankAccountNo), float64(yTextBankAccountNo))
+	bankAccountNo := summary.BankAccountNo
+	pdf.CellFormat(45, 5, bankAccountNo, "", 0, "C", false, 0, "")
+	pdf.SetTextColor(0, 0, 0)
+
+	pdf.SetFont("Sarabun", "B", 12)
+	xTextBankAccount := 15
+	yTextBankAccount := 204
+	pdf.SetXY(float64(xTextBankAccount), float64(yTextBankAccount))
+	bankAccount := summary.BankAccount
+	pdf.CellFormat(50, 5, bankAccount, "", 0, "C", false, 0, "")
+	pdf.SetTextColor(0, 0, 0)
+
+	qr := summary.BankQr
 	pdf.Image(qr, 178, 195, 16, 16, false, "", 0, "")
 
 	pdf.SetFont("Sarabun", "B", 18)
@@ -642,11 +666,35 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 	pdf.Ln(-1)
 
 	//สแกนจ่าย
-	downscan := filepathStr + "detail-price-2.png"
+	downscan := filepathStr + "detail-price-new1.png"
 	pdf.Image(downscan, 10, 248, 190, 25, false, "", 0, "")
 	pdf.Ln(-1)
 
-	qr := filepathStr + "qr-code.jpg"
+	pdf.SetFont("Sarabun", "", 10)
+	xTextBankName := 11
+	yTextBankName := 252
+	pdf.SetXY(float64(xTextBankName), float64(yTextBankName))
+	bank := summary.BankName
+	pdf.CellFormat(0, 5, bank, "", 0, "L", false, 0, "")
+	pdf.SetTextColor(0, 0, 0)
+
+	pdf.SetFont("Sarabun", "B", 24)
+	xTextBankAccountNo := 65
+	yTextBankAccountNo := 258
+	pdf.SetXY(float64(xTextBankAccountNo), float64(yTextBankAccountNo))
+	bankAccountNo := summary.BankAccountNo
+	pdf.CellFormat(45, 5, bankAccountNo, "", 0, "C", false, 0, "")
+	pdf.SetTextColor(0, 0, 0)
+
+	pdf.SetFont("Sarabun", "B", 12)
+	xTextBankAccount := 15
+	yTextBankAccount := 259
+	pdf.SetXY(float64(xTextBankAccount), float64(yTextBankAccount))
+	bankAccount := summary.BankAccount
+	pdf.CellFormat(50, 5, bankAccount, "", 0, "C", false, 0, "")
+	pdf.SetTextColor(0, 0, 0)
+
+	qr := summary.BankQr
 	pdf.Image(qr, 179, 253, 17, 17, false, "", 0, "")
 
 	pdf.SetTextColor(255, 0, 0)
@@ -708,15 +756,15 @@ where
 	// common.Print("vehicle", common.StructToString(vehicles))
 
 	summary := new(Summary)
-	common.Database.Raw(`
-	SELECT MAX(r.name) as round_name, COUNT(*) as total_car, SUM(av.close_price) as total_price , MAX(a.name) as auction_name
-    from
-        auction_vehicles av
-		LEFT JOIN vehicles v on av.vehicle_id = v.id
-        LEFT JOIN auctions a ON av.auction_id = a.id 
-        LEFT JOIN rounds r ON a.round_id = r.id
-	where
-	  av.auction_id = ? AND av.winner_user_id = ? AND av.is_win = 1`, auctionID, userID).Scan(&summary)
+	common.Database.Raw(`SELECT MAX(r.name) AS round_name, COUNT(*) AS total_car, SUM(av.close_price) AS total_price,  MAX(a.name) AS auction_name,
+	rp.bank_name, rp.bank_account_no,  rp.bank_account, rp.bank_qr
+	FROM auction_vehicles av
+    LEFT JOIN vehicles v ON av.vehicle_id = v.id
+    LEFT JOIN auctions a ON av.auction_id = a.id
+    LEFT JOIN rounds r ON a.round_id = r.id
+    LEFT JOIN round_payments rp ON r.round_payment_id = rp.id
+	WHERE av.auction_id = ? AND av.winner_user_id = ? AND av.is_win = 1
+	GROUP BY  rp.bank_name, rp.bank_account_no,  rp.bank_account,  rp.bank_qr`, auctionID, userID).Debug().Scan(&summary)
 	// common.Print(auctionID, "auctionID")
 
 	return *user, vehicles, *summary
