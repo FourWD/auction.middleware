@@ -16,6 +16,10 @@ func GenPDFResultByMonth(month string) (string, error) { //ใบประกา
 	filepathStr := "images/pdf/"
 	// fileextention := ".pdf"
 	pdf := gofpdf.New("P", "mm", "A4", "")
+
+	pdf.AddUTF8Font("Sarabun", "", "fonts/THSarabun.ttf")
+	pdf.AddUTF8Font("Sarabun", "B", "fonts/THSarabunBold.ttf")
+
 	headerAdded := false
 	page := 1
 	line := 1
