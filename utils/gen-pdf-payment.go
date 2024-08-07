@@ -307,10 +307,7 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 	pdf.SetTextColor(0, 0, 0)
 
 	qr := summary.BankQr
-	if err := registerImageFromURL(pdf, qr, "bankqr"); err != nil {
-		println(fmt.Sprintf("ไม่สามารถลงทะเบียนรูปภาพ qr ได้: %v", err))
-		return //"","", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพ qr ได้: %v", err)
-	}
+	httpimg.Register(pdf, summary.BankQr, "")
 	pdf.Image(qr, 178, 195, 16, 16, false, "", 0, "")
 
 	pdf.SetFont("Sarabun", "B", 18)
@@ -699,11 +696,8 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 	pdf.SetTextColor(0, 0, 0)
 
 	qr := summary.BankQr
-	if err := registerImageFromURL(pdf, qr, "bankqr"); err != nil {
-		println(fmt.Sprintf("ไม่สามารถลงทะเบียนรูปภาพ qr ได้: %v", err))
-		return //"","", fmt.Errorf("ไม่สามารถลงทะเบียนรูปภาพ qr ได้: %v", err)
-	}
-	pdf.Image("bankqr", 179, 253, 17, 17, false, "", 0, "")
+	httpimg.Register(pdf, summary.BankQr, "")
+	pdf.Image(qr, 179, 253, 17, 17, false, "", 0, "")
 
 	pdf.SetTextColor(255, 0, 0)
 	pdf.SetFont("Sarabun", "B", 28)
