@@ -67,8 +67,9 @@ type Vehicle struct {
 	License             string `json:"license"`
 	LicenseProvinceName string `json:"license_province_name"`
 	LicenseReceiveDate  string `json:"license_receive_date"`
-
-	ImagePath []Image
+	ClosePrice          string `json:"close_price"`
+	TotalCar            string `json:"total_car"`
+	ImagePath           []Image
 }
 
 func GenPDFDownloadVehicle(auctionID string) (string, error) {
