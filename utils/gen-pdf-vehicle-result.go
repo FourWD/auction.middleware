@@ -187,7 +187,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		pdf.MultiCell(25, 6, v.VehicleBrandName, "1", "C", true)
 		pdf.SetXY(startX+35, startY)
 		pdf.CellFormat(75, rowHeight, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
-		pdf.CellFormat(10, rowHeight, v.YearRegister, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(10, rowHeight, v.Years, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, rowHeight, v.VehicleGradeID, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(15, rowHeight, v.VehicleColorName, "1", 0, "C", true, 0, "")
 
