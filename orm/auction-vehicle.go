@@ -52,7 +52,7 @@ type AuctionVehicle struct {
 	FirstOpenPrice        int       `json:"first_open_price" query:"first_open_price" firestore:"first_open_price" bson:"first_open_price" gorm:"type:int"`
 	CountAuction          int       `json:"count_auction" query:"count_auction" firestore:"count_auction" bson:"count_auction" gorm:"type:int"` // ผ่านการประมูลมาแล้วกี่รอบ
 	// HighestProxyPrice     int       `json:"highest_proxy_price" query:"highest_proxy_price" firestore:"highest_proxy_price" bson:"highest_proxy_price" gorm:"type:int"`
-	ProxyToken string  `json:"proxy_token" query:"proxy_token" firestore:"proxy_token" bson:"proxy_token" gorm:"type:varchar(36);default:NULL"`
+	ProxyToken string  `json:"proxy_token" query:"proxy_token" firestore:"proxy_token" bson:"proxy_token" gorm:"type:varchar(128);default:NULL"`
 	RowOrder   float32 `json:"row_order" query:"row_order" firestore:"row_order" bson:"row_order" gorm:"type:decimal(5,2)"`
 	// LogLastBiddingPrice   int       `json:"log_last_bidding_price" query:"log_last_bidding_price" firestore:"log_last_bidding_price" gorm:"type:int"`
 	// LogLastBiddingUserID  string    `json:"log_last_bidding_user_id" query:"log_last_bidding_user_id" firestore:"log_last_bidding_user_id" gorm:"type:varchar(36)"`
