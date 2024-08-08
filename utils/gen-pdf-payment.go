@@ -308,7 +308,7 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 
 	qr := summary.BankQr
 	httpimg.Register(pdf, summary.BankQr, "")
-	pdf.Image(qr, 178, 195, 16, 16, false, "", 0, "")
+	pdf.Image(qr, 178, 193, 16, 16, false, "", 0, "")
 
 	pdf.SetFont("Sarabun", "B", 18)
 
