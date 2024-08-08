@@ -133,48 +133,69 @@ func GenPDFResultByMonth(month string) (string, error) { //ใบประกา
 
 func prepareAuctionListByMonth(month string) ([]AuctionListResult, Summary) {
 	var auctions []AuctionListResult
+	/*
+		common.Database.Raw(`
+		SELECT
+			start_date_auction,
+			end_date_auction,
+			auction_id,
+			auction_name
+		FROM
+			(SELECT
+				DATE(a.start_date) AS start_date_auction,
+				DATE(a.end_date) AS end_date_auction,
+				av.auction_id AS auction_id,
+				r.name AS auction_name,
+				v.vehicle_brand_name
+			FROM
+				auction_vehicles AS av
+			LEFT JOIN
+				auctions AS a ON av.auction_id = a.id
+			LEFT JOIN
+				vehicles AS v ON v.id = av.vehicle_id
+			LEFT JOIN
+				vehicle_grades AS vg ON v.vehicle_grade_id = vg.id
+			LEFT JOIN
+				sources AS s ON v.source_id = s.id
+			LEFT JOIN
+				(SELECT DISTINCT auction_id, chassis_no, license, crp, redbook FROM redbooks) r
+				ON av.auction_id = r.auction_id AND v.chassis_no = r.chassis_no AND v.license = r.license
+			LEFT JOIN
+				branches b ON v.branch_id = b.id
+			LEFT JOIN
+				vehicle_brands vb ON v.vehicle_brand_id = vb.id
+			LEFT JOIN
+				vehicle_models vm ON v.vehicle_model_id = vm.id
+			LEFT JOIN
+				vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' AND vi.is_delete = 0
+			LEFT JOIN
+				rounds AS r ON a.round_id = r.id
+			WHERE
+				DATE_FORMAT(a.actual_end_date, '%Y-%m') = ? AND av.is_win = true
+			GROUP BY
+				DATE(a.start_date), DATE(a.end_date), av.auction_id, r.name, v.vehicle_brand_name) AS sub
+		ORDER BY
+			vehicle_brand_name = "ISUZU" ASC`, month).Debug().Scan(&auctions)
+	*/
 	common.Database.Raw(`
-	SELECT 
-		start_date_auction,
-		end_date_auction,
-		auction_id,
-		auction_name
-	FROM 
-		(SELECT 
-			DATE(a.start_date) AS start_date_auction,
-			DATE(a.end_date) AS end_date_auction,
-			av.auction_id AS auction_id,
-			r.name AS auction_name,
-			v.vehicle_brand_name
-		FROM 
-			auction_vehicles AS av
-		LEFT JOIN 
-			auctions AS a ON av.auction_id = a.id
-		LEFT JOIN 
-			vehicles AS v ON v.id = av.vehicle_id
-		LEFT JOIN 
-			vehicle_grades AS vg ON v.vehicle_grade_id = vg.id
-		LEFT JOIN 
-			sources AS s ON v.source_id = s.id
-		LEFT JOIN 
-			(SELECT DISTINCT auction_id, chassis_no, license, crp, redbook FROM redbooks) r 
-			ON av.auction_id = r.auction_id AND v.chassis_no = r.chassis_no AND v.license = r.license
-		LEFT JOIN 
-			branches b ON v.branch_id = b.id
-		LEFT JOIN 
-			vehicle_brands vb ON v.vehicle_brand_id = vb.id
-		LEFT JOIN 
-			vehicle_models vm ON v.vehicle_model_id = vm.id
-		LEFT JOIN 
-			vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' AND vi.is_delete = 0
-		LEFT JOIN 
-			rounds AS r ON a.round_id = r.id
-		WHERE 
-			DATE_FORMAT(a.actual_end_date, '%Y-%m') = ? AND av.is_win = true
-		GROUP BY 
-			DATE(a.start_date), DATE(a.end_date), av.auction_id, r.name, v.vehicle_brand_name) AS sub
-	ORDER BY 
-		vehicle_brand_name = "ISUZU" ASC`, month).Debug().Scan(&auctions)
+	SELECT DISTINCT DATE(a.start_date) as start_date_auction,DATE(a.end_date) as end_date_auction,
+	av.auction_id AS auction_id,r.name AS auction_name
+	FROM auction_vehicles AS av
+	LEFT JOIN auctions AS a ON av.auction_id = a.id
+	LEFT JOIN vehicles AS v ON  v.id = av.vehicle_id
+	LEFT JOIN vehicle_brands vb ON v.vehicle_brand_id = vb.id
+	LEFT JOIN vehicle_models vm ON v.vehicle_model_id = vm.id
+	LEFT JOIN vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' AND vi.is_delete = 0
+	LEFT JOIN rounds AS r ON a.round_id = r.id
+	WHERE DATE_FORMAT(a.actual_end_date, '%Y-%m') = ? AND av.is_win = true 
+	ORDER BY end_date_auction ASC`, month).Scan(&auctions)
+
+	// 	WHERE
+	// 		DATE_FORMAT(a.actual_end_date, '%Y-%m') = ? AND av.is_win = true
+	// 	GROUP BY
+	// 		DATE(a.start_date), DATE(a.end_date), av.auction_id, r.name, v.vehicle_brand_name) AS sub
+	// ORDER BY
+	// 	vehicle_brand_name = "ISUZU" ASC`, month).Debug().Scan(&auctions)
 
 	summary := new(Summary)
 	common.Database.Raw(`
@@ -221,7 +242,7 @@ LEFT JOIN vehicle_brands vb ON v.vehicle_brand_id = vb.id
 LEFT JOIN vehicle_models vm ON v.vehicle_model_id = vm.id
 LEFT JOIN vehicle_images AS vi ON av.vehicle_id = vi.vehicle_id AND vi.template_vehicle_image_id = '4b8fe630-a2b6-4470-9e86-3825c169a8f5' AND vi.is_delete = 0
 						WHERE av.auction_id = ? AND av.is_win = true
-							ORDER BY av.vehicle_no ASC`, auctionID).Debug().Scan(&vehicles)
+						ORDER BY v.vehicle_brand_name = "ISUZU" ASC`, auctionID).Debug().Scan(&vehicles)
 
 	summary := new(Summary)
 	common.Database.Raw(`
