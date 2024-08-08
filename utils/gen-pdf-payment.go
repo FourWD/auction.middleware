@@ -74,118 +74,37 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 		pdf.Ln(8)
 	}
 
-	if user.IsAddressTax == 0 {
+	if user.TaxProvinceName != "" || user.TaxDistrictName != "" {
 
-		subname := " แขวง "
-		districname := " เขต "
+		subname := "แขวง "
+		districname := "เขต "
 		if user.TaxProvinceID != "10" {
-			subname = " ตำบล "
-			districname = " อำเภอ "
+			subname = "ตำบล "
+			districname = "อำเภอ "
 		}
-
-		taxStreet := ""
-		if user.TaxStreet != "" {
-			taxStreet = " ถนน " + user.TaxStreet
-		}
-
-		taxAddress := ""
-		if user.TaxAddress != "" {
-			taxAddress = user.TaxAddress
-		}
-
-		taxSub := ""
-		if user.TaxSubDistrictName != "" {
-			taxSub = user.TaxSubDistrictName
-		}
-
-		taxDis := ""
-		if user.TaxDistrictName != "" {
-			taxDis = user.TaxDistrictName
-		}
-
-		taxProvince := ""
-		if user.TaxProvinceName != "" {
-			taxProvince = "จังหวัด " + user.TaxProvinceName
-		}
-
-		taxPost := ""
-		if user.TaxPostCode != "" {
-			taxPost = " รหัสไปรษณีย์ " + user.TaxPostCode
-		}
-
-		mobile := ""
-		if user.Mobile != "" {
-			mobile = "โทร: " + user.Mobile
-		}
-
-		email := ""
-		if user.Email != "" {
-			email = "อีเมล: " + user.Email
-		}
-
 		pdf.SetFont("Sarabun", "", 10)
-		pdf.Text(10, 35, taxAddress+taxStreet+subname+taxSub)
+		pdf.Text(10, 35, user.TaxAddress+" "+user.TaxStreet+" "+subname+user.TaxSubDistrictName)
 		pdf.Ln(4)
-		pdf.Text(10, 40, districname+taxDis+" "+taxProvince+taxPost)
+		pdf.Text(10, 40, districname+user.TaxDistrictName+" "+"จังหวัด "+user.TaxProvinceName+" "+user.TaxPostCode)
 		pdf.Ln(4)
-		pdf.Text(10, 45, mobile+" | "+email)
+		pdf.Text(10, 45, "โทร:"+user.Mobile+" | "+"อีเมล:"+user.Email)
 		pdf.Ln(4)
 		pdf.SetTextColor(0, 0, 0)
 
 	} else {
-		subnamev2 := " แขวง "
-		districnamev2 := " เขต "
+		subnamev2 := "แขวง "
+		districnamev2 := "เขต "
 		if user.TaxProvinceID != "10" {
-			subnamev2 = " ตำบล "
-			districnamev2 = " อำเภอ "
-		}
-
-		address := ""
-		if user.Address != "" {
-			address = user.Address
-		}
-
-		street := ""
-		if user.TaxStreet != "" {
-			street = " ถนน " + user.Street
-		}
-
-		subdis := ""
-		if user.SubDistrictName != "" {
-			subdis = user.SubDistrictName
-		}
-
-		dis := ""
-		if user.DistrictName != "" {
-			dis = user.DistrictName
-		}
-
-		province := ""
-		if user.ProvinceName != "" {
-			province = "จังหวัด " + user.ProvinceName
-		}
-
-		post := ""
-		if user.Post != "" {
-			post = " รหัสไปรษณีย์ " + user.Post
-		}
-
-		mobile := ""
-		if user.Mobile != "" {
-			mobile = "โทร: " + user.Mobile
-		}
-
-		email := ""
-		if user.Email != "" {
-			email = "อีเมล: " + user.Email
+			subnamev2 = "ตำบล "
+			districnamev2 = "อำเภอ "
 		}
 
 		pdf.SetFont("Sarabun", "", 10)
-		pdf.Text(10, 35, address+street+subnamev2+subdis)
+		pdf.Text(10, 35, user.Address+" "+user.Street+" "+subnamev2+user.SubDistrictName)
 		pdf.Ln(4)
-		pdf.Text(10, 40, districnamev2+dis+" "+province+" "+post)
+		pdf.Text(10, 40, districnamev2+user.DistrictName+" "+"จังหวัด "+user.ProvinceName+" "+user.Post)
 		pdf.Ln(4)
-		pdf.Text(10, 45, mobile+" | "+email)
+		pdf.Text(10, 45, "โทร:"+user.Mobile+" | "+"อีเมล:"+user.Email)
 		pdf.Ln(4)
 		pdf.SetTextColor(0, 0, 0)
 	}
@@ -282,6 +201,10 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 	pdf.Image(downscan, 10, 190, 190, 25, false, "", 0, "")
 	pdf.Ln(-1)
 
+	qr := summary.BankQr
+	httpimg.Register(pdf, summary.BankQr, "")
+	pdf.Image(qr, 178, 195, 18, 18, false, "", 0, "")
+
 	pdf.SetFont("Sarabun", "", 10)
 	xTextBankName := 11
 	yTextBankName := 196
@@ -306,12 +229,7 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 	pdf.CellFormat(50, 5, bankAccount, "", 0, "C", false, 0, "")
 	pdf.SetTextColor(0, 0, 0)
 
-	qr := summary.BankQr
-	httpimg.Register(pdf, summary.BankQr, "")
-	pdf.Image(qr, 178, 193, 16, 16, false, "", 0, "")
-
 	pdf.SetFont("Sarabun", "B", 18)
-
 	xTextTotalPrice := 185
 	yTextTotalPrice := 136
 	pdf.SetXY(float64(xTextTotalPrice), float64(yTextTotalPrice))
@@ -336,7 +254,7 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 	pdf.SetTextColor(255, 0, 0)
 	pdf.SetFont("Sarabun", "B", 28)
 	xTextTotal := 88
-	yTextTotal := 200
+	yTextTotal := 202
 	pdf.SetXY(float64(xTextTotal), float64(yTextTotal))
 	texttotal := formattedVatPriceTotal
 	pdf.CellFormat(0, 5, texttotal, "", 0, "C", false, 0, "")
@@ -345,7 +263,7 @@ func genByVehicle(pdf *gofpdf.Fpdf, user UserSummary, vehicle VehicleSummary, su
 
 	pdf.SetFont("Sarabun", "", 9)
 	xText := 88
-	yText := 207
+	yText := 209
 	pdf.SetXY(float64(xText), float64(yText))
 	text := common.ConvertFloatToThaiText(vatPrice)
 	pdf.CellFormat(0, 5, text, "", 0, "C", false, 0, "")
@@ -586,7 +504,7 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 
 	pdf.SetTextColor(0, 0, 0)
 
-	pdf.SetFont("Sarabun", "", 10.5)
+	pdf.SetFont("Sarabun", "", 9)
 	counter := 01
 	total := 0
 
@@ -595,10 +513,29 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 		pdf.SetFillColor(240, 240, 240) // Light gray color for the cell background
 		pdf.SetDrawColor(255, 255, 255) // Set border color to white
 
-		pdf.CellFormat(5, 8, vehicle.VehicleNo, "1", 0, "C", true, 0, "")
+		// Initial position
+		x, y := pdf.GetXY()
 
-		pdf.CellFormat(85, 8, vehicle.License+" "+vehicle.LicenseProvinceName+" "+
-			vehicle.YearManuFacturing+""+vehicle.VehicleBrandName+" "+vehicle.VehicleModelName+" "+vehicle.VehicleSubModelName+" "+vehicle.VehicleColorName, "1", 0, "", true, 0, "")
+		pdf.CellFormat(5, 16, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
+
+		startY := y
+		pdf.SetXY(x+5, y) // Move to the next cell position
+
+		// Draw a rectangle for the background of MultiCell
+		pdf.Rect(x+5, y, 85, 16, "F")
+
+		pdf.SetXY(x+5, y) // Reset position for MultiCell
+		pdf.MultiCell(85, 8, vehicle.License+" "+vehicle.LicenseProvinceName+
+			vehicle.YearManuFacturing+" "+vehicle.VehicleBrandName+
+			vehicle.VehicleModelName+"\n"+vehicle.VehicleSubModelName+" "+vehicle.VehicleColorName, "1", "", false)
+
+		currentY := pdf.GetY()
+		height := currentY - startY // Calculate the height of the MultiCell
+
+		pdf.SetXY(x+90, startY) // Set position for the next cell
+
+		pdf.CellFormat(8, height, vehicle.VehicleGradeID, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(20, height, vehicle.BranchLabel, "1", 0, "C", true, 0, "")
 
 		imcvat, _ := strconv.ParseFloat(vehicle.ClosePrice, 64)
 		vatPrice := float64(float64(imcvat) * 1.07)
@@ -610,12 +547,10 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 		formattedTotal10 := common.FloatWithCommas(c10, 2)
 		formattedTotal90 := common.FloatWithCommas(c90, 2)
 
-		pdf.CellFormat(8, 8, vehicle.VehicleGradeID, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(20, 8, vehicle.BranchLabel, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(18, 8, formattedTotal, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(18, 8, formattedTotal10, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(18, 8, formattedTotal90, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(18, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(18, height, formattedTotal, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(18, height, formattedTotal10, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(18, height, formattedTotal90, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(18, height, formattedVatPrice, "1", 0, "C", true, 0, "")
 
 		pdf.Ln(-1)
 
@@ -696,8 +631,8 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 	pdf.SetTextColor(0, 0, 0)
 
 	qr := summary.BankQr
-	httpimg.Register(pdf, summary.BankQr, "")
-	pdf.Image(qr, 179, 253, 17, 17, false, "", 0, "")
+	httpimg.Register(pdf, qr, "")
+	pdf.Image(qr, 178, 252, 17, 17, false, "", 0, "")
 
 	pdf.SetTextColor(255, 0, 0)
 	pdf.SetFont("Sarabun", "B", 28)
