@@ -504,18 +504,80 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 
 	pdf.SetTextColor(0, 0, 0)
 
-	pdf.SetFont("Sarabun", "", 9)
+	pdf.SetFont("Sarabun", "", 10)
 	counter := 01
 	total := 0
 
-	//บรรทัดเดียว loop รายละเอียดรถยนต์
-	for _, vehicle := range vehicles {
-		pdf.SetFillColor(240, 240, 240)
-		pdf.SetDrawColor(255, 255, 255)
-		pdf.CellFormat(5, 8, vehicle.VehicleNo, "1", 0, "C", true, 0, "")
+	// //บรรทัดเดียว loop รายละเอียดรถยนต์
+	// for _, vehicle := range vehicles {
+	// 	pdf.SetFillColor(240, 240, 240)
+	// 	pdf.SetDrawColor(255, 255, 255)
+	// 	pdf.CellFormat(5, 8, vehicle.VehicleNo, "1", 0, "C", true, 0, "")
 
-		pdf.CellFormat(85, 8, vehicle.License+" "+vehicle.LicenseProvinceName+" "+
-			vehicle.YearManuFacturing+""+vehicle.VehicleBrandName+" "+vehicle.VehicleModelName+" "+vehicle.VehicleSubModelName+" "+vehicle.VehicleColorName, "1", 0, "", true, 0, "")
+	// 	pdf.CellFormat(85, 8, vehicle.License+" "+vehicle.LicenseProvinceName+" "+
+	// 		vehicle.YearManuFacturing+""+vehicle.VehicleBrandName+" "+vehicle.VehicleModelName+" "+vehicle.VehicleSubModelName+" "+vehicle.VehicleColorName, "1", 0, "", true, 0, "")
+
+	// 	imcvat, _ := strconv.ParseFloat(vehicle.ClosePrice, 64)
+	// 	vatPrice := float64(float64(imcvat) * 1.07)
+	// 	c10 := float64(float64(vatPrice) * 0.1)
+	// 	c90 := float64(float64(vatPrice) * 0.9)
+
+	// 	formattedVatPrice := common.FloatWithCommas(vatPrice, 2)
+	// 	formattedTotal := common.FloatWithCommas(imcvat, 2)
+	// 	formattedTotal10 := common.FloatWithCommas(c10, 2)
+	// 	formattedTotal90 := common.FloatWithCommas(c90, 2)
+
+	// 	pdf.CellFormat(8, 8, vehicle.VehicleGradeID, "1", 0, "C", true, 0, "")
+	// 	pdf.CellFormat(20, 8, vehicle.BranchLabel, "1", 0, "C", true, 0, "")
+	// 	pdf.CellFormat(18, 8, formattedTotal, "1", 0, "R", true, 0, "")
+	// 	pdf.CellFormat(18, 8, formattedTotal10, "1", 0, "R", true, 0, "")
+	// 	pdf.CellFormat(18, 8, formattedTotal90, "1", 0, "R", true, 0, "")
+	// 	pdf.CellFormat(18, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
+
+	// 	pdf.Ln(-1)
+
+	// 	pdf.SetFillColor(240, 240, 240)
+
+	// 	temp, _ := strconv.Atoi(vehicle.ClosePrice)
+	// 	total += temp
+	// 	counter++
+	// }
+
+	// pdf.Ln(-1)
+
+	//code รายละเอียดรถยนต์ 2 บรรทัด
+	for _, vehicle := range vehicles {
+		pdf.SetFillColor(240, 240, 240) // Light gray color for the cell background
+		pdf.SetDrawColor(255, 255, 255) // Set border color to white
+
+		// Initial position
+		x, y := pdf.GetXY()
+
+		// Draw the first cell
+		pdf.CellFormat(5, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
+
+		startY := y
+		pdf.SetXY(x+5, y)
+
+		// Calculate the height required for the MultiCell content
+		pdf.MultiCell(85, 4, vehicle.License+" "+vehicle.LicenseProvinceName+
+			vehicle.YearManuFacturing+" "+"\n"+vehicle.VehicleBrandName+" "+
+			vehicle.VehicleModelName+" "+vehicle.VehicleSubModelName+" "+vehicle.VehicleColorName, "", "", false)
+
+		currentY := pdf.GetY()
+		height := currentY - startY
+
+		// Adjust the height for all cells in the same row to match the height of the MultiCell
+		pdf.SetXY(x+5, startY)
+		pdf.Rect(x+5, startY, 85, height, "F") // Draw the background rectangle
+		pdf.SetXY(x+5, startY)
+		pdf.MultiCell(85, 4, vehicle.License+" "+vehicle.LicenseProvinceName+
+			vehicle.YearManuFacturing+" "+"\n"+vehicle.VehicleBrandName+" "+
+			vehicle.VehicleModelName+" "+vehicle.VehicleSubModelName+" "+vehicle.VehicleColorName, "", "", false)
+		// Draw other cells with the calculated height
+		pdf.SetXY(x+90, startY)
+		pdf.CellFormat(8, height, vehicle.VehicleGradeID, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(20, height, vehicle.BranchLabel, "1", 0, "C", true, 0, "")
 
 		imcvat, _ := strconv.ParseFloat(vehicle.ClosePrice, 64)
 		vatPrice := float64(float64(imcvat) * 1.07)
@@ -527,23 +589,20 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 		formattedTotal10 := common.FloatWithCommas(c10, 2)
 		formattedTotal90 := common.FloatWithCommas(c90, 2)
 
-		pdf.CellFormat(8, 8, vehicle.VehicleGradeID, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(20, 8, vehicle.BranchLabel, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(18, 8, formattedTotal, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(18, 8, formattedTotal10, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(18, 8, formattedTotal90, "1", 0, "R", true, 0, "")
-		pdf.CellFormat(18, 8, formattedVatPrice, "1", 0, "R", true, 0, "")
+		pdf.SetFont("Sarabun", "", 10)
+
+		pdf.CellFormat(18, height, formattedTotal, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(18, height, formattedTotal10, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(18, height, formattedTotal90, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(18, height, formattedVatPrice, "1", 0, "R", true, 0, "")
 
 		pdf.Ln(-1)
-
 		pdf.SetFillColor(240, 240, 240)
 
 		temp, _ := strconv.Atoi(vehicle.ClosePrice)
 		total += temp
 		counter++
 	}
-
-	pdf.Ln(-1)
 
 	vatPrice := float64(float64(total) * 1.07)
 	total10 := float64(float64(vatPrice) * 0.1)

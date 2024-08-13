@@ -234,12 +234,12 @@ func GenPDFVehicleDetail(auctionID string) (string, error) {
 		var formattedCRPPer string
 		if crp != 0 {
 			crpPer := (openPriceFloat / crp) * 100
-			formattedCRPPer = common.FloatWithCommas(crpPer, 0)
+			formattedCRPPer = common.FloatWithCommas(crpPer, 0) + "%"
 		} else {
-			formattedCRPPer = "0"
+			formattedCRPPer = ""
 		}
 
-		pdf.CellFormat(12, 8, formattedCRPPer+"%", "1", 0, "R", true, 0, "")
+		pdf.CellFormat(12, 8, formattedCRPPer, "1", 0, "R", true, 0, "")
 		pdf.CellFormat(20, 8, formattedCRP, "1", 0, "R", true, 0, "")
 		pdf.CellFormat(38, 8, "", "1", 0, "C", true, 0, "")
 
