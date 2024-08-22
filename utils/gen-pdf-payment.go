@@ -277,12 +277,13 @@ func GenPDFQRCode(url string) string {
 	return "scan.png"
 }
 
-func genPDFLinkDownload(auctionID string, vehicleID string) (string, string) {
+/*func genPDFLinkDownload(auctionID string, vehicleID string) (string, string) {
 	url := "www.omakasecar.com/download/" + vehicleID
 	qr := GenPDFQRCode(vehicleID)
 
 	return url, qr
-}
+}*/
+
 func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSummary, summary Summary) {
 
 	filepathStr := "images/pdf/"

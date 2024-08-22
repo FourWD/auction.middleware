@@ -2,11 +2,6 @@ package utils
 
 import (
 	"fmt"
-	"image"
-	"image/color"
-	"image/png"
-	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -237,7 +232,7 @@ func hexToRGB(hex string) (int, int, int) {
 	return r, g, b
 }
 
-func hexToRGBA(hex string) color.RGBA {
+/* func hexToRGBA(hex string) color.RGBA {
 	// ตัดเครื่องหมาย # ออกจากรหัสสี
 	hex = strings.TrimPrefix(hex, "#")
 
@@ -316,3 +311,4 @@ func textcolor(colors []string) []string {
 
 	return filenames
 }
+*/
