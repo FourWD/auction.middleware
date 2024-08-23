@@ -157,7 +157,7 @@ func headertable(pdf gofpdf.Pdf, tabley int) { //แก้ไขเมื่อ 
 	pdf.SetFillColor(255, 255, 255)
 
 }
-func GenPDFVehicleDetail(auctionID string) (string, error) {
+func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไขเมื่อ 23/8/67
 	vehicles := prepareDetailList(auctionID)
 	pdf := gofpdf.New("L", "mm", "A4", "")
 
