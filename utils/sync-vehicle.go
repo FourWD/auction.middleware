@@ -47,7 +47,10 @@ func SyncAuctionVehicle(auctionID string, vehicleID string) error {
 		"is_win_by_proxy":          avehicles.IsWinByProxy,
 		"is_extra":                 avehicles.IsExtra,
 	}
-	if err := common.Database.Model(&orm.Auction{}).Where("id = ?", auctionID).Updates(updateData).Error; err != nil {
+	// if err := common.Database.Model(&orm.Auction{}).Where("id = ?", auctionID).Updates(updateData).Error; err != nil {
+	// 	return err
+	// }
+	if err := common.Database.Model(&orm.AuctionVehicle{}).Where("id = ?", auctionID).Updates(updateData).Error; err != nil {
 		return err
 	}
 
