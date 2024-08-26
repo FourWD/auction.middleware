@@ -3,7 +3,6 @@ package utils
 import (
 	"errors"
 
-	"github.com/FourWD/auction.middleware/orm"
 	"github.com/FourWD/middleware/common"
 )
 
@@ -22,20 +21,20 @@ func SyncUser(userID string) error {
 
 	user := getUserMy(userID)
 
-	if _, err := common.FirebaseClient.Collection("user").Doc(userID).Set(common.FirebaseCtx, &user); err != nil {
+	if _, err := common.FirebaseClient.Collection("users").Doc(userID).Set(common.FirebaseCtx, &user); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func getUserMy(userID string) *orm.User {
+func getUserMy(userID string) UserFirebase {
 	sql := `SELECT u.id , u.payment_type_id , u.right_deposit,
 	IF(u.user_type_id = '01',CONCAT_WS(" ", u.firstname,u.lastname),up.company_name) as user_display_name
 	FROM user u
 	LEFT JOIN user_profiles up ON u.id = up.id
 	WHERE u.id = ?`
-	var user = new(orm.User)
+	var user = new(UserFirebase)
 	common.Database.Raw(sql, userID).Scan(&user)
-	return user
+	return *user
 }
