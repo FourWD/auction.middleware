@@ -32,7 +32,7 @@ func getUserMy(userID string) UserFirebase {
 	sql := `SELECT u.id , u.payment_type_id , u.right_deposit,
 	IF(u.user_type_id = '01',CONCAT_WS(" ", u.firstname,u.lastname),up.company_name) as user_display_name
 	FROM users u
-	LEFT JOIN user_profiles up ON u.id = up.id
+	LEFT JOIN user_profiles up ON u.id = up.user_id
 	WHERE u.id = ?`
 	var user = new(UserFirebase)
 	common.Database.Raw(sql, userID).Scan(&user)

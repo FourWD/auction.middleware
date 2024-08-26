@@ -28,6 +28,8 @@ func SyncAuctionVehicle(auctionID string, vehicleID string) error {
 
 	avehicles, _ := getVehicleFB(auctionID, vehicleID)
 
+	common.StructToString(avehicles)
+
 	updateData := map[string]interface{}{
 		"count_user_view":          avehicles.CountUserView,
 		"count_user_join":          avehicles.CountUserJoin,
@@ -50,7 +52,7 @@ func SyncAuctionVehicle(auctionID string, vehicleID string) error {
 	// if err := common.Database.Model(&orm.Auction{}).Where("id = ?", auctionID).Updates(updateData).Error; err != nil {
 	// 	return err
 	// }
-	if err := common.Database.Model(&orm.AuctionVehicle{}).Where("auction_id = ? AND vehicle_id = ? ", auctionID, vehicleID).Updates(&updateData).Error; err != nil {
+	if err := common.Database.Model(&orm.AuctionVehicle{}).Where("auction_id = ? AND vehicle_id = ? ", auctionID, vehicleID).Debug().Updates(&updateData).Error; err != nil {
 		return err
 	}
 
