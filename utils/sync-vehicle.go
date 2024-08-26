@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
 
 	"github.com/FourWD/auction.middleware/orm"
 	"github.com/FourWD/middleware/common"
@@ -33,12 +34,18 @@ func SyncAuctionVehicle(auctionID string, vehicleID string) error {
 		"count_user_bidding":       avehicles.CountUserBidding,
 		"count_user_proxy":         avehicles.CountUserProxy,
 		"count_user_favorite":      avehicles.CountUserFavorite,
+		"count_view":               avehicles.CountView,
+		"count_bidding":            avehicles.CountBidding,
+		"count_proxy":              avehicles.CountProxy,
 		"is_win":                   avehicles.IsWin,
 		"close_price":              avehicles.ClosePrice,
 		"current_price":            avehicles.CurrentPrice,
 		"winner_user_id":           avehicles.WinnerUserID,
 		"winner_user_auction_code": avehicles.WinnerUserAuctionCode,
 		"winner_user_display_name": avehicles.WinnerUserDisplayName,
+		"actual_end_date":          avehicles.ActualEndDate,
+		"is_win_by_proxy":          avehicles.IsWinByProxy,
+		"is_extra":                 avehicles.IsExtra,
 	}
 	if err := common.Database.Model(&orm.Auction{}).Where("id = ?", auctionID).Updates(updateData).Error; err != nil {
 		return err
@@ -68,8 +75,8 @@ func getVehicleFB(auctionID string, vehicleID string) (orm.AuctionVehicle, error
 	}
 	// startDate := snap.Data()["start_date"].(time.Time)
 	// endDate := snap.Data()["end_date"].(time.Time)
-	// actualEndDate := snap.Data()["actual_end_date"].(time.Time)
-	// vehicle.StartDate = common.UTCToThailandTime(startDate.Truncate(time.Second))
+	actualEndDate := snap.Data()["actual_end_date"].(time.Time)
+	vehicle.ActualEndDate = common.UTCToThailandTime(actualEndDate.Truncate(time.Second))
 
 	// dsnap, err := common.FirebaseClient.Collection("auctions").Doc(auctionID).Collection("vehicles").Doc(vehicleID).Get(common.FirebaseCtx)
 	// if err != nil {
