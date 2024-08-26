@@ -31,7 +31,7 @@ func SyncUser(userID string) error {
 func getUserMy(userID string) UserFirebase {
 	sql := `SELECT u.id , u.payment_type_id , u.right_deposit,
 	IF(u.user_type_id = '01',CONCAT_WS(" ", u.firstname,u.lastname),up.company_name) as user_display_name
-	FROM user u
+	FROM users u
 	LEFT JOIN user_profiles up ON u.id = up.id
 	WHERE u.id = ?`
 	var user = new(UserFirebase)
