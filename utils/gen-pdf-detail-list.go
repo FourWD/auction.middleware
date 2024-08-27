@@ -209,7 +209,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไข�
 		h := 9.00
 
 		textall := len(v.VehicleBrandName + v.VehicleModelName + v.VehicleSubModelName)
-		if textall > 70 {
+		if textall > 80 {
 			h = 4.5
 		}
 		pdf.MultiCell(60, h, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", "L", true)
@@ -242,7 +242,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไข�
 		} else {
 			openprice = common.FloatWithCommas(openPriceFloat, 0)
 		}
-		pdf.CellFormat(20, 8, openprice, "1", 0, "R", true, 0, "")
+		pdf.CellFormat(20, 9, openprice, "1", 0, "R", true, 0, "")
 
 		crpFloat, _ := strconv.ParseFloat(v.CRP, 64)
 		crp := crpFloat * (100.00 / 107.00)
