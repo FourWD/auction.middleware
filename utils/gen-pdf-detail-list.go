@@ -196,7 +196,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไข�
 		pdf.SetXY(float64(tableX), float64(tableYz))
 
 		pdf.CellFormat(8, 9, v.VehicleNo, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(25, 9, v.BranchLabel, "1", 0, "C", true, 0, "")
+		pdf.CellFormat(25, 9, v.BranchLabel, "1", 0, "L", true, 0, "")
 		if _, ok := counter[v.BranchLabel]; !ok {
 			counter[v.BranchLabel] = 1
 		} else {
@@ -209,7 +209,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไข�
 		h := 9.00
 
 		textall := len(v.VehicleBrandName + v.VehicleModelName + v.VehicleSubModelName)
-		if textall > 80 {
+		if textall > 35 {
 			h = 4.5
 		}
 		pdf.MultiCell(60, h, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", "L", true)
