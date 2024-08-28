@@ -10,9 +10,6 @@ type Auction struct {
 	ID string `json:"id" query:"id" firestore:"id" bson:"_id,omitempty" gorm:"type:varchar(36);uniqueIndex:idx_id"`
 	model.GormModel
 	RoundID               string    `json:"round_id" query:"round_id" firestore:"round_id" bson:"round_id" gorm:"type:varchar(36)"`
-	RoundLogo             string    `json:"round_logo" query:"round_logo" firestore:"round_logo" bson:"round_logo" gorm:"type:varchar(255)"`
-	RoundColor            string    `json:"round_color" query:"round_color" firestore:"round_color" bson:"round_color" gorm:"type:varchar(7)"`
-	RoundLogoColor        string    `json:"round_logo_color" query:"round_logo_color" firestore:"round_logo_color" bson:"round_logo_color" gorm:"type:varchar(7)"`
 	Code                  string    `json:"code" query:"code" firestore:"code" bson:"code" gorm:"type:varchar(20)"`
 	Name                  string    `json:"name" query:"name" firestore:"name" bson:"name" gorm:"type:varchar(200)"`
 	ShowDate              time.Time `json:"show_date" query:"show_date" firestore:"show_date" bson:"show_date"`
