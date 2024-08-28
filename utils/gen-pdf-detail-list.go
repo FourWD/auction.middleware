@@ -209,7 +209,7 @@ func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไข�
 		h := 9.00
 
 		textall := len(v.VehicleBrandName + v.VehicleModelName + v.VehicleSubModelName)
-		if textall > 35 {
+		if textall > 70 {
 			h = 4.5
 		}
 		pdf.MultiCell(60, h, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", "L", true)
