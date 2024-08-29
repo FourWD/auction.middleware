@@ -71,7 +71,7 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 	page := 1
 	// y := 75.0
-	perpage := 31
+	perpage := 20
 	line := 1
 	tableYz := 88.00
 
@@ -174,8 +174,8 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 
 		// Set row height based on the tallest cell
 		rowHeight := brandCellHeight
-		if rowHeight < 6 {
-			rowHeight = 6
+		if rowHeight < 9 {
+			rowHeight = 9
 		}
 
 		// Move back to the start of the row
@@ -184,16 +184,46 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		// Draw all cells with adjusted height
 		pdf.CellFormat(10, rowHeight, v.VehicleNo, "1", 0, "C", true, 0, "")
 		pdf.SetXY(startX+10, startY)
-		pdf.MultiCell(25, 6, v.VehicleBrandName, "1", "C", true)
+		pdf.MultiCell(25, rowHeight, v.VehicleBrandName, "1", "C", true)
 		pdf.SetXY(startX+35, startY)
-		pdf.CellFormat(75, rowHeight, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
+
+		currentY := pdf.GetY()
+		maxWidth := 59.0
+		hSingle := 9.00
+		hDouble := 4.50
+
+		text := v.VehicleModelName + " " + v.VehicleSubModelName
+		textWidth := pdf.GetStringWidth(text)
+		if textWidth > maxWidth {
+			pdf.MultiCell(60, hDouble, text, "1", "L", true)
+		} else {
+			pdf.MultiCell(60, hSingle, text, "1", "L", true)
+		}
+		// println(fmt.Sprintf("%.2f", textWidth), "textwidth")
+
+		pdf.SetXY(float64(tableX+95), currentY)
+		// pdf.CellFormat(75, rowHeight, v.VehicleModelName+" "+v.VehicleSubModelName, "1", 0, "L", true, 0, "")
 		pdf.CellFormat(10, rowHeight, v.Years, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, rowHeight, v.VehicleGradeID, "1", 0, "C", true, 0, "")
-		pdf.CellFormat(15, rowHeight, v.VehicleColorName, "1", 0, "C", true, 0, "")
+		// pdf.CellFormat(15, rowHeight, v.VehicleColorName, "1", 0, "C", true, 0, "")
+		colorY := pdf.GetY()
+		maxColorWidth := 30.00
+		hSingleColor := 9.00
+		hDoubleColor := 4.50
+
+		colorText := v.VehicleColorName
+		colorTextWidth := pdf.GetStringWidth(colorText)
+
+		if colorTextWidth > maxColorWidth {
+			pdf.MultiCell(maxColorWidth, hDoubleColor, colorText, "1", "L", true)
+		} else {
+			pdf.MultiCell(maxColorWidth, hSingleColor, colorText, "1", "L", true)
+		}
+		// println(fmt.Sprintf("%.2f", colorTextWidth), "colorTextWidth")
+		pdf.SetXY(float64(tableX+145), colorY)
 
 		pdf.SetFont("Sarabun", "B", 12)
 		pdf.CellFormat(30, rowHeight, v.License, "1", 0, "C", true, 0, "")
-
 		closeprice, _ := strconv.ParseFloat(v.ClosePrice, 64)
 		imcvat := float64(float64(closeprice) * 1.07)
 		formattedVatPrice := common.FloatWithCommas(imcvat, 0)
@@ -207,10 +237,10 @@ func GenPDFResult(auctionID string) (string, error) { //ใบประกาศ
 		line++
 		newpage := false
 
-		if i == 31 {
+		if i == 20 {
 			newpage = true
-		} else if i > 31 {
-			temp := i - 31
+		} else if i > 20 {
+			temp := i - 20
 			if temp%perpage == 0 {
 				newpage = true
 			}

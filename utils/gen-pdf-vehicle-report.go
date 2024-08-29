@@ -152,7 +152,7 @@ type VehicleReport struct {
 //		pdf.SetTextColor(0, 0, 0)
 //		pdf.SetFillColor(255, 255, 255)
 //	}
-func headertableReport(pdf gofpdf.Pdf, tabley int, y int) { //แก้ไขเวลา 20/6/67
+func headertableReport(pdf gofpdf.Pdf, tabley int, y int) { //แก้ไขเวลา 29/8/67
 	// Define table headers
 	pdf.SetFillColor(196, 16, 22)
 	pdf.SetTextColor(255, 255, 255) // ตั้งค่าสีข้อความเป็นสีขาว
@@ -168,10 +168,10 @@ func headertableReport(pdf gofpdf.Pdf, tabley int, y int) { //แก้ไขเ
 	pdf.CellFormat(10, 18, "เลขรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(25, 18, "ยี่ห้อรถ", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(10, 8, "ช่อง", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(75, 18, "รุ่นรถ", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(60, 18, "รุ่นรถ", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 18, "ปีผลิต", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(10, 18, "เกรด", "1", 0, "C", true, 0, "")
-	pdf.CellFormat(15, 18, "สี", "1", 0, "C", true, 0, "")
+	pdf.CellFormat(30, 18, "สี", "1", 0, "C", true, 0, "")
 	pdf.CellFormat(30, 18, "ทะเบียนรถ", "1", 0, "C", true, 0, "")
 	// pdf.CellFormat(20, 18, "ราคาเปิด", "1", 0, "C", true, 0, "")
 
