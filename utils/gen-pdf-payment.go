@@ -555,7 +555,7 @@ func genPaymentSummary(pdf *gofpdf.Fpdf, user UserSummary, vehicles []VehicleSum
 		x, y := pdf.GetXY()
 
 		// Draw the first cell
-		pdf.CellFormat(5, 8, strconv.Itoa(counter), "1", 0, "C", true, 0, "")
+		pdf.CellFormat(5, 8, vehicle.VehicleNo, "1", 0, "C", true, 0, "")
 
 		startY := y
 		pdf.SetXY(x+5, y)

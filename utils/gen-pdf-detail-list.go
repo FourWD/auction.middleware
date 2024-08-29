@@ -206,24 +206,38 @@ func GenPDFVehicleDetail(auctionID string) (string, error) { //แก้ไข�
 		pdf.CellFormat(7, 9, strconv.Itoa(counter[v.BranchLabel]), "1", 0, "C", true, 0, "")
 
 		currentY := pdf.GetY()
-		h := 9.00
+		maxWidth := 59.0
+		hSingle := 9.00
+		hDouble := 4.5
 
-		textall := len(v.VehicleBrandName + v.VehicleModelName + v.VehicleSubModelName)
-		if textall > 30 {
-			h = 4.5
+		text := v.VehicleBrandName + " " + v.VehicleModelName + " " + v.VehicleSubModelName
+		textWidth := pdf.GetStringWidth(text)
+		if textWidth > maxWidth {
+			pdf.MultiCell(60, hDouble, text, "1", "L", true)
+		} else {
+			pdf.MultiCell(60, hSingle, text, "1", "L", true)
 		}
-		pdf.MultiCell(60, h, v.VehicleBrandName+" "+v.VehicleModelName+" "+v.VehicleSubModelName, "1", "L", true)
+		println(fmt.Sprintf("%.2f", textWidth), "textwidth")
+
 		pdf.SetXY(float64(tableX+100), currentY)
 
-		// ใช้ MultiCell สำหรับ VehicleColorName ถ้าเกิน 20 ตัว ให้ /2
 		colorY := pdf.GetY()
-		hh := 9.00
-		textH := len(v.VehicleColorName)
-		if textH > 70 {
-			hh = 4.5
+		maxColorWidth := 30.00
+		hSingleColor := 9.00
+		hDoubleColor := 4.5
+
+		colorText := v.VehicleColorName
+		colorTextWidth := pdf.GetStringWidth(colorText)
+
+		if colorTextWidth > maxColorWidth {
+			pdf.MultiCell(maxColorWidth, hDoubleColor, colorText, "1", "L", true)
+		} else {
+			pdf.MultiCell(maxColorWidth, hSingleColor, colorText, "1", "L", true)
 		}
-		pdf.MultiCell(30, hh, v.VehicleColorName, "1", "L", true)
+
+		println(fmt.Sprintf("%.2f", colorTextWidth), "colorTextWidth")
 		pdf.SetXY(float64(tableX+130), colorY)
+
 		pdf.CellFormat(10, 9, v.Years, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(10, 9, v.VehicleGearName, "1", 0, "C", true, 0, "")
 		pdf.CellFormat(8, 9, v.VehicleGradeID, "1", 0, "C", true, 0, "")
