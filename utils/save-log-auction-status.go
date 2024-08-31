@@ -3,7 +3,7 @@ package utils
 import (
 	"time"
 
-	"auction-service/orm"
+	"github.com/FourWD/auction.middleware/orm"
 
 	"github.com/FourWD/middleware/common"
 	"github.com/google/uuid"
