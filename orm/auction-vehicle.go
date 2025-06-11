@@ -47,6 +47,8 @@ type AuctionVehicle struct {
 	IsProcess             bool      `json:"is_process" query:"is_process" firestore:"is_process" bson:"is_process" gorm:"type:bool"`
 	CurrentPrice          int       `json:"current_price" query:"current_price" firestore:"current_price" bson:"current_price" gorm:"type:int"`
 	CurrentProxyID        string    `json:"current_proxy_id" query:"current_proxy_id" firestore:"current_proxy_id" bson:"current_proxy_id" gorm:"type:varchar(36)"`
+	CurrentProxyUserID    string    `json:"current_proxy_user_id" query:"current_proxy_user_id" firestore:"current_proxy_user_id" bson:"current_proxy_user_id" gorm:"type:varchar(36)"`
+	CurrentProxyPrice     int       `json:"current_proxy_price" query:"current_proxy_price" firestore:"current_proxy_price" bson:"current_proxy_price" gorm:"type:int"`
 	ExtraTimeMinute       int       `json:"extra_time_minute" query:"extra_time_minute" firestore:"extra_time_minute" bson:"extra_time_minute" gorm:"type:int"`
 	AuctionStatusID       string    `json:"auction_status_id" query:"auction_status_id" firestore:"auction_status_id" bson:"auction_status_id" gorm:"type:varchar(2)"`
 	FirstOpenPrice        int       `json:"first_open_price" query:"first_open_price" firestore:"first_open_price" bson:"first_open_price" gorm:"type:int"`
