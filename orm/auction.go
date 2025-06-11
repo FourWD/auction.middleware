@@ -57,6 +57,7 @@ type Auction struct {
 	BottomImageVertical   string    `json:"bottom_image_vertical" query:"bottom_image_vertical" firestore:"bottom_image_vertical" bson:"bottom_image_vertical" gorm:"type:varchar(500)"`
 	HeaderImageHorizontal string    `json:"header_image_horizontal" query:"header_image_horizontal" firestore:"header_image_horizontal" bson:"header_image_horizontal" gorm:"type:varchar(500)"`
 	BottomImageHorizontal string    `json:"bottom_image_horizontal" query:"bottom_image_horizontal" firestore:"bottom_image_horizontal" bson:"bottom_image_horizontal" gorm:"type:varchar(500)"`
+	IsNotiFirstBidding    bool      `json:"is_noti_first_bidding" query:"is_noti_first_bidding" firestore:"is_noti_first_bidding" bson:"is_noti_first_bidding" gorm:"type:bool"`
 }
 
 /*
