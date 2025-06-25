@@ -21,11 +21,13 @@ func SaveLogAuctionStatus(auctionID string, auctionStatusID string) error {
 		"auction_status_id": auctionStatusID,
 		"created_at":        log.CreatedAt,
 	}
-	common.Log("SaveLogAuctionStatus", logFields, auctionID)
 	// ========================================================================================
 	if err := common.Database.Model(&orm.LogAuctionStatus{}).Create(&log); err.Error != nil {
+		logFields["error"] = err.Error
+		common.LogError("SaveLogAuctionStatus", logFields, auctionID)
 		return err.Error
 	}
-
+	// ========================================================================================
+	common.Log("SaveLogAuctionStatus", logFields, auctionID)
 	return nil
 }
