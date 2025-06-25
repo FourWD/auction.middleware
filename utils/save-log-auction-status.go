@@ -15,7 +15,14 @@ func SaveLogAuctionStatus(auctionID string, auctionStatusID string) error {
 	log.AuctionID = auctionID
 	log.AuctionStatusID = auctionStatusID
 	log.CreatedAt = time.Now()
-
+	// ========================================================================================
+	logFields := map[string]interface{}{
+		"auction_id":        auctionID,
+		"auction_status_id": auctionStatusID,
+		"created_at":        log.CreatedAt,
+	}
+	common.Log("SaveLogAuctionStatus", logFields, auctionID)
+	// ========================================================================================
 	if err := common.Database.Model(&orm.LogAuctionStatus{}).Create(&log); err.Error != nil {
 		return err.Error
 	}

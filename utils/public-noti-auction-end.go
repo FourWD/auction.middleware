@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"log"
 	"time"
 
 	"github.com/FourWD/auction.middleware/model"
@@ -15,7 +14,7 @@ func PublicNotiAuctionEnd(auctionID string, actionTime time.Time) error { // for
 
 	message := "END@" + common.StructToString(noti)
 	if _, err := common.GooglePublicMessage("NOTI", message); err != nil {
-		log.Println(err)
+		// log.Println(err)
 		return err
 	}
 	return nil
