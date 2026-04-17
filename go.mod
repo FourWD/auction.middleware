@@ -3,7 +3,7 @@ module github.com/FourWD/auction.middleware
 go 1.26.1
 
 require (
-	github.com/FourWD/middleware v1.5.592
+	github.com/FourWD/middleware v1.5.593
 	github.com/google/uuid v1.6.0
 )
 
@@ -58,7 +58,6 @@ require (
 	github.com/gofiber/fiber/v3 v3.1.0 // indirect
 	github.com/gofiber/schema v1.7.0 // indirect
 	github.com/gofiber/utils/v2 v2.0.2 // indirect
-	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.0 // indirect
 	github.com/golang-migrate/migrate/v4 v4.19.1 // indirect
