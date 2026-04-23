@@ -3,7 +3,7 @@ module github.com/FourWD/auction.middleware
 go 1.26.1
 
 require (
-	github.com/FourWD/middleware v1.5.601
+	github.com/FourWD/middleware v1.5.611
 	github.com/google/uuid v1.6.0
 )
 
